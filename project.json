@@ -1,0 +1,22 @@
+{
+  "overview": "A colorful phonics learning app for children ages 3–7. Teaches letter recognition with flashcards and sounds, sound blending exercises for all 26 letters (260 tasks), and letter tracing on screen. Child profiles and progress are saved locally on the device.",
+  "features": [
+    "A–Z letter flashcards with audio sounds",
+    "260 sound blending exercises (10 per letter)",
+    "Letter tracing with finger or mouse",
+    "Up to 3 child profiles",
+    "Local progress tracking per profile",
+    "Child-friendly colorful design with large buttons"
+  ],
+  "category": "education",
+  "tags": [
+    "phonics",
+    "education",
+    "children",
+    "learning",
+    "reading",
+    "writing",
+    "letters"
+  ],
+  "last_updated": "2026-04-23T20:55:02.872Z"
+}
