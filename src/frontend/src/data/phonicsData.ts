@@ -7,7 +7,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "A",
     uppercase: "A",
     lowercase: "a",
-    phonicSound: "æ",
+    phonicSound: "ah",
     words: [
       { word: "Apple", emoji: "🍎" },
       { word: "Ant", emoji: "🐜" },
@@ -97,7 +97,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "B",
     uppercase: "B",
     lowercase: "b",
-    phonicSound: "b",
+    phonicSound: "buh",
     words: [
       { word: "Ball", emoji: "⚽" },
       { word: "Book", emoji: "📚" },
@@ -187,7 +187,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "C",
     uppercase: "C",
     lowercase: "c",
-    phonicSound: "k",
+    phonicSound: "cuh",
     words: [
       { word: "Cat", emoji: "🐱" },
       { word: "Car", emoji: "🚗" },
@@ -277,7 +277,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "D",
     uppercase: "D",
     lowercase: "d",
-    phonicSound: "d",
+    phonicSound: "duh",
     words: [
       { word: "Dog", emoji: "🐶" },
       { word: "Door", emoji: "🚪" },
@@ -367,7 +367,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "E",
     uppercase: "E",
     lowercase: "e",
-    phonicSound: "ɛ",
+    phonicSound: "eh",
     words: [
       { word: "Egg", emoji: "🥚" },
       { word: "Ear", emoji: "👂" },
@@ -457,7 +457,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "F",
     uppercase: "F",
     lowercase: "f",
-    phonicSound: "f",
+    phonicSound: "fuh",
     words: [
       { word: "Fish", emoji: "🐟" },
       { word: "Fan", emoji: "🌀" },
@@ -547,7 +547,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "G",
     uppercase: "G",
     lowercase: "g",
-    phonicSound: "ɡ",
+    phonicSound: "guh",
     words: [
       { word: "Goat", emoji: "🐐" },
       { word: "Game", emoji: "🎮" },
@@ -637,7 +637,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "H",
     uppercase: "H",
     lowercase: "h",
-    phonicSound: "h",
+    phonicSound: "huh",
     words: [
       { word: "Hat", emoji: "🎩" },
       { word: "House", emoji: "🏠" },
@@ -727,7 +727,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "I",
     uppercase: "I",
     lowercase: "i",
-    phonicSound: "ɪ",
+    phonicSound: "ih",
     words: [
       { word: "Ice", emoji: "🧊" },
       { word: "Ink", emoji: "🖊️" },
@@ -817,7 +817,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "J",
     uppercase: "J",
     lowercase: "j",
-    phonicSound: "dʒ",
+    phonicSound: "juh",
     words: [
       { word: "Jam", emoji: "🫙" },
       { word: "Jar", emoji: "🏺" },
@@ -907,7 +907,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "K",
     uppercase: "K",
     lowercase: "k",
-    phonicSound: "k",
+    phonicSound: "cuh",
     words: [
       { word: "Key", emoji: "🔑" },
       { word: "Kite", emoji: "🪁" },
@@ -997,7 +997,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "L",
     uppercase: "L",
     lowercase: "l",
-    phonicSound: "l",
+    phonicSound: "luh",
     words: [
       { word: "Lamp", emoji: "💡" },
       { word: "Leaf", emoji: "🍃" },
@@ -1087,7 +1087,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "M",
     uppercase: "M",
     lowercase: "m",
-    phonicSound: "m",
+    phonicSound: "muh",
     words: [
       { word: "Moon", emoji: "🌙" },
       { word: "Man", emoji: "👨" },
@@ -1177,7 +1177,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "N",
     uppercase: "N",
     lowercase: "n",
-    phonicSound: "n",
+    phonicSound: "nuh",
     words: [
       { word: "Net", emoji: "🥅" },
       { word: "Nose", emoji: "👃" },
@@ -1267,7 +1267,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "O",
     uppercase: "O",
     lowercase: "o",
-    phonicSound: "ɒ",
+    phonicSound: "oh",
     words: [
       { word: "Orange", emoji: "🍊" },
       { word: "Owl", emoji: "🦉" },
@@ -1357,7 +1357,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "P",
     uppercase: "P",
     lowercase: "p",
-    phonicSound: "p",
+    phonicSound: "puh",
     words: [
       { word: "Pen", emoji: "🖊️" },
       { word: "Pig", emoji: "🐷" },
@@ -1447,7 +1447,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "Q",
     uppercase: "Q",
     lowercase: "q",
-    phonicSound: "kw",
+    phonicSound: "kwuh",
     words: [
       { word: "Queen", emoji: "👸" },
       { word: "Quilt", emoji: "🛏️" },
@@ -1537,7 +1537,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "R",
     uppercase: "R",
     lowercase: "r",
-    phonicSound: "r",
+    phonicSound: "ruh",
     words: [
       { word: "Rat", emoji: "🐀" },
       { word: "Ring", emoji: "💍" },
@@ -1627,7 +1627,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "S",
     uppercase: "S",
     lowercase: "s",
-    phonicSound: "s",
+    phonicSound: "suh",
     words: [
       { word: "Sun", emoji: "☀️" },
       { word: "Star", emoji: "⭐" },
@@ -1717,7 +1717,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "T",
     uppercase: "T",
     lowercase: "t",
-    phonicSound: "t",
+    phonicSound: "tuh",
     words: [
       { word: "Tree", emoji: "🌳" },
       { word: "Table", emoji: "🪑" },
@@ -1807,7 +1807,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "U",
     uppercase: "U",
     lowercase: "u",
-    phonicSound: "ʌ",
+    phonicSound: "uh",
     words: [
       { word: "Umbrella", emoji: "☂️" },
       { word: "Uniform", emoji: "👔" },
@@ -1897,7 +1897,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "V",
     uppercase: "V",
     lowercase: "v",
-    phonicSound: "v",
+    phonicSound: "vuh",
     words: [
       { word: "Van", emoji: "🚐" },
       { word: "Vase", emoji: "🪴" },
@@ -1987,7 +1987,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "W",
     uppercase: "W",
     lowercase: "w",
-    phonicSound: "w",
+    phonicSound: "wuh",
     words: [
       { word: "Water", emoji: "💧" },
       { word: "Window", emoji: "🪟" },
@@ -2077,7 +2077,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "X",
     uppercase: "X",
     lowercase: "x",
-    phonicSound: "ks",
+    phonicSound: "ksuh",
     words: [
       { word: "X-ray", emoji: "🩻" },
       { word: "Xylophone", emoji: "🎵" },
@@ -2167,7 +2167,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "Y",
     uppercase: "Y",
     lowercase: "y",
-    phonicSound: "j",
+    phonicSound: "yuh",
     words: [
       { word: "Yarn", emoji: "🧶" },
       { word: "Yolk", emoji: "🍳" },
@@ -2257,7 +2257,7 @@ const rawData: Omit<LetterData, "color">[] = [
     letter: "Z",
     uppercase: "Z",
     lowercase: "z",
-    phonicSound: "z",
+    phonicSound: "zuh",
     words: [
       { word: "Zoo", emoji: "🦒" },
       { word: "Zebra", emoji: "🦓" },

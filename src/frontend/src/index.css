@@ -9,98 +9,99 @@
     --font-mono: "JetBrains Mono";
     --radius: 1.25rem;
 
-    --background: 0.98 0.01 94;
-    --foreground: 0.2 0.02 264;
-    --card: 1.0 0 0;
-    --card-foreground: 0.2 0.02 264;
-    --popover: 1.0 0 0;
-    --popover-foreground: 0.2 0.02 264;
+    /* Luxury black theme — same in both root and dark since we force dark always */
+    --background: 0.07 0.01 264;
+    --foreground: 0.97 0 0;
+    --card: 0.12 0.02 264;
+    --card-foreground: 0.97 0 0;
+    --popover: 0.1 0.02 264;
+    --popover-foreground: 0.97 0 0;
 
-    --primary: 0.55 0.28 15;
-    --primary-foreground: 0.98 0 0;
+    --primary: 0.82 0.17 84;
+    --primary-foreground: 0.08 0 0;
 
-    --secondary: 0.5 0.24 264;
-    --secondary-foreground: 0.98 0 0;
-    --muted: 0.92 0.02 94;
-    --muted-foreground: 0.45 0.05 264;
+    --secondary: 0.18 0.04 264;
+    --secondary-foreground: 0.97 0 0;
+    --muted: 0.16 0.03 264;
+    --muted-foreground: 0.65 0.05 264;
 
-    --accent: 0.65 0.26 131;
-    --accent-foreground: 0.98 0 0;
+    --accent: 0.82 0.17 84;
+    --accent-foreground: 0.08 0 0;
 
-    --destructive: 0.55 0.25 15;
-    --destructive-foreground: 0.98 0 0;
+    --destructive: 0.65 0.28 15;
+    --destructive-foreground: 0.97 0 0;
 
-    --border: 0.88 0.05 94;
-    --input: 0.95 0.04 94;
-    --ring: 0.55 0.28 15;
+    --border: 0.22 0.04 264;
+    --input: 0.16 0.03 264;
+    --ring: 0.82 0.17 84;
 
-    --chart-1: 0.55 0.28 15;
-    --chart-2: 0.5 0.24 264;
-    --chart-3: 0.58 0.27 131;
-    --chart-4: 0.62 0.23 84;
-    --chart-5: 0.68 0.22 40;
+    --chart-1: 0.82 0.17 84;
+    --chart-2: 0.68 0.24 264;
+    --chart-3: 0.68 0.27 131;
+    --chart-4: 0.82 0.23 84;
+    --chart-5: 0.78 0.22 40;
 
-    --sidebar: 0.98 0 0;
-    --sidebar-foreground: 0.2 0.02 264;
-    --sidebar-primary: 0.55 0.28 15;
-    --sidebar-primary-foreground: 0.98 0 0;
-    --sidebar-accent: 0.58 0.27 131;
-    --sidebar-accent-foreground: 0.98 0 0;
-    --sidebar-border: 0.88 0.05 94;
-    --sidebar-ring: 0.55 0.28 15;
+    --sidebar: 0.1 0.02 264;
+    --sidebar-foreground: 0.97 0 0;
+    --sidebar-primary: 0.82 0.17 84;
+    --sidebar-primary-foreground: 0.08 0 0;
+    --sidebar-accent: 0.68 0.27 131;
+    --sidebar-accent-foreground: 0.08 0 0;
+    --sidebar-border: 0.22 0.04 264;
+    --sidebar-ring: 0.82 0.17 84;
 
-    --letter-red: 0.55 0.28 15;
-    --letter-blue: 0.5 0.24 264;
-    --letter-green: 0.58 0.27 131;
-    --letter-yellow: 0.82 0.16 84;
-    --letter-purple: 0.55 0.22 320;
+    --letter-red: 0.72 0.28 15;
+    --letter-blue: 0.68 0.24 264;
+    --letter-green: 0.72 0.27 131;
+    --letter-yellow: 0.88 0.16 84;
+    --letter-purple: 0.72 0.22 320;
   }
 
   .dark {
-    --background: 0.18 0.05 264;
-    --foreground: 0.95 0.02 94;
-    --card: 0.22 0.08 264;
-    --card-foreground: 0.95 0.02 94;
-    --popover: 0.26 0.1 264;
-    --popover-foreground: 0.95 0.02 94;
+    --background: 0.07 0.01 264;
+    --foreground: 0.97 0 0;
+    --card: 0.12 0.02 264;
+    --card-foreground: 0.97 0 0;
+    --popover: 0.1 0.02 264;
+    --popover-foreground: 0.97 0 0;
 
-    --primary: 0.75 0.28 15;
-    --primary-foreground: 0.18 0.05 264;
+    --primary: 0.82 0.17 84;
+    --primary-foreground: 0.08 0 0;
 
-    --secondary: 0.68 0.24 264;
-    --secondary-foreground: 0.95 0.02 94;
-    --muted: 0.28 0.08 264;
-    --muted-foreground: 0.65 0.08 94;
+    --secondary: 0.18 0.04 264;
+    --secondary-foreground: 0.97 0 0;
+    --muted: 0.16 0.03 264;
+    --muted-foreground: 0.65 0.05 264;
 
-    --accent: 0.78 0.26 131;
-    --accent-foreground: 0.18 0.05 264;
+    --accent: 0.82 0.17 84;
+    --accent-foreground: 0.08 0 0;
 
-    --destructive: 0.72 0.25 15;
-    --destructive-foreground: 0.18 0.05 264;
+    --destructive: 0.65 0.28 15;
+    --destructive-foreground: 0.97 0 0;
 
-    --border: 0.35 0.12 264;
-    --input: 0.35 0.12 264;
-    --ring: 0.75 0.28 15;
+    --border: 0.22 0.04 264;
+    --input: 0.16 0.03 264;
+    --ring: 0.82 0.17 84;
 
-    --chart-1: 0.75 0.28 15;
+    --chart-1: 0.82 0.17 84;
     --chart-2: 0.68 0.24 264;
-    --chart-3: 0.78 0.27 131;
+    --chart-3: 0.68 0.27 131;
     --chart-4: 0.82 0.23 84;
-    --chart-5: 0.88 0.22 40;
+    --chart-5: 0.78 0.22 40;
 
-    --sidebar: 0.22 0.08 264;
-    --sidebar-foreground: 0.95 0.02 94;
-    --sidebar-primary: 0.75 0.28 15;
-    --sidebar-primary-foreground: 0.18 0.05 264;
-    --sidebar-accent: 0.78 0.26 131;
-    --sidebar-accent-foreground: 0.18 0.05 264;
-    --sidebar-border: 0.35 0.12 264;
-    --sidebar-ring: 0.75 0.28 15;
+    --sidebar: 0.1 0.02 264;
+    --sidebar-foreground: 0.97 0 0;
+    --sidebar-primary: 0.82 0.17 84;
+    --sidebar-primary-foreground: 0.08 0 0;
+    --sidebar-accent: 0.68 0.27 131;
+    --sidebar-accent-foreground: 0.08 0 0;
+    --sidebar-border: 0.22 0.04 264;
+    --sidebar-ring: 0.82 0.17 84;
 
-    --letter-red: 0.75 0.28 15;
+    --letter-red: 0.72 0.28 15;
     --letter-blue: 0.68 0.24 264;
-    --letter-green: 0.78 0.27 131;
-    --letter-yellow: 0.92 0.16 84;
+    --letter-green: 0.72 0.27 131;
+    --letter-yellow: 0.88 0.16 84;
     --letter-purple: 0.72 0.22 320;
   }
 
@@ -153,23 +154,57 @@
     @apply rounded-3xl p-8 shadow-lg transition-smooth;
   }
 
+  /* Vivid gradients that pop on dark/black backgrounds */
   .gradient-red {
-    @apply bg-gradient-to-br from-[oklch(0.65_0.28_15)] to-[oklch(0.45_0.28_15)];
+    @apply bg-gradient-to-br from-[oklch(0.72_0.28_15)] to-[oklch(0.50_0.28_15)];
   }
 
   .gradient-blue {
-    @apply bg-gradient-to-br from-[oklch(0.6_0.24_264)] to-[oklch(0.4_0.24_264)];
+    @apply bg-gradient-to-br from-[oklch(0.68_0.24_264)] to-[oklch(0.45_0.24_264)];
   }
 
   .gradient-green {
-    @apply bg-gradient-to-br from-[oklch(0.68_0.27_131)] to-[oklch(0.48_0.27_131)];
+    @apply bg-gradient-to-br from-[oklch(0.72_0.27_131)] to-[oklch(0.50_0.27_131)];
   }
 
   .gradient-yellow {
-    @apply bg-gradient-to-br from-[oklch(0.85_0.16_84)] to-[oklch(0.72_0.16_84)];
+    @apply bg-gradient-to-br from-[oklch(0.90_0.18_84)] to-[oklch(0.75_0.18_84)];
   }
 
   .gradient-purple {
-    @apply bg-gradient-to-br from-[oklch(0.65_0.22_320)] to-[oklch(0.45_0.22_320)];
+    @apply bg-gradient-to-br from-[oklch(0.68_0.22_320)] to-[oklch(0.48_0.22_320)];
+  }
+
+  /* Luxury gold gradient */
+  .gradient-gold {
+    @apply bg-gradient-to-br from-[oklch(0.90_0.18_84)] to-[oklch(0.72_0.18_84)];
+  }
+
+  /* Gold text gradient */
+  .text-gold-gradient {
+    @apply bg-gradient-to-r from-[oklch(0.92_0.18_84)] to-[oklch(0.78_0.18_84)] bg-clip-text text-transparent;
+  }
+
+  /* Luxury glow effect for cards */
+  .glow-gold {
+    box-shadow: 0 0 20px oklch(0.82 0.17 84 / 0.25), 0 4px 16px
+      oklch(0 0 0 / 0.4);
+  }
+
+  .glow-gold-sm {
+    box-shadow: 0 0 12px oklch(0.82 0.17 84 / 0.2), 0 2px 8px oklch(0 0 0 / 0.3);
+  }
+
+  /* Shadow variants for luxury look */
+  .shadow-luxury {
+    box-shadow: 0 8px 32px oklch(0 0 0 / 0.5), 0 2px 8px oklch(0 0 0 / 0.3);
+  }
+
+  .shadow-playful {
+    box-shadow: 0 4px 16px oklch(0 0 0 / 0.4), 0 1px 4px oklch(0 0 0 / 0.2);
+  }
+
+  .shadow-xs {
+    box-shadow: 0 1px 4px oklch(0 0 0 / 0.3);
   }
 }

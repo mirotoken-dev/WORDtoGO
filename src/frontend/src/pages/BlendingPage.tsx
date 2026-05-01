@@ -123,7 +123,7 @@ export default function BlendingPage() {
   }
 
   return (
-    <Layout title="Blending" headerColor="oklch(0.5 0.24 264)">
+    <Layout title="Blending" headerColor="oklch(0.45 0.24 264)">
       <div className="px-5 py-5 flex flex-col gap-4">
         {/* Progress */}
         <ProgressBar
@@ -152,13 +152,16 @@ export default function BlendingPage() {
                   i === letterIdx
                     ? "gradient-blue text-card shadow-playful"
                     : done === 10
-                      ? "bg-accent/20 text-accent-foreground"
+                      ? "bg-[oklch(0.72_0.27_131/0.25)] text-[oklch(0.72_0.27_131)]"
                       : "bg-muted text-muted-foreground"
                 }`}
               >
                 {l.letter}
                 {done > 0 && done < 10 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full text-[8px] text-primary-foreground flex items-center justify-center font-bold">
+                  <span
+                    className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-[8px] flex items-center justify-center font-bold text-[oklch(0.08_0_0)]"
+                    style={{ background: "oklch(0.82 0.17 84)" }}
+                  >
                     {done}
                   </span>
                 )}
@@ -174,7 +177,9 @@ export default function BlendingPage() {
           </span>
           <div className="flex items-center gap-2">
             {isCompleted && (
-              <span className="text-green-500 text-sm font-bold">✅</span>
+              <span className="text-[oklch(0.72_0.27_131)] text-sm font-bold">
+                ✅
+              </span>
             )}
             <StarBadge count={completedCount} size="sm" />
           </div>
@@ -196,6 +201,10 @@ export default function BlendingPage() {
                     ? "gradient-yellow"
                     : "gradient-purple"
           } text-card`}
+          style={{
+            boxShadow:
+              "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1) inset",
+          }}
         >
           <span className="text-6xl">{task.emoji}</span>
           <div>
@@ -219,7 +228,7 @@ export default function BlendingPage() {
                 transition={{ duration: 0.4 }}
                 className={`min-w-[56px] h-12 px-3 rounded-2xl border-2 flex items-center justify-center font-display font-bold text-base transition-smooth ${
                   status === "correct"
-                    ? "border-accent bg-accent/20 text-accent"
+                    ? "border-[oklch(0.72_0.27_131)] bg-[oklch(0.72_0.27_131/0.2)] text-[oklch(0.72_0.27_131)]"
                     : status === "wrong"
                       ? "border-destructive bg-destructive/10 text-destructive"
                       : c
@@ -240,7 +249,7 @@ export default function BlendingPage() {
                 exit={{ scale: 0 }}
               >
                 {status === "correct" ? (
-                  <CheckCircle2 className="w-8 h-8 text-accent" />
+                  <CheckCircle2 className="w-8 h-8 text-[oklch(0.72_0.27_131)]" />
                 ) : (
                   <XCircle className="w-8 h-8 text-destructive" />
                 )}
@@ -262,18 +271,18 @@ export default function BlendingPage() {
                 data-ocid={`blending.syllable_button.${i + 1}`}
                 onClick={() => !used && handleSound(s)}
                 disabled={used || status !== "idle"}
-                className={`btn-lg btn-tap font-display font-black text-xl shadow-playful ${
+                className={`btn-lg btn-tap font-display font-black text-xl ${
                   used || status !== "idle"
                     ? "opacity-30 cursor-not-allowed bg-muted text-foreground"
                     : letter.color === "red"
-                      ? "gradient-red text-card"
+                      ? "gradient-red text-card shadow-playful"
                       : letter.color === "blue"
-                        ? "gradient-blue text-card"
+                        ? "gradient-blue text-card shadow-playful"
                         : letter.color === "green"
-                          ? "gradient-green text-card"
+                          ? "gradient-green text-card shadow-playful"
                           : letter.color === "yellow"
-                            ? "gradient-yellow text-card"
-                            : "gradient-purple text-card"
+                            ? "gradient-yellow text-card shadow-playful"
+                            : "gradient-purple text-card shadow-playful"
                 }`}
               >
                 {s}
@@ -297,7 +306,7 @@ export default function BlendingPage() {
               setChosen([]);
               setStatus("idle");
             }}
-            className="w-14 h-14 rounded-2xl bg-muted flex items-center justify-center active:scale-95 transition-smooth"
+            className="w-14 h-14 rounded-2xl bg-muted border border-border flex items-center justify-center active:scale-95 transition-smooth hover:border-[oklch(0.82_0.17_84/0.4)]"
             aria-label="Previous"
           >
             <ChevronLeft className="w-7 h-7 text-foreground" />

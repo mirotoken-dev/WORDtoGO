@@ -6,6 +6,11 @@ import { useAppStore } from "./store/useAppStore";
 import BlendingPage from "./pages/BlendingPage";
 import FlashcardsPage from "./pages/FlashcardsPage";
 import HomePage from "./pages/HomePage";
+import MakingWordsPage from "./pages/MakingWordsPage";
+import MatchingLevel1Page from "./pages/MatchingLevel1Page";
+import MatchingLevel2Page from "./pages/MatchingLevel2Page";
+import MatchingLevel3Page from "./pages/MatchingLevel3Page";
+import MatchingMenuPage from "./pages/MatchingMenuPage";
 // Lazy page imports
 import ProfilesPage from "./pages/ProfilesPage";
 import ProgressPage from "./pages/ProgressPage";
@@ -61,6 +66,36 @@ const progressRoute = createRoute({
   component: ProgressPage,
 });
 
+const matchingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/matching",
+  component: MatchingMenuPage,
+});
+
+const matchingLevel1Route = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/matching/level1",
+  component: MatchingLevel1Page,
+});
+
+const matchingLevel2Route = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/matching/level2",
+  component: MatchingLevel2Page,
+});
+
+const matchingLevel3Route = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/matching/level3",
+  component: MatchingLevel3Page,
+});
+
+const makingWordsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/making-words",
+  component: MakingWordsPage,
+});
+
 const routeTree = rootRoute.addChildren([
   profilesRoute,
   homeRoute,
@@ -68,6 +103,11 @@ const routeTree = rootRoute.addChildren([
   blendingRoute,
   tracingRoute,
   progressRoute,
+  matchingRoute,
+  matchingLevel1Route,
+  matchingLevel2Route,
+  matchingLevel3Route,
+  makingWordsRoute,
 ]);
 
 const router = createRouter({ routeTree });

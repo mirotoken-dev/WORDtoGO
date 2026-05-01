@@ -68,3 +68,21 @@ export type AppView =
   | "blending"
   | "tracing"
   | "progress";
+
+// --- Matching Quiz Types ---
+
+export type QuizLevel = 1 | 2 | 3;
+
+export interface MatchPair {
+  id: string;
+  left: string;
+  right: string;
+  matched: boolean;
+  incorrect: boolean;
+}
+
+export interface QuizResult {
+  score: number;
+  total: number;
+  level: QuizLevel;
+}

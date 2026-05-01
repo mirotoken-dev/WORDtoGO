@@ -39,11 +39,15 @@ export default function ProgressPage() {
   return (
     <Layout title="Progress">
       <div className="px-5 py-6 flex flex-col gap-6">
-        {/* Profile Card */}
+        {/* Profile Card — luxury gold gradient */}
         <motion.div
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="gradient-purple text-card rounded-3xl p-5 flex items-center gap-4 shadow-playful"
+          className="gradient-gold text-[oklch(0.08_0_0)] rounded-3xl p-5 flex items-center gap-4"
+          style={{
+            boxShadow:
+              "0 8px 32px oklch(0.82 0.17 84 / 0.3), 0 0 0 1px oklch(1 0 0 / 0.15) inset",
+          }}
         >
           <div className="text-6xl">{profile.avatar}</div>
           <div>
@@ -82,13 +86,28 @@ export default function ProgressPage() {
           ].map((stat) => (
             <motion.div
               key={stat.label}
-              className={`${stat.color} text-card rounded-2xl p-3 text-center shadow-playful`}
+              className={`${stat.color} text-card rounded-2xl p-3 text-center relative overflow-hidden`}
+              style={{
+                boxShadow:
+                  "0 4px 20px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1) inset",
+              }}
               whileHover={{ scale: 1.03 }}
             >
-              <div className="text-3xl">{stat.emoji}</div>
-              <p className="text-2xl font-display font-black">{stat.value}</p>
-              <p className="text-xs font-body opacity-80">/{stat.max}</p>
-              <p className="text-xs font-display font-bold mt-0.5">
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(1 0 0 / 0.08) 0%, transparent 60%)",
+                }}
+              />
+              <div className="text-3xl relative z-10">{stat.emoji}</div>
+              <p className="text-2xl font-display font-black relative z-10">
+                {stat.value}
+              </p>
+              <p className="text-xs font-body opacity-80 relative z-10">
+                /{stat.max}
+              </p>
+              <p className="text-xs font-display font-bold mt-0.5 relative z-10">
                 {stat.label}
               </p>
             </motion.div>
@@ -137,13 +156,19 @@ export default function ProgressPage() {
                     ? "gradient-yellow text-card"
                     : doneCount === 1
                       ? "gradient-blue text-card"
-                      : "bg-muted text-muted-foreground";
+                      : "bg-muted text-muted-foreground border border-border";
 
               return (
                 <motion.div
                   key={l.letter}
                   data-ocid={`progress.letter_chip.${i + 1}`}
-                  className={`h-10 w-full rounded-xl flex items-center justify-center font-display font-black text-sm ${colorCls} shadow-xs`}
+                  className={`h-10 w-full rounded-xl flex items-center justify-center font-display font-black text-sm ${colorCls}`}
+                  style={{
+                    boxShadow:
+                      doneCount > 0
+                        ? "0 2px 8px oklch(0 0 0 / 0.4)"
+                        : undefined,
+                  }}
                   whileHover={{ scale: 1.1 }}
                   title={`${l.letter}: ${doneCount}/3 done`}
                 >
@@ -166,8 +191,8 @@ export default function ProgressPage() {
               1/3 done
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-3 h-3 rounded bg-muted inline-block" /> Not
-              started
+              <span className="w-3 h-3 rounded bg-muted border border-border inline-block" />{" "}
+              Not started
             </span>
           </div>
         </div>

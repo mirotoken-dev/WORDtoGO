@@ -25,7 +25,6 @@ export default function ProfilesPage() {
     if (!name.trim()) return;
     playSuccessSound();
     addProfile(name.trim(), avatar);
-    // find new profile
     const allProfiles = useAppStore.getState().profiles;
     const newProfile = allProfiles[allProfiles.length - 1];
     if (newProfile) {
@@ -44,8 +43,23 @@ export default function ProfilesPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Hero */}
-      <div className="gradient-purple px-6 pt-14 pb-10 text-center relative overflow-hidden">
+      {/* Hero — luxury dark with gold gradient title */}
+      <div
+        className="px-6 pt-14 pb-10 text-center relative overflow-hidden"
+        style={{
+          background:
+            "linear-gradient(160deg, oklch(0.12 0.03 280) 0%, oklch(0.07 0.01 264) 100%)",
+          borderBottom: "1px solid oklch(0.82 0.17 84 / 0.2)",
+        }}
+      >
+        {/* Gold radial glow */}
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.82 0.17 84 / 0.10) 0%, transparent 70%)",
+          }}
+        />
         <motion.div
           initial={{ scale: 0.7, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -53,12 +67,21 @@ export default function ProfilesPage() {
           className="relative z-10"
         >
           <div className="text-7xl mb-3">🦁</div>
-          <h1 className="text-5xl font-display font-black text-card leading-tight drop-shadow-lg">
+          <h1
+            className="text-5xl font-display font-black leading-tight drop-shadow-lg"
+            style={{
+              background:
+                "linear-gradient(to right, oklch(0.95 0.18 84), oklch(0.82 0.17 84), oklch(0.95 0.18 84))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
             Phonics
             <br />
             Playroom
           </h1>
-          <p className="text-card/80 font-body text-lg mt-2">
+          <p className="text-muted-foreground font-body text-lg mt-2">
             Select who's learning today!
           </p>
         </motion.div>
@@ -87,7 +110,11 @@ export default function ProfilesPage() {
           <motion.div
             key={profile.id}
             data-ocid={`profiles.item.${idx + 1}`}
-            className="flex items-center gap-4 bg-card rounded-3xl px-4 py-4 shadow-playful border border-border"
+            className="flex items-center gap-4 bg-card rounded-3xl px-4 py-4 border border-[oklch(0.82_0.17_84/0.15)]"
+            style={{
+              boxShadow:
+                "0 4px 16px oklch(0 0 0 / 0.4), 0 0 0 1px oklch(0.82 0.17 84 / 0.08) inset",
+            }}
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: idx * 0.08 }}
@@ -98,7 +125,7 @@ export default function ProfilesPage() {
               onClick={() => handleSelect(profile.id)}
               className="flex-1 flex items-center gap-4 text-left active:scale-95 transition-smooth"
             >
-              <div className="w-16 h-16 text-5xl flex items-center justify-center rounded-2xl bg-muted flex-shrink-0">
+              <div className="w-16 h-16 text-5xl flex items-center justify-center rounded-2xl bg-muted border border-[oklch(0.82_0.17_84/0.2)] flex-shrink-0">
                 {profile.avatar}
               </div>
               <div className="min-w-0">
@@ -164,7 +191,11 @@ export default function ProfilesPage() {
           ) : creating ? (
             <motion.div
               data-ocid="profiles.create_form"
-              className="bg-card rounded-3xl p-5 shadow-playful border border-border"
+              className="bg-card rounded-3xl p-5 border border-[oklch(0.82_0.17_84/0.2)]"
+              style={{
+                boxShadow:
+                  "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.82 0.17 84 / 0.1) inset",
+              }}
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
@@ -191,7 +222,7 @@ export default function ProfilesPage() {
                   onKeyDown={(e) => {
                     if (e.key === "Enter") handleCreate();
                   }}
-                  className="w-full px-4 py-3 rounded-2xl border border-input bg-background text-foreground font-body text-lg placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                  className="w-full px-4 py-3 rounded-2xl border border-[oklch(0.82_0.17_84/0.3)] bg-background text-foreground font-body text-lg placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[oklch(0.82_0.17_84/0.6)]"
                   maxLength={20}
                 />
               </div>
@@ -209,8 +240,8 @@ export default function ProfilesPage() {
                       onClick={() => setAvatar(a)}
                       className={`w-12 h-12 rounded-2xl text-2xl flex items-center justify-center active:scale-95 transition-smooth ${
                         avatar === a
-                          ? "gradient-purple text-card shadow-playful ring-2 ring-secondary"
-                          : "bg-muted hover:bg-muted/70"
+                          ? "gradient-gold shadow-luxury ring-2 ring-[oklch(0.82_0.17_84/0.6)]"
+                          : "bg-muted hover:bg-muted/70 border border-border"
                       }`}
                     >
                       {a}
@@ -227,7 +258,7 @@ export default function ProfilesPage() {
                     setCreating(false);
                     setName("");
                   }}
-                  className="flex-1 btn-lg btn-tap bg-muted text-foreground font-display font-bold"
+                  className="flex-1 btn-lg btn-tap bg-muted text-foreground font-display font-bold border border-border"
                 >
                   Cancel
                 </button>
@@ -236,7 +267,7 @@ export default function ProfilesPage() {
                   data-ocid="profiles.submit_button"
                   onClick={handleCreate}
                   disabled={!name.trim()}
-                  className="flex-1 btn-lg btn-tap gradient-purple text-card font-display font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 btn-lg btn-tap gradient-gold text-[oklch(0.08_0_0)] font-display font-bold disabled:opacity-50 disabled:cursor-not-allowed shadow-luxury"
                 >
                   Start! 🎉
                 </button>
@@ -251,7 +282,7 @@ export default function ProfilesPage() {
                 setCreating(true);
                 setTimeout(() => inputRef.current?.focus(), 50);
               }}
-              className="w-full py-5 rounded-3xl border-2 border-dashed border-border text-muted-foreground font-display font-bold text-lg flex items-center justify-center gap-2 hover:border-primary hover:text-primary active:scale-95 transition-smooth"
+              className="w-full py-5 rounded-3xl border-2 border-dashed border-[oklch(0.82_0.17_84/0.3)] text-[oklch(0.82_0.17_84/0.7)] font-display font-bold text-lg flex items-center justify-center gap-2 hover:border-[oklch(0.82_0.17_84/0.6)] hover:text-[oklch(0.82_0.17_84)] active:scale-95 transition-smooth"
               whileTap={{ scale: 0.97 }}
             >
               ➕ Add New Learner
@@ -260,7 +291,7 @@ export default function ProfilesPage() {
         </AnimatePresence>
       </div>
 
-      <footer className="py-3 text-center bg-muted/40 border-t border-border">
+      <footer className="py-3 text-center bg-card/60 border-t border-[oklch(0.82_0.17_84/0.15)]">
         <p className="text-xs text-muted-foreground font-body">
           © {new Date().getFullYear()}. Built with love using{" "}
           <a
@@ -269,7 +300,7 @@ export default function ProfilesPage() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:text-foreground transition-colors"
+            className="underline hover:text-[oklch(0.82_0.17_84)] transition-colors"
           >
             caffeine.ai
           </a>

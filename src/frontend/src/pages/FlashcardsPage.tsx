@@ -7,21 +7,15 @@ import ProgressBar from "../components/ProgressBar";
 import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
 import {
+  playLetterPhonetic,
   playSuccessSound,
   playTapSound,
-  playTone,
-  speakLetter,
   speakWord,
 } from "../utils/audio";
 
 function playLetterSound(letter: string): void {
-  const index = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(letter.toUpperCase());
-  if (index === -1) return;
-  const frequencies = [
-    262, 294, 330, 349, 392, 440, 494, 523, 587, 659, 698, 784, 880, 988, 1047,
-    1175, 1319, 1397, 1568, 1760, 1976, 523, 659, 784, 988, 1047,
-  ];
-  playTone(frequencies[index] ?? 440, 0.3, "sine", 0.25);
+  // playLetterPhonetic handles mp3 + fallback; no tone needed
+  void playLetterPhonetic(letter);
 }
 
 const COLOR_MAP: Record<string, string> = {
@@ -90,7 +84,6 @@ export default function FlashcardsPage() {
 
   const handleSound = () => {
     playLetterSound(letter.letter);
-    speakLetter(letter.letter);
     setTimeout(() => speakWord(word.word), 700);
     markSeen();
   };
@@ -114,14 +107,17 @@ export default function FlashcardsPage() {
   const isCompleted = progress?.flashcards[letter.letter]?.completed ?? false;
 
   return (
-    <Layout title="Flashcards" headerColor="oklch(0.55 0.28 15)">
+    <Layout title="Flashcards" headerColor="oklch(0.50 0.28 15)">
       <div className="px-5 py-5 flex flex-col gap-4">
         {/* Top bar */}
         <div className="flex items-center justify-between">
           <span className="text-sm font-body text-muted-foreground">
             Letter {letterIdx + 1} / {PHONICS_DATA.length}
           </span>
-          <span className="text-sm font-display font-bold text-accent">
+          <span
+            className="text-sm font-display font-bold"
+            style={{ color: "oklch(0.88 0.17 84)" }}
+          >
             {seenCount} learned ⭐
           </span>
         </div>
@@ -149,7 +145,7 @@ export default function FlashcardsPage() {
                   i === letterIdx
                     ? "gradient-red text-card shadow-playful"
                     : done
-                      ? "bg-accent/20 text-accent-foreground"
+                      ? "bg-[oklch(0.72_0.27_131/0.25)] text-[oklch(0.72_0.27_131)]"
                       : "bg-muted text-muted-foreground"
                 }`}
               >
@@ -167,6 +163,10 @@ export default function FlashcardsPage() {
             data-ocid="flashcards.card"
             onClick={handleFlip}
             className={`letter-card w-full min-h-[220px] flex flex-col items-center justify-center cursor-pointer ${COLOR_MAP[letter.color]} text-card relative`}
+            style={{
+              boxShadow:
+                "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1) inset",
+            }}
             initial={{ x: dir * 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -dir * 50, opacity: 0 }}
@@ -177,7 +177,7 @@ export default function FlashcardsPage() {
             )}
             {!flipped ? (
               <>
-                <span className="text-[100px] font-display font-black leading-none">
+                <span className="text-[100px] font-display font-black leading-none drop-shadow-lg">
                   {letter.uppercase}
                 </span>
                 <span className="text-4xl font-display font-bold opacity-70">
@@ -206,7 +206,11 @@ export default function FlashcardsPage() {
           type="button"
           data-ocid="flashcards.sound_button"
           onClick={handleSound}
-          className="flex items-center justify-center gap-3 w-full py-4 gradient-red text-card rounded-3xl shadow-playful active:scale-95 transition-smooth font-display font-bold text-lg"
+          className="flex items-center justify-center gap-3 w-full py-4 gradient-red text-card rounded-3xl active:scale-95 transition-smooth font-display font-bold text-lg"
+          style={{
+            boxShadow:
+              "0 4px 20px oklch(0.72 0.28 15 / 0.4), 0 0 0 1px oklch(1 0 0 / 0.1) inset",
+          }}
         >
           <Volume2 className="w-6 h-6" />
           Hear the Sound!
@@ -231,7 +235,7 @@ export default function FlashcardsPage() {
               className={`flex items-center gap-1.5 px-3 py-2 rounded-2xl text-sm font-display font-bold transition-smooth active:scale-95 ${
                 wordIdx === i && flipped
                   ? `${COLOR_MAP[letter.color]} text-card shadow-playful`
-                  : "bg-muted text-foreground"
+                  : "bg-muted text-foreground border border-border hover:border-[oklch(0.82_0.17_84/0.4)]"
               }`}
             >
               <span>{w.emoji}</span>
@@ -246,7 +250,7 @@ export default function FlashcardsPage() {
             type="button"
             data-ocid="flashcards.prev_button"
             onClick={goPrev}
-            className="w-14 h-14 rounded-2xl bg-muted flex items-center justify-center active:scale-95 transition-smooth"
+            className="w-14 h-14 rounded-2xl bg-muted border border-border flex items-center justify-center active:scale-95 transition-smooth hover:border-[oklch(0.82_0.17_84/0.4)]"
             aria-label="Previous"
           >
             <ChevronLeft className="w-7 h-7 text-foreground" />
