@@ -50,8 +50,8 @@ export default function ProgressBar({
         </div>
       )}
       <div
-        className={`w-full rounded-full overflow-hidden ${h}`}
-        style={{ background: "oklch(0.90 0.02 60)", boxShadow: "inset 0 1px 2px oklch(0 0 0 / 0.08)" }}
+        className={`w-full bg-muted rounded-full overflow-hidden ${h}`}
+        style={{ boxShadow: "inset 0 1px 3px oklch(0 0 0 / 0.4)" }}
         aria-valuenow={pct}
         aria-valuemin={0}
         aria-valuemax={100}

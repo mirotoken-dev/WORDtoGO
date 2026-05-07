@@ -31,13 +31,15 @@ export default function Layout({
     router.navigate({ to: "/home" });
   };
 
-  const defaultHeaderBg = "linear-gradient(135deg, oklch(0.72 0.22 40) 0%, oklch(0.60 0.22 40) 100%)";
-
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: "oklch(0.98 0.02 60)" }}>
+    <div className="min-h-screen flex flex-col bg-background">
       <header
-        className="sticky top-0 z-40 flex items-center justify-between px-4 py-3"
-        style={{ background: headerColor ?? defaultHeaderBg, boxShadow: "0 2px 8px oklch(0 0 0 / 0.12)" }}
+        className="sticky top-0 z-40 flex items-center justify-between px-4 py-3 border-b border-[oklch(0.82_0.17_84/0.2)] shadow-luxury backdrop-blur-sm"
+        style={
+          headerColor
+            ? { background: headerColor }
+            : { background: "oklch(0.10 0.02 264 / 0.95)" }
+        }
         data-ocid="layout.header"
       >
         <div className="flex items-center gap-2 min-w-[44px]">
@@ -45,18 +47,17 @@ export default function Layout({
             <button
               type="button"
               onClick={handleBack}
-              className="w-10 h-10 rounded-full flex items-center justify-center active:scale-95 transition-smooth"
-              style={{ background: "oklch(1 0 0 / 0.25)" }}
+              className="w-11 h-11 rounded-full bg-card/80 border border-[oklch(0.82_0.17_84/0.25)] flex items-center justify-center shadow-xs btn-tap transition-smooth hover:bg-card hover:border-[oklch(0.82_0.17_84/0.5)]"
               aria-label="Go back"
               data-ocid="layout.back_button"
             >
-              <ArrowLeft className="w-5 h-5 text-white" />
+              <ArrowLeft className="w-5 h-5 text-[oklch(0.82_0.17_84)]" />
             </button>
           )}
         </div>
 
         {title && (
-          <h1 className="font-display font-bold text-xl text-white text-center flex-1 truncate px-2">
+          <h1 className="font-display font-bold text-xl text-foreground text-center flex-1 truncate px-2">
             {title}
           </h1>
         )}
@@ -67,12 +68,11 @@ export default function Layout({
             <button
               type="button"
               onClick={handleHome}
-              className="w-10 h-10 rounded-full flex items-center justify-center active:scale-95 transition-smooth"
-              style={{ background: "oklch(1 0 0 / 0.25)" }}
+              className="w-11 h-11 rounded-full bg-card/80 border border-[oklch(0.82_0.17_84/0.25)] flex items-center justify-center shadow-xs btn-tap transition-smooth hover:bg-card hover:border-[oklch(0.82_0.17_84/0.5)]"
               aria-label="Go home"
               data-ocid="layout.home_button"
             >
-              <Home className="w-5 h-5 text-white" />
+              <Home className="w-5 h-5 text-[oklch(0.82_0.17_84)]" />
             </button>
           )}
         </div>
@@ -80,10 +80,7 @@ export default function Layout({
 
       <main className="flex-1 overflow-auto">{children}</main>
 
-      <footer
-        className="py-3 text-center border-t bg-white"
-        style={{ borderColor: "oklch(0.90 0.02 60)" }}
-      >
+      <footer className="py-3 text-center bg-card/60 border-t border-[oklch(0.82_0.17_84/0.15)]">
         <p className="text-xs text-muted-foreground font-body">
           © {new Date().getFullYear()}. Built with love using{" "}
           <a
@@ -92,8 +89,7 @@ export default function Layout({
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline"
-            style={{ color: "oklch(0.68 0.22 40)" }}
+            className="underline hover:text-[oklch(0.82_0.17_84)] transition-colors"
           >
             caffeine.ai
           </a>

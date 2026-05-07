@@ -12,18 +12,20 @@ interface Point {
   y: number;
 }
 
+// Vivid stroke colors that pop on dark canvas backgrounds
 const STROKE_COLORS: Record<string, string> = {
-  red: "oklch(0.65 0.28 15)",
-  blue: "oklch(0.58 0.22 264)",
-  green: "oklch(0.58 0.20 165)",
-  yellow: "oklch(0.75 0.18 84)",
-  purple: "oklch(0.60 0.22 280)",
+  red: "oklch(0.72 0.28 15)",
+  blue: "oklch(0.68 0.24 264)",
+  green: "oklch(0.72 0.27 131)",
+  yellow: "oklch(0.90 0.18 84)",
+  purple: "oklch(0.68 0.22 320)",
 };
 
 const COVERAGE_THRESHOLD = 0.65;
 const CANVAS_W = 360;
 const CANVAS_H = 240;
 
+/** All words from the 260 blending tasks */
 const ALL_WORDS = PHONICS_DATA.flatMap((ld) =>
   ld.blendingTasks.map((t) => ({
     word: t.word,
@@ -117,7 +119,7 @@ export default function TracingPage() {
     return null;
   }
 
-  // Progress stats
+  // ── Progress stats ──────────────────────────────────────────────────────────
   const completedCount = PHONICS_DATA.filter(
     (l) => progress?.tracing[l.letter]?.completed,
   ).length;
@@ -178,7 +180,7 @@ export default function TracingPage() {
     ctx.strokeStyle =
       mode === "letter"
         ? (STROKE_COLORS[letter.color] ?? STROKE_COLORS.blue)
-        : "oklch(0.68 0.22 40)";
+        : "oklch(0.82 0.17 84)";
     ctx.lineWidth = 14;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
@@ -247,36 +249,36 @@ export default function TracingPage() {
   };
 
   return (
-    <Layout title="Trace Letters">
-      <div className="px-4 py-4 flex flex-col gap-4">
+    <Layout title="Tracing" headerColor="oklch(0.48 0.27 131)">
+      <div className="px-5 py-5 flex flex-col gap-4">
 
-        {/* Progress Bar Section */}
+        {/* ── Progress Bar ─────────────────────────────────────────────────── */}
         <div
-          className="bg-white rounded-2xl p-4 border"
-          style={{ borderColor: "oklch(0.90 0.02 60)", boxShadow: "0 2px 8px oklch(0 0 0 / 0.06)" }}
+          className="rounded-2xl px-4 py-3 flex flex-col gap-2 border border-[oklch(0.82_0.17_84/0.15)]"
+          style={{ background: "oklch(0.12 0.02 264)" }}
         >
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-display font-bold text-foreground">Letters Traced</span>
-            <span
-              className="text-sm font-display font-black"
-              style={{ color: "oklch(0.68 0.22 40)" }}
-            >
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-display font-bold text-foreground">Letters Traced</span>
+            <span className="text-xs font-display font-black" style={{ color: "oklch(0.82 0.17 84)" }}>
               {completedCount}/{totalCount}
             </span>
           </div>
           <div
-            className="w-full h-3 rounded-full overflow-hidden"
-            style={{ background: "oklch(0.92 0.03 60)" }}
+            className="w-full h-2.5 rounded-full overflow-hidden"
+            style={{ background: "oklch(0.18 0.03 264)" }}
           >
             <motion.div
               className="h-full rounded-full"
-              style={{ background: "linear-gradient(90deg, oklch(0.72 0.22 40) 0%, oklch(0.58 0.22 40) 100%)" }}
+              style={{
+                background: "linear-gradient(90deg, oklch(0.90 0.18 84) 0%, oklch(0.72 0.18 84) 100%)",
+                boxShadow: progressPct > 0 ? "0 0 8px oklch(0.82 0.17 84 / 0.4)" : "none",
+              }}
               initial={{ width: 0 }}
               animate={{ width: `${progressPct}%` }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             />
           </div>
-          <p className="text-xs text-muted-foreground font-body mt-1.5">
+          <p className="text-xs text-muted-foreground font-body">
             {progressPct === 0
               ? "Start tracing to make progress!"
               : progressPct === 100
@@ -287,20 +289,16 @@ export default function TracingPage() {
 
         {/* Mode toggle */}
         <div
-          className="flex rounded-2xl overflow-hidden border bg-white"
-          style={{ borderColor: "oklch(0.90 0.02 60)" }}
+          className="flex rounded-2xl overflow-hidden border border-[oklch(0.82_0.17_84/0.25)] bg-card/50"
           data-ocid="tracing.mode_toggle"
         >
           <button
             type="button"
             data-ocid="tracing.letter_mode_tab"
             onClick={() => { playTapSound(); setMode("letter"); }}
-            className="flex-1 py-3 text-sm font-display font-bold transition-smooth"
-            style={
-              mode === "letter"
-                ? { background: "linear-gradient(135deg, oklch(0.56 0.18 185) 0%, oklch(0.44 0.18 165) 100%)", color: "white" }
-                : { color: "oklch(0.50 0.02 60)" }
-            }
+            className={`flex-1 py-2.5 text-sm font-display font-bold transition-smooth ${
+              mode === "letter" ? "gradient-green text-card" : "text-muted-foreground hover:text-foreground"
+            }`}
           >
             ✏️ Letter Tracing
           </button>
@@ -308,24 +306,17 @@ export default function TracingPage() {
             type="button"
             data-ocid="tracing.word_mode_tab"
             onClick={() => { playTapSound(); setMode("word"); }}
-            className="flex-1 py-3 text-sm font-display font-bold transition-smooth"
-            style={
-              mode === "word"
-                ? { background: "linear-gradient(135deg, oklch(0.72 0.22 40) 0%, oklch(0.58 0.22 40) 100%)", color: "white" }
-                : { color: "oklch(0.50 0.02 60)" }
-            }
+            className={`flex-1 py-2.5 text-sm font-display font-bold transition-smooth ${
+              mode === "word" ? "gradient-gold text-[oklch(0.08_0_0)]" : "text-muted-foreground hover:text-foreground"
+            }`}
           >
             📝 Word Tracing
           </button>
         </div>
 
-        {/* Letter selector tabs */}
+        {/* Letter mode: selector tabs */}
         {mode === "letter" && (
-          <div
-            className="flex gap-1.5 overflow-x-auto pb-1"
-            style={{ scrollbarWidth: "none" }}
-            data-ocid="tracing.letter_tabs"
-          >
+          <div className="flex gap-1.5 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }} data-ocid="tracing.letter_tabs">
             {PHONICS_DATA.map((l, i) => {
               const done = progress?.tracing[l.letter]?.completed;
               return (
@@ -334,14 +325,13 @@ export default function TracingPage() {
                   type="button"
                   data-ocid={`tracing.letter_tab.${i + 1}`}
                   onClick={() => { playTapSound(); goToLetter(i); }}
-                  className="flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 border"
-                  style={
+                  className={`flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 ${
                     i === letterIdx
-                      ? { background: "oklch(0.56 0.18 185)", color: "white", borderColor: "oklch(0.56 0.18 185)" }
+                      ? "gradient-green text-card shadow-playful"
                       : done
-                        ? { background: "oklch(0.94 0.06 40)", color: "oklch(0.68 0.22 40)", borderColor: "oklch(0.85 0.10 40)" }
-                        : { background: "oklch(0.94 0.02 60)", color: "oklch(0.50 0.02 60)", borderColor: "oklch(0.90 0.02 60)" }
-                  }
+                        ? "bg-[oklch(0.82_0.17_84/0.25)] text-[oklch(0.88_0.17_84)]"
+                        : "bg-muted text-muted-foreground"
+                  }`}
                 >
                   {l.letter}
                 </button>
@@ -353,18 +343,16 @@ export default function TracingPage() {
         {/* Subject card */}
         {mode === "letter" ? (
           <div
-            className="rounded-2xl p-4 flex items-center gap-4 text-white"
-            style={{
-              background:
-                letter.color === "red" ? "linear-gradient(135deg, oklch(0.65 0.28 15) 0%, oklch(0.52 0.26 15) 100%)"
-                : letter.color === "blue" ? "linear-gradient(135deg, oklch(0.55 0.22 264) 0%, oklch(0.42 0.22 264) 100%)"
-                : letter.color === "green" ? "linear-gradient(135deg, oklch(0.56 0.18 185) 0%, oklch(0.44 0.18 165) 100%)"
-                : letter.color === "yellow" ? "linear-gradient(135deg, oklch(0.78 0.18 84) 0%, oklch(0.62 0.18 84) 100%)"
-                : "linear-gradient(135deg, oklch(0.58 0.22 280) 0%, oklch(0.44 0.22 280) 100%)",
-              boxShadow: "0 4px 16px oklch(0 0 0 / 0.15)",
-            }}
+            className={`rounded-3xl p-4 flex items-center gap-4 text-card ${
+              letter.color === "red" ? "gradient-red"
+              : letter.color === "blue" ? "gradient-blue"
+              : letter.color === "green" ? "gradient-green"
+              : letter.color === "yellow" ? "gradient-yellow"
+              : "gradient-purple"
+            }`}
+            style={{ boxShadow: "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1) inset" }}
           >
-            <span className="text-7xl font-display font-black leading-none">{letter.uppercase}</span>
+            <span className="text-7xl font-display font-black leading-none drop-shadow-lg">{letter.uppercase}</span>
             <div>
               <p className="text-2xl font-display font-bold">{letter.lowercase}</p>
               <p className="text-sm font-body opacity-80">/{letter.phonicSound}/</p>
@@ -376,23 +364,31 @@ export default function TracingPage() {
           </div>
         ) : (
           <div
-            className="rounded-2xl p-4 flex items-center gap-4 bg-white border"
-            style={{ borderColor: "oklch(0.90 0.02 60)", boxShadow: "0 2px 8px oklch(0 0 0 / 0.08)" }}
+            className="rounded-3xl p-4 flex items-center gap-4"
+            style={{
+              background: "linear-gradient(135deg, oklch(0.20 0.06 84) 0%, oklch(0.14 0.04 84) 100%)",
+              border: "1px solid oklch(0.82 0.17 84 / 0.35)",
+              boxShadow: "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.82 0.17 84 / 0.1) inset",
+            }}
             data-ocid="tracing.word_card"
           >
-            <span className="text-5xl">{wordEntry.emoji}</span>
+            <span className="text-6xl">{wordEntry.emoji}</span>
             <div className="flex-1">
-              <p className="text-2xl font-display font-black leading-tight text-foreground">
+              <p className="text-2xl font-display font-black leading-tight" style={{ color: "oklch(0.92 0.18 84)" }}>
                 {wordEntry.word}
               </p>
-              <p className="text-xs font-body text-muted-foreground mt-0.5">Trace this word</p>
+              <p className="text-xs font-body mt-0.5" style={{ color: "oklch(0.70 0.10 84)" }}>Trace this word</p>
             </div>
             <button
               type="button"
               data-ocid="tracing.new_word_button"
               onClick={newWord}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-display font-bold transition-smooth active:scale-95 text-white"
-              style={{ background: "linear-gradient(135deg, oklch(0.72 0.22 40) 0%, oklch(0.58 0.22 40) 100%)" }}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-display font-bold transition-smooth active:scale-95"
+              style={{
+                background: "oklch(0.82 0.17 84 / 0.2)",
+                color: "oklch(0.92 0.18 84)",
+                border: "1px solid oklch(0.82 0.17 84 / 0.4)",
+              }}
             >
               <RefreshCw className="w-3.5 h-3.5" />
               New Word
@@ -402,25 +398,18 @@ export default function TracingPage() {
 
         {/* Canvas */}
         <div
-          className="relative rounded-2xl overflow-hidden border"
-          style={{
-            background: "oklch(0.97 0.01 60)",
-            borderColor: "oklch(0.88 0.04 40)",
-            boxShadow: "0 2px 12px oklch(0 0 0 / 0.08)",
-          }}
+          className="relative rounded-3xl overflow-hidden border border-[oklch(0.82_0.17_84/0.2)]"
+          style={{ background: "oklch(0.10 0.02 264)", boxShadow: "0 8px 32px oklch(0 0 0 / 0.6), 0 0 0 1px oklch(0.82 0.17 84 / 0.1) inset" }}
         >
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
             {mode === "letter" ? (
-              <span
-                className="font-display font-black leading-none"
-                style={{ fontSize: 180, color: "oklch(0.72 0.22 40 / 0.18)" }}
-              >
+              <span className="font-display font-black leading-none" style={{ fontSize: 180, color: "oklch(0.82 0.17 84 / 0.35)" }}>
                 {letter.uppercase}
               </span>
             ) : (
               <span
                 className="font-display font-black leading-none px-3 text-center"
-                style={{ fontSize: wordFontSize, color: "oklch(0.72 0.22 40 / 0.18)", letterSpacing: "0.05em" }}
+                style={{ fontSize: wordFontSize, color: "oklch(0.82 0.17 84 / 0.35)", letterSpacing: "0.05em" }}
               >
                 {wordEntry.word.toUpperCase()}
               </span>
@@ -448,8 +437,12 @@ export default function TracingPage() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 300, damping: 18 }}
-            className="rounded-2xl py-3 px-4 text-center font-display font-bold text-lg text-white"
-            style={{ background: "linear-gradient(135deg, oklch(0.72 0.22 40) 0%, oklch(0.58 0.22 40) 100%)" }}
+            className="rounded-2xl py-3 px-4 text-center font-display font-bold text-lg"
+            style={{
+              background: "linear-gradient(135deg, oklch(0.82 0.17 84 / 0.25) 0%, oklch(0.70 0.20 60 / 0.20) 100%)",
+              border: "1px solid oklch(0.82 0.17 84 / 0.5)",
+              color: "oklch(0.92 0.18 84)",
+            }}
             data-ocid="tracing.success_state"
           >
             🌟 Amazing! Great job!
@@ -462,8 +455,7 @@ export default function TracingPage() {
             type="button"
             data-ocid="tracing.clear_button"
             onClick={() => { playTapSound(); clearCanvas(); }}
-            className="flex-1 h-14 rounded-2xl bg-white border flex items-center justify-center gap-2 font-display font-bold text-foreground active:scale-95 transition-smooth"
-            style={{ borderColor: "oklch(0.88 0.04 40)" }}
+            className="flex-1 h-14 rounded-2xl bg-muted border border-border flex items-center justify-center gap-2 font-display font-bold text-foreground active:scale-95 transition-smooth hover:border-[oklch(0.82_0.17_84/0.4)]"
           >
             <Eraser className="w-5 h-5" /> Clear
           </button>
@@ -484,16 +476,14 @@ export default function TracingPage() {
                   clearCanvas();
                 }
               }}
-              className="flex-1 h-14 rounded-2xl font-display font-bold text-lg flex items-center justify-center gap-2 active:scale-95 transition-smooth text-white"
-              style={{ background: "linear-gradient(135deg, oklch(0.72 0.22 40) 0%, oklch(0.58 0.22 40) 100%)", boxShadow: "0 4px 12px oklch(0 0 0 / 0.15)" }}
+              className="flex-1 h-14 rounded-2xl gradient-gold text-[oklch(0.08_0_0)] font-display font-bold text-lg flex items-center justify-center gap-2 active:scale-95 transition-smooth shadow-luxury"
             >
               <Check className="w-5 h-5" /> Next!
             </motion.button>
           ) : (
             <div
               data-ocid="tracing.next_locked"
-              className="flex-1 h-14 rounded-2xl flex items-center justify-center text-sm font-body text-muted-foreground border"
-              style={{ background: "oklch(0.94 0.02 60)", borderColor: "oklch(0.90 0.02 60)" }}
+              className="flex-1 h-14 rounded-2xl bg-muted/50 flex items-center justify-center text-sm font-body text-muted-foreground border border-border"
             >
               {mode === "letter" ? "Draw the letter ✏️" : "Trace the word 📝"}
             </div>

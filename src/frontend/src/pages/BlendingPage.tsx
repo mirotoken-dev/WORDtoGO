@@ -151,14 +151,13 @@ export default function BlendingPage() {
                 type="button"
                 data-ocid={`blending.letter_tab.${i + 1}`}
                 onClick={() => changeLetter(i)}
-                className="flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 relative border"
-                style={
+                className={`flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 relative ${
                   i === letterIdx
-                    ? { background: "linear-gradient(135deg, oklch(0.55 0.22 264) 0%, oklch(0.42 0.22 264) 100%)", color: "white", borderColor: "transparent" }
+                    ? "gradient-blue text-card shadow-playful"
                     : done === 10
-                      ? { background: "oklch(0.94 0.06 40)", color: "oklch(0.68 0.22 40)", borderColor: "oklch(0.85 0.10 40)" }
-                      : { background: "oklch(0.94 0.02 60)", color: "oklch(0.50 0.02 60)", borderColor: "oklch(0.90 0.02 60)" }
-                }
+                      ? "bg-[oklch(0.72_0.27_131/0.25)] text-[oklch(0.72_0.27_131)]"
+                      : "bg-muted text-muted-foreground"
+                }`}
               >
                 {l.letter}
                 {done > 0 && done < 10 && (
