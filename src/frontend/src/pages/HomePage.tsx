@@ -1,59 +1,26 @@
 import { useRouter } from "@tanstack/react-router";
+import { Grid3x3, Pencil, Users } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect } from "react";
-import StarBadge from "../components/StarBadge";
+import BottomNav from "../components/BottomNav";
+import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
 import { playTapSound } from "../utils/audio";
 
-const MENU = [
+const FEATURE_CARDS = [
   {
-    label: "Flashcards",
-    emoji: "🃏",
-    path: "/flashcards",
-    colorClass: "gradient-red",
-    desc: "Learn A–Z letters",
-  },
-  {
-    label: "Blending",
-    emoji: "✏️",
-    path: "/blending",
-    colorClass: "gradient-blue",
-    desc: "Blend sounds into words",
-  },
-  {
-    label: "Tracing",
-    emoji: "🖋️",
-    path: "/tracing",
-    colorClass: "gradient-green",
-    desc: "Practice writing",
-  },
-  {
-    label: "Visual",
-    emoji: "🎬",
-    path: "/visual-learning",
-    colorClass: "gradient-purple",
-    desc: "Videos & audio lessons",
-  },
-  {
-    label: "Progress",
-    emoji: "⭐",
-    path: "/progress",
-    colorClass: "gradient-yellow",
-    desc: "See achievements",
-  },
-  {
-    label: "Matching",
-    emoji: "🧩",
+    label: "Matching Quiz",
+    sublabel: "3 Levels",
+    icon: Grid3x3,
     path: "/matching",
-    colorClass: "gradient-purple",
-    desc: "Quiz: match & learn",
+    style: { background: "linear-gradient(135deg, oklch(0.55 0.22 264) 0%, oklch(0.42 0.22 280) 100%)" },
   },
   {
-    label: "Pronunciation",
-    emoji: "🎤",
-    path: "/pronunciation",
-    colorClass: "gradient-gold",
-    desc: "Say the word aloud",
+    label: "Trace Letters",
+    sublabel: "A to Z",
+    icon: Pencil,
+    path: "/tracing",
+    style: { background: "linear-gradient(135deg, oklch(0.56 0.18 185) 0%, oklch(0.44 0.18 165) 100%)" },
   },
 ] as const;
 
@@ -73,136 +40,183 @@ export default function HomePage() {
     router.navigate({ to: path as "/" });
   };
 
+  const lettersLearned = PHONICS_DATA.filter(
+    (l) => progress?.tracing[l.letter]?.completed,
+  ).length;
+
+  const getInitial = (name: string) => name.charAt(0).toUpperCase();
+
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      {/* Header — luxury dark with gold accents */}
-      <header className="bg-card/90 border-b border-[oklch(0.82_0.17_84/0.2)] shadow-luxury backdrop-blur-sm px-5 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl bg-muted border border-[oklch(0.82_0.17_84/0.3)] flex items-center justify-center text-3xl glow-gold-sm">
-            {profile.avatar}
+    <div
+      className="min-h-screen flex flex-col pb-20"
+      style={{ background: "oklch(0.98 0.02 60)" }}
+    >
+      {/* Orange Header */}
+      <header
+        className="px-5 pt-12 pb-5"
+        style={{ background: "linear-gradient(160deg, oklch(0.72 0.22 40) 0%, oklch(0.60 0.22 40) 100%)" }}
+      >
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            {/* Avatar circle with initial */}
+            <button
+              type="button"
+              onClick={() => { playTapSound(); router.navigate({ to: "/" }); }}
+              className="w-12 h-12 rounded-full flex items-center justify-center text-xl font-display font-black active:scale-95 transition-smooth"
+              style={{ background: "oklch(0.80 0.14 40)", color: "white" }}
+            >
+              {getInitial(profile.name)}
+            </button>
+            <div>
+              <h1 className="text-xl font-display font-black text-white leading-tight">
+                Hi, {profile.name}!
+              </h1>
+              <p className="text-sm text-white/80 font-body">
+                {lettersLearned}/26 letters learned
+              </p>
+            </div>
           </div>
-          <div>
-            <p className="font-display font-bold text-lg text-foreground leading-tight">
-              Hi, {profile.name}! 👋
-            </p>
-            <p className="text-xs font-body text-muted-foreground">
-              Ready to learn?
-            </p>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <StarBadge count={progress?.totalStars ?? 0} size="sm" />
           <button
             type="button"
-            data-ocid="home.switch_profile_button"
-            onClick={() => {
-              playTapSound();
-              router.navigate({ to: "/" });
-            }}
-            className="text-xs font-body text-[oklch(0.82_0.17_84)] underline px-2 py-1 active:opacity-70 transition-smooth"
+            onClick={() => { playTapSound(); router.navigate({ to: "/" }); }}
+            className="w-10 h-10 rounded-full flex items-center justify-center active:scale-95 transition-smooth"
+            style={{ background: "oklch(0.80 0.14 40 / 0.5)" }}
+            aria-label="Switch profile"
           >
-            Switch
+            <Users className="w-5 h-5 text-white" />
           </button>
         </div>
       </header>
 
-      {/* Hero Banner — luxurious dark with gold gradient title */}
-      <div
-        className="px-6 py-8 text-center relative overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(135deg, oklch(0.10 0.03 264) 0%, oklch(0.08 0.01 264) 100%)",
-          borderBottom: "1px solid oklch(0.82 0.17 84 / 0.2)",
-        }}
-      >
-        {/* Decorative gold orb */}
-        <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, oklch(0.82 0.17 84 / 0.12) 0%, transparent 70%)",
-          }}
-        />
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 200 }}
-          className="relative z-10"
-        >
-          <div className="text-5xl mb-3">📚</div>
-          <h2
-            className="text-3xl font-display font-black leading-tight mb-1"
-            style={{
-              background:
-                "linear-gradient(to right, oklch(0.95 0.18 84), oklch(0.82 0.17 84), oklch(0.95 0.18 84))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Word to Go
-          </h2>
-          <p className="text-muted-foreground text-sm mt-1 font-body">
-            26 letters · 260 words
-          </p>
-        </motion.div>
+      {/* Feature Cards */}
+      <div className="px-4 pt-4 grid grid-cols-2 gap-3" data-ocid="home.features_section">
+        {FEATURE_CARDS.map((card, idx) => {
+          const Icon = card.icon;
+          return (
+            <motion.button
+              key={card.label}
+              type="button"
+              data-ocid={`home.${card.label.toLowerCase().replace(" ", "_")}_button`}
+              onClick={() => navigate(card.path)}
+              className="rounded-2xl p-4 flex flex-col gap-2 text-left active:scale-95 transition-smooth"
+              style={{ ...card.style, boxShadow: "0 4px 16px oklch(0 0 0 / 0.15)" }}
+              initial={{ y: 16, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: idx * 0.08 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Icon className="w-7 h-7 text-white/90" strokeWidth={1.8} />
+              <div>
+                <p className="font-display font-black text-white text-base leading-tight">
+                  {card.label}
+                </p>
+                <p className="text-white/70 text-xs font-body mt-0.5">{card.sublabel}</p>
+              </div>
+            </motion.button>
+          );
+        })}
       </div>
 
-      {/* Feature Grid */}
-      <div
-        className="flex-1 px-5 py-6 grid grid-cols-2 gap-4"
-        data-ocid="home.features_section"
-      >
-        {MENU.map((item, idx) => (
-          <motion.button
-            key={item.label}
-            type="button"
-            data-ocid={`home.${item.label.toLowerCase().replace(" ", "_")}_button`}
-            onClick={() => navigate(item.path)}
-            className={`${item.colorClass} rounded-3xl p-5 flex flex-col items-center justify-center gap-2 active:scale-95 transition-smooth text-card min-h-[140px] relative overflow-hidden`}
-            style={{
-              boxShadow:
-                "0 4px 24px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.82 0.17 84 / 0.15) inset",
-            }}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: idx * 0.08 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {/* Gold shimmer overlay */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  "linear-gradient(135deg, oklch(1 0 0 / 0.08) 0%, transparent 60%)",
-              }}
-            />
-            <span className="text-5xl relative z-10">{item.emoji}</span>
-            <span className="text-xl font-display font-black leading-tight relative z-10">
-              {item.label}
-            </span>
-            <span className="text-xs font-body opacity-80 text-center relative z-10">
-              {item.desc}
-            </span>
-          </motion.button>
-        ))}
-      </div>
-
-      <footer className="py-3 text-center bg-card/60 border-t border-[oklch(0.82_0.17_84/0.15)]">
-        <p className="text-xs text-muted-foreground font-body">
-          © {new Date().getFullYear()}. Built with love using{" "}
-          <a
-            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(
-              typeof window !== "undefined" ? window.location.hostname : "",
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-[oklch(0.82_0.17_84)] transition-colors"
-          >
-            caffeine.ai
-          </a>
+      {/* Learning Journey */}
+      <div className="px-4 mt-5 flex-1">
+        <h2 className="text-xl font-display font-black text-foreground">Your Learning Journey</h2>
+        <p className="text-sm text-muted-foreground font-body mt-0.5">
+          Complete each letter to unlock new levels
         </p>
-      </footer>
+
+        {/* Journey path */}
+        <div className="mt-4 relative flex flex-col gap-0">
+          {PHONICS_DATA.map((letter, idx) => {
+            const done = progress?.tracing[letter.letter]?.completed ?? false;
+            const isLeft = idx % 2 === 0;
+            const isFirst = idx === 0;
+
+            return (
+              <motion.div
+                key={letter.letter}
+                className="relative flex items-center"
+                style={{ justifyContent: isLeft ? "flex-start" : "flex-end" }}
+                initial={{ opacity: 0, x: isLeft ? -16 : 16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: idx * 0.04, duration: 0.3 }}
+              >
+                {/* Dotted connector (for all but first) */}
+                {!isFirst && (
+                  <div
+                    className="absolute top-0 pointer-events-none"
+                    style={{
+                      left: isLeft ? "52px" : "auto",
+                      right: isLeft ? "auto" : "52px",
+                      width: "2px",
+                      height: "28px",
+                      top: "-28px",
+                      borderLeft: "2px dashed oklch(0.75 0.02 60)",
+                    }}
+                  />
+                )}
+
+                {/* Level badge on first of each set */}
+                {isFirst && (
+                  <div
+                    className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-3 flex items-center gap-1 px-3 py-1 rounded-full text-xs font-display font-bold text-white"
+                    style={{ background: "oklch(0.68 0.22 40)", whiteSpace: "nowrap" }}
+                  >
+                    🚀 Level 1 · Starters
+                  </div>
+                )}
+
+                {/* Row with circle + label */}
+                <button
+                  type="button"
+                  onClick={() => navigate("/tracing")}
+                  className="flex items-center gap-3 py-3 active:scale-95 transition-smooth"
+                  style={{ flexDirection: isLeft ? "row" : "row-reverse" }}
+                >
+                  {/* Letter circle */}
+                  <div
+                    className="w-16 h-16 rounded-full flex flex-col items-center justify-center relative flex-shrink-0"
+                    style={{
+                      background: done ? "oklch(0.68 0.22 40)" : "oklch(0.97 0.04 40)",
+                      border: `3px solid ${done ? "oklch(0.68 0.22 40)" : "oklch(0.72 0.22 40)"}`,
+                      boxShadow: "0 2px 8px oklch(0 0 0 / 0.12)",
+                    }}
+                  >
+                    <span
+                      className="text-2xl font-display font-black leading-none"
+                      style={{ color: done ? "white" : "oklch(0.68 0.22 40)" }}
+                    >
+                      {letter.uppercase}
+                    </span>
+                    {/* Emoji badge */}
+                    <span className="text-sm leading-none mt-0.5">
+                      {letter.words[0].emoji}
+                    </span>
+                    {/* Checkmark */}
+                    {done && (
+                      <div
+                        className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs"
+                        style={{ background: "oklch(0.55 0.22 40)" }}
+                      >
+                        ✓
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Word label */}
+                  <p
+                    className="text-sm font-display font-bold"
+                    style={{ color: done ? "oklch(0.68 0.22 40)" : "oklch(0.40 0.02 60)" }}
+                  >
+                    {letter.letter} for {letter.words[0].word}
+                  </p>
+                </button>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      <BottomNav active="home" />
     </div>
   );
 }

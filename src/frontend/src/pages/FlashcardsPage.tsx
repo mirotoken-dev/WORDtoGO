@@ -142,13 +142,14 @@ export default function FlashcardsPage() {
                   setWordIdx(0);
                   setFlipped(false);
                 }}
-                className={`flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 ${
+                className="flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 border"
+                style={
                   i === letterIdx
-                    ? "gradient-red text-card shadow-playful"
+                    ? { background: "linear-gradient(135deg, oklch(0.65 0.28 15) 0%, oklch(0.52 0.26 15) 100%)", color: "white", borderColor: "transparent" }
                     : done
-                      ? "bg-[oklch(0.72_0.27_131/0.25)] text-[oklch(0.72_0.27_131)]"
-                      : "bg-muted text-muted-foreground"
-                }`}
+                      ? { background: "oklch(0.94 0.06 40)", color: "oklch(0.68 0.22 40)", borderColor: "oklch(0.85 0.10 40)" }
+                      : { background: "oklch(0.94 0.02 60)", color: "oklch(0.50 0.02 60)", borderColor: "oklch(0.90 0.02 60)" }
+                }
               >
                 {l.letter}
               </button>
@@ -233,11 +234,12 @@ export default function FlashcardsPage() {
                 setFlipped(true);
                 speakWord(w.word);
               }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-2xl text-sm font-display font-bold transition-smooth active:scale-95 ${
+              className="flex items-center gap-1.5 px-3 py-2 rounded-2xl text-sm font-display font-bold transition-smooth active:scale-95"
+              style={
                 wordIdx === i && flipped
-                  ? `${COLOR_MAP[letter.color]} text-card shadow-playful`
-                  : "bg-muted text-foreground border border-border hover:border-[oklch(0.82_0.17_84/0.4)]"
-              }`}
+                  ? { background: "linear-gradient(135deg, oklch(0.65 0.28 15) 0%, oklch(0.52 0.26 15) 100%)", color: "white" }
+                  : { background: "oklch(0.94 0.02 60)", color: "oklch(0.20 0 0)", border: "1px solid oklch(0.88 0.02 60)" }
+              }
             >
               <span>{w.emoji}</span>
               <span>{w.word}</span>
@@ -251,7 +253,8 @@ export default function FlashcardsPage() {
             type="button"
             data-ocid="flashcards.prev_button"
             onClick={goPrev}
-            className="w-14 h-14 rounded-2xl bg-muted border border-border flex items-center justify-center active:scale-95 transition-smooth hover:border-[oklch(0.82_0.17_84/0.4)]"
+            className="w-14 h-14 rounded-2xl flex items-center justify-center active:scale-95 transition-smooth border"
+            style={{ background: "oklch(0.94 0.02 60)", borderColor: "oklch(0.88 0.02 60)" }}
             aria-label="Previous"
           >
             <ChevronLeft className="w-7 h-7 text-foreground" />
@@ -265,10 +268,11 @@ export default function FlashcardsPage() {
             type="button"
             data-ocid="flashcards.next_button"
             onClick={goNext}
-            className="w-14 h-14 rounded-2xl gradient-red flex items-center justify-center active:scale-95 transition-smooth shadow-playful"
+            className="w-14 h-14 rounded-2xl flex items-center justify-center active:scale-95 transition-smooth"
+            style={{ background: "linear-gradient(135deg, oklch(0.65 0.28 15) 0%, oklch(0.52 0.26 15) 100%)", boxShadow: "0 4px 12px oklch(0 0 0 / 0.15)" }}
             aria-label="Next"
           >
-            <ChevronRight className="w-7 h-7 text-card" />
+            <ChevronRight className="w-7 h-7 text-white" />
           </button>
         </div>
       </div>
