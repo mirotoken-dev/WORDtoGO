@@ -1,22 +1,23 @@
 {
-  "overview": "A colorful phonics learning app for children ages 3–7. Teaches letter recognition with flashcards and sounds, sound blending exercises for all 26 letters (260 tasks), and letter tracing on screen. Child profiles and progress are saved locally on the device.",
+  "overview": "Word to Go is a fun, visually engaging reading app for children ages 3–7. Kids learn phonics through flashcards, letter and word tracing, blending exercises, and matching quizzes — all with a sleek black luxury theme and real phonics audio.",
   "features": [
-    "A–Z letter flashcards with audio sounds",
-    "260 sound blending exercises (10 per letter)",
-    "Letter tracing with finger or mouse",
-    "Up to 3 child profiles",
-    "Local progress tracking per profile",
-    "Child-friendly colorful design with large buttons"
+    "Letter flashcards A–Z with alphabetical pronunciation",
+    "260 phonics blending exercises with user-supplied audio (a–t) and speech synthesis fallback",
+    "Letter and word tracing with random words from 260-word library",
+    "Matching quiz with 3 levels (uppercase/lowercase, word matching, emoji-to-word)",
+    "Visual Learning section for future videos and audios",
+    "Up to 3 child profiles with local progress tracking",
+    "Black luxury theme with gold and white accents"
   ],
   "category": "education",
   "tags": [
+    "kids",
     "phonics",
-    "education",
-    "children",
-    "learning",
     "reading",
-    "writing",
-    "letters"
+    "education",
+    "tracing",
+    "learning",
+    "literacy"
   ],
-  "last_updated": "2026-04-23T20:55:02.872Z"
+  "last_updated": "2026-05-02T10:52:56.061Z"
 }

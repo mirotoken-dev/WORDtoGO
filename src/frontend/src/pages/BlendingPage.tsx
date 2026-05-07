@@ -10,6 +10,7 @@ import { useAppStore } from "../store/useAppStore";
 import {
   playCelebrationSound,
   playCorrectSound,
+  playLetterPhonetic,
   playTapSound,
   playWrongSound,
 } from "../utils/audio";
@@ -42,6 +43,8 @@ export default function BlendingPage() {
     (sound: string) => {
       if (status !== "idle") return;
       playTapSound();
+      // Play phonetic mp3 (a–t) or phonetic speech synthesis (u–z) for the syllable
+      void playLetterPhonetic(sound);
       const next = [...chosen, sound];
       setChosen(next);
 

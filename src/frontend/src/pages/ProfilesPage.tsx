@@ -5,6 +5,200 @@ import { useRef, useState } from "react";
 import { AVATARS, useAppStore } from "../store/useAppStore";
 import { playSuccessSound, playTapSound } from "../utils/audio";
 
+// ─── Floating orb config ──────────────────────────────────────────────────────
+const ORB_CONFIG = [
+  // Gold orbs
+  {
+    id: 0,
+    size: 180,
+    x: 5,
+    y: 8,
+    color: "oklch(0.82 0.17 84 / 0.07)",
+    dur: 9,
+    dx: 18,
+    dy: 22,
+  },
+  {
+    id: 1,
+    size: 100,
+    x: 80,
+    y: 15,
+    color: "oklch(0.90 0.18 84 / 0.09)",
+    dur: 7,
+    dx: -14,
+    dy: 18,
+  },
+  {
+    id: 2,
+    size: 140,
+    x: 60,
+    y: 70,
+    color: "oklch(0.82 0.17 84 / 0.06)",
+    dur: 11,
+    dx: 20,
+    dy: -16,
+  },
+  {
+    id: 3,
+    size: 70,
+    x: 25,
+    y: 55,
+    color: "oklch(0.92 0.18 84 / 0.10)",
+    dur: 6,
+    dx: -12,
+    dy: 20,
+  },
+  {
+    id: 4,
+    size: 50,
+    x: 90,
+    y: 45,
+    color: "oklch(0.88 0.16 84 / 0.12)",
+    dur: 5,
+    dx: -18,
+    dy: -14,
+  },
+  {
+    id: 5,
+    size: 90,
+    x: 45,
+    y: 90,
+    color: "oklch(0.82 0.17 84 / 0.08)",
+    dur: 8,
+    dx: 16,
+    dy: -20,
+  },
+  // Purple/blue highlights
+  {
+    id: 6,
+    size: 120,
+    x: 15,
+    y: 35,
+    color: "oklch(0.68 0.22 290 / 0.07)",
+    dur: 10,
+    dx: 14,
+    dy: 18,
+  },
+  {
+    id: 7,
+    size: 80,
+    x: 70,
+    y: 5,
+    color: "oklch(0.72 0.22 320 / 0.08)",
+    dur: 7,
+    dx: -10,
+    dy: 22,
+  },
+  {
+    id: 8,
+    size: 60,
+    x: 50,
+    y: 40,
+    color: "oklch(0.68 0.24 264 / 0.06)",
+    dur: 9,
+    dx: 20,
+    dy: -12,
+  },
+  {
+    id: 9,
+    size: 110,
+    x: 85,
+    y: 80,
+    color: "oklch(0.65 0.22 280 / 0.07)",
+    dur: 12,
+    dx: -16,
+    dy: -18,
+  },
+  // White sparkles
+  {
+    id: 10,
+    size: 28,
+    x: 30,
+    y: 20,
+    color: "oklch(0.97 0 0 / 0.08)",
+    dur: 4,
+    dx: 10,
+    dy: 14,
+  },
+  {
+    id: 11,
+    size: 20,
+    x: 75,
+    y: 60,
+    color: "oklch(0.97 0 0 / 0.07)",
+    dur: 5,
+    dx: -8,
+    dy: 12,
+  },
+  {
+    id: 12,
+    size: 16,
+    x: 55,
+    y: 85,
+    color: "oklch(0.95 0.18 84 / 0.10)",
+    dur: 4,
+    dx: 14,
+    dy: -10,
+  },
+  {
+    id: 13,
+    size: 24,
+    x: 10,
+    y: 70,
+    color: "oklch(0.97 0 0 / 0.06)",
+    dur: 6,
+    dx: 18,
+    dy: -8,
+  },
+  {
+    id: 14,
+    size: 18,
+    x: 92,
+    y: 25,
+    color: "oklch(0.95 0.18 84 / 0.09)",
+    dur: 5,
+    dx: -12,
+    dy: 16,
+  },
+] as const;
+
+function MotionBackground() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 overflow-hidden"
+      style={{ zIndex: 0 }}
+    >
+      {ORB_CONFIG.map((orb) => (
+        <motion.div
+          key={orb.id}
+          className="absolute rounded-full"
+          style={{
+            width: orb.size,
+            height: orb.size,
+            left: `${orb.x}%`,
+            top: `${orb.y}%`,
+            background: `radial-gradient(circle at 40% 40%, ${orb.color}, transparent 70%)`,
+            filter: orb.size > 60 ? "blur(18px)" : "blur(6px)",
+          }}
+          animate={{
+            x: [0, orb.dx, 0, -orb.dx, 0],
+            y: [0, orb.dy, 0, -orb.dy / 2, 0],
+            scale: [1, 1.08, 1, 0.95, 1],
+            opacity: [0.7, 1, 0.8, 1, 0.7],
+          }}
+          transition={{
+            duration: orb.dur,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: orb.id * 0.4,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function ProfilesPage() {
   const router = useRouter();
   const { profiles, addProfile, deleteProfile, setActiveProfile } =
@@ -42,13 +236,15 @@ export default function ProfilesPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background relative">
+      <MotionBackground />
       {/* Hero — luxury dark with gold gradient title */}
       <div
         className="px-6 pt-14 pb-10 text-center relative overflow-hidden"
         style={{
           background:
-            "linear-gradient(160deg, oklch(0.12 0.03 280) 0%, oklch(0.07 0.01 264) 100%)",
+            "linear-gradient(160deg, oklch(0.12 0.03 280 / 0.85) 0%, oklch(0.07 0.01 264 / 0.75) 100%)",
+          zIndex: 1,
           borderBottom: "1px solid oklch(0.82 0.17 84 / 0.2)",
         }}
       >
@@ -77,9 +273,9 @@ export default function ProfilesPage() {
               backgroundClip: "text",
             }}
           >
-            Phonics
+            Word
             <br />
-            Playroom
+            to Go
           </h1>
           <p className="text-muted-foreground font-body text-lg mt-2">
             Select who's learning today!
@@ -88,7 +284,10 @@ export default function ProfilesPage() {
       </div>
 
       {/* Profiles */}
-      <div className="flex-1 px-5 py-6 flex flex-col gap-4">
+      <div
+        className="flex-1 px-5 py-6 flex flex-col gap-4 relative"
+        style={{ zIndex: 1 }}
+      >
         {profiles.length === 0 && !creating && (
           <motion.div
             data-ocid="profiles.empty_state"
@@ -291,7 +490,10 @@ export default function ProfilesPage() {
         </AnimatePresence>
       </div>
 
-      <footer className="py-3 text-center bg-card/60 border-t border-[oklch(0.82_0.17_84/0.15)]">
+      <footer
+        className="py-3 text-center bg-card/60 border-t border-[oklch(0.82_0.17_84/0.15)] relative"
+        style={{ zIndex: 1 }}
+      >
         <p className="text-xs text-muted-foreground font-body">
           © {new Date().getFullYear()}. Built with love using{" "}
           <a

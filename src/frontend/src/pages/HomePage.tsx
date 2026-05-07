@@ -15,17 +15,24 @@ const MENU = [
   },
   {
     label: "Blending",
-    emoji: "🎵",
+    emoji: "✏️",
     path: "/blending",
     colorClass: "gradient-blue",
     desc: "Blend sounds into words",
   },
   {
     label: "Tracing",
-    emoji: "✏️",
+    emoji: "🖋️",
     path: "/tracing",
     colorClass: "gradient-green",
     desc: "Practice writing",
+  },
+  {
+    label: "Visual",
+    emoji: "🎬",
+    path: "/visual-learning",
+    colorClass: "gradient-purple",
+    desc: "Videos & audio lessons",
   },
   {
     label: "Progress",
@@ -42,11 +49,11 @@ const MENU = [
     desc: "Quiz: match & learn",
   },
   {
-    label: "Making Words",
-    emoji: "🔤",
-    path: "/making-words",
-    colorClass: "gradient-blue",
-    desc: "Build & sound out words",
+    label: "Pronunciation",
+    emoji: "🎤",
+    path: "/pronunciation",
+    colorClass: "gradient-gold",
+    desc: "Say the word aloud",
   },
 ] as const;
 
@@ -133,7 +140,7 @@ export default function HomePage() {
               backgroundClip: "text",
             }}
           >
-            Phonics Playroom
+            Word to Go
           </h2>
           <p className="text-muted-foreground text-sm mt-1 font-body">
             26 letters · 260 words

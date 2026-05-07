@@ -7,15 +7,16 @@ import ProgressBar from "../components/ProgressBar";
 import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
 import {
-  playLetterPhonetic,
   playSuccessSound,
   playTapSound,
+  speakText,
   speakWord,
 } from "../utils/audio";
 
 function playLetterSound(letter: string): void {
-  // playLetterPhonetic handles mp3 + fallback; no tone needed
-  void playLetterPhonetic(letter);
+  // Use speech synthesis to pronounce the alphabetical letter name ("Ay", "Bee", "See" etc.)
+  // Passing the letter character directly causes the engine to say its name, not its phonetic sound
+  speakText(letter.toUpperCase(), 0.8, 0.9);
 }
 
 const COLOR_MAP: Record<string, string> = {
