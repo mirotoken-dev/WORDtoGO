@@ -1,10 +1,13 @@
 import { useRouter } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Layout from "../components/Layout";
 import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
 import { playLetterPhonetic, playTapSound } from "../utils/audio";
+
+const VIDEO_SRC = "/video/lesson.mp4";
+const GAIN_AMOUNT = 2.5; // boost volume 2.5× beyond normal max
 
 export default function VisualLearningPage() {
   const router = useRouter();
@@ -12,9 +15,40 @@ export default function VisualLearningPage() {
   const profile = profiles.find((p) => p.id === activeProfileId) ?? null;
   const [activeLetter, setActiveLetter] = useState<string | null>(null);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const gainNodeRef = useRef<GainNode | null>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
+  const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
+
   useEffect(() => {
     if (!profile) router.navigate({ to: "/" });
   }, [profile, router]);
+
+  const setupAudioBoost = () => {
+    const video = videoRef.current;
+    if (!video || sourceRef.current) return;
+
+    const ctx = new AudioContext();
+    audioCtxRef.current = ctx;
+
+    const source = ctx.createMediaElementSource(video);
+    sourceRef.current = source;
+
+    const gainNode = ctx.createGain();
+    gainNode.gain.value = GAIN_AMOUNT;
+    gainNodeRef.current = gainNode;
+
+    source.connect(gainNode);
+    gainNode.connect(ctx.destination);
+
+    if (ctx.state === "suspended") ctx.resume();
+  };
+
+  useEffect(() => {
+    return () => {
+      audioCtxRef.current?.close();
+    };
+  }, []);
 
   if (!profile) return null;
 
@@ -83,7 +117,7 @@ export default function VisualLearningPage() {
           </div>
         </motion.section>
 
-        {/* ── Educational Video Section ── */}
+        {/* ── Video Section ── */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -103,27 +137,17 @@ export default function VisualLearningPage() {
               boxShadow: "0 8px 32px oklch(0 0 0 / 0.5)",
             }}
           >
-            {/* 16:9 aspect ratio wrapper */}
-            <div
-              className="relative w-full"
-              style={{ paddingBottom: "56.25%" }}
-            >
-              <iframe
-                className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/hq3yfQnllfQ"
-                title="ABC Phonics Song – Learn the sounds of each letter"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                data-ocid="visual.video_player"
-              />
-            </div>
+            <video
+              ref={videoRef}
+              src={VIDEO_SRC}
+              controls
+              playsInline
+              onPlay={setupAudioBoost}
+              data-ocid="visual.video_player"
+              className="w-full block"
+              style={{ background: "oklch(0.06 0.01 264)" }}
+            />
           </div>
-          <p
-            className="text-center text-xs font-body mt-3"
-            style={{ color: "oklch(0.65 0.08 84)" }}
-          >
-            ABC Phonics Song – Learn the sounds of each letter
-          </p>
         </motion.section>
       </div>
     </Layout>
