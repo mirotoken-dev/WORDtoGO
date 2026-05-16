@@ -43,7 +43,6 @@ export default function BlendingPage() {
     (sound: string) => {
       if (status !== "idle") return;
       playTapSound();
-      // Play phonetic mp3 (a–t) or phonetic speech synthesis (u–z) for the syllable
       void playLetterPhonetic(sound);
       const next = [...chosen, sound];
       setChosen(next);
@@ -67,17 +66,14 @@ export default function BlendingPage() {
             };
             const updated = {
               ...existing,
-              tasksCompleted: Array.from(
-                new Set([...existing.tasksCompleted, task.id]),
-              ),
+              tasksCompleted: Array.from(new Set([...existing.tasksCompleted, task.id])),
               score: existing.score + 1,
               completed: true,
               lastVisited: Date.now(),
             };
-            const totalDone = Object.values({
-              ...prev.blending,
-              [task.id]: updated,
-            }).filter((b) => b.tasksCompleted.length > 0).length;
+            const totalDone = Object.values({ ...prev.blending, [task.id]: updated }).filter(
+              (b) => b.tasksCompleted.length > 0,
+            ).length;
             return {
               ...prev,
               blending: { ...prev.blending, [task.id]: updated },
@@ -87,10 +83,7 @@ export default function BlendingPage() {
         } else {
           playWrongSound();
           setStatus("wrong");
-          setTimeout(() => {
-            setChosen([]);
-            setStatus("idle");
-          }, 1000);
+          setTimeout(() => { setChosen([]); setStatus("idle"); }, 1000);
         }
       }
     },
@@ -117,17 +110,14 @@ export default function BlendingPage() {
     setStatus("idle");
   };
 
-  const isCompleted =
-    (progress?.blending[task.id]?.tasksCompleted.length ?? 0) > 0;
+  const isCompleted = (progress?.blending[task.id]?.tasksCompleted.length ?? 0) > 0;
 
-  if (!profile) {
-    router.navigate({ to: "/" });
-    return null;
-  }
+  if (!profile) { router.navigate({ to: "/" }); return null; }
 
   return (
-    <Layout title="Blending" headerColor="oklch(0.45 0.24 264)">
+    <Layout title="Blending" headerColor="oklch(0.44 0.22 260)">
       <div className="px-5 py-5 flex flex-col gap-4">
+
         {/* Progress */}
         <ProgressBar
           value={(completedCount / TOTAL_BLENDING_TASKS) * 100}
@@ -137,10 +127,7 @@ export default function BlendingPage() {
         />
 
         {/* Letter tabs */}
-        <div
-          className="flex gap-1.5 overflow-x-auto pb-1"
-          style={{ scrollbarWidth: "none" }}
-        >
+        <div className="flex gap-1.5 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
           {PHONICS_DATA.map((l, i) => {
             const done = l.blendingTasks.filter(
               (t) => (progress?.blending[t.id]?.tasksCompleted.length ?? 0) > 0,
@@ -151,19 +138,19 @@ export default function BlendingPage() {
                 type="button"
                 data-ocid={`blending.letter_tab.${i + 1}`}
                 onClick={() => changeLetter(i)}
-                className={`flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 relative ${
+                className={`flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 relative border ${
                   i === letterIdx
-                    ? "gradient-blue text-card shadow-playful"
+                    ? "gradient-blue text-white border-transparent shadow-playful"
                     : done === 10
-                      ? "bg-[oklch(0.72_0.27_131/0.25)] text-[oklch(0.72_0.27_131)]"
-                      : "bg-muted text-muted-foreground"
+                      ? "bg-[oklch(0.94_0.06_145)] text-[oklch(0.48_0.22_145)] border-[oklch(0.85_0.10_145)]"
+                      : "bg-muted text-muted-foreground border-border"
                 }`}
               >
                 {l.letter}
                 {done > 0 && done < 10 && (
                   <span
-                    className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-[8px] flex items-center justify-center font-bold text-[oklch(0.08_0_0)]"
-                    style={{ background: "oklch(0.82 0.17 84)" }}
+                    className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-[8px] flex items-center justify-center font-bold text-white"
+                    style={{ background: "oklch(0.62 0.22 145)" }}
                   >
                     {done}
                   </span>
@@ -179,11 +166,7 @@ export default function BlendingPage() {
             {letter.letter} — Task {taskIdx + 1}/{letter.blendingTasks.length}
           </span>
           <div className="flex items-center gap-2">
-            {isCompleted && (
-              <span className="text-[oklch(0.72_0.27_131)] text-sm font-bold">
-                ✅
-              </span>
-            )}
+            {isCompleted && <span className="text-[oklch(0.48_0.22_145)] text-sm font-bold">✅</span>}
             <StarBadge count={completedCount} size="sm" />
           </div>
         </div>
@@ -191,26 +174,20 @@ export default function BlendingPage() {
         {/* Word card */}
         <motion.div
           key={task.id}
-          initial={{ scale: 0.9, opacity: 0 }}
+          initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           className={`letter-card flex items-center gap-4 ${
-            letter.color === "red"
-              ? "gradient-red"
-              : letter.color === "blue"
-                ? "gradient-blue"
-                : letter.color === "green"
-                  ? "gradient-green"
-                  : letter.color === "yellow"
-                    ? "gradient-yellow"
-                    : "gradient-purple"
-          } text-card`}
-          style={{
-            boxShadow:
-              "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1) inset",
-          }}
+            letter.color === "red" ? "gradient-red"
+            : letter.color === "blue" ? "gradient-blue"
+            : letter.color === "green" ? "gradient-green"
+            : letter.color === "yellow" ? "gradient-yellow"
+            : "gradient-purple"
+          } text-white`}
+          style={{ boxShadow: "0 4px 20px oklch(0 0 0 / 0.15)" }}
         >
-          <span className="text-6xl">{task.emoji}</span>
-          <div>
+          <div className="absolute inset-0 rounded-3xl pointer-events-none" style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.10) 0%, transparent 55%)" }} />
+          <span className="text-6xl relative z-10">{task.emoji}</span>
+          <div className="relative z-10">
             <p className="text-xs font-body opacity-80">Build this word:</p>
             <p className="text-3xl font-display font-black">{task.word}</p>
             <p className="text-xs opacity-70 font-body">{task.hint}</p>
@@ -231,11 +208,11 @@ export default function BlendingPage() {
                 transition={{ duration: 0.4 }}
                 className={`min-w-[56px] h-12 px-3 rounded-2xl border-2 flex items-center justify-center font-display font-bold text-base transition-smooth ${
                   status === "correct"
-                    ? "border-[oklch(0.72_0.27_131)] bg-[oklch(0.72_0.27_131/0.2)] text-[oklch(0.72_0.27_131)]"
+                    ? "border-[oklch(0.62_0.22_145)] bg-[oklch(0.94_0.06_145)] text-[oklch(0.48_0.22_145)]"
                     : status === "wrong"
                       ? "border-destructive bg-destructive/10 text-destructive"
                       : c
-                        ? "gradient-blue text-card border-transparent shadow-playful"
+                        ? "gradient-blue text-white border-transparent shadow-playful"
                         : "border-dashed border-border bg-muted text-muted-foreground"
                 }`}
               >
@@ -246,16 +223,10 @@ export default function BlendingPage() {
 
           <AnimatePresence>
             {status !== "idle" && (
-              <motion.span
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0 }}
-              >
-                {status === "correct" ? (
-                  <CheckCircle2 className="w-8 h-8 text-[oklch(0.72_0.27_131)]" />
-                ) : (
-                  <XCircle className="w-8 h-8 text-destructive" />
-                )}
+              <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+                {status === "correct"
+                  ? <CheckCircle2 className="w-8 h-8 text-[oklch(0.62_0.22_145)]" />
+                  : <XCircle className="w-8 h-8 text-destructive" />}
               </motion.span>
             )}
           </AnimatePresence>
@@ -276,16 +247,12 @@ export default function BlendingPage() {
                 disabled={used || status !== "idle"}
                 className={`btn-lg btn-tap font-display font-black text-xl ${
                   used || status !== "idle"
-                    ? "opacity-30 cursor-not-allowed bg-muted text-foreground"
-                    : letter.color === "red"
-                      ? "gradient-red text-card shadow-playful"
-                      : letter.color === "blue"
-                        ? "gradient-blue text-card shadow-playful"
-                        : letter.color === "green"
-                          ? "gradient-green text-card shadow-playful"
-                          : letter.color === "yellow"
-                            ? "gradient-yellow text-card shadow-playful"
-                            : "gradient-purple text-card shadow-playful"
+                    ? "opacity-30 cursor-not-allowed bg-muted text-foreground border border-border"
+                    : letter.color === "red" ? "gradient-red text-white shadow-playful"
+                    : letter.color === "blue" ? "gradient-blue text-white shadow-playful"
+                    : letter.color === "green" ? "gradient-green text-white shadow-playful"
+                    : letter.color === "yellow" ? "gradient-yellow text-white shadow-playful"
+                    : "gradient-purple text-white shadow-playful"
                 }`}
               >
                 {s}
@@ -299,27 +266,18 @@ export default function BlendingPage() {
           <button
             type="button"
             data-ocid="blending.prev_button"
-            onClick={() => {
-              playTapSound();
-              setTaskIdx(
-                (i) =>
-                  (i - 1 + letter.blendingTasks.length) %
-                  letter.blendingTasks.length,
-              );
-              setChosen([]);
-              setStatus("idle");
-            }}
-            className="w-14 h-14 rounded-2xl bg-muted border border-border flex items-center justify-center active:scale-95 transition-smooth hover:border-[oklch(0.82_0.17_84/0.4)]"
+            onClick={() => { playTapSound(); setTaskIdx((i) => (i - 1 + letter.blendingTasks.length) % letter.blendingTasks.length); setChosen([]); setStatus("idle"); }}
+            className="w-12 h-12 rounded-2xl bg-white border border-border flex items-center justify-center active:scale-95 transition-smooth hover:bg-muted"
             aria-label="Previous"
           >
-            <ChevronLeft className="w-7 h-7 text-foreground" />
+            <ChevronLeft className="w-6 h-6 text-foreground" />
           </button>
           {status === "correct" ? (
             <button
               type="button"
               data-ocid="blending.next_task_button"
               onClick={nextTask}
-              className="flex-1 h-14 rounded-2xl gradient-green text-card font-display font-bold text-lg active:scale-95 transition-smooth shadow-playful"
+              className="flex-1 h-12 rounded-2xl gradient-green text-white font-display font-bold text-base active:scale-95 transition-smooth shadow-playful"
             >
               Next! →
             </button>
@@ -330,10 +288,10 @@ export default function BlendingPage() {
             type="button"
             data-ocid="blending.next_button"
             onClick={nextTask}
-            className="w-14 h-14 rounded-2xl gradient-blue flex items-center justify-center active:scale-95 transition-smooth shadow-playful"
+            className="w-12 h-12 rounded-2xl gradient-blue flex items-center justify-center active:scale-95 transition-smooth shadow-playful"
             aria-label="Next"
           >
-            <ChevronRight className="w-7 h-7 text-card" />
+            <ChevronRight className="w-6 h-6 text-white" />
           </button>
         </div>
       </div>

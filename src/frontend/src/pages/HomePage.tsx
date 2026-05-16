@@ -54,7 +54,7 @@ const MENU = [
     label: "Matching",
     icon: Grid3x3,
     path: "/matching",
-    colorClass: "gradient-purple",
+    colorClass: "gradient-indigo",
     desc: "Quiz: match & learn",
   },
   {
@@ -84,14 +84,14 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Header — luxury dark with gold accents */}
-      <header className="bg-card/90 border-b border-[oklch(0.82_0.17_84/0.2)] shadow-luxury backdrop-blur-sm px-5 py-4 flex items-center justify-between">
+      {/* Header */}
+      <header className="bg-white border-b border-border px-5 py-4 flex items-center justify-between shadow-xs">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl bg-muted border border-[oklch(0.82_0.17_84/0.3)] flex items-center justify-center text-3xl glow-gold-sm">
+          <div className="w-11 h-11 rounded-2xl bg-muted border border-border flex items-center justify-center text-2xl flex-shrink-0">
             {profile.avatar}
           </div>
           <div>
-            <p className="font-display font-bold text-lg text-foreground leading-tight">
+            <p className="font-display font-bold text-base text-foreground leading-tight">
               Hi, {profile.name}! 👋
             </p>
             <p className="text-xs font-body text-muted-foreground">Ready to learn?</p>
@@ -102,53 +102,34 @@ export default function HomePage() {
           <button
             type="button"
             data-ocid="home.switch_profile_button"
-            onClick={() => {
-              playTapSound();
-              router.navigate({ to: "/" });
-            }}
-            className="text-xs font-body text-[oklch(0.82_0.17_84)] underline px-2 py-1 active:opacity-70 transition-smooth"
+            onClick={() => { playTapSound(); router.navigate({ to: "/" }); }}
+            className="text-xs font-body text-[oklch(0.55_0.22_280)] underline px-2 py-1 active:opacity-70 transition-smooth"
           >
             Switch
           </button>
         </div>
       </header>
 
-      {/* Hero Banner */}
+      {/* Banner */}
       <div
-        className="px-6 py-8 text-center relative overflow-hidden"
+        className="px-6 py-7 flex items-center gap-5"
         style={{
-          background: "linear-gradient(135deg, oklch(0.10 0.03 264) 0%, oklch(0.08 0.01 264) 100%)",
-          borderBottom: "1px solid oklch(0.82 0.17 84 / 0.2)",
+          background: "linear-gradient(135deg, oklch(0.58 0.22 280) 0%, oklch(0.44 0.22 280) 100%)",
         }}
       >
-        <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle, oklch(0.82 0.17 84 / 0.12) 0%, transparent 70%)" }}
-        />
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 200 }}
-          className="relative z-10"
-        >
-          <div className="text-5xl mb-3">📚</div>
-          <h2
-            className="text-3xl font-display font-black leading-tight mb-1"
-            style={{
-              background: "linear-gradient(to right, oklch(0.95 0.18 84), oklch(0.82 0.17 84), oklch(0.95 0.18 84))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
+        <div className="text-5xl">📚</div>
+        <div>
+          <h2 className="text-2xl font-display font-black text-white leading-tight">
             Word to Go
           </h2>
-          <p className="text-muted-foreground text-sm mt-1 font-body">26 letters · 260 words</p>
-        </motion.div>
+          <p className="text-white/70 text-sm font-body mt-0.5">
+            26 letters · 260 words
+          </p>
+        </div>
       </div>
 
       {/* Feature Grid */}
-      <div className="flex-1 px-5 py-6 grid grid-cols-2 gap-4" data-ocid="home.features_section">
+      <div className="flex-1 px-5 py-5 grid grid-cols-2 gap-3" data-ocid="home.features_section">
         {MENU.map((item, idx) => {
           const Icon = item.icon;
           return (
@@ -157,31 +138,32 @@ export default function HomePage() {
               type="button"
               data-ocid={`home.${item.label.toLowerCase().replace(" ", "_")}_button`}
               onClick={() => navigate(item.path)}
-              className={`${item.colorClass} rounded-3xl p-5 flex flex-col items-start justify-between gap-3 active:scale-95 transition-smooth text-card min-h-[140px] relative overflow-hidden`}
-              style={{ boxShadow: "0 4px 24px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.82 0.17 84 / 0.15) inset" }}
-              initial={{ y: 20, opacity: 0 }}
+              className={`${item.colorClass} rounded-2xl p-5 flex flex-col items-start justify-between gap-3 active:scale-95 transition-smooth text-white min-h-[130px] relative overflow-hidden`}
+              style={{ boxShadow: "0 4px 20px oklch(0 0 0 / 0.15)" }}
+              initial={{ y: 16, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: idx * 0.08 }}
+              transition={{ delay: idx * 0.06 }}
               whileTap={{ scale: 0.95 }}
             >
-              {/* Shimmer overlay */}
               <div
                 className="absolute inset-0 pointer-events-none"
-                style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.08) 0%, transparent 60%)" }}
+                style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.12) 0%, transparent 55%)" }}
               />
-              {/* Icon */}
-              <Icon className="w-8 h-8 relative z-10 opacity-90" strokeWidth={1.8} />
-              {/* Label + desc */}
+              <Icon className="w-7 h-7 relative z-10 opacity-95" strokeWidth={2} />
               <div className="relative z-10">
-                <span className="text-xl font-display font-black leading-tight block">{item.label}</span>
-                <span className="text-xs font-body opacity-75 mt-0.5 block">{item.desc}</span>
+                <span className="text-lg font-display font-black leading-tight block">
+                  {item.label}
+                </span>
+                <span className="text-xs font-body opacity-80 mt-0.5 block">
+                  {item.desc}
+                </span>
               </div>
             </motion.button>
           );
         })}
       </div>
 
-      <footer className="py-3 text-center bg-card/60 border-t border-[oklch(0.82_0.17_84/0.15)]">
+      <footer className="py-3 text-center bg-white border-t border-border">
         <p className="text-xs text-muted-foreground font-body">
           © {new Date().getFullYear()}. Built with love using{" "}
           <a
@@ -190,7 +172,7 @@ export default function HomePage() {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:text-[oklch(0.82_0.17_84)] transition-colors"
+            className="underline hover:text-[oklch(0.55_0.22_280)] transition-colors"
           >
             caffeine.ai
           </a>

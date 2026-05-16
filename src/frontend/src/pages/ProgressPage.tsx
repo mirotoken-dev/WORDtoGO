@@ -32,17 +32,18 @@ export default function ProgressPage() {
 
   return (
     <Layout title="Progress">
-      <div className="px-5 py-6 flex flex-col gap-6">
-        {/* Profile Card — luxury gold gradient */}
+      <div className="px-5 py-5 flex flex-col gap-5">
+
+        {/* Profile Card */}
         <motion.div
-          initial={{ y: -10, opacity: 0 }}
+          initial={{ y: -8, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="gradient-gold text-[oklch(0.08_0_0)] rounded-3xl p-5 flex items-center gap-4"
-          style={{ boxShadow: "0 8px 32px oklch(0.82 0.17 84 / 0.3), 0 0 0 1px oklch(1 0 0 / 0.15) inset" }}
+          className="gradient-indigo text-white rounded-2xl p-5 flex items-center gap-4"
+          style={{ boxShadow: "0 4px 20px oklch(0.55 0.22 280 / 0.30)" }}
         >
-          <div className="text-6xl">{profile.avatar}</div>
+          <div className="text-5xl">{profile.avatar}</div>
           <div>
-            <p className="text-2xl font-display font-black">{profile.name}</p>
+            <p className="text-xl font-display font-black">{profile.name}</p>
             <div className="flex items-center gap-2 mt-1">
               <StarBadge count={progress?.totalStars ?? 0} size="md" />
               <span className="text-sm font-body opacity-80">total stars</span>
@@ -53,55 +54,58 @@ export default function ProgressPage() {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: "Letters", value: flashcardDone, max: 26, color: "gradient-red", emoji: "🃏" },
-            { label: "Words", value: blendingDone, max: TOTAL_BLENDING_TASKS, color: "gradient-blue", emoji: "🎵" },
-            { label: "Tracing", value: tracingDone, max: 26, color: "gradient-green", emoji: "✏️" },
+            { label: "Letters", value: flashcardDone, max: 26, colorClass: "gradient-red", emoji: "🃏" },
+            { label: "Words", value: blendingDone, max: TOTAL_BLENDING_TASKS, colorClass: "gradient-blue", emoji: "🎵" },
+            { label: "Tracing", value: tracingDone, max: 26, colorClass: "gradient-green", emoji: "✏️" },
           ].map((stat) => (
             <motion.div
               key={stat.label}
-              className={`${stat.color} text-card rounded-2xl p-3 text-center relative overflow-hidden`}
-              style={{ boxShadow: "0 4px 20px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1) inset" }}
+              className={`${stat.colorClass} text-white rounded-2xl p-3 text-center relative overflow-hidden`}
+              style={{ boxShadow: "0 4px 12px oklch(0 0 0 / 0.12)" }}
               whileHover={{ scale: 1.03 }}
             >
-              <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.08) 0%, transparent 60%)" }} />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.12) 0%, transparent 60%)" }}
+              />
               <div className="text-3xl relative z-10">{stat.emoji}</div>
               <p className="text-2xl font-display font-black relative z-10">{stat.value}</p>
-              <p className="text-xs font-body opacity-80 relative z-10">/{stat.max}</p>
+              <p className="text-xs font-body opacity-75 relative z-10">/{stat.max}</p>
               <p className="text-xs font-display font-bold mt-0.5 relative z-10">{stat.label}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Progress Bars */}
-        <div className="flex flex-col gap-4">
+        <div className="bg-white rounded-2xl p-4 border border-border flex flex-col gap-4 shadow-card">
           <ProgressBar value={(flashcardDone / 26) * 100} color="red" label="🃏 Flashcards" showLabel />
           <ProgressBar value={(blendingDone / TOTAL_BLENDING_TASKS) * 100} color="blue" label="🎵 Blending" showLabel />
           <ProgressBar value={(tracingDone / 26) * 100} color="green" label="✏️ Tracing" showLabel />
         </div>
 
         {/* Letter Grid */}
-        <div>
-          <h3 className="text-base font-display font-bold text-foreground mb-3">Letter Progress</h3>
-          <div className="grid grid-cols-7 gap-2">
+        <div className="bg-white rounded-2xl p-4 border border-border shadow-card">
+          <h3 className="text-sm font-display font-bold text-foreground mb-3">Letter Progress</h3>
+          <div className="grid grid-cols-7 gap-1.5">
             {PHONICS_DATA.map((l, i) => {
               const fc = progress?.flashcards[l.letter]?.completed;
               const bt = (progress?.blending[l.blendingTasks[0].id]?.tasksCompleted.length ?? 0) > 0;
               const tr = progress?.tracing[l.letter]?.completed;
               const doneCount = [fc, bt, tr].filter(Boolean).length;
-              const colorCls =
+              const style =
                 doneCount === 3
-                  ? "gradient-green text-card"
+                  ? { background: "oklch(0.62 0.22 145)", color: "white" }
                   : doneCount === 2
-                    ? "gradient-yellow text-card"
+                    ? { background: "oklch(0.80 0.18 84)", color: "white" }
                     : doneCount === 1
-                      ? "gradient-blue text-card"
-                      : "bg-muted text-muted-foreground border border-border";
+                      ? { background: "oklch(0.58 0.22 260)", color: "white" }
+                      : { background: "oklch(0.94 0.01 260)", color: "oklch(0.52 0.03 260)", border: "1px solid oklch(0.90 0.01 260)" };
               return (
                 <motion.div
                   key={l.letter}
                   data-ocid={`progress.letter_chip.${i + 1}`}
-                  className={`h-10 w-full rounded-xl flex items-center justify-center font-display font-black text-sm ${colorCls}`}
-                  style={{ boxShadow: doneCount > 0 ? "0 2px 8px oklch(0 0 0 / 0.4)" : undefined }}
+                  className="h-9 w-full rounded-xl flex items-center justify-center font-display font-black text-sm"
+                  style={{ ...style, boxShadow: doneCount > 0 ? "0 2px 6px oklch(0 0 0 / 0.12)" : undefined }}
                   whileHover={{ scale: 1.1 }}
                   title={`${l.letter}: ${doneCount}/3 done`}
                 >
@@ -111,19 +115,27 @@ export default function ProgressPage() {
             })}
           </div>
           <div className="flex gap-3 mt-3 text-xs font-body text-muted-foreground justify-center flex-wrap">
-            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded gradient-green inline-block" /> All done</span>
-            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded gradient-yellow inline-block" /> 2/3 done</span>
-            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded gradient-blue inline-block" /> 1/3 done</span>
-            <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-muted border border-border inline-block" /> Not started</span>
+            <span className="flex items-center gap-1">
+              <span className="w-3 h-3 rounded inline-block" style={{ background: "oklch(0.62 0.22 145)" }} /> All done
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="w-3 h-3 rounded inline-block" style={{ background: "oklch(0.80 0.18 84)" }} /> 2/3
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="w-3 h-3 rounded inline-block" style={{ background: "oklch(0.58 0.22 260)" }} /> 1/3
+            </span>
+            <span className="flex items-center gap-1">
+              <span className="w-3 h-3 rounded bg-muted border border-border inline-block" /> Not started
+            </span>
           </div>
         </div>
 
-        {/* Reset Button */}
+        {/* Reset */}
         <button
           type="button"
           data-ocid="progress.reset_button"
           onClick={handleReset}
-          className="w-full py-3 rounded-2xl border-2 border-destructive text-destructive font-display font-bold active:scale-95 transition-smooth hover:bg-destructive/10"
+          className="w-full py-3 rounded-2xl border-2 border-destructive/40 text-destructive font-display font-bold active:scale-95 transition-smooth hover:bg-destructive/5 text-sm"
         >
           🔄 Reset Progress
         </button>

@@ -7,31 +7,22 @@ import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
 import { playSuccessSound, playTapSound } from "../utils/audio";
 
-interface Point {
-  x: number;
-  y: number;
-}
+interface Point { x: number; y: number; }
 
-// Vivid stroke colors that pop on dark canvas backgrounds
 const STROKE_COLORS: Record<string, string> = {
-  red: "oklch(0.72 0.28 15)",
-  blue: "oklch(0.68 0.24 264)",
-  green: "oklch(0.72 0.27 131)",
-  yellow: "oklch(0.90 0.18 84)",
-  purple: "oklch(0.68 0.22 320)",
+  red: "oklch(0.60 0.24 15)",
+  blue: "oklch(0.55 0.22 260)",
+  green: "oklch(0.58 0.22 145)",
+  yellow: "oklch(0.72 0.18 84)",
+  purple: "oklch(0.55 0.22 320)",
 };
 
 const COVERAGE_THRESHOLD = 0.65;
 const CANVAS_W = 360;
 const CANVAS_H = 240;
 
-/** All words from the 260 blending tasks */
 const ALL_WORDS = PHONICS_DATA.flatMap((ld) =>
-  ld.blendingTasks.map((t) => ({
-    word: t.word,
-    emoji: t.emoji,
-    color: ld.color,
-  })),
+  ld.blendingTasks.map((t) => ({ word: t.word, emoji: t.emoji, color: ld.color }))
 );
 
 function getRandomWord() {
@@ -61,8 +52,7 @@ function computeCoverage(drawnData: Uint8ClampedArray, refData: Uint8ClampedArra
       if (drawnData[i + 3] > 30) overlap++;
     }
   }
-  if (refTotal === 0) return 0;
-  return overlap / refTotal;
+  return refTotal === 0 ? 0 : overlap / refTotal;
 }
 
 type TraceMode = "letter" | "word";
@@ -85,7 +75,6 @@ export default function TracingPage() {
   const prevKeyRef = useRef("");
 
   const letter = PHONICS_DATA[letterIdx];
-
   const currentKey = mode === "letter" ? `L:${letterIdx}` : `W:${wordEntry.word}`;
 
   const clearCanvas = useCallback(() => {
@@ -105,48 +94,30 @@ export default function TracingPage() {
 
   const wordFontSize = useMemo(() => {
     const len = wordEntry.word.length;
-    let size: number;
-    if (len <= 3) size = 80;
-    else if (len === 4) size = 60;
-    else if (len === 5) size = 50;
-    else size = 45;
+    let size = len <= 3 ? 80 : len === 4 ? 60 : len === 5 ? 50 : 45;
     const maxAllowed = Math.floor((CANVAS_W - 24) / (len * 0.55));
     return Math.min(size, maxAllowed);
   }, [wordEntry.word]);
 
-  if (!profile) {
-    router.navigate({ to: "/" });
-    return null;
-  }
+  if (!profile) { router.navigate({ to: "/" }); return null; }
 
-  // ── Progress stats ──────────────────────────────────────────────────────────
-  const completedCount = PHONICS_DATA.filter(
-    (l) => progress?.tracing[l.letter]?.completed,
-  ).length;
-  const totalCount = PHONICS_DATA.length;
-  const progressPct = Math.round((completedCount / totalCount) * 100);
+  const completedCount = PHONICS_DATA.filter((l) => progress?.tracing[l.letter]?.completed).length;
+  const progressPct = Math.round((completedCount / PHONICS_DATA.length) * 100);
 
   const getRefPixels = (): Uint8ClampedArray => {
-    const key = currentKey;
-    if (!refPixelsCache.current[key]) {
+    if (!refPixelsCache.current[currentKey]) {
       if (mode === "letter") {
-        refPixelsCache.current[key] = buildReferencePixels(letter.uppercase);
+        refPixelsCache.current[currentKey] = buildReferencePixels(letter.uppercase);
       } else {
         const len = wordEntry.word.length;
-        let size: number;
-        if (len <= 3) size = 80;
-        else if (len === 4) size = 60;
-        else if (len === 5) size = 50;
-        else size = 45;
+        let size = len <= 3 ? 80 : len === 4 ? 60 : len === 5 ? 50 : 45;
         const maxAllowed = Math.floor((CANVAS_W - 24) / (len * 0.55));
-        const fontSize = Math.min(size, maxAllowed);
-        refPixelsCache.current[key] = buildReferencePixels(
-          wordEntry.word.toUpperCase(),
-          Math.max(fontSize, 40),
+        refPixelsCache.current[currentKey] = buildReferencePixels(
+          wordEntry.word.toUpperCase(), Math.max(Math.min(size, maxAllowed), 40)
         );
       }
     }
-    return refPixelsCache.current[key];
+    return refPixelsCache.current[currentKey];
   };
 
   const getPoint = (e: React.MouseEvent | React.TouchEvent): Point => {
@@ -177,20 +148,14 @@ export default function TracingPage() {
     ctx.beginPath();
     ctx.moveTo(lastPt.current.x, lastPt.current.y);
     ctx.lineTo(pt.x, pt.y);
-    ctx.strokeStyle =
-      mode === "letter"
-        ? (STROKE_COLORS[letter.color] ?? STROKE_COLORS.blue)
-        : "oklch(0.82 0.17 84)";
+    ctx.strokeStyle = mode === "letter" ? (STROKE_COLORS[letter.color] ?? STROKE_COLORS.blue) : "oklch(0.55 0.22 280)";
     ctx.lineWidth = 14;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     ctx.stroke();
     lastPt.current = pt;
     const now = Date.now();
-    if (now - lastCheckTime.current >= 50) {
-      lastCheckTime.current = now;
-      checkSimilarity();
-    }
+    if (now - lastCheckTime.current >= 50) { lastCheckTime.current = now; checkSimilarity(); }
   };
 
   const checkSimilarity = () => {
@@ -199,30 +164,19 @@ export default function TracingPage() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const drawnData = ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
-    const refData = getRefPixels();
-    const score = computeCoverage(drawnData, refData);
+    const score = computeCoverage(drawnData, getRefPixels());
     setCoverage(score);
     if (score >= COVERAGE_THRESHOLD && !isDone) {
       setIsDone(true);
       playSuccessSound();
       if (mode === "letter") {
         updateProgress((prev) => {
-          const existing = prev.tracing[letter.letter] ?? {
-            letterId: letter.letter,
-            attempts: 0,
-            completed: false,
-            lastVisited: 0,
-          };
+          const existing = prev.tracing[letter.letter] ?? { letterId: letter.letter, attempts: 0, completed: false, lastVisited: 0 };
           return {
             ...prev,
             tracing: {
               ...prev.tracing,
-              [letter.letter]: {
-                ...existing,
-                attempts: existing.attempts + 1,
-                completed: true,
-                lastVisited: Date.now(),
-              },
+              [letter.letter]: { ...existing, attempts: existing.attempts + 1, completed: true, lastVisited: Date.now() },
             },
           };
         });
@@ -230,74 +184,49 @@ export default function TracingPage() {
     }
   };
 
-  const endDraw = () => {
-    if (!drawing.current) return;
-    drawing.current = false;
-    lastPt.current = null;
-    checkSimilarity();
-  };
-
-  const goToLetter = (newIdx: number) => setLetterIdx(newIdx);
+  const endDraw = () => { if (!drawing.current) return; drawing.current = false; lastPt.current = null; checkSimilarity(); };
 
   const newWord = () => {
     playTapSound();
     let next = getRandomWord();
-    while (next.word === wordEntry.word && ALL_WORDS.length > 1) {
-      next = getRandomWord();
-    }
+    while (next.word === wordEntry.word && ALL_WORDS.length > 1) next = getRandomWord();
     setWordEntry(next);
   };
 
   return (
-    <Layout title="Tracing" headerColor="oklch(0.48 0.27 131)">
+    <Layout title="Tracing" headerColor="oklch(0.48 0.22 145)">
       <div className="px-5 py-5 flex flex-col gap-4">
 
-        {/* ── Progress Bar ─────────────────────────────────────────────────── */}
-        <div
-          className="rounded-2xl px-4 py-3 flex flex-col gap-2 border border-[oklch(0.82_0.17_84/0.15)]"
-          style={{ background: "oklch(0.12 0.02 264)" }}
-        >
-          <div className="flex items-center justify-between">
+        {/* Progress Bar */}
+        <div className="bg-white rounded-2xl px-4 py-3 border border-border shadow-card">
+          <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-display font-bold text-foreground">Letters Traced</span>
-            <span className="text-xs font-display font-black" style={{ color: "oklch(0.82 0.17 84)" }}>
-              {completedCount}/{totalCount}
+            <span className="text-xs font-display font-black text-[oklch(0.48_0.22_145)]">
+              {completedCount}/{PHONICS_DATA.length}
             </span>
           </div>
-          <div
-            className="w-full h-2.5 rounded-full overflow-hidden"
-            style={{ background: "oklch(0.18 0.03 264)" }}
-          >
+          <div className="w-full h-2.5 rounded-full overflow-hidden bg-muted">
             <motion.div
               className="h-full rounded-full"
-              style={{
-                background: "linear-gradient(90deg, oklch(0.90 0.18 84) 0%, oklch(0.72 0.18 84) 100%)",
-                boxShadow: progressPct > 0 ? "0 0 8px oklch(0.82 0.17 84 / 0.4)" : "none",
-              }}
+              style={{ background: "linear-gradient(90deg, oklch(0.62 0.22 145) 0%, oklch(0.48 0.22 145) 100%)" }}
               initial={{ width: 0 }}
               animate={{ width: `${progressPct}%` }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             />
           </div>
-          <p className="text-xs text-muted-foreground font-body">
-            {progressPct === 0
-              ? "Start tracing to make progress!"
-              : progressPct === 100
-                ? "🎉 All letters completed!"
-                : `${progressPct}% complete — keep going!`}
+          <p className="text-xs text-muted-foreground font-body mt-1.5">
+            {progressPct === 0 ? "Start tracing to make progress!" : progressPct === 100 ? "🎉 All letters completed!" : `${progressPct}% complete — keep going!`}
           </p>
         </div>
 
         {/* Mode toggle */}
-        <div
-          className="flex rounded-2xl overflow-hidden border border-[oklch(0.82_0.17_84/0.25)] bg-card/50"
-          data-ocid="tracing.mode_toggle"
-        >
+        <div className="flex rounded-2xl overflow-hidden border border-border bg-white shadow-xs" data-ocid="tracing.mode_toggle">
           <button
             type="button"
             data-ocid="tracing.letter_mode_tab"
             onClick={() => { playTapSound(); setMode("letter"); }}
             className={`flex-1 py-2.5 text-sm font-display font-bold transition-smooth ${
-              mode === "letter" ? "gradient-green text-card" : "text-muted-foreground hover:text-foreground"
+              mode === "letter" ? "gradient-green text-white" : "text-muted-foreground hover:text-foreground"
             }`}
           >
             ✏️ Letter Tracing
@@ -307,14 +236,14 @@ export default function TracingPage() {
             data-ocid="tracing.word_mode_tab"
             onClick={() => { playTapSound(); setMode("word"); }}
             className={`flex-1 py-2.5 text-sm font-display font-bold transition-smooth ${
-              mode === "word" ? "gradient-gold text-[oklch(0.08_0_0)]" : "text-muted-foreground hover:text-foreground"
+              mode === "word" ? "gradient-indigo text-white" : "text-muted-foreground hover:text-foreground"
             }`}
           >
             📝 Word Tracing
           </button>
         </div>
 
-        {/* Letter mode: selector tabs */}
+        {/* Letter tabs */}
         {mode === "letter" && (
           <div className="flex gap-1.5 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }} data-ocid="tracing.letter_tabs">
             {PHONICS_DATA.map((l, i) => {
@@ -324,13 +253,13 @@ export default function TracingPage() {
                   key={l.letter}
                   type="button"
                   data-ocid={`tracing.letter_tab.${i + 1}`}
-                  onClick={() => { playTapSound(); goToLetter(i); }}
-                  className={`flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 ${
+                  onClick={() => { playTapSound(); setLetterIdx(i); }}
+                  className={`flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 border ${
                     i === letterIdx
-                      ? "gradient-green text-card shadow-playful"
+                      ? "gradient-green text-white border-transparent shadow-playful"
                       : done
-                        ? "bg-[oklch(0.82_0.17_84/0.25)] text-[oklch(0.88_0.17_84)]"
-                        : "bg-muted text-muted-foreground"
+                        ? "bg-[oklch(0.94_0.06_145)] text-[oklch(0.48_0.22_145)] border-[oklch(0.85_0.10_145)]"
+                        : "bg-muted text-muted-foreground border-border"
                   }`}
                 >
                   {l.letter}
@@ -343,16 +272,13 @@ export default function TracingPage() {
         {/* Subject card */}
         {mode === "letter" ? (
           <div
-            className={`rounded-3xl p-4 flex items-center gap-4 text-card ${
-              letter.color === "red" ? "gradient-red"
-              : letter.color === "blue" ? "gradient-blue"
-              : letter.color === "green" ? "gradient-green"
-              : letter.color === "yellow" ? "gradient-yellow"
-              : "gradient-purple"
+            className={`rounded-2xl p-4 flex items-center gap-4 text-white ${
+              letter.color === "red" ? "gradient-red" : letter.color === "blue" ? "gradient-blue"
+              : letter.color === "green" ? "gradient-green" : letter.color === "yellow" ? "gradient-yellow" : "gradient-purple"
             }`}
-            style={{ boxShadow: "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1) inset" }}
+            style={{ boxShadow: "0 4px 16px oklch(0 0 0 / 0.15)" }}
           >
-            <span className="text-7xl font-display font-black leading-none drop-shadow-lg">{letter.uppercase}</span>
+            <span className="text-7xl font-display font-black leading-none drop-shadow">{letter.uppercase}</span>
             <div>
               <p className="text-2xl font-display font-bold">{letter.lowercase}</p>
               <p className="text-sm font-body opacity-80">/{letter.phonicSound}/</p>
@@ -363,32 +289,17 @@ export default function TracingPage() {
             </div>
           </div>
         ) : (
-          <div
-            className="rounded-3xl p-4 flex items-center gap-4"
-            style={{
-              background: "linear-gradient(135deg, oklch(0.20 0.06 84) 0%, oklch(0.14 0.04 84) 100%)",
-              border: "1px solid oklch(0.82 0.17 84 / 0.35)",
-              boxShadow: "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.82 0.17 84 / 0.1) inset",
-            }}
-            data-ocid="tracing.word_card"
-          >
-            <span className="text-6xl">{wordEntry.emoji}</span>
+          <div className="bg-white rounded-2xl p-4 flex items-center gap-4 border border-border shadow-card" data-ocid="tracing.word_card">
+            <span className="text-5xl">{wordEntry.emoji}</span>
             <div className="flex-1">
-              <p className="text-2xl font-display font-black leading-tight" style={{ color: "oklch(0.92 0.18 84)" }}>
-                {wordEntry.word}
-              </p>
-              <p className="text-xs font-body mt-0.5" style={{ color: "oklch(0.70 0.10 84)" }}>Trace this word</p>
+              <p className="text-2xl font-display font-black text-foreground leading-tight">{wordEntry.word}</p>
+              <p className="text-xs font-body text-muted-foreground mt-0.5">Trace this word</p>
             </div>
             <button
               type="button"
               data-ocid="tracing.new_word_button"
               onClick={newWord}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-display font-bold transition-smooth active:scale-95"
-              style={{
-                background: "oklch(0.82 0.17 84 / 0.2)",
-                color: "oklch(0.92 0.18 84)",
-                border: "1px solid oklch(0.82 0.17 84 / 0.4)",
-              }}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-display font-bold transition-smooth active:scale-95 bg-muted border border-border text-foreground hover:bg-[oklch(0.91_0.01_260)]"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               New Word
@@ -398,19 +309,15 @@ export default function TracingPage() {
 
         {/* Canvas */}
         <div
-          className="relative rounded-3xl overflow-hidden border border-[oklch(0.82_0.17_84/0.2)]"
-          style={{ background: "oklch(0.10 0.02 264)", boxShadow: "0 8px 32px oklch(0 0 0 / 0.6), 0 0 0 1px oklch(0.82 0.17 84 / 0.1) inset" }}
+          className="relative rounded-2xl overflow-hidden border border-border shadow-card bg-white"
         >
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
             {mode === "letter" ? (
-              <span className="font-display font-black leading-none" style={{ fontSize: 180, color: "oklch(0.82 0.17 84 / 0.35)" }}>
+              <span className="font-display font-black leading-none" style={{ fontSize: 180, color: "oklch(0.88 0.01 260)" }}>
                 {letter.uppercase}
               </span>
             ) : (
-              <span
-                className="font-display font-black leading-none px-3 text-center"
-                style={{ fontSize: wordFontSize, color: "oklch(0.82 0.17 84 / 0.35)", letterSpacing: "0.05em" }}
-              >
+              <span className="font-display font-black leading-none px-3 text-center" style={{ fontSize: wordFontSize, color: "oklch(0.88 0.01 260)", letterSpacing: "0.05em" }}>
                 {wordEntry.word.toUpperCase()}
               </span>
             )}
@@ -431,18 +338,13 @@ export default function TracingPage() {
           />
         </div>
 
-        {/* Celebration banner */}
+        {/* Success banner */}
         {isDone && (
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 0.85, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 300, damping: 18 }}
-            className="rounded-2xl py-3 px-4 text-center font-display font-bold text-lg"
-            style={{
-              background: "linear-gradient(135deg, oklch(0.82 0.17 84 / 0.25) 0%, oklch(0.70 0.20 60 / 0.20) 100%)",
-              border: "1px solid oklch(0.82 0.17 84 / 0.5)",
-              color: "oklch(0.92 0.18 84)",
-            }}
+            className="rounded-2xl py-3 px-4 text-center font-display font-bold text-base gradient-green text-white shadow-playful"
             data-ocid="tracing.success_state"
           >
             🌟 Amazing! Great job!
@@ -455,7 +357,7 @@ export default function TracingPage() {
             type="button"
             data-ocid="tracing.clear_button"
             onClick={() => { playTapSound(); clearCanvas(); }}
-            className="flex-1 h-14 rounded-2xl bg-muted border border-border flex items-center justify-center gap-2 font-display font-bold text-foreground active:scale-95 transition-smooth hover:border-[oklch(0.82_0.17_84/0.4)]"
+            className="flex-1 h-13 py-3 rounded-2xl bg-white border border-border flex items-center justify-center gap-2 font-display font-bold text-foreground active:scale-95 transition-smooth hover:bg-muted"
           >
             <Eraser className="w-5 h-5" /> Clear
           </button>
@@ -464,26 +366,22 @@ export default function TracingPage() {
             <motion.button
               type="button"
               data-ocid="tracing.next_button"
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               onClick={() => {
                 playTapSound();
-                if (mode === "letter") {
-                  goToLetter((letterIdx + 1) % PHONICS_DATA.length);
-                } else {
-                  newWord();
-                  clearCanvas();
-                }
+                if (mode === "letter") setLetterIdx((letterIdx + 1) % PHONICS_DATA.length);
+                else { newWord(); clearCanvas(); }
               }}
-              className="flex-1 h-14 rounded-2xl gradient-gold text-[oklch(0.08_0_0)] font-display font-bold text-lg flex items-center justify-center gap-2 active:scale-95 transition-smooth shadow-luxury"
+              className="flex-1 py-3 rounded-2xl gradient-green text-white font-display font-bold text-base flex items-center justify-center gap-2 active:scale-95 transition-smooth shadow-playful"
             >
               <Check className="w-5 h-5" /> Next!
             </motion.button>
           ) : (
             <div
               data-ocid="tracing.next_locked"
-              className="flex-1 h-14 rounded-2xl bg-muted/50 flex items-center justify-center text-sm font-body text-muted-foreground border border-border"
+              className="flex-1 py-3 rounded-2xl bg-muted flex items-center justify-center text-sm font-body text-muted-foreground border border-border"
             >
               {mode === "letter" ? "Draw the letter ✏️" : "Trace the word 📝"}
             </div>

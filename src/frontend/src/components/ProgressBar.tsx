@@ -1,6 +1,6 @@
 interface ProgressBarProps {
   value: number; // 0-100
-  color?: "red" | "blue" | "green" | "yellow" | "purple" | "gold";
+  color?: "red" | "blue" | "green" | "yellow" | "purple" | "gold" | "indigo";
   size?: "sm" | "md" | "lg";
   showLabel?: boolean;
   label?: string;
@@ -8,23 +8,24 @@ interface ProgressBarProps {
 }
 
 const FILL_MAP: Record<string, string> = {
-  red: "bg-[oklch(0.72_0.28_15)]",
-  blue: "bg-[oklch(0.68_0.24_264)]",
-  green: "bg-[oklch(0.72_0.27_131)]",
-  yellow: "bg-[oklch(0.88_0.16_84)]",
-  purple: "bg-[oklch(0.68_0.22_320)]",
-  gold: "bg-gradient-to-r from-[oklch(0.90_0.18_84)] to-[oklch(0.75_0.18_84)]",
+  red: "bg-gradient-to-r from-[oklch(0.65_0.26_15)] to-[oklch(0.50_0.26_15)]",
+  blue: "bg-gradient-to-r from-[oklch(0.58_0.22_260)] to-[oklch(0.44_0.22_260)]",
+  green: "bg-gradient-to-r from-[oklch(0.62_0.22_145)] to-[oklch(0.48_0.22_145)]",
+  yellow: "bg-gradient-to-r from-[oklch(0.80_0.18_84)] to-[oklch(0.68_0.18_84)]",
+  purple: "bg-gradient-to-r from-[oklch(0.60_0.22_310)] to-[oklch(0.46_0.22_310)]",
+  gold: "bg-gradient-to-r from-[oklch(0.80_0.18_84)] to-[oklch(0.68_0.16_84)]",
+  indigo: "bg-gradient-to-r from-[oklch(0.58_0.22_280)] to-[oklch(0.44_0.22_280)]",
 };
 
 const SIZE_MAP: Record<string, string> = {
-  sm: "h-2",
-  md: "h-3",
-  lg: "h-4",
+  sm: "h-1.5",
+  md: "h-2.5",
+  lg: "h-3.5",
 };
 
 export default function ProgressBar({
   value,
-  color = "gold",
+  color = "indigo",
   size = "md",
   showLabel = false,
   label,
@@ -36,7 +37,7 @@ export default function ProgressBar({
   return (
     <div className={`w-full ${className}`} data-ocid="progress_bar">
       {(showLabel || label) && (
-        <div className="flex justify-between items-center mb-1">
+        <div className="flex justify-between items-center mb-1.5">
           {label && (
             <span className="text-xs font-body font-semibold text-foreground">
               {label}
@@ -50,18 +51,14 @@ export default function ProgressBar({
         </div>
       )}
       <div
-        className={`w-full bg-muted rounded-full overflow-hidden ${h}`}
-        style={{ boxShadow: "inset 0 1px 3px oklch(0 0 0 / 0.4)" }}
+        className={`w-full rounded-full overflow-hidden ${h} bg-muted`}
         aria-valuenow={pct}
         aria-valuemin={0}
         aria-valuemax={100}
       >
         <div
           className={`${h} rounded-full transition-all duration-500 ease-out ${FILL_MAP[color]}`}
-          style={{
-            width: `${pct}%`,
-            boxShadow: pct > 0 ? "0 0 8px oklch(0.82 0.17 84 / 0.4)" : "none",
-          }}
+          style={{ width: `${pct}%` }}
         />
       </div>
     </div>

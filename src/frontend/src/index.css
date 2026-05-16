@@ -9,105 +9,58 @@
     --font-mono: "JetBrains Mono";
     --radius: 1.25rem;
 
-    /* Luxury black theme — same in both root and dark since we force dark always */
-    --background: 0.07 0.01 264;
-    --foreground: 0.97 0 0;
-    --card: 0.12 0.02 264;
-    --card-foreground: 0.97 0 0;
-    --popover: 0.1 0.02 264;
-    --popover-foreground: 0.97 0 0;
+    /* Modern light theme */
+    --background: 0.97 0.008 260;
+    --foreground: 0.18 0.02 260;
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.02 260;
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.02 260;
 
-    --primary: 0.82 0.17 84;
-    --primary-foreground: 0.08 0 0;
+    --primary: 0.55 0.22 280;
+    --primary-foreground: 1 0 0;
 
-    --secondary: 0.18 0.04 264;
-    --secondary-foreground: 0.97 0 0;
-    --muted: 0.16 0.03 264;
-    --muted-foreground: 0.65 0.05 264;
+    --secondary: 0.94 0.01 260;
+    --secondary-foreground: 0.18 0.02 260;
+    --muted: 0.94 0.01 260;
+    --muted-foreground: 0.52 0.03 260;
 
-    --accent: 0.82 0.17 84;
-    --accent-foreground: 0.08 0 0;
+    --accent: 0.55 0.22 280;
+    --accent-foreground: 1 0 0;
 
-    --destructive: 0.65 0.28 15;
-    --destructive-foreground: 0.97 0 0;
+    --destructive: 0.58 0.24 15;
+    --destructive-foreground: 1 0 0;
 
-    --border: 0.22 0.04 264;
-    --input: 0.16 0.03 264;
-    --ring: 0.82 0.17 84;
+    --border: 0.90 0.01 260;
+    --input: 0.94 0.01 260;
+    --ring: 0.55 0.22 280;
 
-    --chart-1: 0.82 0.17 84;
-    --chart-2: 0.68 0.24 264;
-    --chart-3: 0.68 0.27 131;
-    --chart-4: 0.82 0.23 84;
-    --chart-5: 0.78 0.22 40;
+    --chart-1: 0.55 0.22 280;
+    --chart-2: 0.62 0.22 200;
+    --chart-3: 0.60 0.22 145;
+    --chart-4: 0.65 0.22 40;
+    --chart-5: 0.60 0.22 15;
 
-    --sidebar: 0.1 0.02 264;
-    --sidebar-foreground: 0.97 0 0;
-    --sidebar-primary: 0.82 0.17 84;
-    --sidebar-primary-foreground: 0.08 0 0;
-    --sidebar-accent: 0.68 0.27 131;
-    --sidebar-accent-foreground: 0.08 0 0;
-    --sidebar-border: 0.22 0.04 264;
-    --sidebar-ring: 0.82 0.17 84;
+    --sidebar: 1 0 0;
+    --sidebar-foreground: 0.18 0.02 260;
+    --sidebar-primary: 0.55 0.22 280;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.60 0.22 145;
+    --sidebar-accent-foreground: 1 0 0;
+    --sidebar-border: 0.90 0.01 260;
+    --sidebar-ring: 0.55 0.22 280;
 
-    --letter-red: 0.72 0.28 15;
-    --letter-blue: 0.68 0.24 264;
-    --letter-green: 0.72 0.27 131;
-    --letter-yellow: 0.88 0.16 84;
-    --letter-purple: 0.72 0.22 320;
-  }
-
-  .dark {
-    --background: 0.07 0.01 264;
-    --foreground: 0.97 0 0;
-    --card: 0.12 0.02 264;
-    --card-foreground: 0.97 0 0;
-    --popover: 0.1 0.02 264;
-    --popover-foreground: 0.97 0 0;
-
-    --primary: 0.82 0.17 84;
-    --primary-foreground: 0.08 0 0;
-
-    --secondary: 0.18 0.04 264;
-    --secondary-foreground: 0.97 0 0;
-    --muted: 0.16 0.03 264;
-    --muted-foreground: 0.65 0.05 264;
-
-    --accent: 0.82 0.17 84;
-    --accent-foreground: 0.08 0 0;
-
-    --destructive: 0.65 0.28 15;
-    --destructive-foreground: 0.97 0 0;
-
-    --border: 0.22 0.04 264;
-    --input: 0.16 0.03 264;
-    --ring: 0.82 0.17 84;
-
-    --chart-1: 0.82 0.17 84;
-    --chart-2: 0.68 0.24 264;
-    --chart-3: 0.68 0.27 131;
-    --chart-4: 0.82 0.23 84;
-    --chart-5: 0.78 0.22 40;
-
-    --sidebar: 0.1 0.02 264;
-    --sidebar-foreground: 0.97 0 0;
-    --sidebar-primary: 0.82 0.17 84;
-    --sidebar-primary-foreground: 0.08 0 0;
-    --sidebar-accent: 0.68 0.27 131;
-    --sidebar-accent-foreground: 0.08 0 0;
-    --sidebar-border: 0.22 0.04 264;
-    --sidebar-ring: 0.82 0.17 84;
-
-    --letter-red: 0.72 0.28 15;
-    --letter-blue: 0.68 0.24 264;
-    --letter-green: 0.72 0.27 131;
-    --letter-yellow: 0.88 0.16 84;
-    --letter-purple: 0.72 0.22 320;
+    --letter-red: 0.60 0.24 15;
+    --letter-blue: 0.55 0.22 260;
+    --letter-green: 0.58 0.22 145;
+    --letter-yellow: 0.75 0.18 84;
+    --letter-purple: 0.55 0.22 320;
   }
 
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground font-body antialiased;
   }
@@ -115,7 +68,7 @@
 
 @layer utilities {
   .transition-smooth {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   @font-face {
@@ -151,60 +104,68 @@
   }
 
   .letter-card {
-    @apply rounded-3xl p-8 shadow-lg transition-smooth;
+    @apply rounded-3xl p-8 shadow-md transition-smooth;
   }
 
-  /* Vivid gradients that pop on dark/black backgrounds */
+  /* Vivid gradients — pop on white/light backgrounds */
   .gradient-red {
-    @apply bg-gradient-to-br from-[oklch(0.72_0.28_15)] to-[oklch(0.50_0.28_15)];
+    @apply bg-gradient-to-br from-[oklch(0.65_0.26_15)] to-[oklch(0.50_0.26_15)];
   }
 
   .gradient-blue {
-    @apply bg-gradient-to-br from-[oklch(0.68_0.24_264)] to-[oklch(0.45_0.24_264)];
+    @apply bg-gradient-to-br from-[oklch(0.58_0.22_260)] to-[oklch(0.44_0.22_260)];
   }
 
   .gradient-green {
-    @apply bg-gradient-to-br from-[oklch(0.72_0.27_131)] to-[oklch(0.50_0.27_131)];
+    @apply bg-gradient-to-br from-[oklch(0.62_0.22_145)] to-[oklch(0.48_0.22_145)];
   }
 
   .gradient-yellow {
-    @apply bg-gradient-to-br from-[oklch(0.90_0.18_84)] to-[oklch(0.75_0.18_84)];
+    @apply bg-gradient-to-br from-[oklch(0.80_0.18_84)] to-[oklch(0.68_0.18_84)];
   }
 
   .gradient-purple {
-    @apply bg-gradient-to-br from-[oklch(0.68_0.22_320)] to-[oklch(0.48_0.22_320)];
+    @apply bg-gradient-to-br from-[oklch(0.60_0.22_310)] to-[oklch(0.46_0.22_310)];
   }
 
-  /* Luxury gold gradient */
   .gradient-gold {
-    @apply bg-gradient-to-br from-[oklch(0.90_0.18_84)] to-[oklch(0.72_0.18_84)];
+    @apply bg-gradient-to-br from-[oklch(0.80_0.18_84)] to-[oklch(0.68_0.16_84)];
   }
 
-  /* Gold text gradient */
+  .gradient-indigo {
+    @apply bg-gradient-to-br from-[oklch(0.58_0.22_280)] to-[oklch(0.44_0.22_280)];
+  }
+
   .text-gold-gradient {
-    @apply bg-gradient-to-r from-[oklch(0.92_0.18_84)] to-[oklch(0.78_0.18_84)] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[oklch(0.72_0.18_84)] to-[oklch(0.58_0.16_84)] bg-clip-text text-transparent;
   }
 
-  /* Luxury glow effect for cards */
-  .glow-gold {
-    box-shadow: 0 0 20px oklch(0.82 0.17 84 / 0.25), 0 4px 16px
-      oklch(0 0 0 / 0.4);
+  /* Modern soft shadows */
+  .shadow-card {
+    box-shadow: 0 1px 3px oklch(0 0 0 / 0.08), 0 4px 16px oklch(0 0 0 / 0.06);
   }
 
-  .glow-gold-sm {
-    box-shadow: 0 0 12px oklch(0.82 0.17 84 / 0.2), 0 2px 8px oklch(0 0 0 / 0.3);
+  .shadow-card-hover {
+    box-shadow: 0 4px 12px oklch(0 0 0 / 0.10), 0 8px 24px oklch(0 0 0 / 0.08);
   }
 
-  /* Shadow variants for luxury look */
   .shadow-luxury {
-    box-shadow: 0 8px 32px oklch(0 0 0 / 0.5), 0 2px 8px oklch(0 0 0 / 0.3);
+    box-shadow: 0 2px 8px oklch(0 0 0 / 0.08), 0 4px 20px oklch(0 0 0 / 0.06);
   }
 
   .shadow-playful {
-    box-shadow: 0 4px 16px oklch(0 0 0 / 0.4), 0 1px 4px oklch(0 0 0 / 0.2);
+    box-shadow: 0 4px 16px oklch(0 0 0 / 0.20);
   }
 
   .shadow-xs {
-    box-shadow: 0 1px 4px oklch(0 0 0 / 0.3);
+    box-shadow: 0 1px 4px oklch(0 0 0 / 0.10);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 20px oklch(0.75 0.18 84 / 0.20), 0 4px 16px oklch(0 0 0 / 0.10);
+  }
+
+  .glow-gold-sm {
+    box-shadow: 0 0 10px oklch(0.75 0.18 84 / 0.15), 0 2px 6px oklch(0 0 0 / 0.08);
   }
 }

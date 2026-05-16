@@ -30,10 +30,7 @@ export default function FlashcardsPage() {
   const [flipped, setFlipped] = useState(false);
   const [dir, setDir] = useState<1 | -1>(1);
 
-  if (!profile) {
-    router.navigate({ to: "/" });
-    return null;
-  }
+  if (!profile) { router.navigate({ to: "/" }); return null; }
 
   const letter = PHONICS_DATA[letterIdx];
   const word = letter.words[wordIdx];
@@ -41,36 +38,20 @@ export default function FlashcardsPage() {
 
   const markSeen = () => {
     updateProgress((prev) => {
-      const existing = prev.flashcards[letter.letter] ?? {
-        letterId: letter.letter,
-        wordsSeen: [],
-        completed: false,
-        lastVisited: 0,
-      };
+      const existing = prev.flashcards[letter.letter] ?? { letterId: letter.letter, wordsSeen: [], completed: false, lastVisited: 0 };
       const wordsSeen = Array.from(new Set([...existing.wordsSeen, word.word]));
-      const updated = {
-        ...existing,
-        wordsSeen,
-        completed: wordsSeen.length >= 5,
-        lastVisited: Date.now(),
-      };
+      const updated = { ...existing, wordsSeen, completed: wordsSeen.length >= 5, lastVisited: Date.now() };
       return {
         ...prev,
         flashcards: { ...prev.flashcards, [letter.letter]: updated },
-        totalStars: Math.max(
-          prev.totalStars,
-          Object.values({ ...prev.flashcards, [letter.letter]: updated }).filter((f) => f.completed).length,
-        ),
+        totalStars: Math.max(prev.totalStars, Object.values({ ...prev.flashcards, [letter.letter]: updated }).filter((f) => f.completed).length),
       };
     });
   };
 
   const handleFlip = () => {
     setFlipped((v) => !v);
-    if (!flipped) {
-      playSuccessSound();
-      markSeen();
-    }
+    if (!flipped) { playSuccessSound(); markSeen(); }
   };
 
   const handleSound = () => {
@@ -79,39 +60,27 @@ export default function FlashcardsPage() {
     markSeen();
   };
 
-  const goNext = () => {
-    playTapSound();
-    setDir(1);
-    setLetterIdx((i) => (i + 1) % PHONICS_DATA.length);
-    setWordIdx(0);
-    setFlipped(false);
-  };
-
-  const goPrev = () => {
-    playTapSound();
-    setDir(-1);
-    setLetterIdx((i) => (i - 1 + PHONICS_DATA.length) % PHONICS_DATA.length);
-    setWordIdx(0);
-    setFlipped(false);
-  };
+  const goNext = () => { playTapSound(); setDir(1); setLetterIdx((i) => (i + 1) % PHONICS_DATA.length); setWordIdx(0); setFlipped(false); };
+  const goPrev = () => { playTapSound(); setDir(-1); setLetterIdx((i) => (i - 1 + PHONICS_DATA.length) % PHONICS_DATA.length); setWordIdx(0); setFlipped(false); };
 
   const isCompleted = progress?.flashcards[letter.letter]?.completed ?? false;
 
   return (
-    <Layout title="Flashcards" headerColor="oklch(0.50 0.28 15)">
+    <Layout title="Flashcards" headerColor="oklch(0.50 0.26 15)">
       <div className="px-5 py-5 flex flex-col gap-4">
+
         {/* Top bar */}
         <div className="flex items-center justify-between">
           <span className="text-sm font-body text-muted-foreground">
             Letter {letterIdx + 1} / {PHONICS_DATA.length}
           </span>
-          <span className="text-sm font-display font-bold" style={{ color: "oklch(0.88 0.17 84)" }}>
+          <span className="text-sm font-display font-bold text-[oklch(0.60_0.22_145)]">
             {seenCount} learned ⭐
           </span>
         </div>
         <ProgressBar value={(seenCount / 26) * 100} color="red" />
 
-        {/* Letter row tabs */}
+        {/* Letter tabs */}
         <div className="flex gap-1.5 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
           {PHONICS_DATA.map((l, i) => {
             const done = progress?.flashcards[l.letter]?.completed;
@@ -120,18 +89,13 @@ export default function FlashcardsPage() {
                 key={l.letter}
                 type="button"
                 data-ocid={`flashcards.letter_tab.${i + 1}`}
-                onClick={() => {
-                  playTapSound();
-                  setLetterIdx(i);
-                  setWordIdx(0);
-                  setFlipped(false);
-                }}
-                className={`flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 ${
+                onClick={() => { playTapSound(); setLetterIdx(i); setWordIdx(0); setFlipped(false); }}
+                className={`flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 border ${
                   i === letterIdx
-                    ? "gradient-red text-card shadow-playful"
+                    ? "gradient-red text-white border-transparent shadow-playful"
                     : done
-                      ? "bg-[oklch(0.72_0.27_131/0.25)] text-[oklch(0.72_0.27_131)]"
-                      : "bg-muted text-muted-foreground"
+                      ? "bg-[oklch(0.94_0.06_145)] text-[oklch(0.48_0.22_145)] border-[oklch(0.85_0.10_145)]"
+                      : "bg-muted text-muted-foreground border-border"
                 }`}
               >
                 {l.letter}
@@ -147,18 +111,19 @@ export default function FlashcardsPage() {
             type="button"
             data-ocid="flashcards.card"
             onClick={handleFlip}
-            className={`letter-card w-full min-h-[220px] flex flex-col items-center justify-center cursor-pointer ${COLOR_MAP[letter.color]} text-card relative`}
-            style={{ boxShadow: "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1) inset" }}
+            className={`letter-card w-full min-h-[220px] flex flex-col items-center justify-center cursor-pointer ${COLOR_MAP[letter.color]} text-white relative`}
+            style={{ boxShadow: "0 8px 28px oklch(0 0 0 / 0.18)" }}
             initial={{ x: dir * 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -dir * 50, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
+            <div className="absolute inset-0 rounded-3xl pointer-events-none" style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.12) 0%, transparent 55%)" }} />
             {isCompleted && <span className="absolute top-3 right-3 text-xl">✅</span>}
             {!flipped ? (
               <>
-                <span className="text-[100px] font-display font-black leading-none drop-shadow-lg">{letter.uppercase}</span>
-                <span className="text-4xl font-display font-bold opacity-70">{letter.lowercase}</span>
+                <span className="text-[100px] font-display font-black leading-none drop-shadow">{letter.uppercase}</span>
+                <span className="text-4xl font-display font-bold opacity-75">{letter.lowercase}</span>
                 <span className="text-sm opacity-70 mt-2 font-body">/{letter.phonicSound}/ tap to flip!</span>
               </>
             ) : (
@@ -178,10 +143,9 @@ export default function FlashcardsPage() {
           type="button"
           data-ocid="flashcards.sound_button"
           onClick={handleSound}
-          className="flex items-center justify-center gap-3 w-full py-4 gradient-red text-card rounded-3xl active:scale-95 transition-smooth font-display font-bold text-lg"
-          style={{ boxShadow: "0 4px 20px oklch(0.72 0.28 15 / 0.4), 0 0 0 1px oklch(1 0 0 / 0.1) inset" }}
+          className="flex items-center justify-center gap-3 w-full py-4 gradient-red text-white rounded-2xl active:scale-95 transition-smooth font-display font-bold text-base shadow-playful"
         >
-          <Volume2 className="w-6 h-6" />
+          <Volume2 className="w-5 h-5" />
           Hear the Sound!
         </button>
 
@@ -192,16 +156,11 @@ export default function FlashcardsPage() {
               key={w.word}
               type="button"
               data-ocid={`flashcards.word_button.${i + 1}`}
-              onClick={() => {
-                playTapSound();
-                setWordIdx(i);
-                setFlipped(true);
-                speakWord(w.word);
-              }}
-              className={`flex items-center gap-1.5 px-3 py-2 rounded-2xl text-sm font-display font-bold transition-smooth active:scale-95 ${
+              onClick={() => { playTapSound(); setWordIdx(i); setFlipped(true); speakWord(w.word); }}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-display font-bold transition-smooth active:scale-95 ${
                 wordIdx === i && flipped
-                  ? `${COLOR_MAP[letter.color]} text-card shadow-playful`
-                  : "bg-muted text-foreground border border-border hover:border-[oklch(0.82_0.17_84/0.4)]"
+                  ? `${COLOR_MAP[letter.color]} text-white shadow-playful`
+                  : "bg-white text-foreground border border-border hover:bg-muted"
               }`}
             >
               <span>{w.emoji}</span>
@@ -211,15 +170,15 @@ export default function FlashcardsPage() {
         </div>
 
         {/* Nav */}
-        <div className="flex items-center gap-3 mt-2">
+        <div className="flex items-center gap-3 mt-1">
           <button
             type="button"
             data-ocid="flashcards.prev_button"
             onClick={goPrev}
-            className="w-14 h-14 rounded-2xl bg-muted border border-border flex items-center justify-center active:scale-95 transition-smooth hover:border-[oklch(0.82_0.17_84/0.4)]"
+            className="w-13 h-13 w-12 h-12 rounded-2xl bg-white border border-border flex items-center justify-center active:scale-95 transition-smooth hover:bg-muted"
             aria-label="Previous"
           >
-            <ChevronLeft className="w-7 h-7 text-foreground" />
+            <ChevronLeft className="w-6 h-6 text-foreground" />
           </button>
           <div className="flex-1 text-center">
             <p className="text-xs font-body text-muted-foreground">swipe letters above</p>
@@ -228,10 +187,10 @@ export default function FlashcardsPage() {
             type="button"
             data-ocid="flashcards.next_button"
             onClick={goNext}
-            className="w-14 h-14 rounded-2xl gradient-red flex items-center justify-center active:scale-95 transition-smooth shadow-playful"
+            className="w-12 h-12 rounded-2xl gradient-red flex items-center justify-center active:scale-95 transition-smooth shadow-playful"
             aria-label="Next"
           >
-            <ChevronRight className="w-7 h-7 text-card" />
+            <ChevronRight className="w-6 h-6 text-white" />
           </button>
         </div>
       </div>
