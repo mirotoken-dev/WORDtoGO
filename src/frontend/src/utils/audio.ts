@@ -66,38 +66,40 @@ export function playCelebrationSound(): void {
 
 // ─── MP3 Letter Audio ──────────────────────────────────────────────────────────
 
-// Letters that have user-supplied mp3 phonetic recordings
+// All 26 letters — app will try to load an mp3 for each one
 const MP3_LETTERS = new Set([
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
+  "a","b","c","d","e","f","g","h","i","j","k","l","m",
+  "n","o","p","q","r","s","t","u","v","w","x","y","z",
 ]);
 
-// Phonetic fallback sounds for u–z (speech synthesis)
+// Phonics fallback if an mp3 file is missing — never letter names
 const PHONETIC_FALLBACK: Record<string, string> = {
+  a: "ah",
+  b: "buh",
+  c: "kuh",
+  d: "duh",
+  e: "eh",
+  f: "fff",
+  g: "guh",
+  h: "huh",
+  i: "ih",
+  j: "juh",
+  k: "kuh",
+  l: "luh",
+  m: "mmm",
+  n: "nnn",
+  o: "oh",
+  p: "puh",
+  q: "kwuh",
+  r: "ruh",
+  s: "sss",
+  t: "tuh",
   u: "uh",
-  v: "vuh",
+  v: "vvv",
   w: "wuh",
   x: "ks",
   y: "yuh",
-  z: "zuh",
+  z: "zzz",
 };
 
 // Cache of loaded HTMLAudioElement instances
