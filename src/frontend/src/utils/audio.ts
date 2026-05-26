@@ -335,8 +335,45 @@ export function speakLetter(letter: string): void {
   void playLetterPhonetic(letter);
 }
 
+// Cache for word-level audio elements
+const wordAudioCache = new Map<string, HTMLAudioElement>();
+
+async function playWordAudio(word: string): Promise<boolean> {
+  const lower = word.toLowerCase();
+  const cached = wordAudioCache.get(lower);
+  if (cached) {
+    try {
+      cached.currentTime = 0;
+      await cached.play();
+      return true;
+    } catch {
+      // cached play failed, try fresh load
+    }
+  }
+
+  try {
+    const audio = new Audio(`/assets/words/${lower}.wav`);
+    wordAudioCache.set(lower, audio);
+    await new Promise<void>((resolve, reject) => {
+      audio.onended = () => resolve();
+      audio.onerror = () => reject(new Error("Audio failed"));
+      audio.play().catch(reject);
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export async function speakWordAsync(word: string): Promise<void> {
+  const played = await playWordAudio(word);
+  if (!played) {
+    speakText(word, 0.75, 0.9);
+  }
+}
+
 export function speakWord(word: string): void {
-  speakText(word, 0.75, 0.9);
+  void speakWordAsync(word);
 }
 
 export function speakPhonics(sounds: string[]): void {
