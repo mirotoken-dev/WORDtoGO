@@ -560,6 +560,7 @@
   "Practice writing": "تدرب على الكتابة",
   "Videos & audio lessons": "فيديوهات ودروس صوتية",
   "See achievements": "شاهد الإنجازات",
+  "Shuffle": "عشوائي",
   "Quiz: match & learn": "اختبار: طابق وتعلم",
   "Say the word aloud": "نطق الكلمة بصوت عالٍ",
   "Hi": "مرحبا",

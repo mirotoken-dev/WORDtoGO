@@ -1,7 +1,6 @@
 import { useRouter } from "@tanstack/react-router";
 import {
   AudioLines,
-  BarChart2,
   BookOpen,
   Grid3x3,
   Mic,
@@ -38,20 +37,6 @@ const MENU = [
     desc: "Practice writing",
   },
   {
-    label: "Visual",
-    icon: Video,
-    path: "/visual-learning",
-    colorClass: "gradient-purple",
-    desc: "Videos & audio lessons",
-  },
-  {
-    label: "Progress",
-    icon: BarChart2,
-    path: "/progress",
-    colorClass: "gradient-yellow",
-    desc: "See achievements",
-  },
-  {
     label: "Matching",
     icon: Grid3x3,
     path: "/matching",
@@ -64,6 +49,13 @@ const MENU = [
     path: "/pronunciation",
     colorClass: "gradient-gold",
     desc: "Say the word aloud",
+  },
+  {
+    label: "Visual",
+    icon: Video,
+    path: "/visual-learning",
+    colorClass: "gradient-purple",
+    desc: "Videos & audio lessons",
   },
 ] as const;
 
@@ -99,7 +91,6 @@ export default function HomePage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <StarBadge count={progress?.totalStars ?? 0} size="sm" />
           <button
             type="button"
             data-ocid="home.switch_profile_button"
@@ -113,20 +104,35 @@ export default function HomePage() {
 
       {/* Banner */}
       <div
-        className="px-6 py-7 flex items-center gap-5"
+        className="px-6 py-5 flex items-center justify-between"
         style={{
           background: "linear-gradient(135deg, oklch(0.58 0.22 280) 0%, oklch(0.44 0.22 280) 100%)",
         }}
       >
-        <div className="text-5xl">📚</div>
-        <div>
-          <h2 className="text-2xl font-display font-black text-white leading-tight">
-            Word to Go
-          </h2>
-          <p className="text-white/70 text-sm font-body mt-0.5">
-            26 letters · 260 words
-          </p>
+        <div className="flex items-center gap-5">
+          <div className="text-5xl">📚</div>
+          <div>
+            <h2 className="text-2xl font-display font-black text-white leading-tight">
+              Word to Go
+            </h2>
+            <p className="text-white/70 text-sm font-body mt-0.5">
+              26 letters · 260 words
+            </p>
+          </div>
         </div>
+        {/* Mini progress summary */}
+        <button
+          type="button"
+          data-ocid="home.banner_progress"
+          onClick={() => navigate("/progress")}
+          className="flex flex-col items-end gap-1 active:scale-95 transition-smooth"
+        >
+          <div className="flex items-center gap-1.5 text-white/90">
+            <span className="text-lg">⭐</span>
+            <span className="font-display font-bold text-lg">{progress?.totalStars ?? 0}</span>
+          </div>
+          <div className="text-white/60 text-xs font-body">{getUILabel("See achievements")}</div>
+        </button>
       </div>
 
       {/* Feature Grid */}

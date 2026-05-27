@@ -6765,7 +6765,7 @@ function mergeLoginOptions(loginOptions, otherLoginOptions) {
   };
 }
 const ONE_HOUR_IN_NANOSECONDS = BigInt(36e11);
-const DEFAULT_IDENTITY_PROVIDER = "https://id.ai";
+const DEFAULT_IDENTITY_PROVIDER = "https://identity.internetcomputer.org/";
 const InternetIdentityReactContext = reactExports.createContext(void 0);
 async function createAuthClient(createOptions) {
   const config = await loadConfig();
@@ -23896,65 +23896,97 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$a = [
+const __iconNode$h = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$a);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$h);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$9 = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$9);
+const __iconNode$g = [
+  ["path", { d: "M2 10v3", key: "1fnikh" }],
+  ["path", { d: "M6 6v11", key: "11sgs0" }],
+  ["path", { d: "M10 3v18", key: "yhl04a" }],
+  ["path", { d: "M14 8v7", key: "3a1oy3" }],
+  ["path", { d: "M18 5v13", key: "123xd1" }],
+  ["path", { d: "M22 10v3", key: "154ddg" }]
+];
+const AudioLines = createLucideIcon("audio-lines", __iconNode$g);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$8 = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
-const ChevronLeft = createLucideIcon("chevron-left", __iconNode$8);
+const __iconNode$f = [
+  ["path", { d: "M12 7v14", key: "1akyts" }],
+  [
+    "path",
+    {
+      d: "M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",
+      key: "ruj8y"
+    }
+  ]
+];
+const BookOpen = createLucideIcon("book-open", __iconNode$f);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$7 = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-const ChevronRight = createLucideIcon("chevron-right", __iconNode$7);
+const __iconNode$e = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$e);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$6 = [
+const __iconNode$d = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
+const ChevronLeft = createLucideIcon("chevron-left", __iconNode$d);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$c = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+const ChevronRight = createLucideIcon("chevron-right", __iconNode$c);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$b = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
 ];
-const CircleCheck = createLucideIcon("circle-check", __iconNode$6);
+const CircleCheck = createLucideIcon("circle-check", __iconNode$b);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$5 = [
+const __iconNode$a = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "m15 9-6 6", key: "1uzhvr" }],
   ["path", { d: "m9 9 6 6", key: "z0biqf" }]
 ];
-const CircleX = createLucideIcon("circle-x", __iconNode$5);
+const CircleX = createLucideIcon("circle-x", __iconNode$a);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$4 = [
+const __iconNode$9 = [
   [
     "path",
     {
@@ -23965,14 +23997,28 @@ const __iconNode$4 = [
   ["path", { d: "M22 21H7", key: "t4ddhn" }],
   ["path", { d: "m5 11 9 9", key: "1mo9qw" }]
 ];
-const Eraser = createLucideIcon("eraser", __iconNode$4);
+const Eraser = createLucideIcon("eraser", __iconNode$9);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$3 = [
+const __iconNode$8 = [
+  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
+  ["path", { d: "M3 9h18", key: "1pudct" }],
+  ["path", { d: "M3 15h18", key: "5xshup" }],
+  ["path", { d: "M9 3v18", key: "fh3hqa" }],
+  ["path", { d: "M15 3v18", key: "14nvp0" }]
+];
+const Grid3x3 = createLucideIcon("grid-3x3", __iconNode$8);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$7 = [
   ["path", { d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8", key: "5wwlr5" }],
   [
     "path",
@@ -23982,7 +24028,63 @@ const __iconNode$3 = [
     }
   ]
 ];
-const House = createLucideIcon("house", __iconNode$3);
+const House = createLucideIcon("house", __iconNode$7);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$6 = [
+  ["path", { d: "M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z", key: "131961" }],
+  ["path", { d: "M19 10v2a7 7 0 0 1-14 0v-2", key: "1vc78b" }],
+  ["line", { x1: "12", x2: "12", y1: "19", y2: "22", key: "x3vr5v" }]
+];
+const Mic = createLucideIcon("mic", __iconNode$6);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$5 = [
+  [
+    "path",
+    {
+      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
+      key: "1a8usu"
+    }
+  ],
+  ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
+];
+const Pencil = createLucideIcon("pencil", __iconNode$5);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$4 = [
+  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
+  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
+  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
+  ["path", { d: "M8 16H3v5", key: "1cv678" }]
+];
+const RefreshCw = createLucideIcon("refresh-cw", __iconNode$4);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$3 = [
+  ["path", { d: "m18 14 4 4-4 4", key: "10pe0f" }],
+  ["path", { d: "m18 2 4 4-4 4", key: "pucp1d" }],
+  ["path", { d: "M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22", key: "1ailkh" }],
+  ["path", { d: "M2 6h1.972a4 4 0 0 1 3.6 2.2", key: "km57vx" }],
+  ["path", { d: "M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45", key: "os18l9" }]
+];
+const Shuffle = createLucideIcon("shuffle", __iconNode$3);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -23990,12 +24092,13 @@ const House = createLucideIcon("house", __iconNode$3);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$2 = [
-  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
-  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
-  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
-  ["path", { d: "M8 16H3v5", key: "1cv678" }]
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
+  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
+  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
+  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
 ];
-const RefreshCw = createLucideIcon("refresh-cw", __iconNode$2);
+const Trash2 = createLucideIcon("trash-2", __iconNode$2);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -24003,13 +24106,16 @@ const RefreshCw = createLucideIcon("refresh-cw", __iconNode$2);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$1 = [
-  ["path", { d: "M3 6h18", key: "d0wm0j" }],
-  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
-  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
-  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
-  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+  [
+    "path",
+    {
+      d: "m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5",
+      key: "ftymec"
+    }
+  ],
+  ["rect", { x: "2", y: "6", width: "14", height: "12", rx: "2", key: "158x01" }]
 ];
-const Trash2 = createLucideIcon("trash-2", __iconNode$1);
+const Video = createLucideIcon("video", __iconNode$1);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -32097,6 +32203,1748 @@ const featureBundle = {
   ...layout
 };
 const motion = /* @__PURE__ */ createMotionProxy(featureBundle, createDomVisualElement);
+const ARABIC_WORDS = {
+  "Apple": "تفاحة",
+  "Ant": "نملة",
+  "Air": "هواء",
+  "Arm": "ذراع",
+  "Arrow": "سهم",
+  "Axe": "فأس",
+  "Angel": "ملاك",
+  "Album": "ألبوم",
+  "Alarm": "منبه",
+  "Animal": "حيوان",
+  "Ball": "كرة",
+  "Book": "كتاب",
+  "Bag": "حقيبة",
+  "Boat": "قارب",
+  "Bus": "حافلة",
+  "Box": "صندوق",
+  "Bed": "سرير",
+  "Bee": "نحلة",
+  "Bottle": "زجاجة",
+  "Banana": "موزة",
+  "Cat": "قطة",
+  "Car": "سيارة",
+  "Cup": "كوب",
+  "Cake": "كعكة",
+  "Cap": "قبعة",
+  "Cow": "بقرة",
+  "Chair": "كرسي",
+  "Clock": "ساعة",
+  "Cloud": "سحابة",
+  "Coin": "عملة",
+  "Dog": "كلب",
+  "Duck": "بطة",
+  "Door": "باب",
+  "Desk": "مكتب",
+  "Drum": "طبل",
+  "Deer": "غزال",
+  "Dish": "طبق",
+  "Doll": "دمية",
+  "Diamond": "ماسة",
+  "Dragon": "تنين",
+  "Egg": "بيضة",
+  "Ear": "أذن",
+  "Eye": "عين",
+  "Earth": "أرض",
+  "Eagle": "نسر",
+  "Elbow": "كوع",
+  "Energy": "طاقة",
+  "Engine": "محرك",
+  "Envelope": "ظرف",
+  "Elephant": "فيل",
+  "Fish": "سمكة",
+  "Fan": "مروحة",
+  "Fork": "شوكة",
+  "Farm": "مزرعة",
+  "Flag": "علم",
+  "Fire": "نار",
+  "Flower": "زهرة",
+  "Frog": "ضفدع",
+  "Frame": "إطار",
+  "Feather": "ريشة",
+  "Goat": "ماعز",
+  "Gold": "ذهب",
+  "Game": "لعبة",
+  "Garden": "حديقة",
+  "Gate": "بوابة",
+  "Glass": "زجاج",
+  "Globe": "كرة أرضية",
+  "Guitar": "جيتار",
+  "Goal": "هدف",
+  "Grape": "عنب",
+  "Hat": "قبعة",
+  "Hand": "يد",
+  "House": "بيت",
+  "Horse": "حصان",
+  "Heart": "قلب",
+  "Hill": "تل",
+  "Hole": "حفرة",
+  "Honey": "عسل",
+  "Hammer": "مطرقة",
+  "Hair": "شعر",
+  "Ice": "جليد",
+  "Igloo": "إجلو",
+  "Ink": "حبر",
+  "Iron": "حديد",
+  "Island": "جزيرة",
+  "Image": "صورة",
+  "Idea": "فكرة",
+  "Inside": "داخل",
+  "Invent": "يخترع",
+  "Instrument": "آلة موسيقية",
+  "Jam": "مربى",
+  "Jeep": "جيب",
+  "Jug": "إبريق",
+  "Juice": "عصير",
+  "Jacket": "سترة",
+  "Jewel": "جوهره",
+  "Journal": "مجلة",
+  "Jungle": "غابة",
+  "Jelly": "هلام",
+  "Joke": "نكتة",
+  "Kite": "طائرة ورقية",
+  "King": "ملك",
+  "Key": "مفتاح",
+  "Knee": "ركبة",
+  "Knife": "سكين",
+  "Kiwi": "كيوي",
+  "Kayak": "كاياك",
+  "Kitten": "هريرة",
+  "Kernel": "نواة",
+  "Koala": "كوالا",
+  "Lion": "أسد",
+  "Lamp": "مصباح",
+  "Leaf": "ورقة شجر",
+  "Lake": "بحيرة",
+  "Ladder": "سلم",
+  "Lock": "قفل",
+  "Lemon": "ليمون",
+  "Lobster": "كركند",
+  "Lunchbox": "صندوق غداء",
+  "Moon": "قمر",
+  "Mouse": "فأر",
+  "Milk": "حليب",
+  "Monkey": "قرد",
+  "Map": "خريطة",
+  "Mirror": "مرآة",
+  "Magnet": "مغناطيس",
+  "Machine": "آلة",
+  "Mushroom": "فطر",
+  "Nest": "عش",
+  "Net": "شبكة",
+  "Nose": "أنف",
+  "Nail": "مسمار",
+  "Night": "ليل",
+  "Nurse": "ممرضة",
+  "Needle": "إبرة",
+  "Notebook": "دفتر",
+  "Number": "رقم",
+  "Nut": "جوز",
+  "Owl": "بومة",
+  "Orange": "برتقال",
+  "Ocean": "محيط",
+  "Onion": "بصل",
+  "Office": "مكتب",
+  "Orbit": "مدار",
+  "Object": "شيء",
+  "Oven": "فرن",
+  "Olive": "زيتون",
+  "Octopus": "أخطبوط",
+  "Pig": "خنزير",
+  "Pen": "قلم",
+  "Pencil": "قلم رصاص",
+  "Paper": "ورق",
+  "Pair": "زوج",
+  "Pillow": "وسادة",
+  "Plane": "طائرة",
+  "Planet": "كوكب",
+  "Pizza": "بيتزا",
+  "Piano": "بيانو",
+  "Queen": "ملكة",
+  "Quartz": "كوارتز",
+  "Quilt": "لحاف",
+  "Quiz": "اختبار",
+  "Queue": "طابور",
+  "Question": "سؤال",
+  "Quote": "اقتباس",
+  "Quiet": "هادئ",
+  "Quick": "سريع",
+  "Quarter": "ربع",
+  "Rat": "جرذ",
+  "Rain": "مطر",
+  "Road": "طريق",
+  "River": "نهر",
+  "Robot": "روبوت",
+  "Rock": "صخرة",
+  "Rose": "وردة",
+  "Rope": "حبل",
+  "Rocket": "صاروخ",
+  "Ring": "خاتم",
+  "Sun": "شمس",
+  "Star": "نجمة",
+  "Snake": "ثعبان",
+  "Ship": "سفينة",
+  "Shoe": "حذاء",
+  "Spoon": "ملعقة",
+  "Sock": "جورب",
+  "School": "مدرسة",
+  "Sand": "رمل",
+  "Sugar": "سكر",
+  "Tree": "شجرة",
+  "Train": "قطار",
+  "Tiger": "نمر",
+  "Tent": "خيمة",
+  "Tap": "صنبور",
+  "Tomato": "طماطم",
+  "Toy": "لعبة",
+  "Truck": "شاحنة",
+  "Turtle": "سلحفاة",
+  "Table": "طاولة",
+  "Umbrella": "مظلة",
+  "Uncle": "عم/خال",
+  "Under": "تحت",
+  "Uniform": "زي",
+  "Unicorn": "حيد القرن",
+  "Unit": "وحدة",
+  "Urn": "إناء",
+  "Universe": "كون",
+  "Underground": "تحت الأرض",
+  "Up": "فوق",
+  "Van": "عربة",
+  "Vase": "مزهرية",
+  "Violin": "كمان",
+  "Voice": "صوت",
+  "Volcano": "بركان",
+  "Vegetable": "خضار",
+  "Vehicle": "مركبة",
+  "Vest": "سترة",
+  "Valve": "صمام",
+  "Violet": "بنفسجي",
+  "Wall": "جدار",
+  "Water": "ماء",
+  "Watch": "ساعة يد",
+  "Window": "نافذة",
+  "Whale": "حوت",
+  "Wind": "ريح",
+  "Wheel": "عجلة",
+  "Wolf": "ذئب",
+  "Wood": "خشب",
+  "Xylophone": "إكسيليفون",
+  "X-ray": "أشعة سينية",
+  "Xenon": "زينون",
+  "Xylem": "خشبية",
+  "Yam": "يام",
+  "Yarn": "خيط",
+  "Yard": "حديقة",
+  "Yellow": "أصفر",
+  "Yogurt": "زبادي",
+  "Yolk": "صفار البيض",
+  "Youth": "شباب",
+  "Yacht": "يخت",
+  "Gift": "هدية",
+  "Grapes": "عنب",
+  "Insect": "حشرة",
+  "Jar": "برطمان",
+  "Kitchen": "مطبخ",
+  "Letter": "حرف/رسالة",
+  "Man": "رجل",
+  "Noodle": "نودلز",
+  "Oil": "زيت",
+  "Ox": "ثور",
+  "Plate": "طبق",
+  "Pan": "مقلاة",
+  "Pear": "إجاص",
+  "Quail": "سمان",
+  "Quill": "ريشة كتابة",
+  "Spider": "عنكبوت",
+  "Uphill": "صعود",
+  "Useful": "مفيد",
+  "Village": "قرية",
+  "Veggie": "خضروات",
+  "Zebra": "حمار وحشي",
+  "Zoo": "حديقة حيوان",
+  "Zinc": "زنك",
+  "Zip": "سحاب",
+  "Zone": "منطقة",
+  "Zodiac": "أبراج",
+  "Zenith": "ذروة",
+  "Zigzag": "متعرج",
+  "Worm": "دودة",
+  "Xerox": "النسخ",
+  "Xbox": "إكس بوكس",
+  "Xmas": "عيد الميلاد",
+  "X-axis": "المحور س",
+  "Xiphoid": "عمود سيفويد",
+  "Xenolith": "صخرة غريبة",
+  "Yeti": "يتي",
+  "Year": "سنة",
+  "Zero": "صفر",
+  "Zipper": "سحاب السترة",
+  "Jump": "قفز",
+  "Mountain": "جبل",
+  "Park": "حديقة"
+};
+const UI_LABELS = {
+  "Flashcards": "بطاقات تعليمية",
+  "Blending": "دمج الأصوات",
+  "Tracing": "تتبع الكتابة",
+  "Visual": "بصري",
+  "Progress": "التقدم",
+  "Matching": "مطابقة",
+  "Pronunciation": "النطق",
+  "Learn A–Z letters": "تعلم الحروف A–Z",
+  "Blend sounds into words": "ادمج الأصوات في كلمات",
+  "Practice writing": "تدرب على الكتابة",
+  "Videos & audio lessons": "فيديوهات ودروس صوتية",
+  "See achievements": "شاهد الإنجازات",
+  "Shuffle": "عشوائي",
+  "Quiz: match & learn": "اختبار: طابق وتعلم",
+  "Say the word aloud": "نطق الكلمة بصوت عالٍ",
+  "Hi": "مرحبا",
+  "Ready to learn?": "مستعد للتعلم؟",
+  "Letters Traced": "الحروف المكتوبة",
+  "Start tracing to make progress!": "ابدأ التتبع لتحقيق تقدم!",
+  "All letters completed!": "اكتملت جميع الحروف!",
+  "complete — keep going!": "مكتمل — استمر!",
+  "Letter Tracing": "تتبع الحروف",
+  "Word Tracing": "تتبع الكلمات",
+  "New Word": "كلمة جديدة",
+  "Trace this word": "تتبع هذه الكلمة",
+  "Clear": "مسح",
+  "Next!": "التالي!",
+  "Draw the letter": "ارسم الحرف",
+  "Trace the word": "تتبع الكلمة",
+  "Amazing! Great job!": "مذهل! عمل رائع!",
+  "Tap a letter to hear its sound": "اضغط على حرف لتسمع صوته",
+  "Say the word out loud": "قل الكلمة بصوت عالٍ",
+  "You said": "قلت",
+  "Try again!": "حاول مرة أخرى!",
+  "I heard": "سمعت",
+  "Listen": "استمع",
+  "Skip": "تخطي",
+  "Skip this word": "تخط هذه الكلمة",
+  "Next word": "الكلمة التالية",
+  "Voice recording not supported": "تسجيل الصوت غير مدعوم",
+  "Your browser does not support voice recording. Try Chrome or Safari.": "متصفحك لا يدعم تسجيل الصوت. جرب Chrome أو Safari.",
+  "Great job!": "عمل رائع!",
+  "Select who's learning today!": "اختر من سيتعلم اليوم!",
+  "No profiles yet!": "لا توجد ملفات شخصية بعد!",
+  "Create a profile to start learning.": "أنشئ ملفاً شخصياً للبدء في التعلم.",
+  "Add New Learner": "إضافة متعلم جديد",
+  "What's your name?": "ما اسمك؟",
+  "Pick an avatar": "اختر صورة رمزية",
+  "Let's go!": "لنبدأ!",
+  "Cancel": "إلغاء",
+  "Matching Game": "لعبة المطابقة",
+  "Choose a game mode": "اختر وضع اللعب",
+  "Letters": "حروف",
+  "Words": "كلمات",
+  "Pictures": "صور",
+  "Match uppercase to lowercase letters": "طابق الحروف الكبيرة بالصغيرة",
+  "Match uppercase to lowercase words": "طابق الكلمات الكبيرة بالصغيرة",
+  "Match pictures to their words": "طابق الصور بكلماتها",
+  "Total Stars": "مجموع النجوم",
+  "total stars": "مجموع النجوم",
+  "Completed": "مكتمل",
+  "In Progress": "قيد التنفيذ",
+  "Not Started": "لم يبدأ",
+  "Reset all progress? This cannot be undone.": "إعادة تعيين كل التقدم؟ لا يمكن التراجع عن هذا.",
+  "Reset Progress": "إعادة تعيين التقدم",
+  "Back": "خلف",
+  "Tap letters to build sounds!": "اضغط على الحروف لبناء الأصوات!",
+  "Tap a letter to start": "اضغط على حرف للبدء",
+  "Say it!": "قلها!",
+  "Saying": "ينطق",
+  "Build this word": "ابنِ هذه الكلمة",
+  "Task": "مهمة",
+  "Previous": "السابق",
+  "Level": "المستوى",
+  "Score": "النتيجة",
+  "Time": "وقت",
+  "Correct!": "صحيح!",
+  "Wrong!": "خطأ!",
+  "Try Again": "حاول مرة أخرى",
+  "Continue": "استمر",
+  "Finish": "إنهاء",
+  "Home": "الرئيسية",
+  "Welcome": "أهلاً",
+  "Settings": "الإعدادات",
+  "Sound": "صوت",
+  "Music": "موسيقى",
+  "Language": "اللغة",
+  "Help": "مساعدة",
+  "About": "حول",
+  "Logout": "تسجيل الخروج",
+  "Profile": "الملف الشخصي",
+  "Delete": "حذف",
+  "Edit": "تعديل",
+  "Save": "وفر",
+  "Close": "أغلق",
+  "Open": "افتح",
+  "Yes": "نعم",
+  "No": "لا",
+  "OK": "موافق",
+  "Done": "تم",
+  "Loading": "جاري التحميل",
+  "Error": "خطأ",
+  "Success": "نجاح",
+  "Warning": "تحذير",
+  "Info": "معلومات",
+  "Confirm": "تأكيد",
+  "Select": "اختيار",
+  "Search": "بحث",
+  "Filter": "تصفية",
+  "Sort": "ترتيب",
+  "View": "عرض",
+  "List": "قائمة",
+  "Grid": "شبكة",
+  "Map": "خريطة",
+  "Calendar": "تقويم",
+  "Chart": "رسم بياني",
+  "Graph": "رسم بياني",
+  "Table": "جدول",
+  "Form": "نموذج",
+  "Input": "إدخال",
+  "Output": "إخراج",
+  "File": "ملف",
+  "Folder": "مجلد",
+  "Document": "مستند",
+  "Image": "صورة",
+  "Video": "فيديو",
+  "Audio": "صوت",
+  "Text": "نص",
+  "Number": "رقم",
+  "Date": "تاريخ",
+  "Location": "موقع",
+  "Address": "عنوان",
+  "Phone": "هاتف",
+  "Email": "بريد إلكتروني",
+  "Password": "كلمة مرور",
+  "Username": "اسم المستخدم",
+  "Name": "الاسم",
+  "Age": "العمر",
+  "Gender": "الجنس",
+  "Country": "الدولة",
+  "City": "المدينة",
+  "Street": "شارع",
+  "Building": "مبنى",
+  "Floor": "طابق",
+  "Room": "غرفة",
+  "Door": "باب",
+  "Window": "نافذة",
+  "Roof": "سطح",
+  "Wall": "جدار",
+  "Garden": "حديقة",
+  "Park": "منتزه",
+  "School": "مدرسة",
+  "Hospital": "مستشفى",
+  "Store": "متجر",
+  "Market": "سوق",
+  "Restaurant": "مطعم",
+  "Cafe": "مقهى",
+  "Hotel": "فندق",
+  "Bank": "بنك",
+  "Post Office": "مكتب بريد",
+  "Library": "مكتبة",
+  "Museum": "متحف",
+  "Theater": "مسرح",
+  "Cinema": "سينما",
+  "Stadium": "استاد",
+  "Gym": "نادي رياضي",
+  "Pool": "مسبح",
+  "Beach": "شاطئ",
+  "Mountain": "جبل",
+  "Forest": "غابة",
+  "Desert": "صحراء",
+  "River": "نهر",
+  "Lake": "بحيرة",
+  "Sea": "بحر",
+  "Ocean": "محيط",
+  "Sky": "سماء",
+  "Cloud": "سحابة",
+  "Rain": "مطر",
+  "Snow": "ثلج",
+  "Wind": "ريح",
+  "Storm": "عاصفة",
+  "Sun": "شمس",
+  "Moon": "قمر",
+  "Star": "نجمة",
+  "Planet": "كوكب",
+  "Earth": "أرض",
+  "Universe": "كون",
+  "Space": "فضاء",
+  "Rocket": "صاروخ",
+  "Satellite": "قمر صناعي",
+  "Airplane": "طائرة",
+  "Helicopter": "طائرة هليكوبتر",
+  "Car": "سيارة",
+  "Bus": "حافلة",
+  "Train": "قطار",
+  "Truck": "شاحنة",
+  "Motorcycle": "دراجة نارية",
+  "Bicycle": "دراجة هوائية",
+  "Boat": "قارب",
+  "Ship": "سفينة",
+  "Submarine": "غواصة",
+  "Bridge": "جسر",
+  "Tunnel": "نفق",
+  "Road": "طريق",
+  "Highway": "طريق سريع",
+  "Path": "مسار",
+  "Sidewalk": "رصيف",
+  "Crosswalk": "ممر مشاة",
+  "Traffic Light": "إشارة مرور",
+  "Sign": "لافتة",
+  "Stop": "توقف",
+  "Go": "انطلق",
+  "Wait": "انتظر",
+  "Walk": "امشي",
+  "Run": "اركض",
+  "Jump": "اقفز",
+  "Climb": "تسلق",
+  "Swim": "سبح",
+  "Fly": "اطلق",
+  "Drive": "قُد",
+  "Ride": "اركب",
+  "Sit": "اجلس",
+  "Stand": "قف",
+  "Lie": "استلقِ",
+  "Sleep": "نام",
+  "Wake": "استيقظ",
+  "Eat": "كل",
+  "Drink": "اشرب",
+  "Cook": "اطبخ",
+  "Bake": "اخبز",
+  "Cut": "اقطع",
+  "Wash": "اغسل",
+  "Clean": "نظف",
+  "Push": "ادفع",
+  "Pull": "اسحب",
+  "Lift": "ارفع",
+  "Drop": "أسقط",
+  "Throw": "ارمِ",
+  "Catch": "امسك",
+  "Kick": "ركل",
+  "Hit": "اضرب",
+  "Touch": "المس",
+  "Hold": "امسك",
+  "Give": "أعطِ",
+  "Take": "خُذ",
+  "Send": "أرسل",
+  "Receive": "استلم",
+  "Buy": "اشترِ",
+  "Sell": "بِع",
+  "Pay": "ادفع",
+  "Earn": "اكسب",
+  "Spend": "أنفق",
+  "Invest": "استثمر",
+  "Borrow": "استلف",
+  "Lend": "أقرض",
+  "Share": "شارك",
+  "Trade": "تبادل",
+  "Exchange": "تبادل",
+  "Transfer": "حوّل",
+  "Deposit": "أودع",
+  "Withdraw": "اسحب",
+  "Balance": "رصيد",
+  "Account": "حساب",
+  "Card": "بطاقة",
+  "Cash": "نقد",
+  "Check": "شيك",
+  "Bill": "فاتورة",
+  "Coin": "عملة",
+  "Price": "سعر",
+  "Cost": "تكلفة",
+  "Value": "قيمة",
+  "Worth": "يستحق",
+  "Cheap": "رخيص",
+  "Expensive": "غالي",
+  "Free": "مجاني",
+  "Discount": "خصم",
+  "Sale": "تخفيض",
+  "Offer": "عرض",
+  "Deal": "صفقة",
+  "Order": "طلب",
+  "Request": "طلب",
+  "Demand": "طلب",
+  "Supply": "توريد",
+  "Stock": "مخزون",
+  "Inventory": "جرد",
+  "Product": "منتج",
+  "Item": "عنصر",
+  "Goods": "بضائع",
+  "Service": "خدمة",
+  "Quality": "جودة",
+  "Quantity": "كمية",
+  "Amount": "مبلغ",
+  "Size": "حجم",
+  "Weight": "وزن",
+  "Length": "طول",
+  "Width": "عرض",
+  "Height": "ارتفاع",
+  "Depth": "عمق",
+  "Area": "مساحة",
+  "Volume": "حجم",
+  "Speed": "سرعة",
+  "Distance": "مسافة",
+  "Direction": "اتجاه",
+  "North": "شمال",
+  "South": "جنوب",
+  "East": "شرق",
+  "West": "غرب",
+  "Left": "يسار",
+  "Right": "يمين",
+  "Up": "أعلى",
+  "Down": "أسفل",
+  "Front": "أمام",
+  "Center": "وسط",
+  "Middle": "وسط",
+  "Edge": "حافة",
+  "Corner": "زاوية",
+  "Side": "جانب",
+  "Top": "أعلى",
+  "Bottom": "أسفل",
+  "Inside": "داخل",
+  "Outside": "خارج",
+  "Above": "فوق",
+  "Below": "تحت",
+  "Between": "بين",
+  "Among": "بين",
+  "Near": "قريب",
+  "Far": "بعيد",
+  "Next to": "بجانب",
+  "Opposite": "مقابل",
+  "Across": "عبر",
+  "Through": "خلال",
+  "Over": "فوق",
+  "Under": "تحت",
+  "Around": "حول",
+  "Along": "على طول",
+  "Across from": "مقابل",
+  "Behind": "خلف",
+  "In front of": "أمام",
+  "Beside": "بجانب",
+  "Near to": "قريب من",
+  "Close to": "قريب من",
+  "Away from": "بعيد عن",
+  "Toward": "نحو",
+  "From": "من",
+  "To": "إلى",
+  "At": "في",
+  "On": "على",
+  "In": "في",
+  "With": "مع",
+  "Without": "بدون",
+  "For": "لـ",
+  "Of": "من",
+  "By": "بواسطة",
+  "Against": "ضد",
+  "During": "خلال",
+  "Before": "قبل",
+  "After": "بعد",
+  "Since": "منذ",
+  "Until": "حتى",
+  "While": "بينما",
+  "Because": "لأن",
+  "If": "إذا",
+  "Although": "على الرغم من",
+  "Unless": "ما لم",
+  "Whether": "سواء",
+  "Either": "إما",
+  "Neither": "لا هذا ولا ذلك",
+  "Both": "كلاهما",
+  "All": "الكل",
+  "None": "لا أحد",
+  "Some": "بعض",
+  "Many": "كثير",
+  "Few": "قليل",
+  "Several": "عدة",
+  "Most": "معظم",
+  "More": "أكثر",
+  "Less": "أقل",
+  "Most of": "معظم",
+  "Part of": "جزء من",
+  "Piece of": "قطعة من",
+  "Bit of": "قليل من",
+  "Slice of": "شريحة من",
+  "Chunk of": "قطعة من",
+  "Block of": "كتلة من",
+  "Sheet of": "ورقة من",
+  "Roll of": "رول من",
+  "Pack of": "علبة من",
+  "Box of": "صندوق من",
+  "Bag of": "كيس من",
+  "Bottle of": "زجاجة من",
+  "Cup of": "كوب من",
+  "Glass of": "كأس من",
+  "Bowl of": "وعاء من",
+  "Plate of": "طبق من",
+  "Spoon of": "ملعقة من",
+  "Fork of": "شوكة من",
+  "Knife of": "سكين من",
+  "Pair of": "زوج من",
+  "Set of": "مجموعة من",
+  "Group of": "مجموعة من",
+  "Team of": "فريق من",
+  "Crowd of": "حشد من",
+  "Line of": "سطر من",
+  "Row of": "صف من",
+  "Column of": "عمود من",
+  "Pile of": "كومة من",
+  "Stack of": "كومة من",
+  "Heap of": "كومة من",
+  "Load of": "حمل من",
+  "Batch of": "دفعة من",
+  "Series of": "سلسلة من",
+  "Chain of": "سلسلة من",
+  "String of": "سلسلة من",
+  "Sequence of": "تسلسل من",
+  "Pattern of": "نمط من",
+  "Array of": "مصفوفة من",
+  "Collection of": "مجموعة من",
+  "Assortment of": "تشكيلة من",
+  "Variety of": "تنوع من",
+  "Range of": "نطاق من",
+  "Selection of": "اختيار من",
+  "Mixture of": "خليط من",
+  "Combination of": "مزيج من",
+  "Blend of": "مزيج من",
+  "Fusion of": "انصهار من",
+  "Integration of": "تكامل من",
+  "Union of": "اتحاد من",
+  "Association of": "جمعية من",
+  "Organization of": "منظمة من",
+  "Institution of": "مؤسسة من",
+  "Foundation of": "أساس من",
+  "Base of": "قاعدة من",
+  "Core of": "لب من",
+  "Center of": "مركز من",
+  "Heart of": "قلب من",
+  "Soul of": "روح من",
+  "Spirit of": "روح من",
+  "Mind of": "عقل من",
+  "Body of": "جسم من",
+  "Head of": "رئيس من",
+  "Face of": "وجه من",
+  "Eye of": "عين من",
+  "Ear of": "أذن من",
+  "Nose of": "أنف من",
+  "Mouth of": "فم من",
+  "Lip of": "شفة من",
+  "Tongue of": "لسان من",
+  "Tooth of": "سن من",
+  "Teeth of": "أسنان من",
+  "Hair of": "شعر من",
+  "Skin of": "جلد من",
+  "Bone of": "عظم من",
+  "Muscle of": "عضلة من",
+  "Blood of": "دم من",
+  "Brain of": "دماغ من",
+  "Lung of": "رئة من",
+  "Liver of": "كبد من",
+  "Kidney of": "كلية من",
+  "Stomach of": "معدة من",
+  "Intestine of": "أمعاء من",
+  "Vein of": "وريد من",
+  "Artery of": "شريان من",
+  "Nerve of": "عصب من",
+  "Cell of": "خلية من",
+  "Tissue of": "نسيج من",
+  "Organ of": "عضو من",
+  "System of": "نظام من",
+  "Function of": "وظيفة من",
+  "Process of": "عملية من",
+  "Action of": "فعل من",
+  "Reaction of": "تفاعل من",
+  "Result of": "نتيجة من",
+  "Effect of": "تأثير من",
+  "Cause of": "سبب من",
+  "Reason of": "سبب من",
+  "Purpose of": "هدف من",
+  "Goal of": "هدف من",
+  "Aim of": "هدف من",
+  "Objective of": "هدف من",
+  "Target of": "هدف من",
+  "Mission of": "مهمة من",
+  "Vision of": "رؤية من",
+  "Dream of": "حلم من",
+  "Hope of": "أمل من",
+  "Wish of": "أمنية من",
+  "Desire of": "رغبة من",
+  "Need of": "حاجة من",
+  "Want of": "رغبة من",
+  "Demand of": "مطالبة من",
+  "Request of": "طلب من",
+  "Requirement of": "متطلب من",
+  "Expectation of": "توقع من",
+  "Standard of": "معيار من",
+  "Norm of": "معيار من",
+  "Rule of": "قاعدة من",
+  "Law of": "قانون من",
+  "Regulation of": "لائحة من",
+  "Policy of": "سياسة من",
+  "Procedure of": "إجراء من",
+  "Protocol of": "بروتوكول من",
+  "Guideline of": "إرشاد من",
+  "Instruction of": "تعليمات من",
+  "Direction of": "اتجاه من",
+  "Command of": "أمر من",
+  "Order of": "نظام من",
+  "Principle of": "مبدأ من",
+  "Theory of": "نظرية من",
+  "Concept of": "مفهوم من",
+  "Idea of": "فكرة من",
+  "Notion of": "فكرة من",
+  "Thought of": "فكرة من",
+  "Belief of": "معتقد من",
+  "Faith of": "إيمان من",
+  "Trust of": "ثقة من",
+  "Confidence of": "ثقة من",
+  "Fear of": "خوف من",
+  "Worry of": "قلق من",
+  "Anxiety of": "قلق من",
+  "Stress of": "توتر من",
+  "Pressure of": "ضغط من",
+  "Tension of": "توتر من",
+  "Conflict of": "صراع من",
+  "Problem of": "مشكلة من",
+  "Issue of": "قضية من",
+  "Challenge of": "تحدي من",
+  "Difficulty of": "صعوبة من",
+  "Obstacle of": "عائق من",
+  "Barrier of": "حاجز من",
+  "Limit of": "حد من",
+  "Boundary of": "حدود من",
+  "Edge of": "أفضلية من",
+  "Border of": "حدود من",
+  "Frontier of": "حدود من",
+  "Horizon of": "أفق من",
+  "Scope of": "نطاق من",
+  "Span of": "امتداد من",
+  "Extent of": "مدى من",
+  "Scale of": "مقياس من",
+  "Degree of": "درجة من",
+  "Level of": "مستوى من",
+  "Stage of": "مرحلة من",
+  "Phase of": "مرحلة من",
+  "Step of": "خطوة من",
+  "Period of": "فترة من",
+  "Era of": "عصر من",
+  "Epoch of": "عصر من",
+  "Age of": "عمر من",
+  "Generation of": "جيل من",
+  "Decade of": "عقد من",
+  "Century of": "قرن من",
+  "Millennium of": "ألفية من",
+  "Moment of": "لحظة من",
+  "Instant of": "لحظة من",
+  "Second of": "ثانية من",
+  "Minute of": "دقيقة من",
+  "Hour of": "ساعة من",
+  "Day of": "يوم من",
+  "Week of": "أسبوع من",
+  "Month of": "شهر من",
+  "Year of": "سنة من",
+  "Season of": "موسم من",
+  "Spring of": "ينبوع من",
+  "Summer of": "صيف من",
+  "Autumn of": "خريف من",
+  "Fall of": "خريف من",
+  "Winter of": "شتاء من",
+  "Morning of": "صباح من",
+  "Noon of": "ظهر من",
+  "Afternoon of": "بعد الظهر من",
+  "Evening of": "مساء من",
+  "Night of": "ليل من",
+  "Midnight of": "منتصف الليل من",
+  "Dawn of": "فجر من",
+  "Dusk of": "غسق من",
+  "Sunrise of": "شروق من",
+  "Sunset of": "غروب من",
+  "Daylight of": "نهار من",
+  "Daytime of": "نهار من",
+  "Nighttime of": "ليل من",
+  "Darkness of": "ظلام من",
+  "Light of": "نور من",
+  "Brightness of": "سطوع من",
+  "Shade of": "ظل من",
+  "Shadow of": "ظل من",
+  "Reflection of": "تأمل من",
+  "Image of": "صورة من",
+  "Picture of": "صورة من",
+  "Portrait of": "صورة من",
+  "Painting of": "لوحة من",
+  "Drawing of": "رسم من",
+  "Sketch of": "رسم من",
+  "Design of": "تصميم من",
+  "Shape of": "شكل من",
+  "Form of": "شكل من",
+  "Figure of": "شكل من",
+  "Structure of": "هيكل من",
+  "Frame of": "إطار من",
+  "Model of": "نموذج من",
+  "Template of": "قالب من",
+  "Mold of": "قالب من",
+  "Cast of": "جبس من",
+  "Print of": "طباعة من",
+  "Copy of": "نسخة من",
+  "Duplicate of": "نسخة من",
+  "Version of": "نسخة من",
+  "Edition of": "إصدار من",
+  "Publication of": "منشور من",
+  "Article of": "مقالة من",
+  "Essay of": "مقالة من",
+  "Paper of": "ورقة من",
+  "Report of": "تقرير من",
+  "Review of": "مراجعة من",
+  "Summary of": "ملخص من",
+  "Abstract of": "ملخص من",
+  "Outline of": "مخطط من",
+  "Draft of": "مسودة من",
+  "Manuscript of": "مخطوطة من",
+  "Script of": "نص من",
+  "Text of": "نص من",
+  "Content of": "محتوى من",
+  "Material of": "مادة من",
+  "Substance of": "مادة من",
+  "Matter of": "مادة من",
+  "Stuff of": "أشياء من",
+  "Thing of": "شيء من",
+  "Object of": "شيء من",
+  "Item of": "عنصر من",
+  "Component of": "مكون من",
+  "Element of": "عنصر من",
+  "Ingredient of": "مكون من",
+  "Factor of": "عامل من",
+  "Aspect of": "جانب من",
+  "Feature of": "ميزة من",
+  "Characteristic of": "سمة من",
+  "Property of": "خاصية من",
+  "Attribute of": "سمة من",
+  "Quality of": "جودة من",
+  "Trait of": "سمة من",
+  "Nature of": "طبيعة من",
+  "Character of": "حرف من",
+  "Personality of": "شخصية من",
+  "Identity of": "هوية من",
+  "Role of": "دور من",
+  "Job of": "وظيفة من",
+  "Work of": "عمل من",
+  "Task of": "مهمة من",
+  "Duty of": "واجب من",
+  "Responsibility of": "مسؤولية من",
+  "Obligation of": "التزام من",
+  "Commitment of": "التزام من",
+  "Engagement of": "التزام من",
+  "Promise of": "وعد من",
+  "Vow of": "نذر من",
+  "Oath of": "قسم من",
+  "Pledge of": "تعهد من",
+  "Guarantee of": "ضمان من",
+  "Warranty of": "ضمان من",
+  "Assurance of": "تأكيد من",
+  "Insurance of": "تأمين من",
+  "Coverage of": "تغطية من",
+  "Protection of": "حماية من",
+  "Security of": "أمن من",
+  "Safety of": "سلامة من",
+  "Defense of": "دفاع من",
+  "Shield of": "درع من",
+  "Guard of": "حارس من",
+  "Watch of": "مراقبة من",
+  "Patrol of": "دورية من",
+  "Surveillance of": "مراقبة من",
+  "Monitoring of": "مراقبة من",
+  "Tracking of": "تتبع من",
+  "Tracing of": "تتبع من",
+  "Pursuit of": "مطاردة من",
+  "Chase of": "مطاردة من",
+  "Hunt of": "صيد من",
+  "Search of": "بحث من",
+  "Quest of": "سعي من",
+  "Journey of": "رحلة من",
+  "Trip of": "رحلة من",
+  "Travel of": "سفر من",
+  "Tour of": "جولة من",
+  "Voyage of": "رحلة بحرية من",
+  "Expedition of": "بعثة من",
+  "Adventure of": "مغامرة من",
+  "Exploration of": "استكشاف من",
+  "Discovery of": "اكتشاف من",
+  "Finding of": "اكتشاف من",
+  "Invention of": "اختراع من",
+  "Creation of": "إبداع من",
+  "Innovation of": "ابتكار من",
+  "Development of": "تطوير من",
+  "Growth of": "نمو من",
+  "Evolution of": "تطور من",
+  "Progress of": "تقدم من",
+  "Advance of": "تقدم من",
+  "Improvement of": "تحسين من",
+  "Enhancement of": "تحسين من",
+  "Upgrade of": "ترقية من",
+  "Update of": "تحديث من",
+  "Renewal of": "تجديد من",
+  "Revival of": "إحياء من",
+  "Restoration of": "ترميم من",
+  "Recovery of": "تعافي من",
+  "Healing of": "شفاء من",
+  "Cure of": "علاج من",
+  "Remedy of": "علاج من",
+  "Treatment of": "علاج من",
+  "Therapy of": "علاج من",
+  "Medicine of": "دواء من",
+  "Drug of": "دواء من",
+  "Pill of": "حبة من",
+  "Tablet of": "قرص من",
+  "Capsule of": "كبسولة من",
+  "Syrup of": "شراب من",
+  "Dose of": "جرعة من",
+  "Prescription of": "وصفة طبية من",
+  "Diagnosis of": "تشخيص من",
+  "Symptom of": "عرض من",
+  "Sign of": "علامة من",
+  "Indication of": "مؤشر من",
+  "Evidence of": "دليل من",
+  "Proof of": "إثبات من",
+  "Witness of": "شاهد من",
+  "Testimony of": "شهادة من",
+  "Statement of": "بيان من",
+  "Declaration of": "إعلان من",
+  "Announcement of": "إعلان من",
+  "Proclamation of": "إعلان من",
+  "Broadcast of": "بث من",
+  "Transmission of": "إرسال من",
+  "Communication of": "تواصل من",
+  "Message of": "رسالة من",
+  "Letter of": "رسالة من",
+  "Note of": "ملاحظة من",
+  "Memo of": "مذكرة من",
+  "Notice of": "إشعار من",
+  "Reminder of": "تذكير من",
+  "Alert of": "تنبيه من",
+  "Warning of": "تحذير من",
+  "Caution of": "حذر من",
+  "Advice of": "نصيحة من",
+  "Suggestion of": "اقتراح من",
+  "Recommendation of": "توصية من",
+  "Proposal of": "اقتراح من",
+  "Offer of": "عرض من",
+  "Invitation of": "دعوة من",
+  "Petition of": "عريضة من",
+  "Appeal of": "استئناف من",
+  "Complaint of": "شكوى من",
+  "Claim of": "مطالبة من",
+  "Charge of": "تهمة من",
+  "Accusation of": "اتهام من",
+  "Allegation of": "ادعاء من",
+  "Suspicion of": "شك من",
+  "Doubt of": "شك من",
+  "Question of": "سؤال من",
+  "Inquiry of": "استفسار من",
+  "Investigation of": "تحقيق من",
+  "Research of": "بحث من",
+  "Study of": "دراسة من",
+  "Survey of": "استطلاع من",
+  "Poll of": "استطلاع من",
+  "Census of": "تعداد من",
+  "Examination of": "امتحان من",
+  "Test of": "اختبار من",
+  "Quiz of": "اختبار من",
+  "Assessment of": "تقييم من",
+  "Evaluation of": "تقييم من",
+  "Analysis of": "تحليل من",
+  "Interpretation of": "تفسير من",
+  "Explanation of": "شرح من",
+  "Description of": "وصف من",
+  "Narration of": "سرد من",
+  "Story of": "قصة من",
+  "Tale of": "حكاية من",
+  "Legend of": "أسطورة من",
+  "Myth of": "أسطورة من",
+  "Fable of": "خرافة من",
+  "Fairy Tale of": "حكاية خرافية من",
+  "Folklore of": "تراث شعبي من",
+  "Tradition of": "تقليد من",
+  "Custom of": "عادة من",
+  "Practice of": "ممارسة من",
+  "Habit of": "عادة من",
+  "Ritual of": "طقس من",
+  "Ceremony of": "مراسم من",
+  "Celebration of": "احتفال من",
+  "Festival of": "مهرجان من",
+  "Carnival of": "كرنفال من",
+  "Parade of": "موكب من",
+  "Procession of": "موكب من",
+  "March of": "مسيرة من",
+  "Rally of": "تجمع من",
+  "Demonstration of": "مظاهرة من",
+  "Protest of": "احتجاج من",
+  "Strike of": "إضراب من",
+  "Boycott of": "مقاطعة من",
+  "Embargo of": "حظر من",
+  "Sanction of": "عقوبة من",
+  "Penalty of": "عقوبة من",
+  "Punishment of": "عقاب من",
+  "Sentence of": "حكم من",
+  "Verdict of": "حكم من",
+  "Judgment of": "حكم من",
+  "Decision of": "قرار من",
+  "Ruling of": "حكم من",
+  "Decree of": "مرسوم من",
+  "Edict of": "مرسوم من",
+  "Press Release of": "بيان صحفي من",
+  "News of": "أخبار من",
+  "Bulletin of": "نشرة من",
+  "Flash of": "فلاش من",
+  "Headline of": "عنوان من",
+  "Title of": "عنوان من",
+  "Caption of": "تعليق من",
+  "Subtitle of": "عنوان فرعي من",
+  "Heading of": "عنوان من",
+  "Subheading of": "عنوان فرعي من",
+  "Paragraph of": "فقرة من",
+  "Section of": "قسم من",
+  "Chapter of": "فصل من",
+  "Page of": "صفحة من",
+  "Word of": "كلمة من",
+  "Symbol of": "رمز من",
+  "Mark of": "علامة من",
+  "Label of": "ملصق من",
+  "Tag of": "بطاقة من",
+  "Sticker of": "ملصق من",
+  "Badge of": "شارة من",
+  "Logo of": "شعار من",
+  "Brand of": "علامة تجارية من",
+  "Trademark of": "علامة تجارية من",
+  "Copyright of": "حقوق نشر من",
+  "Patent of": "براءة اختراع من",
+  "License of": "رخصة من",
+  "Permit of": "تصريح من",
+  "Authorization of": "تفويض من",
+  "Approval of": "موافقة من",
+  "Consent of": "موافقة من",
+  "Agreement of": "اتفاق من",
+  "Contract of": "عقد من",
+  "Treaty of": "معاهدة من",
+  "Pact of": "ميثاق من",
+  "Alliance of": "تحالف من",
+  "Coalition of": "ائتلاف من",
+  "Federation of": "اتحاد من",
+  "Confederation of": "كونفدرالية من",
+  "League of": "رابطة من",
+  "Society of": "مجتمع من",
+  "Community of": "مجتمع من",
+  "Club of": "نادي من",
+  "Crew of": "طاقم من",
+  "Staff of": "موظفون من",
+  "Personnel of": "موظفون من",
+  "Workforce of": "قوة عاملة من",
+  "Labor of": "عمل من",
+  "Employee of": "موظف من",
+  "Employer of": "صاحب عمل من",
+  "Manager of": "مدير من",
+  "Supervisor of": "مشرف من",
+  "Boss of": "رئيس من",
+  "Leader of": "قائد من",
+  "Chief of": "رئيس من",
+  "Director of": "مدير من",
+  "Executive of": "تنفيذي من",
+  "Officer of": "ضابط من",
+  "Official of": "مسؤول من",
+  "Representative of": "ممثل من",
+  "Delegate of": "مندوب من",
+  "Agent of": "وكيل من",
+  "Ambassador of": "سفير من",
+  "Envoy of": "مبعوث من",
+  "Messenger of": "رسول من",
+  "Courier of": "ساعي من",
+  "Delivery of": "توصيل من",
+  "Shipping of": "شحن من",
+  "Transport of": "نقل من",
+  "Transit of": "عبور من",
+  "Passage of": "مرور من",
+  "Route of": "طريق من",
+  "Path of": "مسار من",
+  "Way of": "طريق من",
+  "Course of": "مسار من",
+  "Track of": "مسار من",
+  "Trail of": "مسار من",
+  "Lane of": "مسار من",
+  "Avenue of": "شارع من",
+  "Boulevard of": "شارع من",
+  "Plaza of": "ساحة من",
+  "Square of": "ساحة من",
+  "Circle of": "دائرة من",
+  "Loop of": "حلقة من",
+  "Roundabout of": "دوار من",
+  "Intersection of": "تقاطع من",
+  "Junction of": "تقاطع من",
+  "Crossing of": "معبر من",
+  "Overpass of": "جسر علوي من",
+  "Underpass of": "نفق سفلي من",
+  "Flyover of": "جسر علوي من",
+  "Bypass of": "طريق التفافي من",
+  "Detour of": "طريق بديل من",
+  "Shortcut of": "طريق مختصر من",
+  "Dead end of": "طريق مسدود من",
+  "Cul-de-sac of": "طريق مسدود من",
+  "Alley of": "زقاق من",
+  "Driveway of": "مدخل من",
+  "Parking of": "موقف من",
+  "Garage of": "مرآب من",
+  "Carport of": "مأوى سيارات من",
+  "Shed of": "مخزن من",
+  "Barn of": "إسطبل من",
+  "Stable of": "إسطبل من",
+  "Coop of": "قفص من",
+  "Pen of": "قلم من",
+  "Cage of": "قفص من",
+  "Tank of": "خزان من",
+  "Pool of": "مسبح من",
+  "Pond of": "بركة من",
+  "Reservoir of": "خزان من",
+  "Dam of": "سد من",
+  "Dike of": "سد من",
+  "Levee of": "سد من",
+  "Canal of": "قناة من",
+  "Channel of": "قناة من",
+  "Stream of": "جدول من",
+  "Creek of": "جدول من",
+  "Brook of": "جدول من",
+  "Rivulet of": "جدول من",
+  "Fountain of": "نافورة من",
+  "Well of": "بئر من",
+  "Pump of": "مضخة من",
+  "Pipe of": "أنبوب من",
+  "Tube of": "أنبوب من",
+  "Hose of": "خرطوم من",
+  "Cable of": "كابل من",
+  "Wire of": "سلك من",
+  "Cord of": "حبل من",
+  "Rope of": "حبل من",
+  "Link of": "رابط من",
+  "Knot of": "عقدة من",
+  "Tie of": "ربطة من",
+  "Belt of": "حزام من",
+  "Strap of": "شريط من",
+  "Ribbon of": "شريط من",
+  "Band of": "فرقة من",
+  "Tape of": "شريط لاصق من",
+  "Glue of": "غراء من",
+  "Adhesive of": "مادة لاصقة من",
+  "Paste of": "معجون من",
+  "Gum of": "صمغ من",
+  "Resin of": "راتينج من",
+  "Wax of": "شمع من",
+  "Clay of": "طين من",
+  "Mud of": "وحل من",
+  "Dirt of": "تراب من",
+  "Soil of": "تربة من",
+  "Earth of": "أرض من",
+  "Ground of": "أرض من",
+  "Land of": "أرض من",
+  "Terrain of": "تضاريس من",
+  "Landscape of": "منظر طبيعي من",
+  "Scenery of": "منظر من",
+  "View of": "منظر من",
+  "Sight of": "منظر من",
+  "Scene of": "مشهد من",
+  "Setting of": "إعداد من",
+  "Background of": "خلفية من",
+  "Foreground of": "مقدمة من",
+  "Backdrop of": "خلفية من",
+  "Context of": "سياق من",
+  "Environment of": "بيئة من",
+  "Surroundings of": "محيط من",
+  "Atmosphere of": "جو من",
+  "Climate of": "مناخ من",
+  "Weather of": "طقس من",
+  "Condition of": "حالة من",
+  "State of": "حالة من",
+  "Status of": "حالة من",
+  "Situation of": "وضع من",
+  "Circumstance of": "ظرف من",
+  "Occasion of": "مناسبة من",
+  "Event of": "حدث من",
+  "Incident of": "حادث من",
+  "Accident of": "حادث من",
+  "Emergency of": "طوارئ من",
+  "Crisis of": "أزمة من",
+  "Disaster of": "كارثة من",
+  "Catastrophe of": "كارثة من",
+  "Tragedy of": "مأساة من",
+  "Misfortune of": "مصيبة من",
+  "Calamity of": "مصيبة من",
+  "Dilemma of": "معضلة من",
+  "Predicament of": "مأزق من",
+  "Quandary of": "معضلة من",
+  "Plight of": "محنة من",
+  "Hardship of": "مشقة من",
+  "Suffering of": "معاناة من",
+  "Pain of": "ألم من",
+  "Agony of": "عذاب من",
+  "Torment of": "عذاب من",
+  "Torture of": "تعذيب من",
+  "Distress of": "ضائقة من",
+  "Anguish of": "ألم من",
+  "Grief of": "حزن من",
+  "Sorrow of": "حزن من",
+  "Sadness of": "حزن من",
+  "Melancholy of": "كآبة من",
+  "Depression of": "اكتئاب من",
+  "Despair of": "يأس من",
+  "Hopelessness of": "يأس من",
+  "Loneliness of": "وحدة من",
+  "Isolation of": "عزلة من",
+  "Solitude of": "وحدة من",
+  "Silence of": "صمت من",
+  "Quiet of": "هدوء من",
+  "Peace of": "سلام من",
+  "Calm of": "هدوء من",
+  "Tranquility of": "سكينة من",
+  "Serenity of": "هدوء من",
+  "Harmony of": "تناغم من",
+  "Balance of": "توازن من",
+  "Equilibrium of": "توازن من",
+  "Stability of": "استقرار من",
+  "Chaos of": "فوضى من",
+  "Confusion of": "ارتباك من",
+  "Disorder of": "اضطراب من",
+  "Mess of": "فوضى من",
+  "Clutter of": "فوضى من",
+  "Jumble of": "فوضى من",
+  "Tangle of": "تشابك من",
+  "Snarl of": "تشابك من",
+  "Twist of": "التواء من",
+  "Turn of": "منعطف من",
+  "Curve of": "منحنى من",
+  "Bend of": "انحناء من",
+  "Angle of": "زاوية من",
+  "Arc of": "قوس من",
+  "Arch of": "قوس من",
+  "Vault of": "قبو من",
+  "Dome of": "قبة من",
+  "Cone of": "مخروط من",
+  "Pyramid of": "هرم من",
+  "Prism of": "موشور من",
+  "Cylinder of": "أسطوانة من",
+  "Sphere of": "كرة من",
+  "Cube of": "مكعب من",
+  "Container of": "وعاء من",
+  "Vessel of": "سفينة من",
+  "Receptacle of": "وعاء من",
+  "Holder of": "حامل من",
+  "Carrier of": "ناقل من",
+  "Transporter of": "ناقل من",
+  "Conveyor of": "ناقل من",
+  "Vehicle of": "مركبة من",
+  "Conveyance of": "مواصلات من",
+  "Transportation of": "نقل من",
+  "Traffic of": "مرور من",
+  "Movement of": "حركة من",
+  "Motion of": "حركة من",
+  "Activity of": "نشاط من",
+  "Exercise of": "تمرين من",
+  "Workout of": "تمرين من",
+  "Training of": "تدريب من",
+  "Drill of": "تدريب من",
+  "Rehearsal of": "تجربة من",
+  "Preparation of": "تحضير من",
+  "Planning of": "تخطيط من",
+  "Organizing of": "تنظيم من",
+  "Arranging of": "ترتيب من",
+  "Scheduling of": "جدولة من",
+  "Timing of": "توقيت من",
+  "Coordination of": "تنسيق من",
+  "Synchronization of": "تزامن من",
+  "Merge of": "دمج من",
+  "Mix of": "خليط من",
+  "Compound of": "مركب من",
+  "Composite of": "مركب من",
+  "Alloy of": "سبيكة من",
+  "Solution of": "محلول من",
+  "Suspension of": "تعليق من",
+  "Emulsion of": "مستحلب من",
+  "Colloid of": "غروي من",
+  "Gel of": "هلام من",
+  "Foam of": "رغوة من",
+  "Bubble of": "فقاعة من",
+  "Droplet of": "قطرة من",
+  "Spray of": "رذاذ من",
+  "Mist of": "ضباب من",
+  "Fog of": "ضباب من",
+  "Haze of": "ضباب من",
+  "Smog of": "ضباب دخاني من",
+  "Smoke of": "دخان من",
+  "Steam of": "بخار من",
+  "Vapor of": "بخار من",
+  "Gas of": "غاز من",
+  "Fume of": "دخان من",
+  "Exhaust of": "عادم من",
+  "Emission of": "انبعاث من",
+  "Pollution of": "تلوث من",
+  "Contamination of": "تلوث من",
+  "Toxin of": "سم من",
+  "Poison of": "سم من",
+  "Venom of": "سم من",
+  "Virus of": "فيروس من",
+  "Bacteria of": "بكتيريا من",
+  "Germ of": "جرثومة من",
+  "Microbe of": "ميكروب من",
+  "Parasite of": "طفيلي من",
+  "Pathogen of": "مسبب مرض من",
+  "Disease of": "مرض من",
+  "Illness of": "مرض من",
+  "Sickness of": "مرض من",
+  "Ailment of": "علة من",
+  "Malady of": "مرض من",
+  "Syndrome of": "متلازمة من",
+  "Defect of": "عيب من",
+  "Deformity of": "تشوه من",
+  "Disability of": "إعاقة من",
+  "Impairment of": "ضعف من",
+  "Weakness of": "ضعف من",
+  "Frailty of": "ضعف من",
+  "Vulnerability of": "ضعف من",
+  "Fragility of": "هشاشة من",
+  "Sensitivity of": "حساسية من",
+  "Allergy of": "حساسية من",
+  "Intolerance of": "عدم تحمل من",
+  "Resistance of": "مقاومة من",
+  "Immunity of": "مناعة من",
+  "Tolerance of": "تحمل من",
+  "Endurance of": "تحمل من",
+  "Stamina of": "تحمل من",
+  "Strength of": "قوة من",
+  "Power of": "قوة من",
+  "Force of": "قوة من",
+  "Energy of": "طاقة من",
+  "Might of": "قوة من",
+  "Potency of": "فعالية من",
+  "Efficacy of": "فعالية من",
+  "Efficiency of": "كفاءة من",
+  "Effectiveness of": "فاعلية من",
+  "Performance of": "أداء من",
+  "Productivity of": "إنتاجية من",
+  "Output of": "إنتاج من",
+  "Yield of": "محصول من",
+  "Return of": "عائد من",
+  "Profit of": "ربح من",
+  "Gain of": "ربح من",
+  "Benefit of": "فائدة من",
+  "Advantage of": "ميزة من",
+  "Upper hand of": "يد عليا من",
+  "Leverage of": "رافعة من",
+  "Influence of": "تأثير من",
+  "Impact of": "تأثير من",
+  "Consequence of": "نتيجة من",
+  "Outcome of": "نتيجة من",
+  "Product of": "نتيجة من",
+  "Byproduct of": "نتيجة ثانوية من",
+  "Side effect of": "تأثير جانبي من",
+  "Aftermath of": "نتائج من",
+  "Repercussion of": "تداعيات من",
+  "Ramification of": "تفرع من",
+  "Implication of": "تأثير من",
+  "Significance of": "أهمية من",
+  "Importance of": "أهمية من",
+  "Meaning of": "معنى من",
+  "Sense of": "معنى من",
+  "Point of": "نقطة من",
+  "Rationale of": "مبرر من",
+  "Logic of": "منطق من",
+  "Argument of": "حجة من",
+  "Case of": "حالة من",
+  "Support of": "دعم من",
+  "Verification of": "تحقق من",
+  "Validation of": "تأكيد من",
+  "Confirmation of": "تأكيد من",
+  "Affirmation of": "إقرار من",
+  "Assertion of": "ادعاء من",
+  "Expression of": "تعبير من",
+  "Utterance of": "تعبير من",
+  "Remark of": "ملاحظة من",
+  "Comment of": "تعليق من",
+  "Observation of": "ملاحظة من",
+  "Perception of": "إدراك من",
+  "Awareness of": "وعي من",
+  "Consciousness of": "وعي من",
+  "Knowledge of": "معرفة من",
+  "Understanding of": "فهم من",
+  "Comprehension of": "فهم من",
+  "Insight of": "بصيرة من",
+  "Wisdom of": "حكمة من",
+  "Intelligence of": "ذكاء من",
+  "Intellect of": "عقل من",
+  "Skull of": "جمجمة من",
+  "Chin of": "ذقن من",
+  "Jaw of": "فك من",
+  "Cheek of": "خد من",
+  "Neck of": "رقبة من",
+  "Throat of": "حلق من",
+  "Chest of": "صدر من",
+  "Breast of": "ثدي من",
+  "Rib of": "ضلع من",
+  "Back of": "ظهر من",
+  "Spine of": "عمود فقري من",
+  "Waist of": "خصر من",
+  "Hip of": "ورك من",
+  "Buttock of": "أرداف من",
+  "Thigh of": "فخذ من",
+  "Knee of": "ركبة من",
+  "Leg of": "ساق من",
+  "Shin of": "ظهر الساق من",
+  "Calf of": "ساق من",
+  "Ankle of": "كاحل من",
+  "Foot of": "قدم من",
+  "Heel of": "كعب من",
+  "Toe of": "إصبع قدم من",
+  "Fingernail of": "ظفر من",
+  "Toenail of": "ظفر قدم من",
+  "Pore of": "مسام من",
+  "Wrinkle of": "تجعد من",
+  "Scar of": "ندبة من",
+  "Freckle of": "نمشة من",
+  "Mole of": "شامة من",
+  "Birthmark of": "وحمة من",
+  "Tattoo of": "وشم من",
+  "Piercing of": "ثقب من",
+  "Wound of": "جرح من",
+  "Cut of": "قطع من",
+  "Gash of": "جروح من",
+  "Graze of": "خدش من",
+  "Scratch of": "خدش من",
+  "Bruise of": "كدمة من",
+  "Bump of": "نتوء من",
+  "Lump of": "كتلة من",
+  "Swelling of": "تورم من",
+  "Rash of": "طفح من",
+  "Blister of": "بثرة من",
+  "Sore of": "قرحة من",
+  "Ulcer of": "قرحة من",
+  "Abscess of": "خراج من",
+  "Boil of": "دمامل من",
+  "Pimple of": "بثرة من",
+  "Blackhead of": "رأس أسود من",
+  "Whitehead of": "رأس أبيض من",
+  "Cyst of": "كيس من",
+  "Tumor of": "ورم من",
+  "Cancer of": "سرطان من",
+  "Gland of": "غدة من",
+  "Hormone of": "هرمون من",
+  "Enzyme of": "إنزيم من",
+  "Protein of": "بروتين من",
+  "Carbohydrate of": "كربوهيدرات من",
+  "Fat of": "دهن من",
+  "Oil of": "زيت من",
+  "Mineral of": "معدن من",
+  "Vitamin of": "فيتامين من",
+  "Nutrient of": "مغذي من",
+  "Fiber of": "ألياف من",
+  "Sugar of": "سكر من",
+  "Salt of": "ملح من",
+  "Spice of": "بهار من",
+  "Herb of": "عشب من",
+  "Seasoning of": "توابل من",
+  "Flavor of": "نكهة من",
+  "Taste of": "طعم من",
+  "Aroma of": "رائحة من",
+  "Scent of": "رائحة من",
+  "Fragrance of": "عطر من",
+  "Perfume of": "عطر من",
+  "Cologne of": "كولونيا من",
+  "Deodorant of": "مزيل عرق من",
+  "Soap of": "صابون من",
+  "Shampoo of": "شامبو من",
+  "Conditioner of": "بلسم من",
+  "Lotion of": "لوشن من",
+  "Cream of": "كريم من",
+  "Ointment of": "مرهم من",
+  "Salve of": "دهان من",
+  "Balm of": "بلسم من",
+  "Liniment of": "دهان من",
+  "Injection of": "حقنة من",
+  "Vaccine of": "لقاح من",
+  "Serum of": "مصل من",
+  "Antidote of": "ترياق من",
+  "Surgery of": "جراحة من",
+  "Operation of": "عملية من",
+  "Transplant of": "زراعة من",
+  "Implant of": "زرع من",
+  "Graft of": "زرع من",
+  "Prosthesis of": "طرف صناعي من",
+  "Orthotics of": "أجهزة تقويمية من",
+  "Brace of": "جبيرة من",
+  "Splint of": "جبيرة من",
+  "Bandage of": "ضمادة من",
+  "Dressing of": "ضمادة من",
+  "Plaster of": "لاصق طبي من",
+  "Cotton of": "قطن من",
+  "Swab of": "مسحة من",
+  "Pad of": "وسادة من",
+  "Compress of": "كمادات من",
+  "Ice pack of": "كيس ثلج من",
+  "Heat pack of": "كيس حرارة من",
+  "Hot water bottle of": "قربة ماء ساخن من",
+  "Thermometer of": "ميزان حرارة من",
+  "Stethoscope of": "سماعة طبية من",
+  "Syringe of": "محاقن من",
+  "Needle of": "إبرة من",
+  "Scalpel of": "مشرط من",
+  "Forceps of": "ملقط من",
+  "Scissors of": "مقص من",
+  "Tweezers of": "ملقاط من",
+  "Speculum of": "مِspeculum من",
+  "Catheter of": "قسطرة من",
+  "Cannula of": "قنية من",
+  "IV bag of": "كيس محلول من",
+  "IV pole of": "عمود المحاليل من",
+  "Blood pressure cuff of": "رباط ضغط الدم من",
+  "Defibrillator of": "مُزيل الرجفان من",
+  "Ventilator of": "جهاز تنفس من",
+  "Oxygen mask of": "قناع أكسجين من",
+  "Nebulizer of": "بخاخ من",
+  "Inhaler of": "مستنشق من",
+  "CPAP of": "جهاز ضغط إيجابي من",
+  "Wheelchair of": "كرسي متحرك من",
+  "Crutch of": "عكاز من",
+  "Walker of": "مشاية من",
+  "Cane of": "عصا من",
+  "Stretcher of": "فراش نقّال من",
+  "Gurney of": "فراش نقّال من",
+  "Ambulance of": "سيارة إسعاف من",
+  "Paramedic of": "مسعف من",
+  "EMT of": "فني طوارئ من",
+  "Nurse of": "ممرضة من",
+  "Doctor of": "طبيب من",
+  "Physician of": "طبيب من",
+  "Surgeon of": "جراح من",
+  "Specialist of": "أخصائي من",
+  "Consultant of": "استشاري من",
+  "Resident of": "طبيب مقيم من",
+  "Intern of": "طبيب متدرب من",
+  "Fellow of": "زميل من",
+  "Attending of": "طبيب مُشرف من",
+  "Coordinator of": "منسق من",
+  "Administrator of": "إداري من",
+  "Assistant of": "مساعد من",
+  "Secretary of": "سكرتير من",
+  "Receptionist of": "موظف استقبال من",
+  "Clerk of": "كاتب من",
+  "Cashier of": "أمين صندوق من",
+  "Teller of": "أمين صندوق من",
+  "Banker of": "مصرفي من",
+  "Broker of": "وسيط من",
+  "Dealer of": "تاجر من",
+  "Trader of": "تاجر من",
+  "Merchant of": "تاجر من",
+  "Vendor of": "بائع من",
+  "Seller of": "بائع من",
+  "Buyer of": "مشتري من",
+  "Customer of": "عميل من",
+  "Client of": "عميل من",
+  "Patient of": "مريض من",
+  "Guest of": "ضيف من",
+  "Visitor of": "زائر من",
+  "Tourist of": "سائح من",
+  "Traveler of": "مسافر من",
+  "Passenger of": "راكب من",
+  "Commuter of": "راكب من",
+  "Pedestrian of": "مشاة من",
+  "Cyclist of": "دراج من",
+  "Motorist of": "سائق من",
+  "Driver of": "سائق من",
+  "Pilot of": "طيار من",
+  "Captain of": "قبطان من",
+  "Sailor of": "بحار من",
+  "Attendant of": "مضيف من",
+  "Steward of": "مضيف من",
+  "Host of": "مضيف من",
+  "Hostess of": "مضيفة من",
+  "Waiter of": "نادل من",
+  "Waitress of": "نادلة من",
+  "Chef of": "طاهٍ من",
+  "Cook of": "طاهٍ من",
+  "Baker of": "خباز من",
+  "Butcher of": "جزار من",
+  "Fishmonger of": "بائع سمك من",
+  "Grocer of": "بقال من",
+  "Florist of": "بائع زهور من",
+  "Pharmacist of": "صيدلي من",
+  "Druggist of": "صيدلي من",
+  "Chemist of": "كيميائي من",
+  "Scientist of": "عالم من",
+  "Researcher of": "باحث من",
+  "Scholar of": "عالم من",
+  "Academic of": "أكاديمي من",
+  "Professor of": "أستاذ من",
+  "Teacher of": "معلم من",
+  "Instructor of": "مدرب من",
+  "Lecturer of": "محاضر من",
+  "Tutor of": "معلم خاص من",
+  "Mentor of": "مرشد من",
+  "Coach of": "مدرب من",
+  "Trainer of": "مدرب من",
+  "Adviser of": "مستشار من",
+  "Counselor of": "مستشار من",
+  "Therapist of": "معالج من",
+  "Psychologist of": "عالم نفس من",
+  "Psychiatrist of": "طبيب نفسي من",
+  "Social worker of": "أخصائي اجتماعي من",
+  "Lawyer of": "محامٍ من",
+  "Attorney of": "محامٍ من",
+  "Solicitor of": "محامٍ من",
+  "Barrister of": "محامٍ من",
+  "Judge of": "قاضٍ من",
+  "Magistrate of": "قاضٍ من",
+  "Jurist of": "قانوني من",
+  "Legal of": "قانوني من",
+  "Paralegal of": "مساعد قانوني من",
+  "Notary of": "موثق من",
+  "Accountant of": "محاسب من",
+  "Auditor of": "مراجع حسابات من",
+  "Bookkeeper of": "محاسب من",
+  "Tax of": "ضريبة من",
+  "Planner of": "مخطط من",
+  "Architect of": "مهندس معماري من",
+  "Designer of": "مصمم من",
+  "Engineer of": "مهندس من",
+  "Technician of": "فني من",
+  "Mechanic of": "ميكانيكي من",
+  "Electrician of": "كهربائي من",
+  "Plumber of": "سباك من",
+  "Carpenter of": "نجار من",
+  "Mason of": "بناء من",
+  "Painter of": "دهان من",
+  "Decorator of": "مصمم داخلي من",
+  "Landscaper of": "مصمم حدائق من",
+  "Gardener of": "بستاني من",
+  "Farmer of": "مزارع من",
+  "Rancher of": "مُربي ماشية من",
+  "Fisherman of": "صياد من",
+  "Hunter of": "صياد من",
+  "Forester of": "غابات من",
+  "Miner of": "عامل منجم من",
+  "Driller of": "حفار من",
+  "Digger of": "حفار من",
+  "Builder of": "بناء من",
+  "Constructor of": "مقاول من",
+  "Contractor of": "مقاول من",
+  "Developer of": "مطور من",
+  "Entrepreneur of": "رائد أعمال من",
+  "Businessman of": "رجل أعمال من",
+  "Businesswoman of": "سيدة أعمال من",
+  "Diplomat of": "دبلوماسي من"
+};
+function getArabicWord(word) {
+  return ARABIC_WORDS[word] || ARABIC_WORDS[word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()] || ARABIC_WORDS[word.toLowerCase()];
+}
+function getUILabel(key) {
+  return UI_LABELS[key] || key;
+}
 let audioCtx = null;
 function getAudioContext() {
   if (!audioCtx) {
@@ -32165,15 +34013,41 @@ const MP3_LETTERS = /* @__PURE__ */ new Set([
   "q",
   "r",
   "s",
-  "t"
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z"
 ]);
 const PHONETIC_FALLBACK = {
+  a: "ah",
+  b: "buh",
+  c: "kuh",
+  d: "duh",
+  e: "eh",
+  f: "fff",
+  g: "guh",
+  h: "huh",
+  i: "ih",
+  j: "juh",
+  k: "kuh",
+  l: "luh",
+  m: "mmm",
+  n: "nnn",
+  o: "oh",
+  p: "puh",
+  q: "kwuh",
+  r: "ruh",
+  s: "sss",
+  t: "tuh",
   u: "uh",
-  v: "vuh",
+  v: "vvv",
   w: "wuh",
   x: "ks",
   y: "yuh",
-  z: "zuh"
+  z: "zzz"
 };
 const audioCache = /* @__PURE__ */ new Map();
 function playAudioToEnd(audio) {
@@ -32291,8 +34165,41 @@ function speakText(text, rate = 0.85, pitch = 0.9) {
   }
   window.speechSynthesis.speak(utterance);
 }
+const wordAudioCache = /* @__PURE__ */ new Map();
+async function playWordAudio(word) {
+  const lower = word.toLowerCase();
+  const cached = wordAudioCache.get(lower);
+  if (cached) {
+    try {
+      cached.currentTime = 0;
+      await cached.play();
+      return true;
+    } catch {
+    }
+  }
+  for (const ext of [".mp3", ".wav"]) {
+    try {
+      const audio = new Audio(`/assets/words/${lower}${ext}`);
+      wordAudioCache.set(lower, audio);
+      await new Promise((resolve, reject) => {
+        audio.onended = () => resolve();
+        audio.onerror = () => reject(new Error("Audio failed"));
+        audio.play().catch(reject);
+      });
+      return true;
+    } catch {
+    }
+  }
+  return false;
+}
+async function speakWordAsync(word) {
+  const played = await playWordAudio(word);
+  if (!played) {
+    speakText(word, 0.75, 0.9);
+  }
+}
 function speakWord(word) {
-  speakText(word, 0.75, 0.9);
+  void speakWordAsync(word);
 }
 function Layout({
   children,
@@ -32315,8 +34222,8 @@ function Layout({
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "header",
       {
-        className: "sticky top-0 z-40 flex items-center justify-between px-4 py-3 border-b border-[oklch(0.82_0.17_84/0.2)] shadow-luxury backdrop-blur-sm",
-        style: headerColor ? { background: headerColor } : { background: "oklch(0.10 0.02 264 / 0.95)" },
+        className: "sticky top-0 z-40 flex items-center justify-between px-4 py-3 border-b border-border bg-white/80 backdrop-blur-md shadow-xs",
+        style: headerColor ? { background: headerColor } : void 0,
         "data-ocid": "layout.header",
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-2 min-w-[44px]", children: showBack && /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -32324,13 +34231,20 @@ function Layout({
             {
               type: "button",
               onClick: handleBack,
-              className: "w-11 h-11 rounded-full bg-card/80 border border-[oklch(0.82_0.17_84/0.25)] flex items-center justify-center shadow-xs btn-tap transition-smooth hover:bg-card hover:border-[oklch(0.82_0.17_84/0.5)]",
-              "aria-label": "Go back",
+              className: "w-10 h-10 rounded-2xl bg-muted border border-border flex items-center justify-center btn-tap transition-smooth hover:bg-[oklch(0.90_0.01_260)]",
+              "aria-label": getUILabel("Go back"),
               "data-ocid": "layout.back_button",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { className: "w-5 h-5 text-[oklch(0.82_0.17_84)]" })
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { className: "w-5 h-5 text-foreground" })
             }
           ) }),
-          title && /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "font-display font-bold text-xl text-foreground text-center flex-1 truncate px-2", children: title }),
+          title && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "h1",
+            {
+              className: "font-display font-bold text-xl text-center flex-1 truncate px-2",
+              style: headerColor ? { color: "white" } : { color: "oklch(0.18 0.02 260)" },
+              children: title
+            }
+          ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 min-w-[44px] justify-end", children: [
             rightSlot,
             showHome && /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -32338,10 +34252,10 @@ function Layout({
               {
                 type: "button",
                 onClick: handleHome,
-                className: "w-11 h-11 rounded-full bg-card/80 border border-[oklch(0.82_0.17_84/0.25)] flex items-center justify-center shadow-xs btn-tap transition-smooth hover:bg-card hover:border-[oklch(0.82_0.17_84/0.5)]",
-                "aria-label": "Go home",
+                className: "w-10 h-10 rounded-2xl bg-muted border border-border flex items-center justify-center btn-tap transition-smooth hover:bg-[oklch(0.90_0.01_260)]",
+                "aria-label": getUILabel("Go home"),
                 "data-ocid": "layout.home_button",
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(House, { className: "w-5 h-5 text-[oklch(0.82_0.17_84)]" })
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(House, { className: "w-5 h-5 text-foreground" })
               }
             )
           ] })
@@ -32349,7 +34263,7 @@ function Layout({
       }
     ),
     /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-1 overflow-auto", children }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "py-3 text-center bg-card/60 border-t border-[oklch(0.82_0.17_84/0.15)]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground font-body", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "py-3 text-center bg-white border-t border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground font-body", children: [
       "© ",
       (/* @__PURE__ */ new Date()).getFullYear(),
       ". Built with love using",
@@ -32362,7 +34276,7 @@ function Layout({
           )}`,
           target: "_blank",
           rel: "noopener noreferrer",
-          className: "underline hover:text-[oklch(0.82_0.17_84)] transition-colors",
+          className: "underline hover:text-[oklch(0.55_0.22_280)] transition-colors",
           children: "caffeine.ai"
         }
       )
@@ -32370,21 +34284,22 @@ function Layout({
   ] });
 }
 const FILL_MAP = {
-  red: "bg-[oklch(0.72_0.28_15)]",
-  blue: "bg-[oklch(0.68_0.24_264)]",
-  green: "bg-[oklch(0.72_0.27_131)]",
-  yellow: "bg-[oklch(0.88_0.16_84)]",
-  purple: "bg-[oklch(0.68_0.22_320)]",
-  gold: "bg-gradient-to-r from-[oklch(0.90_0.18_84)] to-[oklch(0.75_0.18_84)]"
+  red: "bg-gradient-to-r from-[oklch(0.65_0.26_15)] to-[oklch(0.50_0.26_15)]",
+  blue: "bg-gradient-to-r from-[oklch(0.58_0.22_260)] to-[oklch(0.44_0.22_260)]",
+  green: "bg-gradient-to-r from-[oklch(0.62_0.22_145)] to-[oklch(0.48_0.22_145)]",
+  yellow: "bg-gradient-to-r from-[oklch(0.80_0.18_84)] to-[oklch(0.68_0.18_84)]",
+  purple: "bg-gradient-to-r from-[oklch(0.60_0.22_310)] to-[oklch(0.46_0.22_310)]",
+  gold: "bg-gradient-to-r from-[oklch(0.80_0.18_84)] to-[oklch(0.68_0.16_84)]",
+  indigo: "bg-gradient-to-r from-[oklch(0.58_0.22_280)] to-[oklch(0.44_0.22_280)]"
 };
 const SIZE_MAP$1 = {
-  sm: "h-2",
-  md: "h-3",
-  lg: "h-4"
+  sm: "h-1.5",
+  md: "h-2.5",
+  lg: "h-3.5"
 };
 function ProgressBar({
   value,
-  color: color2 = "gold",
+  color: color2 = "indigo",
   size = "md",
   showLabel = false,
   label,
@@ -32393,7 +34308,7 @@ function ProgressBar({
   const pct = Math.min(100, Math.max(0, value));
   const h = SIZE_MAP$1[size];
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `w-full ${className}`, "data-ocid": "progress_bar", children: [
-    (showLabel || label) && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center mb-1", children: [
+    (showLabel || label) && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center mb-1.5", children: [
       label && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-body font-semibold text-foreground", children: label }),
       showLabel && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs font-body text-muted-foreground ml-auto", children: [
         Math.round(pct),
@@ -32403,8 +34318,7 @@ function ProgressBar({
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
-        className: `w-full bg-muted rounded-full overflow-hidden ${h}`,
-        style: { boxShadow: "inset 0 1px 3px oklch(0 0 0 / 0.4)" },
+        className: `w-full rounded-full overflow-hidden ${h} bg-muted`,
         "aria-valuenow": pct,
         "aria-valuemin": 0,
         "aria-valuemax": 100,
@@ -32412,10 +34326,7 @@ function ProgressBar({
           "div",
           {
             className: `${h} rounded-full transition-all duration-500 ease-out ${FILL_MAP[color2]}`,
-            style: {
-              width: `${pct}%`,
-              boxShadow: pct > 0 ? "0 0 8px oklch(0.82 0.17 84 / 0.4)" : "none"
-            }
+            style: { width: `${pct}%` }
           }
         )
       }
@@ -32486,16 +34397,16 @@ const rawData = [
     lowercase: "a",
     phonicSound: "ah",
     words: [
-      { word: "Apple", emoji: "🍎" },
-      { word: "Ant", emoji: "🐜" },
-      { word: "Air", emoji: "💨" },
-      { word: "Arm", emoji: "💪" },
-      { word: "Arrow", emoji: "➡️" },
-      { word: "Axe", emoji: "🪓" },
-      { word: "Angel", emoji: "😇" },
-      { word: "Album", emoji: "📀" },
-      { word: "Alarm", emoji: "⏰" },
-      { word: "Animal", emoji: "🐾" }
+      { word: "Apple", emoji: "🍎", arabic: "تفاحة" },
+      { word: "Ant", emoji: "🐜", arabic: "نملة" },
+      { word: "Air", emoji: "💨", arabic: "هواء" },
+      { word: "Arm", emoji: "💪", arabic: "ذراع" },
+      { word: "Arrow", emoji: "➡️", arabic: "سهم" },
+      { word: "Axe", emoji: "🪓", arabic: "فأس" },
+      { word: "Angel", emoji: "😇", arabic: "ملاك" },
+      { word: "Album", emoji: "📀", arabic: "ألبوم" },
+      { word: "Alarm", emoji: "⏰", arabic: "منبه" },
+      { word: "Animal", emoji: "🐾", arabic: "حيوان" }
     ],
     blendingTasks: [
       {
@@ -32503,70 +34414,80 @@ const rawData = [
         sounds: ["a", "n", "t"],
         word: "ant",
         emoji: "🐜",
-        hint: "a tiny bug"
+        hint: "a tiny bug",
+        arabicHint: "حشرة صغيرة"
       },
       {
         id: "a-2",
         sounds: ["a", "p", "p", "l", "e"],
         word: "apple",
         emoji: "🍎",
-        hint: "a red fruit"
+        hint: "a red fruit",
+        arabicHint: "فاكهة حمراء"
       },
       {
         id: "a-3",
         sounds: ["a", "r", "m"],
         word: "arm",
         emoji: "💪",
-        hint: "part of your body"
+        hint: "part of your body",
+        arabicHint: "جزء من جسمك"
       },
       {
         id: "a-4",
         sounds: ["a", "x", "e"],
         word: "axe",
         emoji: "🪓",
-        hint: "used to chop wood"
+        hint: "used to chop wood",
+        arabicHint: "لقطع الخشب"
       },
       {
         id: "a-5",
         sounds: ["a", "i", "r"],
         word: "air",
         emoji: "💨",
-        hint: "we breathe it"
+        hint: "we breathe it",
+        arabicHint: "نتنفسه"
       },
       {
         id: "a-6",
         sounds: ["a", "l", "b", "u", "m"],
         word: "album",
         emoji: "📀",
-        hint: "collection of songs"
+        hint: "collection of songs",
+        arabicHint: "مجموعة أغاني"
       },
       {
         id: "a-7",
         sounds: ["a", "l", "a", "r", "m"],
         word: "alarm",
         emoji: "⏰",
-        hint: "wakes you up"
+        hint: "wakes you up",
+        arabicHint: "يوقظك"
       },
       {
         id: "a-8",
         sounds: ["a", "n", "i", "m", "a", "l"],
         word: "animal",
         emoji: "🐾",
-        hint: "a living creature"
+        hint: "a living creature",
+        arabicHint: "كائن حي"
       },
       {
         id: "a-9",
         sounds: ["a", "n", "g", "e", "l"],
         word: "angel",
         emoji: "😇",
-        hint: "flies with wings"
+        hint: "flies with wings",
+        arabicHint: "يطير بأجنحة"
       },
       {
         id: "a-10",
         sounds: ["a", "r", "r", "o", "w"],
         word: "arrow",
         emoji: "➡️",
-        hint: "points the way"
+        hint: "points the way",
+        arabicHint: "يشار الطريق"
       }
     ]
   },
@@ -32576,16 +34497,16 @@ const rawData = [
     lowercase: "b",
     phonicSound: "buh",
     words: [
-      { word: "Ball", emoji: "⚽" },
-      { word: "Book", emoji: "📚" },
-      { word: "Bag", emoji: "👜" },
-      { word: "Boat", emoji: "⛵" },
-      { word: "Bus", emoji: "🚌" },
-      { word: "Box", emoji: "📦" },
-      { word: "Bed", emoji: "🛏️" },
-      { word: "Bee", emoji: "🐝" },
-      { word: "Bottle", emoji: "🍼" },
-      { word: "Banana", emoji: "🍌" }
+      { word: "Ball", emoji: "⚽", arabic: "كرة" },
+      { word: "Book", emoji: "📚", arabic: "كتاب" },
+      { word: "Bag", emoji: "👜", arabic: "حقيبة" },
+      { word: "Boat", emoji: "⛵", arabic: "قارب" },
+      { word: "Bus", emoji: "🚌", arabic: "حافلة" },
+      { word: "Box", emoji: "📦", arabic: "صندوق" },
+      { word: "Bed", emoji: "🛏️", arabic: "سرير" },
+      { word: "Bee", emoji: "🐝", arabic: "نحلة" },
+      { word: "Bottle", emoji: "🍼", arabic: "زجاجة" },
+      { word: "Banana", emoji: "🍌", arabic: "موزة" }
     ],
     blendingTasks: [
       {
@@ -32593,70 +34514,80 @@ const rawData = [
         sounds: ["b", "a", "l", "l"],
         word: "ball",
         emoji: "⚽",
-        hint: "you kick it"
+        hint: "you kick it",
+        arabicHint: "تركله"
       },
       {
         id: "b-2",
         sounds: ["b", "o", "o", "k"],
         word: "book",
         emoji: "📚",
-        hint: "you read it"
+        hint: "you read it",
+        arabicHint: "تقرأه"
       },
       {
         id: "b-3",
         sounds: ["b", "a", "g"],
         word: "bag",
         emoji: "👜",
-        hint: "carry things in it"
+        hint: "carry things in it",
+        arabicHint: "تحمل الأشياء فيه"
       },
       {
         id: "b-4",
         sounds: ["b", "o", "a", "t"],
         word: "boat",
         emoji: "⛵",
-        hint: "floats on water"
+        hint: "floats on water",
+        arabicHint: "يطفو على الماء"
       },
       {
         id: "b-5",
         sounds: ["b", "u", "s"],
         word: "bus",
         emoji: "🚌",
-        hint: "big yellow vehicle"
+        hint: "big yellow vehicle",
+        arabicHint: "سيارة صفراء كبيرة"
       },
       {
         id: "b-6",
         sounds: ["b", "o", "x"],
         word: "box",
         emoji: "📦",
-        hint: "holds things inside"
+        hint: "holds things inside",
+        arabicHint: "يحفظ الأشياء داخله"
       },
       {
         id: "b-7",
         sounds: ["b", "e", "d"],
         word: "bed",
         emoji: "🛏️",
-        hint: "you sleep here"
+        hint: "you sleep here",
+        arabicHint: "تنام هنا"
       },
       {
         id: "b-8",
         sounds: ["b", "e", "e"],
         word: "bee",
         emoji: "🐝",
-        hint: "makes honey"
+        hint: "makes honey",
+        arabicHint: "يصنع العسل"
       },
       {
         id: "b-9",
         sounds: ["b", "o", "t", "t", "l", "e"],
         word: "bottle",
         emoji: "🍼",
-        hint: "holds liquid"
+        hint: "holds liquid",
+        arabicHint: "يحفظ السائل"
       },
       {
         id: "b-10",
         sounds: ["b", "a", "n", "a", "n", "a"],
         word: "banana",
         emoji: "🍌",
-        hint: "yellow fruit"
+        hint: "yellow fruit",
+        arabicHint: "فاكهة صفراء"
       }
     ]
   },
@@ -32666,16 +34597,16 @@ const rawData = [
     lowercase: "c",
     phonicSound: "cuh",
     words: [
-      { word: "Cat", emoji: "🐱" },
-      { word: "Car", emoji: "🚗" },
-      { word: "Cup", emoji: "☕" },
-      { word: "Cake", emoji: "🎂" },
-      { word: "Cap", emoji: "🧢" },
-      { word: "Coin", emoji: "🪙" },
-      { word: "Cow", emoji: "🐄" },
-      { word: "Chair", emoji: "🪑" },
-      { word: "Clock", emoji: "🕐" },
-      { word: "Cloud", emoji: "☁️" }
+      { word: "Cat", emoji: "🐱", arabic: "قطة" },
+      { word: "Car", emoji: "🚗", arabic: "سيارة" },
+      { word: "Cup", emoji: "☕", arabic: "كوب" },
+      { word: "Cake", emoji: "🎂", arabic: "كعكة" },
+      { word: "Cap", emoji: "🧢", arabic: "قبعة" },
+      { word: "Coin", emoji: "🪙", arabic: "عملة" },
+      { word: "Cow", emoji: "🐄", arabic: "بقرة" },
+      { word: "Chair", emoji: "🪑", arabic: "كرسي" },
+      { word: "Clock", emoji: "🕐", arabic: "ساعة" },
+      { word: "Cloud", emoji: "☁️", arabic: "سحابة" }
     ],
     blendingTasks: [
       {
@@ -32683,70 +34614,80 @@ const rawData = [
         sounds: ["c", "a", "t"],
         word: "cat",
         emoji: "🐱",
-        hint: "says meow"
+        hint: "says meow",
+        arabicHint: "يقول مياو"
       },
       {
         id: "c-2",
         sounds: ["c", "a", "r"],
         word: "car",
         emoji: "🚗",
-        hint: "has four wheels"
+        hint: "has four wheels",
+        arabicHint: "لديه أربع عجلات"
       },
       {
         id: "c-3",
         sounds: ["c", "u", "p"],
         word: "cup",
         emoji: "☕",
-        hint: "drink from it"
+        hint: "drink from it",
+        arabicHint: "تشرب منه"
       },
       {
         id: "c-4",
         sounds: ["c", "a", "k", "e"],
         word: "cake",
         emoji: "🎂",
-        hint: "birthday treat"
+        hint: "birthday treat",
+        arabicHint: "حلوى العيد ميلاد"
       },
       {
         id: "c-5",
         sounds: ["c", "a", "p"],
         word: "cap",
         emoji: "🧢",
-        hint: "wear on head"
+        hint: "wear on head",
+        arabicHint: "ترتديه على رأسك"
       },
       {
         id: "c-6",
         sounds: ["c", "o", "i", "n"],
         word: "coin",
         emoji: "🪙",
-        hint: "shiny money"
+        hint: "shiny money",
+        arabicHint: "نقود لامعة"
       },
       {
         id: "c-7",
         sounds: ["c", "o", "w"],
         word: "cow",
         emoji: "🐄",
-        hint: "gives milk"
+        hint: "gives milk",
+        arabicHint: "يعطي الحليب"
       },
       {
         id: "c-8",
         sounds: ["c", "h", "a", "i", "r"],
         word: "chair",
         emoji: "🪑",
-        hint: "you sit on it"
+        hint: "you sit on it",
+        arabicHint: "تجلس عليه"
       },
       {
         id: "c-9",
         sounds: ["c", "l", "o", "c", "k"],
         word: "clock",
         emoji: "🕐",
-        hint: "shows the time"
+        hint: "shows the time",
+        arabicHint: "يري الوقت"
       },
       {
         id: "c-10",
         sounds: ["c", "l", "o", "u", "d"],
         word: "cloud",
         emoji: "☁️",
-        hint: "floats in the sky"
+        hint: "floats in the sky",
+        arabicHint: "يطفو في السماء"
       }
     ]
   },
@@ -32756,16 +34697,16 @@ const rawData = [
     lowercase: "d",
     phonicSound: "duh",
     words: [
-      { word: "Dog", emoji: "🐶" },
-      { word: "Door", emoji: "🚪" },
-      { word: "Duck", emoji: "🦆" },
-      { word: "Desk", emoji: "🗃️" },
-      { word: "Drum", emoji: "🥁" },
-      { word: "Doll", emoji: "🪆" },
-      { word: "Dish", emoji: "🍽️" },
-      { word: "Deer", emoji: "🦌" },
-      { word: "Diamond", emoji: "💎" },
-      { word: "Dragon", emoji: "🐉" }
+      { word: "Dog", emoji: "🐶", arabic: "كلب" },
+      { word: "Door", emoji: "🚪", arabic: "باب" },
+      { word: "Duck", emoji: "🦆", arabic: "بطة" },
+      { word: "Desk", emoji: "🗃️", arabic: "مكتب" },
+      { word: "Drum", emoji: "🥁", arabic: "طبل" },
+      { word: "Doll", emoji: "🪆", arabic: "دمية" },
+      { word: "Dish", emoji: "🍽️", arabic: "طبق" },
+      { word: "Deer", emoji: "🦌", arabic: "غزال" },
+      { word: "Diamond", emoji: "💎", arabic: "ماسة" },
+      { word: "Dragon", emoji: "🐉", arabic: "تنين" }
     ],
     blendingTasks: [
       {
@@ -32773,70 +34714,80 @@ const rawData = [
         sounds: ["d", "o", "g"],
         word: "dog",
         emoji: "🐶",
-        hint: "says woof"
+        hint: "says woof",
+        arabicHint: "يقول ووف"
       },
       {
         id: "d-2",
         sounds: ["d", "o", "o", "r"],
         word: "door",
         emoji: "🚪",
-        hint: "you open it"
+        hint: "you open it",
+        arabicHint: "تفتحه"
       },
       {
         id: "d-3",
         sounds: ["d", "u", "c", "k"],
         word: "duck",
         emoji: "🦆",
-        hint: "swims and quacks"
+        hint: "swims and quacks",
+        arabicHint: "يسبح ويقول كواك"
       },
       {
         id: "d-4",
         sounds: ["d", "e", "s", "k"],
         word: "desk",
         emoji: "🗃️",
-        hint: "you study here"
+        hint: "you study here",
+        arabicHint: "تدرس هنا"
       },
       {
         id: "d-5",
         sounds: ["d", "r", "u", "m"],
         word: "drum",
         emoji: "🥁",
-        hint: "you beat it"
+        hint: "you beat it",
+        arabicHint: "تضربه"
       },
       {
         id: "d-6",
         sounds: ["d", "o", "l", "l"],
         word: "doll",
         emoji: "🪆",
-        hint: "a toy to play with"
+        hint: "a toy to play with",
+        arabicHint: "لعبة للعب بها"
       },
       {
         id: "d-7",
         sounds: ["d", "i", "s", "h"],
         word: "dish",
         emoji: "🍽️",
-        hint: "holds your food"
+        hint: "holds your food",
+        arabicHint: "يحفظ طعامك"
       },
       {
         id: "d-8",
         sounds: ["d", "e", "e", "r"],
         word: "deer",
         emoji: "🦌",
-        hint: "has antlers"
+        hint: "has antlers",
+        arabicHint: "لديه قرون"
       },
       {
         id: "d-9",
         sounds: ["d", "i", "a", "m", "o", "n", "d"],
         word: "diamond",
         emoji: "💎",
-        hint: "sparkles brightly"
+        hint: "sparkles brightly",
+        arabicHint: "يلمع بريق"
       },
       {
         id: "d-10",
         sounds: ["d", "r", "a", "g", "o", "n"],
         word: "dragon",
         emoji: "🐉",
-        hint: "breathes fire"
+        hint: "breathes fire",
+        arabicHint: "يتنفس النار"
       }
     ]
   },
@@ -32846,16 +34797,16 @@ const rawData = [
     lowercase: "e",
     phonicSound: "eh",
     words: [
-      { word: "Egg", emoji: "🥚" },
-      { word: "Ear", emoji: "👂" },
-      { word: "Eye", emoji: "👁️" },
-      { word: "Earth", emoji: "🌍" },
-      { word: "Engine", emoji: "🚂" },
-      { word: "Elephant", emoji: "🐘" },
-      { word: "Envelope", emoji: "✉️" },
-      { word: "Elbow", emoji: "🦾" },
-      { word: "Eagle", emoji: "🦅" },
-      { word: "Energy", emoji: "⚡" }
+      { word: "Egg", emoji: "🥚", arabic: "بيضة" },
+      { word: "Ear", emoji: "👂", arabic: "أذن" },
+      { word: "Eye", emoji: "👁️", arabic: "عين" },
+      { word: "Earth", emoji: "🌍", arabic: "أرض" },
+      { word: "Engine", emoji: "🚂", arabic: "محرك" },
+      { word: "Elephant", emoji: "🐘", arabic: "فيل" },
+      { word: "Envelope", emoji: "✉️", arabic: "ظرف" },
+      { word: "Elbow", emoji: "🦾", arabic: "كوع" },
+      { word: "Eagle", emoji: "🦅", arabic: "نسر" },
+      { word: "Energy", emoji: "⚡", arabic: "طاقة" }
     ],
     blendingTasks: [
       {
@@ -32863,70 +34814,80 @@ const rawData = [
         sounds: ["e", "g", "g"],
         word: "egg",
         emoji: "🥚",
-        hint: "comes from a hen"
+        hint: "comes from a hen",
+        arabicHint: "يأتي من الدجاجة"
       },
       {
         id: "e-2",
         sounds: ["e", "a", "r"],
         word: "ear",
         emoji: "👂",
-        hint: "you hear with it"
+        hint: "you hear with it",
+        arabicHint: "تسمع به"
       },
       {
         id: "e-3",
         sounds: ["e", "y", "e"],
         word: "eye",
         emoji: "👁️",
-        hint: "you see with it"
+        hint: "you see with it",
+        arabicHint: "ترى به"
       },
       {
         id: "e-4",
         sounds: ["e", "a", "r", "t", "h"],
         word: "earth",
         emoji: "🌍",
-        hint: "our planet"
+        hint: "our planet",
+        arabicHint: "كوكبنا الأرض"
       },
       {
         id: "e-5",
         sounds: ["e", "n", "g", "i", "n", "e"],
         word: "engine",
         emoji: "🚂",
-        hint: "powers machines"
+        hint: "powers machines",
+        arabicHint: "يشغل الآلات"
       },
       {
         id: "e-6",
         sounds: ["e", "l", "e", "p", "h", "a", "n", "t"],
         word: "elephant",
         emoji: "🐘",
-        hint: "has a long trunk"
+        hint: "has a long trunk",
+        arabicHint: "لديه خرطوم طويل"
       },
       {
         id: "e-7",
         sounds: ["e", "n", "v", "e", "l", "o", "p", "e"],
         word: "envelope",
         emoji: "✉️",
-        hint: "holds a letter"
+        hint: "holds a letter",
+        arabicHint: "يحفظ الرسالة"
       },
       {
         id: "e-8",
         sounds: ["e", "l", "b", "o", "w"],
         word: "elbow",
         emoji: "🦾",
-        hint: "bend your arm here"
+        hint: "bend your arm here",
+        arabicHint: "تثني ذراعك هنا"
       },
       {
         id: "e-9",
         sounds: ["e", "a", "g", "l", "e"],
         word: "eagle",
         emoji: "🦅",
-        hint: "big bird that soars"
+        hint: "big bird that soars",
+        arabicHint: "طائر كبير يطير"
       },
       {
         id: "e-10",
         sounds: ["e", "n", "e", "r", "g", "y"],
         word: "energy",
         emoji: "⚡",
-        hint: "gives power"
+        hint: "gives power",
+        arabicHint: "يعطي الطاقة"
       }
     ]
   },
@@ -32936,16 +34897,16 @@ const rawData = [
     lowercase: "f",
     phonicSound: "fuh",
     words: [
-      { word: "Fish", emoji: "🐟" },
-      { word: "Fan", emoji: "🌀" },
-      { word: "Fire", emoji: "🔥" },
-      { word: "Fork", emoji: "🍴" },
-      { word: "Flower", emoji: "🌸" },
-      { word: "Flag", emoji: "🚩" },
-      { word: "Frame", emoji: "🖼️" },
-      { word: "Frog", emoji: "🐸" },
-      { word: "Farm", emoji: "🏡" },
-      { word: "Feather", emoji: "🪶" }
+      { word: "Fish", emoji: "🐟", arabic: "سمكة" },
+      { word: "Fan", emoji: "🌀", arabic: "مروحة" },
+      { word: "Fire", emoji: "🔥", arabic: "نار" },
+      { word: "Fork", emoji: "🍴", arabic: "شوكة" },
+      { word: "Flower", emoji: "🌸", arabic: "زهرة" },
+      { word: "Flag", emoji: "🚩", arabic: "علم" },
+      { word: "Frame", emoji: "🖼️", arabic: "إطار" },
+      { word: "Frog", emoji: "🐸", arabic: "ضفدع" },
+      { word: "Farm", emoji: "🏡", arabic: "مزرعة" },
+      { word: "Feather", emoji: "🪶", arabic: "ريشة" }
     ],
     blendingTasks: [
       {
@@ -32953,70 +34914,80 @@ const rawData = [
         sounds: ["f", "i", "s", "h"],
         word: "fish",
         emoji: "🐟",
-        hint: "swims in water"
+        hint: "swims in water",
+        arabicHint: "يسبح في الماء"
       },
       {
         id: "f-2",
         sounds: ["f", "a", "n"],
         word: "fan",
         emoji: "🌀",
-        hint: "cools you down"
+        hint: "cools you down",
+        arabicHint: "يبردك"
       },
       {
         id: "f-3",
         sounds: ["f", "i", "r", "e"],
         word: "fire",
         emoji: "🔥",
-        hint: "hot and bright"
+        hint: "hot and bright",
+        arabicHint: "ساخن ولامع"
       },
       {
         id: "f-4",
         sounds: ["f", "o", "r", "k"],
         word: "fork",
         emoji: "🍴",
-        hint: "used for eating"
+        hint: "used for eating",
+        arabicHint: "يُستخد للأكل"
       },
       {
         id: "f-5",
         sounds: ["f", "l", "o", "w", "e", "r"],
         word: "flower",
         emoji: "🌸",
-        hint: "smells pretty"
+        hint: "smells pretty",
+        arabicHint: "رائحته جميلة"
       },
       {
         id: "f-6",
         sounds: ["f", "l", "a", "g"],
         word: "flag",
         emoji: "🚩",
-        hint: "waves in the wind"
+        hint: "waves in the wind",
+        arabicHint: "يهتز في الريح"
       },
       {
         id: "f-7",
         sounds: ["f", "r", "a", "m", "e"],
         word: "frame",
         emoji: "🖼️",
-        hint: "holds a picture"
+        hint: "holds a picture",
+        arabicHint: "يحفظ الصورة"
       },
       {
         id: "f-8",
         sounds: ["f", "r", "o", "g"],
         word: "frog",
         emoji: "🐸",
-        hint: "jumps and croaks"
+        hint: "jumps and croaks",
+        arabicHint: "يقفز وينعق"
       },
       {
         id: "f-9",
         sounds: ["f", "a", "r", "m"],
         word: "farm",
         emoji: "🏡",
-        hint: "animals live here"
+        hint: "animals live here",
+        arabicHint: "الحيوانات تعيش هنا"
       },
       {
         id: "f-10",
         sounds: ["f", "e", "a", "t", "h", "e", "r"],
         word: "feather",
         emoji: "🪶",
-        hint: "light as air"
+        hint: "light as air",
+        arabicHint: "خفيف كالهواء"
       }
     ]
   },
@@ -33026,16 +34997,16 @@ const rawData = [
     lowercase: "g",
     phonicSound: "guh",
     words: [
-      { word: "Goat", emoji: "🐐" },
-      { word: "Game", emoji: "🎮" },
-      { word: "Gift", emoji: "🎁" },
-      { word: "Gate", emoji: "🚧" },
-      { word: "Glass", emoji: "🥛" },
-      { word: "Grapes", emoji: "🍇" },
-      { word: "Guitar", emoji: "🎸" },
-      { word: "Garden", emoji: "🌻" },
-      { word: "Gold", emoji: "🥇" },
-      { word: "Globe", emoji: "🌐" }
+      { word: "Goat", emoji: "🐐", arabic: "ماعز" },
+      { word: "Game", emoji: "🎮", arabic: "لعبة" },
+      { word: "Gift", emoji: "🎁", arabic: "هدية" },
+      { word: "Gate", emoji: "🚧", arabic: "بوابة" },
+      { word: "Glass", emoji: "🥛", arabic: "زجاج" },
+      { word: "Grapes", emoji: "🍇", arabic: "عنب" },
+      { word: "Guitar", emoji: "🎸", arabic: "جيتار" },
+      { word: "Garden", emoji: "🌻", arabic: "حديقة" },
+      { word: "Gold", emoji: "🥇", arabic: "ذهب" },
+      { word: "Globe", emoji: "🌐", arabic: "كرة أرضية" }
     ],
     blendingTasks: [
       {
@@ -33043,70 +35014,80 @@ const rawData = [
         sounds: ["g", "o", "a", "t"],
         word: "goat",
         emoji: "🐐",
-        hint: "eats grass"
+        hint: "eats grass",
+        arabicHint: "يأكل العشب"
       },
       {
         id: "g-2",
         sounds: ["g", "a", "m", "e"],
         word: "game",
         emoji: "🎮",
-        hint: "fun to play"
+        hint: "fun to play",
+        arabicHint: "ممتع للعب"
       },
       {
         id: "g-3",
         sounds: ["g", "i", "f", "t"],
         word: "gift",
         emoji: "🎁",
-        hint: "wrapped in paper"
+        hint: "wrapped in paper",
+        arabicHint: "ملفوف بالورق"
       },
       {
         id: "g-4",
         sounds: ["g", "a", "t", "e"],
         word: "gate",
         emoji: "🚧",
-        hint: "opens and closes"
+        hint: "opens and closes",
+        arabicHint: "يفتح ويغلق"
       },
       {
         id: "g-5",
         sounds: ["g", "l", "a", "s", "s"],
         word: "glass",
         emoji: "🥛",
-        hint: "you drink from it"
+        hint: "you drink from it",
+        arabicHint: "تشرب منه"
       },
       {
         id: "g-6",
         sounds: ["g", "r", "a", "p", "e", "s"],
         word: "grapes",
         emoji: "🍇",
-        hint: "tiny round fruit"
+        hint: "tiny round fruit",
+        arabicHint: "فاكهة صغيرة مدورة"
       },
       {
         id: "g-7",
         sounds: ["g", "u", "i", "t", "a", "r"],
         word: "guitar",
         emoji: "🎸",
-        hint: "has 6 strings"
+        hint: "has 6 strings",
+        arabicHint: "لديه 6 أوتار"
       },
       {
         id: "g-8",
         sounds: ["g", "a", "r", "d", "e", "n"],
         word: "garden",
         emoji: "🌻",
-        hint: "grow flowers here"
+        hint: "grow flowers here",
+        arabicHint: "نزرع الزهور هنا"
       },
       {
         id: "g-9",
         sounds: ["g", "o", "l", "d"],
         word: "gold",
         emoji: "🥇",
-        hint: "shiny metal"
+        hint: "shiny metal",
+        arabicHint: "معدن لامع"
       },
       {
         id: "g-10",
         sounds: ["g", "l", "o", "b", "e"],
         word: "globe",
         emoji: "🌐",
-        hint: "shows the world"
+        hint: "shows the world",
+        arabicHint: "يري العالم"
       }
     ]
   },
@@ -33116,16 +35097,16 @@ const rawData = [
     lowercase: "h",
     phonicSound: "huh",
     words: [
-      { word: "Hat", emoji: "🎩" },
-      { word: "House", emoji: "🏠" },
-      { word: "Hand", emoji: "✋" },
-      { word: "Horse", emoji: "🐴" },
-      { word: "Hill", emoji: "⛰️" },
-      { word: "Hammer", emoji: "🔨" },
-      { word: "Heart", emoji: "❤️" },
-      { word: "Hair", emoji: "💇" },
-      { word: "Honey", emoji: "🍯" },
-      { word: "Hole", emoji: "🕳️" }
+      { word: "Hat", emoji: "🎩", arabic: "قبعة" },
+      { word: "House", emoji: "🏠", arabic: "بيت" },
+      { word: "Hand", emoji: "✋", arabic: "يد" },
+      { word: "Horse", emoji: "🐴", arabic: "حصان" },
+      { word: "Hill", emoji: "⛰️", arabic: "تل" },
+      { word: "Hammer", emoji: "🔨", arabic: "مطرقة" },
+      { word: "Heart", emoji: "❤️", arabic: "قلب" },
+      { word: "Hair", emoji: "💇", arabic: "شعر" },
+      { word: "Honey", emoji: "🍯", arabic: "عسل" },
+      { word: "Hole", emoji: "🕳️", arabic: "حفرة" }
     ],
     blendingTasks: [
       {
@@ -33133,70 +35114,80 @@ const rawData = [
         sounds: ["h", "a", "t"],
         word: "hat",
         emoji: "🎩",
-        hint: "wear on your head"
+        hint: "wear on your head",
+        arabicHint: "ترتديه على رأسك"
       },
       {
         id: "h-2",
         sounds: ["h", "o", "u", "s", "e"],
         word: "house",
         emoji: "🏠",
-        hint: "you live here"
+        hint: "you live here",
+        arabicHint: "تعيش هنا"
       },
       {
         id: "h-3",
         sounds: ["h", "a", "n", "d"],
         word: "hand",
         emoji: "✋",
-        hint: "has five fingers"
+        hint: "has five fingers",
+        arabicHint: "لديه خمس أصابع"
       },
       {
         id: "h-4",
         sounds: ["h", "o", "r", "s", "e"],
         word: "horse",
         emoji: "🐴",
-        hint: "you can ride it"
+        hint: "you can ride it",
+        arabicHint: "يمكنك ركوبه"
       },
       {
         id: "h-5",
         sounds: ["h", "i", "l", "l"],
         word: "hill",
         emoji: "⛰️",
-        hint: "climb to the top"
+        hint: "climb to the top",
+        arabicHint: "تصعد إلى القمة"
       },
       {
         id: "h-6",
         sounds: ["h", "a", "m", "m", "e", "r"],
         word: "hammer",
         emoji: "🔨",
-        hint: "hits nails"
+        hint: "hits nails",
+        arabicHint: "يطرق المسامير"
       },
       {
         id: "h-7",
         sounds: ["h", "e", "a", "r", "t"],
         word: "heart",
         emoji: "❤️",
-        hint: "symbol of love"
+        hint: "symbol of love",
+        arabicHint: "رمز الحب"
       },
       {
         id: "h-8",
         sounds: ["h", "a", "i", "r"],
         word: "hair",
         emoji: "💇",
-        hint: "on top of head"
+        hint: "on top of head",
+        arabicHint: "فوق الرأس"
       },
       {
         id: "h-9",
         sounds: ["h", "o", "n", "e", "y"],
         word: "honey",
         emoji: "🍯",
-        hint: "bees make it"
+        hint: "bees make it",
+        arabicHint: "النحل يصنعه"
       },
       {
         id: "h-10",
         sounds: ["h", "o", "l", "e"],
         word: "hole",
         emoji: "🕳️",
-        hint: "an empty space"
+        hint: "an empty space",
+        arabicHint: "فضاء فارغ"
       }
     ]
   },
@@ -33206,16 +35197,16 @@ const rawData = [
     lowercase: "i",
     phonicSound: "ih",
     words: [
-      { word: "Ice", emoji: "🧊" },
-      { word: "Ink", emoji: "🖊️" },
-      { word: "Island", emoji: "🏝️" },
-      { word: "Iron", emoji: "🧲" },
-      { word: "Insect", emoji: "🦗" },
-      { word: "Idea", emoji: "💡" },
-      { word: "Igloo", emoji: "🏔️" },
-      { word: "Invent", emoji: "🔬" },
-      { word: "Image", emoji: "🖼️" },
-      { word: "Inside", emoji: "📬" }
+      { word: "Ice", emoji: "🧊", arabic: "جليد" },
+      { word: "Ink", emoji: "🖊️", arabic: "حبر" },
+      { word: "Island", emoji: "🏝️", arabic: "جزيرة" },
+      { word: "Iron", emoji: "🧲", arabic: "حديد" },
+      { word: "Insect", emoji: "🦗", arabic: "حشرة" },
+      { word: "Idea", emoji: "💡", arabic: "فكرة" },
+      { word: "Igloo", emoji: "🏔️", arabic: "إجلو" },
+      { word: "Invent", emoji: "🔬", arabic: "يخترع" },
+      { word: "Image", emoji: "🖼️", arabic: "صورة" },
+      { word: "Inside", emoji: "📬", arabic: "داخل" }
     ],
     blendingTasks: [
       {
@@ -33223,70 +35214,80 @@ const rawData = [
         sounds: ["i", "c", "e"],
         word: "ice",
         emoji: "🧊",
-        hint: "cold and frozen"
+        hint: "cold and frozen",
+        arabicHint: "بارد ومجمد"
       },
       {
         id: "i-2",
         sounds: ["i", "n", "k"],
         word: "ink",
         emoji: "🖊️",
-        hint: "used to write"
+        hint: "used to write",
+        arabicHint: "يُستخد للكتابة"
       },
       {
         id: "i-3",
         sounds: ["i", "s", "l", "a", "n", "d"],
         word: "island",
         emoji: "🏝️",
-        hint: "land in the sea"
+        hint: "land in the sea",
+        arabicHint: "أرض في البحر"
       },
       {
         id: "i-4",
         sounds: ["i", "r", "o", "n"],
         word: "iron",
         emoji: "🧲",
-        hint: "smooths your clothes"
+        hint: "smooths your clothes",
+        arabicHint: "ينعم ملابسك"
       },
       {
         id: "i-5",
         sounds: ["i", "n", "s", "e", "c", "t"],
         word: "insect",
         emoji: "🦗",
-        hint: "has 6 legs"
+        hint: "has 6 legs",
+        arabicHint: "لديه 6 أرجل"
       },
       {
         id: "i-6",
         sounds: ["i", "d", "e", "a"],
         word: "idea",
         emoji: "💡",
-        hint: "a thought"
+        hint: "a thought",
+        arabicHint: "فكرة"
       },
       {
         id: "i-7",
         sounds: ["i", "g", "l", "o", "o"],
         word: "igloo",
         emoji: "🏔️",
-        hint: "ice house"
+        hint: "ice house",
+        arabicHint: "بيت من الجليد"
       },
       {
         id: "i-8",
         sounds: ["i", "n", "v", "e", "n", "t"],
         word: "invent",
         emoji: "🔬",
-        hint: "make something new"
+        hint: "make something new",
+        arabicHint: "اصنع شيئاً جديداً"
       },
       {
         id: "i-9",
         sounds: ["i", "m", "a", "g", "e"],
         word: "image",
         emoji: "🖼️",
-        hint: "a picture"
+        hint: "a picture",
+        arabicHint: "صورة"
       },
       {
         id: "i-10",
         sounds: ["i", "n", "s", "i", "d", "e"],
         word: "inside",
         emoji: "📬",
-        hint: "the inner part"
+        hint: "the inner part",
+        arabicHint: "الجزء الداخلي"
       }
     ]
   },
@@ -33296,16 +35297,16 @@ const rawData = [
     lowercase: "j",
     phonicSound: "juh",
     words: [
-      { word: "Jam", emoji: "🫙" },
-      { word: "Jar", emoji: "🏺" },
-      { word: "Jug", emoji: "🪣" },
-      { word: "Jeep", emoji: "🚙" },
-      { word: "Jacket", emoji: "🧥" },
-      { word: "Jewel", emoji: "💎" },
-      { word: "Juice", emoji: "🍹" },
-      { word: "Jungle", emoji: "🌴" },
-      { word: "Jump", emoji: "🦘" },
-      { word: "Jelly", emoji: "🍮" }
+      { word: "Jam", emoji: "🫙", arabic: "مربى" },
+      { word: "Jar", emoji: "🏺", arabic: "برطمان" },
+      { word: "Jug", emoji: "🪣", arabic: "إبريق" },
+      { word: "Jeep", emoji: "🚙", arabic: "جيب" },
+      { word: "Jacket", emoji: "🧥", arabic: "سترة" },
+      { word: "Jewel", emoji: "💎", arabic: "جوهره" },
+      { word: "Juice", emoji: "🍹", arabic: "عصير" },
+      { word: "Jungle", emoji: "🌴", arabic: "غابة" },
+      { word: "Jump", emoji: "🦘", arabic: "قفز" },
+      { word: "Jelly", emoji: "🍮", arabic: "هلام" }
     ],
     blendingTasks: [
       {
@@ -33313,70 +35314,80 @@ const rawData = [
         sounds: ["j", "a", "m"],
         word: "jam",
         emoji: "🫙",
-        hint: "sweet spread"
+        hint: "sweet spread",
+        arabicHint: "موس حلو"
       },
       {
         id: "j-2",
         sounds: ["j", "a", "r"],
         word: "jar",
         emoji: "🏺",
-        hint: "glass container"
+        hint: "glass container",
+        arabicHint: "حاوية زجاج"
       },
       {
         id: "j-3",
         sounds: ["j", "u", "g"],
         word: "jug",
         emoji: "🪣",
-        hint: "holds liquid"
+        hint: "holds liquid",
+        arabicHint: "يحفظ السائل"
       },
       {
         id: "j-4",
         sounds: ["j", "e", "e", "p"],
         word: "jeep",
         emoji: "🚙",
-        hint: "off-road car"
+        hint: "off-road car",
+        arabicHint: "سيارة عبر الطريقات"
       },
       {
         id: "j-5",
         sounds: ["j", "a", "c", "k", "e", "t"],
         word: "jacket",
         emoji: "🧥",
-        hint: "keep you warm"
+        hint: "keep you warm",
+        arabicHint: "تبقيك دافئاً"
       },
       {
         id: "j-6",
         sounds: ["j", "e", "w", "e", "l"],
         word: "jewel",
         emoji: "💎",
-        hint: "shiny gem"
+        hint: "shiny gem",
+        arabicHint: "جمة لامعة"
       },
       {
         id: "j-7",
         sounds: ["j", "u", "i", "c", "e"],
         word: "juice",
         emoji: "🍹",
-        hint: "from fruit"
+        hint: "from fruit",
+        arabicHint: "من الفواكه"
       },
       {
         id: "j-8",
         sounds: ["j", "u", "n", "g", "l", "e"],
         word: "jungle",
         emoji: "🌴",
-        hint: "wild forest"
+        hint: "wild forest",
+        arabicHint: "غابة برية"
       },
       {
         id: "j-9",
         sounds: ["j", "u", "m", "p"],
         word: "jump",
         emoji: "🦘",
-        hint: "leap in the air"
+        hint: "leap in the air",
+        arabicHint: "قفز في الهواء"
       },
       {
         id: "j-10",
         sounds: ["j", "e", "l", "l", "y"],
         word: "jelly",
         emoji: "🍮",
-        hint: "wobbly dessert"
+        hint: "wobbly dessert",
+        arabicHint: "حلوى مهتز"
       }
     ]
   },
@@ -33386,16 +35397,16 @@ const rawData = [
     lowercase: "k",
     phonicSound: "cuh",
     words: [
-      { word: "Key", emoji: "🔑" },
-      { word: "Kite", emoji: "🪁" },
-      { word: "King", emoji: "👑" },
-      { word: "Kitchen", emoji: "🍳" },
-      { word: "Knee", emoji: "🦵" },
-      { word: "Knife", emoji: "🔪" },
-      { word: "Koala", emoji: "🐨" },
-      { word: "Kitten", emoji: "🐱" },
-      { word: "Kiwi", emoji: "🥝" },
-      { word: "Kayak", emoji: "🚣" }
+      { word: "Key", emoji: "🔑", arabic: "مفتاح" },
+      { word: "Kite", emoji: "🪁", arabic: "طائرة ورقية" },
+      { word: "King", emoji: "👑", arabic: "ملك" },
+      { word: "Kitchen", emoji: "🍳", arabic: "مطبخ" },
+      { word: "Knee", emoji: "🦵", arabic: "ركبة" },
+      { word: "Knife", emoji: "🔪", arabic: "سكين" },
+      { word: "Koala", emoji: "🐨", arabic: "كوالا" },
+      { word: "Kitten", emoji: "🐱", arabic: "هريرة" },
+      { word: "Kiwi", emoji: "🥝", arabic: "كيوي" },
+      { word: "Kayak", emoji: "🚣", arabic: "كاياك" }
     ],
     blendingTasks: [
       {
@@ -33403,70 +35414,80 @@ const rawData = [
         sounds: ["k", "e", "y"],
         word: "key",
         emoji: "🔑",
-        hint: "opens a lock"
+        hint: "opens a lock",
+        arabicHint: "يفتح القفل"
       },
       {
         id: "k-2",
         sounds: ["k", "i", "t", "e"],
         word: "kite",
         emoji: "🪁",
-        hint: "flies in the sky"
+        hint: "flies in the sky",
+        arabicHint: "يطير في السماء"
       },
       {
         id: "k-3",
         sounds: ["k", "i", "n", "g"],
         word: "king",
         emoji: "👑",
-        hint: "wears a crown"
+        hint: "wears a crown",
+        arabicHint: "يرتدي التاج"
       },
       {
         id: "k-4",
         sounds: ["k", "i", "t", "c", "h", "e", "n"],
         word: "kitchen",
         emoji: "🍳",
-        hint: "where food is made"
+        hint: "where food is made",
+        arabicHint: "حيث يُصنع الطعام"
       },
       {
         id: "k-5",
         sounds: ["k", "n", "e", "e"],
         word: "knee",
         emoji: "🦵",
-        hint: "leg joint"
+        hint: "leg joint",
+        arabicHint: "مفصل الساق"
       },
       {
         id: "k-6",
         sounds: ["k", "n", "i", "f", "e"],
         word: "knife",
         emoji: "🔪",
-        hint: "cuts food"
+        hint: "cuts food",
+        arabicHint: "يقطع الطعام"
       },
       {
         id: "k-7",
         sounds: ["k", "o", "a", "l", "a"],
         word: "koala",
         emoji: "🐨",
-        hint: "climbs eucalyptus"
+        hint: "climbs eucalyptus",
+        arabicHint: "تتسلق الإيكاليبتوس"
       },
       {
         id: "k-8",
         sounds: ["k", "i", "t", "t", "e", "n"],
         word: "kitten",
         emoji: "🐱",
-        hint: "baby cat"
+        hint: "baby cat",
+        arabicHint: "قط صغير"
       },
       {
         id: "k-9",
         sounds: ["k", "i", "w", "i"],
         word: "kiwi",
         emoji: "🥝",
-        hint: "fuzzy green fruit"
+        hint: "fuzzy green fruit",
+        arabicHint: "فاكهة خضراء منمشقة"
       },
       {
         id: "k-10",
         sounds: ["k", "a", "y", "a", "k"],
         word: "kayak",
         emoji: "🚣",
-        hint: "paddle on water"
+        hint: "paddle on water",
+        arabicHint: "تجذف بالمجذاف على الماء"
       }
     ]
   },
@@ -33476,16 +35497,16 @@ const rawData = [
     lowercase: "l",
     phonicSound: "luh",
     words: [
-      { word: "Lamp", emoji: "💡" },
-      { word: "Leaf", emoji: "🍃" },
-      { word: "Lion", emoji: "🦁" },
-      { word: "Lake", emoji: "🏞️" },
-      { word: "Lock", emoji: "🔒" },
-      { word: "Ladder", emoji: "🪜" },
-      { word: "Lemon", emoji: "🍋" },
-      { word: "Letter", emoji: "✉️" },
-      { word: "Lobster", emoji: "🦞" },
-      { word: "Lunchbox", emoji: "🍱" }
+      { word: "Lamp", emoji: "💡", arabic: "مصباح" },
+      { word: "Leaf", emoji: "🍃", arabic: "ورقة شجر" },
+      { word: "Lion", emoji: "🦁", arabic: "أسد" },
+      { word: "Lake", emoji: "🏞️", arabic: "بحيرة" },
+      { word: "Lock", emoji: "🔒", arabic: "قفل" },
+      { word: "Ladder", emoji: "🪜", arabic: "سلم" },
+      { word: "Lemon", emoji: "🍋", arabic: "ليمون" },
+      { word: "Letter", emoji: "✉️", arabic: "حرف/رسالة" },
+      { word: "Lobster", emoji: "🦞", arabic: "كركند" },
+      { word: "Lunchbox", emoji: "🍱", arabic: "صندوق غداء" }
     ],
     blendingTasks: [
       {
@@ -33493,70 +35514,80 @@ const rawData = [
         sounds: ["l", "a", "m", "p"],
         word: "lamp",
         emoji: "💡",
-        hint: "gives off light"
+        hint: "gives off light",
+        arabicHint: "يشع الضوء"
       },
       {
         id: "l-2",
         sounds: ["l", "e", "a", "f"],
         word: "leaf",
         emoji: "🍃",
-        hint: "grows on trees"
+        hint: "grows on trees",
+        arabicHint: "ينمو على الأشجار"
       },
       {
         id: "l-3",
         sounds: ["l", "i", "o", "n"],
         word: "lion",
         emoji: "🦁",
-        hint: "king of jungle"
+        hint: "king of jungle",
+        arabicHint: "ملك الغابة"
       },
       {
         id: "l-4",
         sounds: ["l", "a", "k", "e"],
         word: "lake",
         emoji: "🏞️",
-        hint: "big body of water"
+        hint: "big body of water",
+        arabicHint: "جسم مائي كبير"
       },
       {
         id: "l-5",
         sounds: ["l", "o", "c", "k"],
         word: "lock",
         emoji: "🔒",
-        hint: "needs a key"
+        hint: "needs a key",
+        arabicHint: "يحتاج مفتاحاً"
       },
       {
         id: "l-6",
         sounds: ["l", "a", "d", "d", "e", "r"],
         word: "ladder",
         emoji: "🪜",
-        hint: "climb steps"
+        hint: "climb steps",
+        arabicHint: "تصعد الدرجات"
       },
       {
         id: "l-7",
         sounds: ["l", "e", "m", "o", "n"],
         word: "lemon",
         emoji: "🍋",
-        hint: "yellow and sour"
+        hint: "yellow and sour",
+        arabicHint: "أصفر وحامض"
       },
       {
         id: "l-8",
         sounds: ["l", "e", "t", "t", "e", "r"],
         word: "letter",
         emoji: "✉️",
-        hint: "written message"
+        hint: "written message",
+        arabicHint: "رسالة مكتوبة"
       },
       {
         id: "l-9",
         sounds: ["l", "o", "b", "s", "t", "e", "r"],
         word: "lobster",
         emoji: "🦞",
-        hint: "red sea creature"
+        hint: "red sea creature",
+        arabicHint: "كائن بحري أحمر"
       },
       {
         id: "l-10",
         sounds: ["l", "u", "n", "c", "h", "b", "o", "x"],
         word: "lunchbox",
         emoji: "🍱",
-        hint: "carries your food"
+        hint: "carries your food",
+        arabicHint: "تحمل طعامك"
       }
     ]
   },
@@ -33566,16 +35597,16 @@ const rawData = [
     lowercase: "m",
     phonicSound: "muh",
     words: [
-      { word: "Moon", emoji: "🌙" },
-      { word: "Man", emoji: "👨" },
-      { word: "Map", emoji: "🗺️" },
-      { word: "Milk", emoji: "🥛" },
-      { word: "Monkey", emoji: "🐒" },
-      { word: "Mouse", emoji: "🐭" },
-      { word: "Mountain", emoji: "🏔️" },
-      { word: "Mirror", emoji: "🪞" },
-      { word: "Magnet", emoji: "🧲" },
-      { word: "Mushroom", emoji: "🍄" }
+      { word: "Moon", emoji: "🌙", arabic: "قمر" },
+      { word: "Man", emoji: "👨", arabic: "رجل" },
+      { word: "Map", emoji: "🗺️", arabic: "خريطة" },
+      { word: "Milk", emoji: "🥛", arabic: "حليب" },
+      { word: "Monkey", emoji: "🐒", arabic: "قرد" },
+      { word: "Mouse", emoji: "🐭", arabic: "فأر" },
+      { word: "Mountain", emoji: "🏔️", arabic: "جبل" },
+      { word: "Mirror", emoji: "🪞", arabic: "مرآة" },
+      { word: "Magnet", emoji: "🧲", arabic: "مغناطيس" },
+      { word: "Mushroom", emoji: "🍄", arabic: "فطر" }
     ],
     blendingTasks: [
       {
@@ -33583,70 +35614,80 @@ const rawData = [
         sounds: ["m", "o", "o", "n"],
         word: "moon",
         emoji: "🌙",
-        hint: "glows at night"
+        hint: "glows at night",
+        arabicHint: "يلمع في الليل"
       },
       {
         id: "m-2",
         sounds: ["m", "a", "n"],
         word: "man",
         emoji: "👨",
-        hint: "a grown-up male"
+        hint: "a grown-up male",
+        arabicHint: "رجل نضج"
       },
       {
         id: "m-3",
         sounds: ["m", "a", "p"],
         word: "map",
         emoji: "🗺️",
-        hint: "shows where to go"
+        hint: "shows where to go",
+        arabicHint: "يشار أين ذهب"
       },
       {
         id: "m-4",
         sounds: ["m", "i", "l", "k"],
         word: "milk",
         emoji: "🥛",
-        hint: "white drink"
+        hint: "white drink",
+        arabicHint: "مشروب أبيض"
       },
       {
         id: "m-5",
         sounds: ["m", "o", "n", "k", "e", "y"],
         word: "monkey",
         emoji: "🐒",
-        hint: "swings on trees"
+        hint: "swings on trees",
+        arabicHint: "تتأرجح على الأشجار"
       },
       {
         id: "m-6",
         sounds: ["m", "o", "u", "s", "e"],
         word: "mouse",
         emoji: "🐭",
-        hint: "tiny furry animal"
+        hint: "tiny furry animal",
+        arabicHint: "حيوان صغير مزرقش"
       },
       {
         id: "m-7",
         sounds: ["m", "o", "u", "n", "t", "a", "i", "n"],
         word: "mountain",
         emoji: "🏔️",
-        hint: "very tall land"
+        hint: "very tall land",
+        arabicHint: "أرض عالية جداً"
       },
       {
         id: "m-8",
         sounds: ["m", "i", "r", "r", "o", "r"],
         word: "mirror",
         emoji: "🪞",
-        hint: "shows reflection"
+        hint: "shows reflection",
+        arabicHint: "يري انعكاسك"
       },
       {
         id: "m-9",
         sounds: ["m", "a", "g", "n", "e", "t"],
         word: "magnet",
         emoji: "🧲",
-        hint: "attracts metal"
+        hint: "attracts metal",
+        arabicHint: "يجذب المعادن"
       },
       {
         id: "m-10",
         sounds: ["m", "u", "s", "h", "r", "o", "o", "m"],
         word: "mushroom",
         emoji: "🍄",
-        hint: "grows in forest"
+        hint: "grows in forest",
+        arabicHint: "ينمو في الغابة"
       }
     ]
   },
@@ -33656,16 +35697,16 @@ const rawData = [
     lowercase: "n",
     phonicSound: "nuh",
     words: [
-      { word: "Net", emoji: "🥅" },
-      { word: "Nose", emoji: "👃" },
-      { word: "Nail", emoji: "🔩" },
-      { word: "Night", emoji: "🌃" },
-      { word: "Notebook", emoji: "📔" },
-      { word: "Nest", emoji: "🪺" },
-      { word: "Nurse", emoji: "👩‍⚕️" },
-      { word: "Needle", emoji: "🪡" },
-      { word: "Number", emoji: "🔢" },
-      { word: "Noodle", emoji: "🍜" }
+      { word: "Net", emoji: "🥅", arabic: "شبكة" },
+      { word: "Nose", emoji: "👃", arabic: "أنف" },
+      { word: "Nail", emoji: "🔩", arabic: "مسمار" },
+      { word: "Night", emoji: "🌃", arabic: "ليل" },
+      { word: "Notebook", emoji: "📔", arabic: "دفتر" },
+      { word: "Nest", emoji: "🪺", arabic: "عش" },
+      { word: "Nurse", emoji: "👩‍⚕️", arabic: "ممرضة" },
+      { word: "Needle", emoji: "🪡", arabic: "إبرة" },
+      { word: "Number", emoji: "🔢", arabic: "رقم" },
+      { word: "Noodle", emoji: "🍜", arabic: "نودلز" }
     ],
     blendingTasks: [
       {
@@ -33673,70 +35714,80 @@ const rawData = [
         sounds: ["n", "e", "t"],
         word: "net",
         emoji: "🥅",
-        hint: "catches things"
+        hint: "catches things",
+        arabicHint: "يمسك الأشياء"
       },
       {
         id: "n-2",
         sounds: ["n", "o", "s", "e"],
         word: "nose",
         emoji: "👃",
-        hint: "you smell with it"
+        hint: "you smell with it",
+        arabicHint: "تشم به"
       },
       {
         id: "n-3",
         sounds: ["n", "a", "i", "l"],
         word: "nail",
         emoji: "🔩",
-        hint: "hammered in wood"
+        hint: "hammered in wood",
+        arabicHint: "يطرق في الخشب"
       },
       {
         id: "n-4",
         sounds: ["n", "i", "g", "h", "t"],
         word: "night",
         emoji: "🌃",
-        hint: "when stars appear"
+        hint: "when stars appear",
+        arabicHint: "عندما تظهر النجوم"
       },
       {
         id: "n-5",
         sounds: ["n", "o", "t", "e", "b", "o", "o", "k"],
         word: "notebook",
         emoji: "📔",
-        hint: "write notes in it"
+        hint: "write notes in it",
+        arabicHint: "اكتب ملاحظات فيه"
       },
       {
         id: "n-6",
         sounds: ["n", "e", "s", "t"],
         word: "nest",
         emoji: "🪺",
-        hint: "birds live here"
+        hint: "birds live here",
+        arabicHint: "الطيور تعيش هنا"
       },
       {
         id: "n-7",
         sounds: ["n", "u", "r", "s", "e"],
         word: "nurse",
         emoji: "👩‍⚕️",
-        hint: "helps at hospital"
+        hint: "helps at hospital",
+        arabicHint: "تساعد في المستشفى"
       },
       {
         id: "n-8",
         sounds: ["n", "e", "e", "d", "l", "e"],
         word: "needle",
         emoji: "🪡",
-        hint: "sews cloth"
+        hint: "sews cloth",
+        arabicHint: "تخيط القماش"
       },
       {
         id: "n-9",
         sounds: ["n", "u", "m", "b", "e", "r"],
         word: "number",
         emoji: "🔢",
-        hint: "1, 2, 3..."
+        hint: "1, 2, 3...",
+        arabicHint: "١، ٢، ٣..."
       },
       {
         id: "n-10",
         sounds: ["n", "o", "o", "d", "l", "e"],
         word: "noodle",
         emoji: "🍜",
-        hint: "long pasta"
+        hint: "long pasta",
+        arabicHint: "مكرونة طويلة"
       }
     ]
   },
@@ -33746,16 +35797,16 @@ const rawData = [
     lowercase: "o",
     phonicSound: "oh",
     words: [
-      { word: "Orange", emoji: "🍊" },
-      { word: "Owl", emoji: "🦉" },
-      { word: "Oven", emoji: "🍕" },
-      { word: "Ocean", emoji: "🌊" },
-      { word: "Oil", emoji: "🛢️" },
-      { word: "Office", emoji: "🏢" },
-      { word: "Onion", emoji: "🧅" },
-      { word: "Orbit", emoji: "🪐" },
-      { word: "Ox", emoji: "🐂" },
-      { word: "Octopus", emoji: "🐙" }
+      { word: "Orange", emoji: "🍊", arabic: "برتقال" },
+      { word: "Owl", emoji: "🦉", arabic: "بومة" },
+      { word: "Oven", emoji: "🍕", arabic: "فرن" },
+      { word: "Ocean", emoji: "🌊", arabic: "محيط" },
+      { word: "Oil", emoji: "🛢️", arabic: "زيت" },
+      { word: "Office", emoji: "🏢", arabic: "مكتب" },
+      { word: "Onion", emoji: "🧅", arabic: "بصل" },
+      { word: "Orbit", emoji: "🪐", arabic: "مدار" },
+      { word: "Ox", emoji: "🐂", arabic: "ثور" },
+      { word: "Octopus", emoji: "🐙", arabic: "أخطبوط" }
     ],
     blendingTasks: [
       {
@@ -33763,70 +35814,80 @@ const rawData = [
         sounds: ["o", "r", "a", "n", "g", "e"],
         word: "orange",
         emoji: "🍊",
-        hint: "citrus fruit"
+        hint: "citrus fruit",
+        arabicHint: "فاكهة حمضية"
       },
       {
         id: "o-2",
         sounds: ["o", "w", "l"],
         word: "owl",
         emoji: "🦉",
-        hint: "hoots at night"
+        hint: "hoots at night",
+        arabicHint: "يصيح في الليل"
       },
       {
         id: "o-3",
         sounds: ["o", "v", "e", "n"],
         word: "oven",
         emoji: "🍕",
-        hint: "bakes food"
+        hint: "bakes food",
+        arabicHint: "تخبز الطعام"
       },
       {
         id: "o-4",
         sounds: ["o", "c", "e", "a", "n"],
         word: "ocean",
         emoji: "🌊",
-        hint: "vast salty water"
+        hint: "vast salty water",
+        arabicHint: "ماء ملح شاسع"
       },
       {
         id: "o-5",
         sounds: ["o", "i", "l"],
         word: "oil",
         emoji: "🛢️",
-        hint: "slippery liquid"
+        hint: "slippery liquid",
+        arabicHint: "سائل زلق"
       },
       {
         id: "o-6",
         sounds: ["o", "f", "f", "i", "c", "e"],
         word: "office",
         emoji: "🏢",
-        hint: "where people work"
+        hint: "where people work",
+        arabicHint: "حيث يعمل الناس"
       },
       {
         id: "o-7",
         sounds: ["o", "n", "i", "o", "n"],
         word: "onion",
         emoji: "🧅",
-        hint: "makes eyes water"
+        hint: "makes eyes water",
+        arabicHint: "يجعل العين تبكي"
       },
       {
         id: "o-8",
         sounds: ["o", "r", "b", "i", "t"],
         word: "orbit",
         emoji: "🪐",
-        hint: "circles a planet"
+        hint: "circles a planet",
+        arabicHint: "يدور حول كوكب"
       },
       {
         id: "o-9",
         sounds: ["o", "x"],
         word: "ox",
         emoji: "🐂",
-        hint: "strong farm animal"
+        hint: "strong farm animal",
+        arabicHint: "حيوان مزرعة قوي"
       },
       {
         id: "o-10",
         sounds: ["o", "c", "t", "o", "p", "u", "s"],
         word: "octopus",
         emoji: "🐙",
-        hint: "has 8 arms"
+        hint: "has 8 arms",
+        arabicHint: "لديه 8 أذراع"
       }
     ]
   },
@@ -33836,16 +35897,16 @@ const rawData = [
     lowercase: "p",
     phonicSound: "puh",
     words: [
-      { word: "Pen", emoji: "🖊️" },
-      { word: "Pig", emoji: "🐷" },
-      { word: "Plate", emoji: "🍽️" },
-      { word: "Pencil", emoji: "✏️" },
-      { word: "Paper", emoji: "📄" },
-      { word: "Pan", emoji: "🍳" },
-      { word: "Pillow", emoji: "🛏️" },
-      { word: "Park", emoji: "🌳" },
-      { word: "Plane", emoji: "✈️" },
-      { word: "Pear", emoji: "🍐" }
+      { word: "Pen", emoji: "🖊️", arabic: "قلم" },
+      { word: "Pig", emoji: "🐷", arabic: "خنزير" },
+      { word: "Plate", emoji: "🍽️", arabic: "طبق" },
+      { word: "Pencil", emoji: "✏️", arabic: "قلم رصاص" },
+      { word: "Paper", emoji: "📄", arabic: "ورق" },
+      { word: "Pan", emoji: "🍳", arabic: "مقلاة" },
+      { word: "Pillow", emoji: "🛏️", arabic: "وسادة" },
+      { word: "Park", emoji: "🌳", arabic: "حديقة" },
+      { word: "Plane", emoji: "✈️", arabic: "طائرة" },
+      { word: "Pear", emoji: "🍐", arabic: "إجاص" }
     ],
     blendingTasks: [
       {
@@ -33853,70 +35914,80 @@ const rawData = [
         sounds: ["p", "e", "n"],
         word: "pen",
         emoji: "🖊️",
-        hint: "used to write"
+        hint: "used to write",
+        arabicHint: "يُستخد للكتابة"
       },
       {
         id: "p-2",
         sounds: ["p", "i", "g"],
         word: "pig",
         emoji: "🐷",
-        hint: "says oink"
+        hint: "says oink",
+        arabicHint: "يقول أوينك"
       },
       {
         id: "p-3",
         sounds: ["p", "l", "a", "t", "e"],
         word: "plate",
         emoji: "🍽️",
-        hint: "holds your food"
+        hint: "holds your food",
+        arabicHint: "يحفظ طعامك"
       },
       {
         id: "p-4",
         sounds: ["p", "e", "n", "c", "i", "l"],
         word: "pencil",
         emoji: "✏️",
-        hint: "write and erase"
+        hint: "write and erase",
+        arabicHint: "تكتب وتمسح"
       },
       {
         id: "p-5",
         sounds: ["p", "a", "p", "e", "r"],
         word: "paper",
         emoji: "📄",
-        hint: "write on it"
+        hint: "write on it",
+        arabicHint: "اكتب عليه"
       },
       {
         id: "p-6",
         sounds: ["p", "a", "n"],
         word: "pan",
         emoji: "🍳",
-        hint: "cook in it"
+        hint: "cook in it",
+        arabicHint: "طبخ فيه"
       },
       {
         id: "p-7",
         sounds: ["p", "i", "l", "l", "o", "w"],
         word: "pillow",
         emoji: "🛏️",
-        hint: "rest your head"
+        hint: "rest your head",
+        arabicHint: "استرح رأسك"
       },
       {
         id: "p-8",
         sounds: ["p", "a", "r", "k"],
         word: "park",
         emoji: "🌳",
-        hint: "play outdoors"
+        hint: "play outdoors",
+        arabicHint: "العب في الهواء الطلق"
       },
       {
         id: "p-9",
         sounds: ["p", "l", "a", "n", "e"],
         word: "plane",
         emoji: "✈️",
-        hint: "flies in sky"
+        hint: "flies in sky",
+        arabicHint: "يطير في السماء"
       },
       {
         id: "p-10",
         sounds: ["p", "e", "a", "r"],
         word: "pear",
         emoji: "🍐",
-        hint: "green teardrop fruit"
+        hint: "green teardrop fruit",
+        arabicHint: "فاكهة خضراء شاكلها دمعة"
       }
     ]
   },
@@ -33926,16 +35997,16 @@ const rawData = [
     lowercase: "q",
     phonicSound: "kwuh",
     words: [
-      { word: "Queen", emoji: "👸" },
-      { word: "Quilt", emoji: "🛏️" },
-      { word: "Question", emoji: "❓" },
-      { word: "Quail", emoji: "🐦" },
-      { word: "Quill", emoji: "🪶" },
-      { word: "Quartz", emoji: "💎" },
-      { word: "Queue", emoji: "👥" },
-      { word: "Quarter", emoji: "🪙" },
-      { word: "Quote", emoji: "💬" },
-      { word: "Quiz", emoji: "📝" }
+      { word: "Queen", emoji: "👸", arabic: "ملكة" },
+      { word: "Quilt", emoji: "🛏️", arabic: "لحاف" },
+      { word: "Question", emoji: "❓", arabic: "سؤال" },
+      { word: "Quail", emoji: "🐦", arabic: "سمان" },
+      { word: "Quill", emoji: "🪶", arabic: "ريشة كتابة" },
+      { word: "Quartz", emoji: "💎", arabic: "كوارتز" },
+      { word: "Queue", emoji: "👥", arabic: "طابور" },
+      { word: "Quarter", emoji: "🪙", arabic: "ربع" },
+      { word: "Quote", emoji: "💬", arabic: "اقتباس" },
+      { word: "Quiz", emoji: "📝", arabic: "اختبار" }
     ],
     blendingTasks: [
       {
@@ -33943,70 +36014,80 @@ const rawData = [
         sounds: ["q", "u", "e", "e", "n"],
         word: "queen",
         emoji: "👸",
-        hint: "rules a kingdom"
+        hint: "rules a kingdom",
+        arabicHint: "حاكم مملكة"
       },
       {
         id: "q-2",
         sounds: ["q", "u", "i", "l", "t"],
         word: "quilt",
         emoji: "🛏️",
-        hint: "cozy blanket"
+        hint: "cozy blanket",
+        arabicHint: "بطانية دافئة"
       },
       {
         id: "q-3",
         sounds: ["q", "u", "e", "s", "t", "i", "o", "n"],
         word: "question",
         emoji: "❓",
-        hint: "asks for answer"
+        hint: "asks for answer",
+        arabicHint: "يطلب جواباً"
       },
       {
         id: "q-4",
         sounds: ["q", "u", "a", "i", "l"],
         word: "quail",
         emoji: "🐦",
-        hint: "small bird"
+        hint: "small bird",
+        arabicHint: "طائر صغير"
       },
       {
         id: "q-5",
         sounds: ["q", "u", "i", "l", "l"],
         word: "quill",
         emoji: "🪶",
-        hint: "feather pen"
+        hint: "feather pen",
+        arabicHint: "قلم ريشة"
       },
       {
         id: "q-6",
         sounds: ["q", "u", "a", "r", "t", "z"],
         word: "quartz",
         emoji: "💎",
-        hint: "mineral crystal"
+        hint: "mineral crystal",
+        arabicHint: "بلورة معدنية"
       },
       {
         id: "q-7",
         sounds: ["q", "u", "e", "u", "e"],
         word: "queue",
         emoji: "👥",
-        hint: "wait in line"
+        hint: "wait in line",
+        arabicHint: "انتظر في الطابور"
       },
       {
         id: "q-8",
         sounds: ["q", "u", "a", "r", "t", "e", "r"],
         word: "quarter",
         emoji: "🪙",
-        hint: "one fourth"
+        hint: "one fourth",
+        arabicHint: "ربع"
       },
       {
         id: "q-9",
         sounds: ["q", "u", "o", "t", "e"],
         word: "quote",
         emoji: "💬",
-        hint: "someone's words"
+        hint: "someone's words",
+        arabicHint: "كلام شخص ما"
       },
       {
         id: "q-10",
         sounds: ["q", "u", "i", "z"],
         word: "quiz",
         emoji: "📝",
-        hint: "test your knowledge"
+        hint: "test your knowledge",
+        arabicHint: "اختبر معرفتك"
       }
     ]
   },
@@ -34016,16 +36097,16 @@ const rawData = [
     lowercase: "r",
     phonicSound: "ruh",
     words: [
-      { word: "Rat", emoji: "🐀" },
-      { word: "Ring", emoji: "💍" },
-      { word: "Road", emoji: "🛣️" },
-      { word: "Rock", emoji: "🪨" },
-      { word: "Rope", emoji: "🪢" },
-      { word: "Rose", emoji: "🌹" },
-      { word: "Robot", emoji: "🤖" },
-      { word: "Rain", emoji: "🌧️" },
-      { word: "River", emoji: "🏞️" },
-      { word: "Rocket", emoji: "🚀" }
+      { word: "Rat", emoji: "🐀", arabic: "جرذ" },
+      { word: "Ring", emoji: "💍", arabic: "خاتم" },
+      { word: "Road", emoji: "🛣️", arabic: "طريق" },
+      { word: "Rock", emoji: "🪨", arabic: "صخرة" },
+      { word: "Rope", emoji: "🪢", arabic: "حبل" },
+      { word: "Rose", emoji: "🌹", arabic: "وردة" },
+      { word: "Robot", emoji: "🤖", arabic: "روبوت" },
+      { word: "Rain", emoji: "🌧️", arabic: "مطر" },
+      { word: "River", emoji: "🏞️", arabic: "نهر" },
+      { word: "Rocket", emoji: "🚀", arabic: "صاروخ" }
     ],
     blendingTasks: [
       {
@@ -34033,70 +36114,80 @@ const rawData = [
         sounds: ["r", "a", "t"],
         word: "rat",
         emoji: "🐀",
-        hint: "small rodent"
+        hint: "small rodent",
+        arabicHint: "قارض صغير"
       },
       {
         id: "r-2",
         sounds: ["r", "i", "n", "g"],
         word: "ring",
         emoji: "💍",
-        hint: "worn on finger"
+        hint: "worn on finger",
+        arabicHint: "ترتديه في الإصبع"
       },
       {
         id: "r-3",
         sounds: ["r", "o", "a", "d"],
         word: "road",
         emoji: "🛣️",
-        hint: "cars drive here"
+        hint: "cars drive here",
+        arabicHint: "السيارات تسير هنا"
       },
       {
         id: "r-4",
         sounds: ["r", "o", "c", "k"],
         word: "rock",
         emoji: "🪨",
-        hint: "hard stone"
+        hint: "hard stone",
+        arabicHint: "حجرة صلبة"
       },
       {
         id: "r-5",
         sounds: ["r", "o", "p", "e"],
         word: "rope",
         emoji: "🪢",
-        hint: "thick cord"
+        hint: "thick cord",
+        arabicHint: "حبل سميك"
       },
       {
         id: "r-6",
         sounds: ["r", "o", "s", "e"],
         word: "rose",
         emoji: "🌹",
-        hint: "beautiful flower"
+        hint: "beautiful flower",
+        arabicHint: "زهرة جميلة"
       },
       {
         id: "r-7",
         sounds: ["r", "o", "b", "o", "t"],
         word: "robot",
         emoji: "🤖",
-        hint: "metal machine"
+        hint: "metal machine",
+        arabicHint: "آلة معدنية"
       },
       {
         id: "r-8",
         sounds: ["r", "a", "i", "n"],
         word: "rain",
         emoji: "🌧️",
-        hint: "falls from clouds"
+        hint: "falls from clouds",
+        arabicHint: "يسقط من السحب"
       },
       {
         id: "r-9",
         sounds: ["r", "i", "v", "e", "r"],
         word: "river",
         emoji: "🏞️",
-        hint: "flowing water"
+        hint: "flowing water",
+        arabicHint: "ماء جاري"
       },
       {
         id: "r-10",
         sounds: ["r", "o", "c", "k", "e", "t"],
         word: "rocket",
         emoji: "🚀",
-        hint: "goes to space"
+        hint: "goes to space",
+        arabicHint: "يذهب إلى الفضاء"
       }
     ]
   },
@@ -34106,16 +36197,16 @@ const rawData = [
     lowercase: "s",
     phonicSound: "suh",
     words: [
-      { word: "Sun", emoji: "☀️" },
-      { word: "Star", emoji: "⭐" },
-      { word: "Shoe", emoji: "👟" },
-      { word: "School", emoji: "🏫" },
-      { word: "Snake", emoji: "🐍" },
-      { word: "Spoon", emoji: "🥄" },
-      { word: "Ship", emoji: "🚢" },
-      { word: "Sock", emoji: "🧦" },
-      { word: "Sand", emoji: "🏖️" },
-      { word: "Spider", emoji: "🕷️" }
+      { word: "Sun", emoji: "☀️", arabic: "شمس" },
+      { word: "Star", emoji: "⭐", arabic: "نجمة" },
+      { word: "Shoe", emoji: "👟", arabic: "حذاء" },
+      { word: "School", emoji: "🏫", arabic: "مدرسة" },
+      { word: "Snake", emoji: "🐍", arabic: "ثعبان" },
+      { word: "Spoon", emoji: "🥄", arabic: "ملعقة" },
+      { word: "Ship", emoji: "🚢", arabic: "سفينة" },
+      { word: "Sock", emoji: "🧦", arabic: "جورب" },
+      { word: "Sand", emoji: "🏖️", arabic: "رمل" },
+      { word: "Spider", emoji: "🕷️", arabic: "عنكبوت" }
     ],
     blendingTasks: [
       {
@@ -34123,70 +36214,80 @@ const rawData = [
         sounds: ["s", "u", "n"],
         word: "sun",
         emoji: "☀️",
-        hint: "lights the day"
+        hint: "lights the day",
+        arabicHint: "يضيء النهار"
       },
       {
         id: "s-2",
         sounds: ["s", "t", "a", "r"],
         word: "star",
         emoji: "⭐",
-        hint: "shines at night"
+        hint: "shines at night",
+        arabicHint: "يلمع في الليل"
       },
       {
         id: "s-3",
         sounds: ["s", "h", "o", "e"],
         word: "shoe",
         emoji: "👟",
-        hint: "wear on foot"
+        hint: "wear on foot",
+        arabicHint: "ترتديه في القدم"
       },
       {
         id: "s-4",
         sounds: ["s", "c", "h", "o", "o", "l"],
         word: "school",
         emoji: "🏫",
-        hint: "where you learn"
+        hint: "where you learn",
+        arabicHint: "حيث تتعلم"
       },
       {
         id: "s-5",
         sounds: ["s", "n", "a", "k", "e"],
         word: "snake",
         emoji: "🐍",
-        hint: "long reptile"
+        hint: "long reptile",
+        arabicHint: "زاحف طويل"
       },
       {
         id: "s-6",
         sounds: ["s", "p", "o", "o", "n"],
         word: "spoon",
         emoji: "🥄",
-        hint: "scoops food"
+        hint: "scoops food",
+        arabicHint: "يستحب الطعام"
       },
       {
         id: "s-7",
         sounds: ["s", "h", "i", "p"],
         word: "ship",
         emoji: "🚢",
-        hint: "sails the ocean"
+        hint: "sails the ocean",
+        arabicHint: "يرسو البحر"
       },
       {
         id: "s-8",
         sounds: ["s", "o", "c", "k"],
         word: "sock",
         emoji: "🧦",
-        hint: "wear on foot"
+        hint: "wear on foot",
+        arabicHint: "ترتديه في القدم"
       },
       {
         id: "s-9",
         sounds: ["s", "a", "n", "d"],
         word: "sand",
         emoji: "🏖️",
-        hint: "tiny grains on beach"
+        hint: "tiny grains on beach",
+        arabicHint: "حبوب صغيرة على الشاطئ"
       },
       {
         id: "s-10",
         sounds: ["s", "p", "i", "d", "e", "r"],
         word: "spider",
         emoji: "🕷️",
-        hint: "has 8 legs"
+        hint: "has 8 legs",
+        arabicHint: "لديه 8 أرجل"
       }
     ]
   },
@@ -34196,16 +36297,16 @@ const rawData = [
     lowercase: "t",
     phonicSound: "tuh",
     words: [
-      { word: "Tree", emoji: "🌳" },
-      { word: "Table", emoji: "🪑" },
-      { word: "Tiger", emoji: "🐯" },
-      { word: "Train", emoji: "🚂" },
-      { word: "Toy", emoji: "🧸" },
-      { word: "Tap", emoji: "🚿" },
-      { word: "Tent", emoji: "⛺" },
-      { word: "Tomato", emoji: "🍅" },
-      { word: "Truck", emoji: "🚚" },
-      { word: "Turtle", emoji: "🐢" }
+      { word: "Tree", emoji: "🌳", arabic: "شجرة" },
+      { word: "Table", emoji: "🪑", arabic: "طاولة" },
+      { word: "Tiger", emoji: "🐯", arabic: "نمر" },
+      { word: "Train", emoji: "🚂", arabic: "قطار" },
+      { word: "Toy", emoji: "🧸", arabic: "لعبة" },
+      { word: "Tap", emoji: "🚿", arabic: "صنبور" },
+      { word: "Tent", emoji: "⛺", arabic: "خيمة" },
+      { word: "Tomato", emoji: "🍅", arabic: "طماطم" },
+      { word: "Truck", emoji: "🚚", arabic: "شاحنة" },
+      { word: "Turtle", emoji: "🐢", arabic: "سلحفاة" }
     ],
     blendingTasks: [
       {
@@ -34213,70 +36314,80 @@ const rawData = [
         sounds: ["t", "r", "e", "e"],
         word: "tree",
         emoji: "🌳",
-        hint: "grows in forest"
+        hint: "grows in forest",
+        arabicHint: "ينمو في الغابة"
       },
       {
         id: "t-2",
         sounds: ["t", "a", "b", "l", "e"],
         word: "table",
         emoji: "🪑",
-        hint: "eat at it"
+        hint: "eat at it",
+        arabicHint: "تأكل عليه"
       },
       {
         id: "t-3",
         sounds: ["t", "i", "g", "e", "r"],
         word: "tiger",
         emoji: "🐯",
-        hint: "striped big cat"
+        hint: "striped big cat",
+        arabicHint: "قط كبير مخطط"
       },
       {
         id: "t-4",
         sounds: ["t", "r", "a", "i", "n"],
         word: "train",
         emoji: "🚂",
-        hint: "runs on tracks"
+        hint: "runs on tracks",
+        arabicHint: "يسير على القضبان"
       },
       {
         id: "t-5",
         sounds: ["t", "o", "y"],
         word: "toy",
         emoji: "🧸",
-        hint: "children play with it"
+        hint: "children play with it",
+        arabicHint: "الأطفال يلعبون به"
       },
       {
         id: "t-6",
         sounds: ["t", "a", "p"],
         word: "tap",
         emoji: "🚿",
-        hint: "water flows from it"
+        hint: "water flows from it",
+        arabicHint: "ماء يتدفق منه"
       },
       {
         id: "t-7",
         sounds: ["t", "e", "n", "t"],
         word: "tent",
         emoji: "⛺",
-        hint: "camping shelter"
+        hint: "camping shelter",
+        arabicHint: "مئوى للتخييم"
       },
       {
         id: "t-8",
         sounds: ["t", "o", "m", "a", "t", "o"],
         word: "tomato",
         emoji: "🍅",
-        hint: "red round fruit"
+        hint: "red round fruit",
+        arabicHint: "فاكهة حمراء مدورة"
       },
       {
         id: "t-9",
         sounds: ["t", "r", "u", "c", "k"],
         word: "truck",
         emoji: "🚚",
-        hint: "carries heavy loads"
+        hint: "carries heavy loads",
+        arabicHint: "يحمل أحمال ثقيلة"
       },
       {
         id: "t-10",
         sounds: ["t", "u", "r", "t", "l", "e"],
         word: "turtle",
         emoji: "🐢",
-        hint: "slow with a shell"
+        hint: "slow with a shell",
+        arabicHint: "بطيء بقشرة"
       }
     ]
   },
@@ -34286,16 +36397,16 @@ const rawData = [
     lowercase: "u",
     phonicSound: "uh",
     words: [
-      { word: "Umbrella", emoji: "☂️" },
-      { word: "Uniform", emoji: "👔" },
-      { word: "Universe", emoji: "🌌" },
-      { word: "Urn", emoji: "🏺" },
-      { word: "Unicorn", emoji: "🦄" },
-      { word: "Unit", emoji: "📐" },
-      { word: "Uphill", emoji: "⛰️" },
-      { word: "Uncle", emoji: "👨" },
-      { word: "Useful", emoji: "🧰" },
-      { word: "Under", emoji: "⬇️" }
+      { word: "Umbrella", emoji: "☂️", arabic: "مظلة" },
+      { word: "Uniform", emoji: "👔", arabic: "زي" },
+      { word: "Universe", emoji: "🌌", arabic: "كون" },
+      { word: "Urn", emoji: "🏺", arabic: "إناء" },
+      { word: "Unicorn", emoji: "🦄", arabic: "حيد القرن" },
+      { word: "Unit", emoji: "📐", arabic: "وحدة" },
+      { word: "Uphill", emoji: "⛰️", arabic: "صعود" },
+      { word: "Uncle", emoji: "👨", arabic: "عم/خال" },
+      { word: "Useful", emoji: "🧰", arabic: "مفيد" },
+      { word: "Under", emoji: "⬇️", arabic: "تحت" }
     ],
     blendingTasks: [
       {
@@ -34303,70 +36414,80 @@ const rawData = [
         sounds: ["u", "m", "b", "r", "e", "l", "l", "a"],
         word: "umbrella",
         emoji: "☂️",
-        hint: "keeps rain off"
+        hint: "keeps rain off",
+        arabicHint: "يحمي من المطر"
       },
       {
         id: "u-2",
         sounds: ["u", "n", "i", "f", "o", "r", "m"],
         word: "uniform",
         emoji: "👔",
-        hint: "same outfit"
+        hint: "same outfit",
+        arabicHint: "زي واحد"
       },
       {
         id: "u-3",
         sounds: ["u", "n", "i", "v", "e", "r", "s", "e"],
         word: "universe",
         emoji: "🌌",
-        hint: "all of space"
+        hint: "all of space",
+        arabicHint: "كل الفضاء"
       },
       {
         id: "u-4",
         sounds: ["u", "r", "n"],
         word: "urn",
         emoji: "🏺",
-        hint: "decorative vase"
+        hint: "decorative vase",
+        arabicHint: "مزهرية ديكوراتيفية"
       },
       {
         id: "u-5",
         sounds: ["u", "n", "i", "c", "o", "r", "n"],
         word: "unicorn",
         emoji: "🦄",
-        hint: "magic horse"
+        hint: "magic horse",
+        arabicHint: "حصان سحري"
       },
       {
         id: "u-6",
         sounds: ["u", "n", "i", "t"],
         word: "unit",
         emoji: "📐",
-        hint: "a single part"
+        hint: "a single part",
+        arabicHint: "جزء واحد"
       },
       {
         id: "u-7",
         sounds: ["u", "p", "h", "i", "l", "l"],
         word: "uphill",
         emoji: "⛰️",
-        hint: "going up the slope"
+        hint: "going up the slope",
+        arabicHint: "الصعود إلى المنحدر"
       },
       {
         id: "u-8",
         sounds: ["u", "n", "c", "l", "e"],
         word: "uncle",
         emoji: "👨",
-        hint: "parent's brother"
+        hint: "parent's brother",
+        arabicHint: "أخ الأب"
       },
       {
         id: "u-9",
         sounds: ["u", "s", "e", "f", "u", "l"],
         word: "useful",
         emoji: "🧰",
-        hint: "very helpful"
+        hint: "very helpful",
+        arabicHint: "مفيد جداً"
       },
       {
         id: "u-10",
         sounds: ["u", "n", "d", "e", "r"],
         word: "under",
         emoji: "⬇️",
-        hint: "below something"
+        hint: "below something",
+        arabicHint: "تحت شيء ما"
       }
     ]
   },
@@ -34376,16 +36497,16 @@ const rawData = [
     lowercase: "v",
     phonicSound: "vuh",
     words: [
-      { word: "Van", emoji: "🚐" },
-      { word: "Vase", emoji: "🪴" },
-      { word: "Violin", emoji: "🎻" },
-      { word: "Voice", emoji: "🎙️" },
-      { word: "Village", emoji: "🏘️" },
-      { word: "Veggie", emoji: "🥦" },
-      { word: "Vehicle", emoji: "🚗" },
-      { word: "Valve", emoji: "🔧" },
-      { word: "Volcano", emoji: "🌋" },
-      { word: "Vest", emoji: "🦺" }
+      { word: "Van", emoji: "🚐", arabic: "عربة" },
+      { word: "Vase", emoji: "🪴", arabic: "مزهرية" },
+      { word: "Violin", emoji: "🎻", arabic: "كمان" },
+      { word: "Voice", emoji: "🎙️", arabic: "صوت" },
+      { word: "Village", emoji: "🏘️", arabic: "قرية" },
+      { word: "Veggie", emoji: "🥦", arabic: "خضروات" },
+      { word: "Vehicle", emoji: "🚗", arabic: "مركبة" },
+      { word: "Valve", emoji: "🔧", arabic: "صمام" },
+      { word: "Volcano", emoji: "🌋", arabic: "بركان" },
+      { word: "Vest", emoji: "🦺", arabic: "سترة" }
     ],
     blendingTasks: [
       {
@@ -34393,70 +36514,80 @@ const rawData = [
         sounds: ["v", "a", "n"],
         word: "van",
         emoji: "🚐",
-        hint: "a big vehicle"
+        hint: "a big vehicle",
+        arabicHint: "سيارة كبيرة"
       },
       {
         id: "v-2",
         sounds: ["v", "a", "s", "e"],
         word: "vase",
         emoji: "🪴",
-        hint: "holds flowers"
+        hint: "holds flowers",
+        arabicHint: "يحفظ الزهور"
       },
       {
         id: "v-3",
         sounds: ["v", "i", "o", "l", "i", "n"],
         word: "violin",
         emoji: "🎻",
-        hint: "string instrument"
+        hint: "string instrument",
+        arabicHint: "آلة وترية"
       },
       {
         id: "v-4",
         sounds: ["v", "o", "i", "c", "e"],
         word: "voice",
         emoji: "🎙️",
-        hint: "you sing with it"
+        hint: "you sing with it",
+        arabicHint: "تغني به"
       },
       {
         id: "v-5",
         sounds: ["v", "i", "l", "l", "a", "g", "e"],
         word: "village",
         emoji: "🏘️",
-        hint: "small community"
+        hint: "small community",
+        arabicHint: "مجتمع صغير"
       },
       {
         id: "v-6",
         sounds: ["v", "e", "g", "g", "i", "e"],
         word: "veggie",
         emoji: "🥦",
-        hint: "healthy food"
+        hint: "healthy food",
+        arabicHint: "طعام صحي"
       },
       {
         id: "v-7",
         sounds: ["v", "e", "h", "i", "c", "l", "e"],
         word: "vehicle",
         emoji: "🚗",
-        hint: "means of transport"
+        hint: "means of transport",
+        arabicHint: "وسيلة نقل"
       },
       {
         id: "v-8",
         sounds: ["v", "a", "l", "v", "e"],
         word: "valve",
         emoji: "🔧",
-        hint: "controls flow"
+        hint: "controls flow",
+        arabicHint: "يتحكم في التدفق"
       },
       {
         id: "v-9",
         sounds: ["v", "o", "l", "c", "a", "n", "o"],
         word: "volcano",
         emoji: "🌋",
-        hint: "erupts with lava"
+        hint: "erupts with lava",
+        arabicHint: "يثور بالماغما"
       },
       {
         id: "v-10",
         sounds: ["v", "e", "s", "t"],
         word: "vest",
         emoji: "🦺",
-        hint: "sleeveless jacket"
+        hint: "sleeveless jacket",
+        arabicHint: "سترة بدون أكمام"
       }
     ]
   },
@@ -34466,16 +36597,16 @@ const rawData = [
     lowercase: "w",
     phonicSound: "wuh",
     words: [
-      { word: "Water", emoji: "💧" },
-      { word: "Window", emoji: "🪟" },
-      { word: "Watch", emoji: "⌚" },
-      { word: "Wall", emoji: "🧱" },
-      { word: "Wheel", emoji: "🎡" },
-      { word: "Worm", emoji: "🐛" },
-      { word: "Wolf", emoji: "🐺" },
-      { word: "Wind", emoji: "🌬️" },
-      { word: "Wood", emoji: "🪵" },
-      { word: "Whale", emoji: "🐳" }
+      { word: "Water", emoji: "💧", arabic: "ماء" },
+      { word: "Window", emoji: "🪟", arabic: "نافذة" },
+      { word: "Watch", emoji: "⌚", arabic: "ساعة يد" },
+      { word: "Wall", emoji: "🧱", arabic: "جدار" },
+      { word: "Wheel", emoji: "🎡", arabic: "عجلة" },
+      { word: "Worm", emoji: "🐛", arabic: "دودة" },
+      { word: "Wolf", emoji: "🐺", arabic: "ذئب" },
+      { word: "Wind", emoji: "🌬️", arabic: "ريح" },
+      { word: "Wood", emoji: "🪵", arabic: "خشب" },
+      { word: "Whale", emoji: "🐳", arabic: "حوت" }
     ],
     blendingTasks: [
       {
@@ -34483,70 +36614,80 @@ const rawData = [
         sounds: ["w", "a", "t", "e", "r"],
         word: "water",
         emoji: "💧",
-        hint: "you drink it"
+        hint: "you drink it",
+        arabicHint: "تشربه"
       },
       {
         id: "w-2",
         sounds: ["w", "i", "n", "d", "o", "w"],
         word: "window",
         emoji: "🪟",
-        hint: "lets light in"
+        hint: "lets light in",
+        arabicHint: "يدخل الضوء"
       },
       {
         id: "w-3",
         sounds: ["w", "a", "t", "c", "h"],
         word: "watch",
         emoji: "⌚",
-        hint: "tells the time"
+        hint: "tells the time",
+        arabicHint: "يري الوقت"
       },
       {
         id: "w-4",
         sounds: ["w", "a", "l", "l"],
         word: "wall",
         emoji: "🧱",
-        hint: "made of bricks"
+        hint: "made of bricks",
+        arabicHint: "مصنوع من الطوب"
       },
       {
         id: "w-5",
         sounds: ["w", "h", "e", "e", "l"],
         word: "wheel",
         emoji: "🎡",
-        hint: "round and rolls"
+        hint: "round and rolls",
+        arabicHint: "مدور ويدور"
       },
       {
         id: "w-6",
         sounds: ["w", "o", "r", "m"],
         word: "worm",
         emoji: "🐛",
-        hint: "wiggly creature"
+        hint: "wiggly creature",
+        arabicHint: "كائن يتحرك"
       },
       {
         id: "w-7",
         sounds: ["w", "o", "l", "f"],
         word: "wolf",
         emoji: "🐺",
-        hint: "howls at moon"
+        hint: "howls at moon",
+        arabicHint: "يعول في القمر"
       },
       {
         id: "w-8",
         sounds: ["w", "i", "n", "d"],
         word: "wind",
         emoji: "🌬️",
-        hint: "moving air"
+        hint: "moving air",
+        arabicHint: "هواء متحرك"
       },
       {
         id: "w-9",
         sounds: ["w", "o", "o", "d"],
         word: "wood",
         emoji: "🪵",
-        hint: "from trees"
+        hint: "from trees",
+        arabicHint: "من الأشجار"
       },
       {
         id: "w-10",
         sounds: ["w", "h", "a", "l", "e"],
         word: "whale",
         emoji: "🐳",
-        hint: "largest sea animal"
+        hint: "largest sea animal",
+        arabicHint: "أكبر حيوان بحري"
       }
     ]
   },
@@ -34556,16 +36697,16 @@ const rawData = [
     lowercase: "x",
     phonicSound: "ksuh",
     words: [
-      { word: "X-ray", emoji: "🩻" },
-      { word: "Xylophone", emoji: "🎵" },
-      { word: "Xerox", emoji: "📠" },
-      { word: "Xenon", emoji: "💡" },
-      { word: "Xbox", emoji: "🎮" },
-      { word: "Xmas", emoji: "🎄" },
-      { word: "Xylem", emoji: "🌱" },
-      { word: "X-axis", emoji: "📊" },
-      { word: "Xiphoid", emoji: "🦴" },
-      { word: "Xenolith", emoji: "🪨" }
+      { word: "X-ray", emoji: "🩻", arabic: "أشعة سينية" },
+      { word: "Xylophone", emoji: "🎵", arabic: "إكسيليفون" },
+      { word: "Xerox", emoji: "📠", arabic: "النسخ" },
+      { word: "Xenon", emoji: "💡", arabic: "زينون" },
+      { word: "Xbox", emoji: "🎮", arabic: "إكس بوكس" },
+      { word: "Xmas", emoji: "🎄", arabic: "عيد الميلاد" },
+      { word: "Xylem", emoji: "🌱", arabic: "خشبية" },
+      { word: "X-axis", emoji: "📊", arabic: "المحور س" },
+      { word: "Xiphoid", emoji: "🦴", arabic: "عمود سيفويد" },
+      { word: "Xenolith", emoji: "🪨", arabic: "صخرة غريبة" }
     ],
     blendingTasks: [
       {
@@ -34573,70 +36714,80 @@ const rawData = [
         sounds: ["x", "-", "r", "a", "y"],
         word: "x-ray",
         emoji: "🩻",
-        hint: "sees your bones"
+        hint: "sees your bones",
+        arabicHint: "يرى عظامك"
       },
       {
         id: "x-2",
         sounds: ["x", "y", "l", "o", "p", "h", "o", "n", "e"],
         word: "xylophone",
         emoji: "🎵",
-        hint: "colorful instrument"
+        hint: "colorful instrument",
+        arabicHint: "آلة ملونة"
       },
       {
         id: "x-3",
         sounds: ["x", "e", "r", "o", "x"],
         word: "xerox",
         emoji: "📠",
-        hint: "makes copies"
+        hint: "makes copies",
+        arabicHint: "يصنع نسخاً"
       },
       {
         id: "x-4",
         sounds: ["x", "e", "n", "o", "n"],
         word: "xenon",
         emoji: "💡",
-        hint: "glowing gas"
+        hint: "glowing gas",
+        arabicHint: "غاز مشع"
       },
       {
         id: "x-5",
         sounds: ["x", "b", "o", "x"],
         word: "xbox",
         emoji: "🎮",
-        hint: "gaming console"
+        hint: "gaming console",
+        arabicHint: "جهاز مسبات إلكترونية"
       },
       {
         id: "x-6",
         sounds: ["x", "m", "a", "s"],
         word: "xmas",
         emoji: "🎄",
-        hint: "short for Christmas"
+        hint: "short for Christmas",
+        arabicHint: "العيد الميلاد"
       },
       {
         id: "x-7",
         sounds: ["x", "y", "l", "e", "m"],
         word: "xylem",
         emoji: "🌱",
-        hint: "plant water tubes"
+        hint: "plant water tubes",
+        arabicHint: "أنابيب ماء للنبات"
       },
       {
         id: "x-8",
         sounds: ["x", "-", "a", "x", "i", "s"],
         word: "x-axis",
         emoji: "📊",
-        hint: "horizontal line"
+        hint: "horizontal line",
+        arabicHint: "خط أفقي"
       },
       {
         id: "x-9",
         sounds: ["x", "i", "p", "h", "o", "i", "d"],
         word: "xiphoid",
         emoji: "🦴",
-        hint: "part of sternum"
+        hint: "part of sternum",
+        arabicHint: "جزء من القص المستطيل"
       },
       {
         id: "x-10",
         sounds: ["x", "e", "n", "o", "l", "i", "t", "h"],
         word: "xenolith",
         emoji: "🪨",
-        hint: "rock within rock"
+        hint: "rock within rock",
+        arabicHint: "صخرة داخل صخرة"
       }
     ]
   },
@@ -34646,16 +36797,16 @@ const rawData = [
     lowercase: "y",
     phonicSound: "yuh",
     words: [
-      { word: "Yarn", emoji: "🧶" },
-      { word: "Yolk", emoji: "🍳" },
-      { word: "Yacht", emoji: "⛵" },
-      { word: "Yard", emoji: "🏡" },
-      { word: "Yellow", emoji: "💛" },
-      { word: "Yeti", emoji: "⛷️" },
-      { word: "Yogurt", emoji: "🥛" },
-      { word: "Year", emoji: "📅" },
-      { word: "Youth", emoji: "👦" },
-      { word: "Yam", emoji: "🍠" }
+      { word: "Yarn", emoji: "🧶", arabic: "خيط" },
+      { word: "Yolk", emoji: "🍳", arabic: "صفار البيض" },
+      { word: "Yacht", emoji: "⛵", arabic: "يخت" },
+      { word: "Yard", emoji: "🏡", arabic: "حديقة" },
+      { word: "Yellow", emoji: "💛", arabic: "أصفر" },
+      { word: "Yeti", emoji: "⛷️", arabic: "يتي" },
+      { word: "Yogurt", emoji: "🥛", arabic: "زبادي" },
+      { word: "Year", emoji: "📅", arabic: "سنة" },
+      { word: "Youth", emoji: "👦", arabic: "شباب" },
+      { word: "Yam", emoji: "🍠", arabic: "يام" }
     ],
     blendingTasks: [
       {
@@ -34663,70 +36814,80 @@ const rawData = [
         sounds: ["y", "a", "r", "n"],
         word: "yarn",
         emoji: "🧶",
-        hint: "used to knit"
+        hint: "used to knit",
+        arabicHint: "يستخدم للتربيط"
       },
       {
         id: "y-2",
         sounds: ["y", "o", "l", "k"],
         word: "yolk",
         emoji: "🍳",
-        hint: "yellow part of egg"
+        hint: "yellow part of egg",
+        arabicHint: "الجزء الأصفر من البيضة"
       },
       {
         id: "y-3",
         sounds: ["y", "a", "c", "h", "t"],
         word: "yacht",
         emoji: "⛵",
-        hint: "fancy sailboat"
+        hint: "fancy sailboat",
+        arabicHint: "قارب شراعي فاخر"
       },
       {
         id: "y-4",
         sounds: ["y", "a", "r", "d"],
         word: "yard",
         emoji: "🏡",
-        hint: "garden area"
+        hint: "garden area",
+        arabicHint: "منطقة الحديقة"
       },
       {
         id: "y-5",
         sounds: ["y", "e", "l", "l", "o", "w"],
         word: "yellow",
         emoji: "💛",
-        hint: "sunny color"
+        hint: "sunny color",
+        arabicHint: "لون مشمس"
       },
       {
         id: "y-6",
         sounds: ["y", "e", "t", "i"],
         word: "yeti",
         emoji: "⛷️",
-        hint: "snow creature"
+        hint: "snow creature",
+        arabicHint: "كائن ثلجي"
       },
       {
         id: "y-7",
         sounds: ["y", "o", "g", "u", "r", "t"],
         word: "yogurt",
         emoji: "🥛",
-        hint: "creamy dairy"
+        hint: "creamy dairy",
+        arabicHint: "منتجات ألبان كريمية"
       },
       {
         id: "y-8",
         sounds: ["y", "e", "a", "r"],
         word: "year",
         emoji: "📅",
-        hint: "12 months"
+        hint: "12 months",
+        arabicHint: "12 شهراً"
       },
       {
         id: "y-9",
         sounds: ["y", "o", "u", "t", "h"],
         word: "youth",
         emoji: "👦",
-        hint: "being young"
+        hint: "being young",
+        arabicHint: "الشباب"
       },
       {
         id: "y-10",
         sounds: ["y", "a", "m"],
         word: "yam",
         emoji: "🍠",
-        hint: "sweet root veggie"
+        hint: "sweet root veggie",
+        arabicHint: "خضر جذر حلو"
       }
     ]
   },
@@ -34736,16 +36897,16 @@ const rawData = [
     lowercase: "z",
     phonicSound: "zuh",
     words: [
-      { word: "Zoo", emoji: "🦒" },
-      { word: "Zebra", emoji: "🦓" },
-      { word: "Zero", emoji: "0️⃣" },
-      { word: "Zip", emoji: "🤐" },
-      { word: "Zinc", emoji: "⚙️" },
-      { word: "Zone", emoji: "🗺️" },
-      { word: "Zipper", emoji: "🧥" },
-      { word: "Zodiac", emoji: "♈" },
-      { word: "Zenith", emoji: "☀️" },
-      { word: "Zigzag", emoji: "〰️" }
+      { word: "Zoo", emoji: "🦒", arabic: "حديقة حيوان" },
+      { word: "Zebra", emoji: "🦓", arabic: "حمار وحشي" },
+      { word: "Zero", emoji: "0️⃣", arabic: "صفر" },
+      { word: "Zip", emoji: "🤐", arabic: "سحاب" },
+      { word: "Zinc", emoji: "⚙️", arabic: "زنك" },
+      { word: "Zone", emoji: "🗺️", arabic: "منطقة" },
+      { word: "Zipper", emoji: "🧥", arabic: "سحاب السترة" },
+      { word: "Zodiac", emoji: "♈", arabic: "أبراج" },
+      { word: "Zenith", emoji: "☀️", arabic: "ذروة" },
+      { word: "Zigzag", emoji: "〰️", arabic: "متعرج" }
     ],
     blendingTasks: [
       {
@@ -34753,70 +36914,80 @@ const rawData = [
         sounds: ["z", "o", "o"],
         word: "zoo",
         emoji: "🦒",
-        hint: "animals live here"
+        hint: "animals live here",
+        arabicHint: "الحيوانات تعيش هنا"
       },
       {
         id: "z-2",
         sounds: ["z", "e", "b", "r", "a"],
         word: "zebra",
         emoji: "🦓",
-        hint: "striped animal"
+        hint: "striped animal",
+        arabicHint: "حيوان مخطط"
       },
       {
         id: "z-3",
         sounds: ["z", "e", "r", "o"],
         word: "zero",
         emoji: "0️⃣",
-        hint: "the number 0"
+        hint: "the number 0",
+        arabicHint: "الرقم ٠"
       },
       {
         id: "z-4",
         sounds: ["z", "i", "p"],
         word: "zip",
         emoji: "🤐",
-        hint: "fastens jacket"
+        hint: "fastens jacket",
+        arabicHint: "يستحب السترة"
       },
       {
         id: "z-5",
         sounds: ["z", "i", "n", "c"],
         word: "zinc",
         emoji: "⚙️",
-        hint: "a metal element"
+        hint: "a metal element",
+        arabicHint: "عنصر فلزي"
       },
       {
         id: "z-6",
         sounds: ["z", "o", "n", "e"],
         word: "zone",
         emoji: "🗺️",
-        hint: "an area or region"
+        hint: "an area or region",
+        arabicHint: "منطقة أو محافظة"
       },
       {
         id: "z-7",
         sounds: ["z", "i", "p", "p", "e", "r"],
         word: "zipper",
         emoji: "🧥",
-        hint: "slides up to close"
+        hint: "slides up to close",
+        arabicHint: "يستحب للأعلى للإغلاق"
       },
       {
         id: "z-8",
         sounds: ["z", "o", "d", "i", "a", "c"],
         word: "zodiac",
         emoji: "♈",
-        hint: "star signs"
+        hint: "star signs",
+        arabicHint: "أبراج الفلك"
       },
       {
         id: "z-9",
         sounds: ["z", "e", "n", "i", "t", "h"],
         word: "zenith",
         emoji: "☀️",
-        hint: "highest point"
+        hint: "highest point",
+        arabicHint: "أعلى نقطة"
       },
       {
         id: "z-10",
         sounds: ["z", "i", "g", "z", "a", "g"],
         word: "zigzag",
         emoji: "〰️",
-        hint: "back and forth line"
+        hint: "back and forth line",
+        arabicHint: "خط ذهاب وإياب"
       }
     ]
   }
@@ -34836,6 +37007,13 @@ PHONICS_DATA.reduce(
   (sum, d) => sum + d.words.length,
   0
 );
+const ALL_TASKS = PHONICS_DATA.flatMap(
+  (l, li) => l.blendingTasks.map((_, ti) => ({ letterIdx: li, taskIdx: ti }))
+);
+function pickRandomTask(excludeLetterIdx, excludeTaskIdx) {
+  const pool = excludeLetterIdx !== void 0 && excludeTaskIdx !== void 0 ? ALL_TASKS.filter((t) => t.letterIdx !== excludeLetterIdx || t.taskIdx !== excludeTaskIdx) : ALL_TASKS;
+  return pool[Math.floor(Math.random() * pool.length)] ?? ALL_TASKS[0];
+}
 function BlendingPage() {
   var _a2;
   const router2 = useRouter();
@@ -34869,6 +37047,7 @@ function BlendingPage() {
         if (isOk) {
           playCorrectSound();
           playCelebrationSound();
+          speakWord(task.word);
           setStatus("correct");
           updateProgress((prev) => {
             const existing = prev.blending[task.id] ?? {
@@ -34880,17 +37059,14 @@ function BlendingPage() {
             };
             const updated = {
               ...existing,
-              tasksCompleted: Array.from(
-                /* @__PURE__ */ new Set([...existing.tasksCompleted, task.id])
-              ),
+              tasksCompleted: Array.from(/* @__PURE__ */ new Set([...existing.tasksCompleted, task.id])),
               score: existing.score + 1,
               completed: true,
               lastVisited: Date.now()
             };
-            const totalDone = Object.values({
-              ...prev.blending,
-              [task.id]: updated
-            }).filter((b) => b.tasksCompleted.length > 0).length;
+            const totalDone = Object.values({ ...prev.blending, [task.id]: updated }).filter(
+              (b) => b.tasksCompleted.length > 0
+            ).length;
             return {
               ...prev,
               blending: { ...prev.blending, [task.id]: updated },
@@ -34913,16 +37089,25 @@ function BlendingPage() {
     if (status !== "idle") return;
     setChosen((c) => c.filter((_, idx) => idx !== i));
   };
-  const nextTask = () => {
+  const nextSameLetter = () => {
     playTapSound();
     setTaskIdx((i) => (i + 1) % letter.blendingTasks.length);
+    setChosen([]);
+    setStatus("idle");
+  };
+  const nextRandom = () => {
+    playTapSound();
+    const next = pickRandomTask(letterIdx, taskIdx);
+    setLetterIdx(next.letterIdx);
+    setTaskIdx(next.taskIdx);
     setChosen([]);
     setStatus("idle");
   };
   const changeLetter = (idx) => {
     playTapSound();
     setLetterIdx(idx);
-    setTaskIdx(0);
+    const letterTasks = PHONICS_DATA[idx].blendingTasks;
+    setTaskIdx(Math.floor(Math.random() * letterTasks.length));
     setChosen([]);
     setStatus("idle");
   };
@@ -34931,7 +37116,7 @@ function BlendingPage() {
     router2.navigate({ to: "/" });
     return null;
   }
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Layout, { title: "Blending", headerColor: "oklch(0.45 0.24 264)", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-5 py-5 flex flex-col gap-4", children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Layout, { title: getUILabel("Blending"), headerColor: "oklch(0.44 0.22 260)", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-5 py-5 flex flex-col gap-4", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       ProgressBar,
       {
@@ -34941,42 +37126,35 @@ function BlendingPage() {
         label: `${completedCount}/${TOTAL_BLENDING_TASKS} tasks`
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        className: "flex gap-1.5 overflow-x-auto pb-1",
-        style: { scrollbarWidth: "none" },
-        children: PHONICS_DATA.map((l, i) => {
-          const done = l.blendingTasks.filter(
-            (t) => {
-              var _a3;
-              return (((_a3 = progress2 == null ? void 0 : progress2.blending[t.id]) == null ? void 0 : _a3.tasksCompleted.length) ?? 0) > 0;
-            }
-          ).length;
-          return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              "data-ocid": `blending.letter_tab.${i + 1}`,
-              onClick: () => changeLetter(i),
-              className: `flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 relative ${i === letterIdx ? "gradient-blue text-card shadow-playful" : done === 10 ? "bg-[oklch(0.72_0.27_131/0.25)] text-[oklch(0.72_0.27_131)]" : "bg-muted text-muted-foreground"}`,
-              children: [
-                l.letter,
-                done > 0 && done < 10 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "span",
-                  {
-                    className: "absolute -top-1 -right-1 w-4 h-4 rounded-full text-[8px] flex items-center justify-center font-bold text-[oklch(0.08_0_0)]",
-                    style: { background: "oklch(0.82 0.17 84)" },
-                    children: done
-                  }
-                )
-              ]
-            },
-            l.letter
-          );
-        })
-      }
-    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1.5 overflow-x-auto pb-1", style: { scrollbarWidth: "none" }, children: PHONICS_DATA.map((l, i) => {
+      const done = l.blendingTasks.filter(
+        (t) => {
+          var _a3;
+          return (((_a3 = progress2 == null ? void 0 : progress2.blending[t.id]) == null ? void 0 : _a3.tasksCompleted.length) ?? 0) > 0;
+        }
+      ).length;
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          "data-ocid": `blending.letter_tab.${i + 1}`,
+          onClick: () => changeLetter(i),
+          className: `flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 relative border ${i === letterIdx ? "gradient-blue text-white border-transparent shadow-playful" : done === 10 ? "bg-[oklch(0.94_0.06_145)] text-[oklch(0.48_0.22_145)] border-[oklch(0.85_0.10_145)]" : "bg-muted text-muted-foreground border-border"}`,
+          children: [
+            l.letter,
+            done > 0 && done < 10 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                className: "absolute -top-1 -right-1 w-4 h-4 rounded-full text-[8px] flex items-center justify-center font-bold text-white",
+                style: { background: "oklch(0.62 0.22 145)" },
+                children: done
+              }
+            )
+          ]
+        },
+        l.letter
+      );
+    }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-sm font-body text-muted-foreground", children: [
         letter.letter,
@@ -34986,25 +37164,25 @@ function BlendingPage() {
         letter.blendingTasks.length
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-        isCompleted && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[oklch(0.72_0.27_131)] text-sm font-bold", children: "✅" }),
+        isCompleted && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[oklch(0.48_0.22_145)] text-sm font-bold", children: "✅" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(StarBadge, { count: completedCount, size: "sm" })
       ] })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       motion.div,
       {
-        initial: { scale: 0.9, opacity: 0 },
+        initial: { scale: 0.95, opacity: 0 },
         animate: { scale: 1, opacity: 1 },
-        className: `letter-card flex items-center gap-4 ${letter.color === "red" ? "gradient-red" : letter.color === "blue" ? "gradient-blue" : letter.color === "green" ? "gradient-green" : letter.color === "yellow" ? "gradient-yellow" : "gradient-purple"} text-card`,
-        style: {
-          boxShadow: "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1) inset"
-        },
+        className: `letter-card flex items-center gap-4 ${letter.color === "red" ? "gradient-red" : letter.color === "blue" ? "gradient-blue" : letter.color === "green" ? "gradient-green" : letter.color === "yellow" ? "gradient-yellow" : "gradient-purple"} text-white`,
+        style: { boxShadow: "0 4px 20px oklch(0 0 0 / 0.15)" },
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-6xl", children: task.emoji }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-body opacity-80", children: "Build this word:" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 rounded-3xl pointer-events-none", style: { background: "linear-gradient(135deg, oklch(1 0 0 / 0.10) 0%, transparent 55%)" } }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-6xl relative z-10", children: task.emoji }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-body opacity-80", children: getUILabel("Build this word") }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-3xl font-display font-black", children: task.word }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs opacity-70 font-body", children: task.hint })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs opacity-70 font-body", children: task.hint }),
+            task.arabicHint && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-[var(--font-arabic)] opacity-90 mt-0.5", dir: "rtl", children: task.arabicHint })
           ] })
         ]
       },
@@ -35021,21 +37199,13 @@ function BlendingPage() {
             onClick: () => c && removeChosen(slotI),
             animate: status === "wrong" ? { x: [0, -8, 8, -5, 5, 0] } : {},
             transition: { duration: 0.4 },
-            className: `min-w-[56px] h-12 px-3 rounded-2xl border-2 flex items-center justify-center font-display font-bold text-base transition-smooth ${status === "correct" ? "border-[oklch(0.72_0.27_131)] bg-[oklch(0.72_0.27_131/0.2)] text-[oklch(0.72_0.27_131)]" : status === "wrong" ? "border-destructive bg-destructive/10 text-destructive" : c ? "gradient-blue text-card border-transparent shadow-playful" : "border-dashed border-border bg-muted text-muted-foreground"}`,
+            className: `min-w-[56px] h-12 px-3 rounded-2xl border-2 flex items-center justify-center font-display font-bold text-base transition-smooth ${status === "correct" ? "border-[oklch(0.62_0.22_145)] bg-[oklch(0.94_0.06_145)] text-[oklch(0.48_0.22_145)]" : status === "wrong" ? "border-destructive bg-destructive/10 text-destructive" : c ? "gradient-blue text-white border-transparent shadow-playful" : "border-dashed border-border bg-muted text-muted-foreground"}`,
             children: c ?? "?"
           },
           `slot-${task.id}-${slotI}-${sound}`
         );
       }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: status !== "idle" && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        motion.span,
-        {
-          initial: { scale: 0 },
-          animate: { scale: 1 },
-          exit: { scale: 0 },
-          children: status === "correct" ? /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheck, { className: "w-8 h-8 text-[oklch(0.72_0.27_131)]" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(CircleX, { className: "w-8 h-8 text-destructive" })
-        }
-      ) })
+      /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: status !== "idle" && /* @__PURE__ */ jsxRuntimeExports.jsx(motion.span, { initial: { scale: 0 }, animate: { scale: 1 }, exit: { scale: 0 }, children: status === "correct" ? /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheck, { className: "w-8 h-8 text-[oklch(0.62_0.22_145)]" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(CircleX, { className: "w-8 h-8 text-destructive" }) }) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2 justify-center", children: shuffled.map((s, i) => {
       const usedCount = chosen.filter((c) => c === s).length;
@@ -35048,7 +37218,7 @@ function BlendingPage() {
           "data-ocid": `blending.syllable_button.${i + 1}`,
           onClick: () => !used && handleSound(s),
           disabled: used || status !== "idle",
-          className: `btn-lg btn-tap font-display font-black text-xl ${used || status !== "idle" ? "opacity-30 cursor-not-allowed bg-muted text-foreground" : letter.color === "red" ? "gradient-red text-card shadow-playful" : letter.color === "blue" ? "gradient-blue text-card shadow-playful" : letter.color === "green" ? "gradient-green text-card shadow-playful" : letter.color === "yellow" ? "gradient-yellow text-card shadow-playful" : "gradient-purple text-card shadow-playful"}`,
+          className: `btn-lg btn-tap font-display font-black text-xl ${used || status !== "idle" ? "opacity-30 cursor-not-allowed bg-muted text-foreground border border-border" : letter.color === "red" ? "gradient-red text-white shadow-playful" : letter.color === "blue" ? "gradient-blue text-white shadow-playful" : letter.color === "green" ? "gradient-green text-white shadow-playful" : letter.color === "yellow" ? "gradient-yellow text-white shadow-playful" : "gradient-purple text-white shadow-playful"}`,
           children: s
         },
         `sound-${task.id}-${s}-${i}`
@@ -35062,36 +37232,49 @@ function BlendingPage() {
           "data-ocid": "blending.prev_button",
           onClick: () => {
             playTapSound();
-            setTaskIdx(
-              (i) => (i - 1 + letter.blendingTasks.length) % letter.blendingTasks.length
-            );
+            setTaskIdx((i) => (i - 1 + letter.blendingTasks.length) % letter.blendingTasks.length);
             setChosen([]);
             setStatus("idle");
           },
-          className: "w-14 h-14 rounded-2xl bg-muted border border-border flex items-center justify-center active:scale-95 transition-smooth hover:border-[oklch(0.82_0.17_84/0.4)]",
-          "aria-label": "Previous",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { className: "w-7 h-7 text-foreground" })
+          className: "w-12 h-12 rounded-2xl bg-white border border-border flex items-center justify-center active:scale-95 transition-smooth hover:bg-muted",
+          "aria-label": getUILabel("Previous"),
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { className: "w-6 h-6 text-foreground" })
         }
       ),
-      status === "correct" ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      status === "correct" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "button",
         {
           type: "button",
-          "data-ocid": "blending.next_task_button",
-          onClick: nextTask,
-          className: "flex-1 h-14 rounded-2xl gradient-green text-card font-display font-bold text-lg active:scale-95 transition-smooth shadow-playful",
-          children: "Next! →"
+          "data-ocid": "blending.next_random_button",
+          onClick: nextRandom,
+          className: "flex-1 h-12 rounded-2xl gradient-green text-white font-display font-bold text-base active:scale-95 transition-smooth shadow-playful flex items-center justify-center gap-2",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Shuffle, { className: "w-5 h-5" }),
+            getUILabel("Next!")
+          ]
         }
-      ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1" }),
+      ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          "data-ocid": "blending.shuffle_button",
+          onClick: nextRandom,
+          className: "flex-1 h-12 rounded-2xl gradient-indigo text-white font-display font-bold text-base active:scale-95 transition-smooth shadow-playful flex items-center justify-center gap-2",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Shuffle, { className: "w-5 h-5" }),
+            getUILabel("Shuffle")
+          ]
+        }
+      ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
           type: "button",
           "data-ocid": "blending.next_button",
-          onClick: nextTask,
-          className: "w-14 h-14 rounded-2xl gradient-blue flex items-center justify-center active:scale-95 transition-smooth shadow-playful",
-          "aria-label": "Next",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { className: "w-7 h-7 text-card" })
+          onClick: nextSameLetter,
+          className: "w-12 h-12 rounded-2xl gradient-blue flex items-center justify-center active:scale-95 transition-smooth shadow-playful",
+          "aria-label": getUILabel("Next"),
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { className: "w-6 h-6 text-white" })
         }
       )
     ] })
@@ -35125,29 +37308,13 @@ function FlashcardsPage() {
   const seenCount = Object.keys((progress2 == null ? void 0 : progress2.flashcards) ?? {}).length;
   const markSeen = () => {
     updateProgress((prev) => {
-      const existing = prev.flashcards[letter.letter] ?? {
-        letterId: letter.letter,
-        wordsSeen: [],
-        completed: false,
-        lastVisited: 0
-      };
+      const existing = prev.flashcards[letter.letter] ?? { letterId: letter.letter, wordsSeen: [], completed: false, lastVisited: 0 };
       const wordsSeen = Array.from(/* @__PURE__ */ new Set([...existing.wordsSeen, word.word]));
-      const updated = {
-        ...existing,
-        wordsSeen,
-        completed: wordsSeen.length >= 5,
-        lastVisited: Date.now()
-      };
+      const updated = { ...existing, wordsSeen, completed: wordsSeen.length >= 5, lastVisited: Date.now() };
       return {
         ...prev,
         flashcards: { ...prev.flashcards, [letter.letter]: updated },
-        totalStars: Math.max(
-          prev.totalStars,
-          Object.values({
-            ...prev.flashcards,
-            [letter.letter]: updated
-          }).filter((f) => f.completed).length
-        )
+        totalStars: Math.max(prev.totalStars, Object.values({ ...prev.flashcards, [letter.letter]: updated }).filter((f) => f.completed).length)
       };
     });
   };
@@ -35178,7 +37345,7 @@ function FlashcardsPage() {
     setFlipped(false);
   };
   const isCompleted = ((_a2 = progress2 == null ? void 0 : progress2.flashcards[letter.letter]) == null ? void 0 : _a2.completed) ?? false;
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Layout, { title: "Flashcards", headerColor: "oklch(0.50 0.28 15)", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-5 py-5 flex flex-col gap-4", children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Layout, { title: getUILabel("Flashcards"), headerColor: "oklch(0.50 0.26 15)", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-5 py-5 flex flex-col gap-4", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-sm font-body text-muted-foreground", children: [
         "Letter ",
@@ -35186,76 +37353,65 @@ function FlashcardsPage() {
         " / ",
         PHONICS_DATA.length
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "span",
-        {
-          className: "text-sm font-display font-bold",
-          style: { color: "oklch(0.88 0.17 84)" },
-          children: [
-            seenCount,
-            " learned ⭐"
-          ]
-        }
-      )
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-sm font-display font-bold text-[oklch(0.60_0.22_145)]", children: [
+        seenCount,
+        " learned ⭐"
+      ] })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(ProgressBar, { value: seenCount / 26 * 100, color: "red" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        className: "flex gap-1.5 overflow-x-auto pb-1",
-        style: { scrollbarWidth: "none" },
-        children: PHONICS_DATA.map((l, i) => {
-          var _a3;
-          const done = (_a3 = progress2 == null ? void 0 : progress2.flashcards[l.letter]) == null ? void 0 : _a3.completed;
-          return /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              "data-ocid": `flashcards.letter_tab.${i + 1}`,
-              onClick: () => {
-                playTapSound();
-                setLetterIdx(i);
-                setWordIdx(0);
-                setFlipped(false);
-              },
-              className: `flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 ${i === letterIdx ? "gradient-red text-card shadow-playful" : done ? "bg-[oklch(0.72_0.27_131/0.25)] text-[oklch(0.72_0.27_131)]" : "bg-muted text-muted-foreground"}`,
-              children: l.letter
-            },
-            l.letter
-          );
-        })
-      }
-    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1.5 overflow-x-auto pb-1", style: { scrollbarWidth: "none" }, children: PHONICS_DATA.map((l, i) => {
+      var _a3;
+      const done = (_a3 = progress2 == null ? void 0 : progress2.flashcards[l.letter]) == null ? void 0 : _a3.completed;
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          "data-ocid": `flashcards.letter_tab.${i + 1}`,
+          onClick: () => {
+            playTapSound();
+            setLetterIdx(i);
+            setWordIdx(0);
+            setFlipped(false);
+          },
+          className: `flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 border ${i === letterIdx ? "gradient-red text-white border-transparent shadow-playful" : done ? "bg-[oklch(0.94_0.06_145)] text-[oklch(0.48_0.22_145)] border-[oklch(0.85_0.10_145)]" : "bg-muted text-muted-foreground border-border"}`,
+          children: l.letter
+        },
+        l.letter
+      );
+    }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
       motion.button,
       {
         type: "button",
         "data-ocid": "flashcards.card",
         onClick: handleFlip,
-        className: `letter-card w-full min-h-[220px] flex flex-col items-center justify-center cursor-pointer ${COLOR_MAP[letter.color]} text-card relative`,
-        style: {
-          boxShadow: "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1) inset"
-        },
+        className: `letter-card w-full min-h-[220px] flex flex-col items-center justify-center cursor-pointer ${COLOR_MAP[letter.color]} text-white relative`,
+        style: { boxShadow: "0 8px 28px oklch(0 0 0 / 0.18)" },
         initial: { x: dir * 50, opacity: 0 },
         animate: { x: 0, opacity: 1 },
         exit: { x: -dir * 50, opacity: 0 },
         transition: { type: "spring", stiffness: 300, damping: 30 },
         children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 rounded-3xl pointer-events-none", style: { background: "linear-gradient(135deg, oklch(1 0 0 / 0.12) 0%, transparent 55%)" } }),
           isCompleted && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "absolute top-3 right-3 text-xl", children: "✅" }),
           !flipped ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[100px] font-display font-black leading-none drop-shadow-lg", children: letter.uppercase }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-4xl font-display font-bold opacity-70", children: letter.lowercase }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[100px] font-display font-black leading-none drop-shadow", children: letter.uppercase }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-4xl font-display font-bold opacity-75", children: letter.lowercase }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-sm opacity-70 mt-2 font-body", children: [
               "/",
               letter.phonicSound,
-              "/ tap to flip!"
+              "/ ",
+              getUILabel("tap to flip!")
             ] })
           ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-6xl mb-2", children: word.emoji }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-3xl font-display font-black", children: word.word }),
+            word.arabic && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xl font-[var(--font-arabic)] mt-1", dir: "rtl", children: word.arabic }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-sm opacity-80 mt-1 font-body", children: [
               letter.letter.toLowerCase(),
-              " as in ",
+              " ",
+              getUILabel("as in"),
+              " ",
               word.word.toLowerCase()
             ] })
           ] })
@@ -35269,52 +37425,43 @@ function FlashcardsPage() {
         type: "button",
         "data-ocid": "flashcards.sound_button",
         onClick: handleSound,
-        className: "flex items-center justify-center gap-3 w-full py-4 gradient-red text-card rounded-3xl active:scale-95 transition-smooth font-display font-bold text-lg",
-        style: {
-          boxShadow: "0 4px 20px oklch(0.72 0.28 15 / 0.4), 0 0 0 1px oklch(1 0 0 / 0.1) inset"
-        },
+        className: "flex items-center justify-center gap-3 w-full py-4 gradient-red text-white rounded-2xl active:scale-95 transition-smooth font-display font-bold text-base shadow-playful",
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Volume2, { className: "w-6 h-6" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Volume2, { className: "w-5 h-5" }),
           "Hear the Sound!"
         ]
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap gap-2", "data-ocid": "flashcards.word_selector", children: letter.words.map((w, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "button",
       {
-        className: "flex flex-wrap gap-2",
-        "data-ocid": "flashcards.word_selector",
-        children: letter.words.map((w, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "button",
-          {
-            type: "button",
-            "data-ocid": `flashcards.word_button.${i + 1}`,
-            onClick: () => {
-              playTapSound();
-              setWordIdx(i);
-              setFlipped(true);
-              speakWord(w.word);
-            },
-            className: `flex items-center gap-1.5 px-3 py-2 rounded-2xl text-sm font-display font-bold transition-smooth active:scale-95 ${wordIdx === i && flipped ? `${COLOR_MAP[letter.color]} text-card shadow-playful` : "bg-muted text-foreground border border-border hover:border-[oklch(0.82_0.17_84/0.4)]"}`,
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: w.emoji }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: w.word })
-            ]
-          },
-          w.word
-        ))
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mt-2", children: [
+        type: "button",
+        "data-ocid": `flashcards.word_button.${i + 1}`,
+        onClick: () => {
+          playTapSound();
+          setWordIdx(i);
+          setFlipped(true);
+          speakWord(w.word);
+        },
+        className: `flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-display font-bold transition-smooth active:scale-95 ${wordIdx === i && flipped ? `${COLOR_MAP[letter.color]} text-white shadow-playful` : "bg-white text-foreground border border-border hover:bg-muted"}`,
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: w.emoji }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: w.word }),
+          w.arabic && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-[var(--font-arabic)] ml-1 opacity-80", dir: "rtl", children: w.arabic })
+        ]
+      },
+      w.word
+    )) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3 mt-1", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
           type: "button",
           "data-ocid": "flashcards.prev_button",
           onClick: goPrev,
-          className: "w-14 h-14 rounded-2xl bg-muted border border-border flex items-center justify-center active:scale-95 transition-smooth hover:border-[oklch(0.82_0.17_84/0.4)]",
-          "aria-label": "Previous",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { className: "w-7 h-7 text-foreground" })
+          className: "w-13 h-13 w-12 h-12 rounded-2xl bg-white border border-border flex items-center justify-center active:scale-95 transition-smooth hover:bg-muted",
+          "aria-label": getUILabel("Previous"),
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { className: "w-6 h-6 text-foreground" })
         }
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 text-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-body text-muted-foreground", children: "swipe letters above" }) }),
@@ -35324,9 +37471,9 @@ function FlashcardsPage() {
           type: "button",
           "data-ocid": "flashcards.next_button",
           onClick: goNext,
-          className: "w-14 h-14 rounded-2xl gradient-red flex items-center justify-center active:scale-95 transition-smooth shadow-playful",
-          "aria-label": "Next",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { className: "w-7 h-7 text-card" })
+          className: "w-12 h-12 rounded-2xl gradient-red flex items-center justify-center active:scale-95 transition-smooth shadow-playful",
+          "aria-label": getUILabel("Next"),
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { className: "w-6 h-6 text-white" })
         }
       )
     ] })
@@ -35335,52 +37482,45 @@ function FlashcardsPage() {
 const MENU = [
   {
     label: "Flashcards",
-    emoji: "🃏",
+    icon: BookOpen,
     path: "/flashcards",
     colorClass: "gradient-red",
     desc: "Learn A–Z letters"
   },
   {
     label: "Blending",
-    emoji: "✏️",
+    icon: AudioLines,
     path: "/blending",
     colorClass: "gradient-blue",
     desc: "Blend sounds into words"
   },
   {
     label: "Tracing",
-    emoji: "🖋️",
+    icon: Pencil,
     path: "/tracing",
     colorClass: "gradient-green",
     desc: "Practice writing"
   },
   {
-    label: "Visual",
-    emoji: "🎬",
-    path: "/visual-learning",
-    colorClass: "gradient-purple",
-    desc: "Videos & audio lessons"
-  },
-  {
-    label: "Progress",
-    emoji: "⭐",
-    path: "/progress",
-    colorClass: "gradient-yellow",
-    desc: "See achievements"
-  },
-  {
     label: "Matching",
-    emoji: "🧩",
+    icon: Grid3x3,
     path: "/matching",
-    colorClass: "gradient-purple",
+    colorClass: "gradient-indigo",
     desc: "Quiz: match & learn"
   },
   {
     label: "Pronunciation",
-    emoji: "🎤",
+    icon: Mic,
     path: "/pronunciation",
     colorClass: "gradient-gold",
     desc: "Say the word aloud"
+  },
+  {
+    label: "Visual",
+    icon: Video,
+    path: "/visual-learning",
+    colorClass: "gradient-purple",
+    desc: "Videos & audio lessons"
   }
 ];
 function HomePage() {
@@ -35396,121 +37536,102 @@ function HomePage() {
     router2.navigate({ to: path });
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen flex flex-col bg-background", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "bg-card/90 border-b border-[oklch(0.82_0.17_84/0.2)] shadow-luxury backdrop-blur-sm px-5 py-4 flex items-center justify-between", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "bg-white border-b border-border px-5 py-4 flex items-center justify-between shadow-xs", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-12 h-12 rounded-2xl bg-muted border border-[oklch(0.82_0.17_84/0.3)] flex items-center justify-center text-3xl glow-gold-sm", children: profile.avatar }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-11 h-11 rounded-2xl bg-muted border border-border flex items-center justify-center text-2xl flex-shrink-0", children: profile.avatar }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "font-display font-bold text-lg text-foreground leading-tight", children: [
-            "Hi, ",
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "font-display font-bold text-base text-foreground leading-tight", children: [
+            getUILabel("Hi"),
+            ", ",
             profile.name,
             "! 👋"
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-body text-muted-foreground", children: "Ready to learn?" })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-body text-muted-foreground", children: getUILabel("Ready to learn?") })
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(StarBadge, { count: (progress2 == null ? void 0 : progress2.totalStars) ?? 0, size: "sm" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            "data-ocid": "home.switch_profile_button",
-            onClick: () => {
-              playTapSound();
-              router2.navigate({ to: "/" });
-            },
-            className: "text-xs font-body text-[oklch(0.82_0.17_84)] underline px-2 py-1 active:opacity-70 transition-smooth",
-            children: "Switch"
-          }
-        )
-      ] })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-2", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          "data-ocid": "home.switch_profile_button",
+          onClick: () => {
+            playTapSound();
+            router2.navigate({ to: "/" });
+          },
+          className: "text-xs font-body text-[oklch(0.55_0.22_280)] underline px-2 py-1 active:opacity-70 transition-smooth",
+          children: "Switch"
+        }
+      ) })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
-        className: "px-6 py-8 text-center relative overflow-hidden",
+        className: "px-6 py-5 flex items-center justify-between",
         style: {
-          background: "linear-gradient(135deg, oklch(0.10 0.03 264) 0%, oklch(0.08 0.01 264) 100%)",
-          borderBottom: "1px solid oklch(0.82 0.17 84 / 0.2)"
+          background: "linear-gradient(135deg, oklch(0.58 0.22 280) 0%, oklch(0.44 0.22 280) 100%)"
         },
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              className: "absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full pointer-events-none",
-              style: {
-                background: "radial-gradient(circle, oklch(0.82 0.17 84 / 0.12) 0%, transparent 70%)"
-              }
-            }
-          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-5", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-5xl", children: "📚" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-2xl font-display font-black text-white leading-tight", children: "Word to Go" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-white/70 text-sm font-body mt-0.5", children: "26 letters · 260 words" })
+            ] })
+          ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
+            "button",
             {
-              initial: { scale: 0.9, opacity: 0 },
-              animate: { scale: 1, opacity: 1 },
-              transition: { type: "spring", stiffness: 200 },
-              className: "relative z-10",
+              type: "button",
+              "data-ocid": "home.banner_progress",
+              onClick: () => navigate("/progress"),
+              className: "flex flex-col items-end gap-1 active:scale-95 transition-smooth",
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-5xl mb-3", children: "📚" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "h2",
-                  {
-                    className: "text-3xl font-display font-black leading-tight mb-1",
-                    style: {
-                      background: "linear-gradient(to right, oklch(0.95 0.18 84), oklch(0.82 0.17 84), oklch(0.95 0.18 84))",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text"
-                    },
-                    children: "Word to Go"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm mt-1 font-body", children: "26 letters · 260 words" })
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1.5 text-white/90", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-lg", children: "⭐" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-display font-bold text-lg", children: (progress2 == null ? void 0 : progress2.totalStars) ?? 0 })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-white/60 text-xs font-body", children: getUILabel("See achievements") })
               ]
             }
           )
         ]
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        className: "flex-1 px-5 py-6 grid grid-cols-2 gap-4",
-        "data-ocid": "home.features_section",
-        children: MENU.map((item, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          motion.button,
-          {
-            type: "button",
-            "data-ocid": `home.${item.label.toLowerCase().replace(" ", "_")}_button`,
-            onClick: () => navigate(item.path),
-            className: `${item.colorClass} rounded-3xl p-5 flex flex-col items-center justify-center gap-2 active:scale-95 transition-smooth text-card min-h-[140px] relative overflow-hidden`,
-            style: {
-              boxShadow: "0 4px 24px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.82 0.17 84 / 0.15) inset"
-            },
-            initial: { y: 20, opacity: 0 },
-            animate: { y: 0, opacity: 1 },
-            transition: { delay: idx * 0.08 },
-            whileTap: { scale: 0.95 },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  className: "absolute inset-0 pointer-events-none",
-                  style: {
-                    background: "linear-gradient(135deg, oklch(1 0 0 / 0.08) 0%, transparent 60%)"
-                  }
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-5xl relative z-10", children: item.emoji }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xl font-display font-black leading-tight relative z-10", children: item.label }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-body opacity-80 text-center relative z-10", children: item.desc })
-            ]
-          },
-          item.label
-        ))
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "py-3 text-center bg-card/60 border-t border-[oklch(0.82_0.17_84/0.15)]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground font-body", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 px-5 py-5 grid grid-cols-2 gap-3", "data-ocid": "home.features_section", children: MENU.map((item, idx) => {
+      const Icon2 = item.icon;
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        motion.button,
+        {
+          type: "button",
+          "data-ocid": `home.${item.label.toLowerCase().replace(" ", "_")}_button`,
+          onClick: () => navigate(item.path),
+          className: `${item.colorClass} rounded-2xl p-5 flex flex-col items-start justify-between gap-3 active:scale-95 transition-smooth text-white min-h-[130px] relative overflow-hidden`,
+          style: { boxShadow: "0 4px 20px oklch(0 0 0 / 0.15)" },
+          initial: { y: 16, opacity: 0 },
+          animate: { y: 0, opacity: 1 },
+          transition: { delay: idx * 0.06 },
+          whileTap: { scale: 0.95 },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: "absolute inset-0 pointer-events-none",
+                style: { background: "linear-gradient(135deg, oklch(1 0 0 / 0.12) 0%, transparent 55%)" }
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { className: "w-7 h-7 relative z-10 opacity-95", strokeWidth: 2 }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-lg font-display font-black leading-tight block", children: item.label }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-[var(--font-arabic)] opacity-90 mt-0.5 block", dir: "rtl", children: getUILabel(item.label) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-body opacity-80 mt-0.5 block", children: item.desc }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-[var(--font-arabic)] opacity-70 block", dir: "rtl", children: getUILabel(item.desc) })
+            ] })
+          ]
+        },
+        item.label
+      );
+    }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "py-3 text-center bg-white border-t border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground font-body", children: [
       "© ",
       (/* @__PURE__ */ new Date()).getFullYear(),
       ". Built with love using",
@@ -35523,7 +37644,7 @@ function HomePage() {
           )}`,
           target: "_blank",
           rel: "noopener noreferrer",
-          className: "underline hover:text-[oklch(0.82_0.17_84)] transition-colors",
+          className: "underline hover:text-[oklch(0.55_0.22_280)] transition-colors",
           children: "caffeine.ai"
         }
       )
@@ -35594,15 +37715,15 @@ const LEVEL_COLORS = {
   3: "gradient-purple"
 };
 const LEVEL_LABELS = {
-  1: "Level 1 · Letters",
-  2: "Level 2 · Words",
-  3: "Level 3 · Pictures"
+  1: getUILabel("Level 1 · Letters"),
+  2: getUILabel("Level 2 · Words"),
+  3: getUILabel("Level 3 · Pictures")
 };
 const ENCOURAGING = [
-  "Keep going, you can do it! 💪",
-  "Practice makes perfect! 🌟",
-  "Try again — you're learning! 🎯",
-  "Almost there! Keep trying! 🌈"
+  getUILabel("Keep going, you can do it!") + " 💪",
+  getUILabel("Practice makes perfect!") + " 🌟",
+  getUILabel("Try again — you're learning!") + " 🎯",
+  getUILabel("Almost there! Keep trying!") + " 🌈"
 ];
 function MatchingGamePage({
   level,
@@ -35748,7 +37869,7 @@ function MatchingGamePage({
               type: "button",
               onClick: handleBackToMenu,
               className: "w-11 h-11 rounded-full bg-card/80 border border-[oklch(0.82_0.17_84/0.2)] flex items-center justify-center shadow-xs btn-tap transition-smooth hover:bg-card",
-              "aria-label": "Back to matching menu",
+              "aria-label": getUILabel("Back to matching menu"),
               "data-ocid": "matching_game.back_button",
               children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xl text-foreground", children: "←" })
             }
@@ -35778,7 +37899,7 @@ function MatchingGamePage({
         ]
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "px-5 pt-4 pb-2 text-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body text-muted-foreground", children: selectedLeft ? "Now tap the matching item on the right 👉" : "Tap an item on the left to start 👈" }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "px-5 pt-4 pb-2 text-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body text-muted-foreground", children: selectedLeft ? getUILabel("Now tap the matching item on the right") + " 👉" : getUILabel("Tap an item on the left to start") + " 👈" }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
@@ -35900,7 +38021,7 @@ function ResultsScreen({
   onPlayAgain,
   onBack
 }) {
-  const encouragement = celebrate ? "Amazing! You're a star! 🌟" : ENCOURAGING[Math.floor(Math.random() * ENCOURAGING.length)];
+  const encouragement = celebrate ? getUILabel("Amazing! You're a star!") + " 🌟" : ENCOURAGING[Math.floor(Math.random() * ENCOURAGING.length)];
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
@@ -36104,40 +38225,11 @@ function MatchingLevel3Page() {
     MatchingGamePage,
     {
       level: 3,
-      title: "Level 3: Pictures",
+      title: getUILabel("Level 3: Pictures"),
       headerClass: "gradient-purple"
     }
   );
 }
-const LEVELS = [
-  {
-    level: 1,
-    emoji: "🔡",
-    label: "Letters",
-    desc: "Match uppercase letters to lowercase",
-    colorClass: "gradient-blue",
-    path: "/matching/level1",
-    ocid: "matching_menu.level1_button"
-  },
-  {
-    level: 2,
-    emoji: "📝",
-    label: "Words",
-    desc: "Match uppercase words to lowercase words",
-    colorClass: "gradient-green",
-    path: "/matching/level2",
-    ocid: "matching_menu.level2_button"
-  },
-  {
-    level: 3,
-    emoji: "🖼️",
-    label: "Pictures",
-    desc: "Match pictures to their words",
-    colorClass: "gradient-purple",
-    path: "/matching/level3",
-    ocid: "matching_menu.level3_button"
-  }
-];
 function MatchingMenuPage() {
   const router2 = useRouter();
   const { profiles, activeProfileId } = useAppStore();
@@ -36150,129 +38242,110 @@ function MatchingMenuPage() {
     playTapSound();
     router2.navigate({ to: "/home" });
   };
-  const handleLevel = (path) => {
+  const handleStart = (path) => {
     playTapSound();
     router2.navigate({ to: path });
   };
+  const MODES = [
+    {
+      emoji: "🔡",
+      label: "Letters",
+      desc: "Match uppercase to lowercase letters",
+      colorClass: "gradient-blue",
+      path: "/matching/level1",
+      ocid: "matching_menu.level1_button"
+    },
+    {
+      emoji: "📝",
+      label: "Words",
+      desc: "Match uppercase to lowercase words",
+      colorClass: "gradient-green",
+      path: "/matching/level2",
+      ocid: "matching_menu.level2_button"
+    },
+    {
+      emoji: "🖼️",
+      label: "Pictures",
+      desc: "Match pictures to their words",
+      colorClass: "gradient-purple",
+      path: "/matching/level3",
+      ocid: "matching_menu.level3_button"
+    }
+  ];
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen flex flex-col bg-background", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "header",
-      {
-        className: "border-b border-[oklch(0.82_0.17_84/0.2)] px-5 py-4 flex items-center gap-3 backdrop-blur-sm",
-        style: { background: "oklch(0.10 0.02 264 / 0.95)" },
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              "data-ocid": "matching_menu.back_button",
-              onClick: handleBack,
-              className: "w-10 h-10 rounded-2xl bg-muted border border-[oklch(0.82_0.17_84/0.25)] flex items-center justify-center text-[oklch(0.82_0.17_84)] text-xl active:opacity-70 transition-smooth hover:border-[oklch(0.82_0.17_84/0.5)]",
-              "aria-label": "Back to home",
-              children: "←"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "font-display font-black text-xl text-foreground leading-tight", children: "Matching Quiz" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-body text-muted-foreground", children: "Pick a level to play" })
-          ] })
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "bg-white border-b border-border px-5 py-4 flex items-center gap-3 shadow-xs", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          "data-ocid": "matching_menu.back_button",
+          onClick: handleBack,
+          className: "w-10 h-10 rounded-2xl bg-muted border border-border flex items-center justify-center text-foreground text-lg active:opacity-70 transition-smooth",
+          "aria-label": getUILabel("Back to home"),
+          children: "←"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Grid3x3, { className: "w-5 h-5 text-[oklch(0.55_0.22_280)]", strokeWidth: 2 }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "font-display font-black text-lg text-foreground leading-tight", children: "Matching Quiz" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-body text-muted-foreground", children: "Pick a mode to play" })
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
-        className: "px-6 py-8 text-center relative overflow-hidden",
+        className: "px-6 py-8 text-center",
         style: {
-          background: "linear-gradient(135deg, oklch(0.10 0.03 264) 0%, oklch(0.08 0.01 264) 100%)",
-          borderBottom: "1px solid oklch(0.82 0.17 84 / 0.2)"
+          background: "linear-gradient(135deg, oklch(0.58 0.22 280) 0%, oklch(0.44 0.22 280) 100%)"
         },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          motion.div,
+          {
+            initial: { scale: 0.9, opacity: 0 },
+            animate: { scale: 1, opacity: 1 },
+            transition: { type: "spring", stiffness: 200 },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Grid3x3, { className: "w-12 h-12 mx-auto mb-3 text-white/90", strokeWidth: 1.5 }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-2xl font-display font-black text-white", children: "Match & Learn!" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-white/70 text-sm mt-1 font-body", children: "5 pairs per round · Score 4+ to celebrate 🎉" })
+            ]
+          }
+        )
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 px-5 py-5 flex flex-col gap-3", "data-ocid": "matching_menu.levels_section", children: MODES.map((item, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.button,
+      {
+        type: "button",
+        "data-ocid": item.ocid,
+        onClick: () => handleStart(item.path),
+        className: `${item.colorClass} rounded-2xl p-5 flex items-center gap-4 active:scale-95 transition-smooth text-white relative overflow-hidden`,
+        style: { boxShadow: "0 4px 16px oklch(0 0 0 / 0.15)" },
+        initial: { x: -20, opacity: 0 },
+        animate: { x: 0, opacity: 1 },
+        transition: { delay: idx * 0.08 },
+        whileTap: { scale: 0.95 },
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
-              className: "absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 rounded-full pointer-events-none",
-              style: {
-                background: "radial-gradient(circle, oklch(0.82 0.17 84 / 0.10) 0%, transparent 70%)"
-              }
+              className: "absolute inset-0 pointer-events-none",
+              style: { background: "linear-gradient(135deg, oklch(1 0 0 / 0.12) 0%, transparent 55%)" }
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
-            {
-              initial: { scale: 0.9, opacity: 0 },
-              animate: { scale: 1, opacity: 1 },
-              transition: { type: "spring", stiffness: 200 },
-              className: "relative z-10",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-5xl mb-2", children: "🧩" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "h2",
-                  {
-                    className: "text-2xl font-display font-black",
-                    style: {
-                      background: "linear-gradient(to right, oklch(0.95 0.18 84), oklch(0.82 0.17 84))",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text"
-                    },
-                    children: "Match & Learn!"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground text-sm mt-1", children: "5 pairs per round · Score 4+ to celebrate 🎉" })
-              ]
-            }
-          )
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-4xl shrink-0 relative z-10", children: item.emoji }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-left min-w-0 relative z-10", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lg font-display font-black leading-tight", children: item.label }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body opacity-80 mt-0.5", children: item.desc })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "ml-auto text-xl opacity-50 shrink-0 relative z-10", children: "›" })
         ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        className: "flex-1 px-5 py-6 flex flex-col gap-4",
-        "data-ocid": "matching_menu.levels_section",
-        children: LEVELS.map((item, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          motion.button,
-          {
-            type: "button",
-            "data-ocid": item.ocid,
-            onClick: () => handleLevel(item.path),
-            className: `${item.colorClass} rounded-3xl p-5 flex items-center gap-4 active:scale-95 transition-smooth text-card relative overflow-hidden`,
-            style: {
-              boxShadow: "0 4px 24px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.82 0.17 84 / 0.15) inset"
-            },
-            initial: { x: -24, opacity: 0 },
-            animate: { x: 0, opacity: 1 },
-            transition: { delay: idx * 0.1 },
-            whileTap: { scale: 0.95 },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  className: "absolute inset-0 pointer-events-none",
-                  style: {
-                    background: "linear-gradient(135deg, oklch(1 0 0 / 0.08) 0%, transparent 60%)"
-                  }
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-5xl shrink-0 relative z-10", children: item.emoji }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-left min-w-0 relative z-10", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xl font-display font-black leading-tight", children: [
-                  "Level ",
-                  item.level,
-                  " · ",
-                  item.label
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body opacity-80 mt-0.5", children: item.desc })
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "ml-auto text-2xl opacity-60 shrink-0 relative z-10", children: "›" })
-            ]
-          },
-          item.level
-        ))
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "py-3 text-center bg-card/60 border-t border-[oklch(0.82_0.17_84/0.15)]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground font-body", children: [
+      },
+      item.label
+    )) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "py-3 text-center bg-white border-t border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground font-body", children: [
       "© ",
       (/* @__PURE__ */ new Date()).getFullYear(),
       ". Built with love using",
@@ -36285,204 +38358,12 @@ function MatchingMenuPage() {
           )}`,
           target: "_blank",
           rel: "noopener noreferrer",
-          className: "underline hover:text-[oklch(0.82_0.17_84)] transition-colors",
+          className: "underline hover:text-[oklch(0.55_0.22_280)] transition-colors",
           children: "caffeine.ai"
         }
       )
     ] }) })
   ] });
-}
-const ORB_CONFIG = [
-  // Gold orbs
-  {
-    id: 0,
-    size: 180,
-    x: 5,
-    y: 8,
-    color: "oklch(0.82 0.17 84 / 0.07)",
-    dur: 9,
-    dx: 18,
-    dy: 22
-  },
-  {
-    id: 1,
-    size: 100,
-    x: 80,
-    y: 15,
-    color: "oklch(0.90 0.18 84 / 0.09)",
-    dur: 7,
-    dx: -14,
-    dy: 18
-  },
-  {
-    id: 2,
-    size: 140,
-    x: 60,
-    y: 70,
-    color: "oklch(0.82 0.17 84 / 0.06)",
-    dur: 11,
-    dx: 20,
-    dy: -16
-  },
-  {
-    id: 3,
-    size: 70,
-    x: 25,
-    y: 55,
-    color: "oklch(0.92 0.18 84 / 0.10)",
-    dur: 6,
-    dx: -12,
-    dy: 20
-  },
-  {
-    id: 4,
-    size: 50,
-    x: 90,
-    y: 45,
-    color: "oklch(0.88 0.16 84 / 0.12)",
-    dur: 5,
-    dx: -18,
-    dy: -14
-  },
-  {
-    id: 5,
-    size: 90,
-    x: 45,
-    y: 90,
-    color: "oklch(0.82 0.17 84 / 0.08)",
-    dur: 8,
-    dx: 16,
-    dy: -20
-  },
-  // Purple/blue highlights
-  {
-    id: 6,
-    size: 120,
-    x: 15,
-    y: 35,
-    color: "oklch(0.68 0.22 290 / 0.07)",
-    dur: 10,
-    dx: 14,
-    dy: 18
-  },
-  {
-    id: 7,
-    size: 80,
-    x: 70,
-    y: 5,
-    color: "oklch(0.72 0.22 320 / 0.08)",
-    dur: 7,
-    dx: -10,
-    dy: 22
-  },
-  {
-    id: 8,
-    size: 60,
-    x: 50,
-    y: 40,
-    color: "oklch(0.68 0.24 264 / 0.06)",
-    dur: 9,
-    dx: 20,
-    dy: -12
-  },
-  {
-    id: 9,
-    size: 110,
-    x: 85,
-    y: 80,
-    color: "oklch(0.65 0.22 280 / 0.07)",
-    dur: 12,
-    dx: -16,
-    dy: -18
-  },
-  // White sparkles
-  {
-    id: 10,
-    size: 28,
-    x: 30,
-    y: 20,
-    color: "oklch(0.97 0 0 / 0.08)",
-    dur: 4,
-    dx: 10,
-    dy: 14
-  },
-  {
-    id: 11,
-    size: 20,
-    x: 75,
-    y: 60,
-    color: "oklch(0.97 0 0 / 0.07)",
-    dur: 5,
-    dx: -8,
-    dy: 12
-  },
-  {
-    id: 12,
-    size: 16,
-    x: 55,
-    y: 85,
-    color: "oklch(0.95 0.18 84 / 0.10)",
-    dur: 4,
-    dx: 14,
-    dy: -10
-  },
-  {
-    id: 13,
-    size: 24,
-    x: 10,
-    y: 70,
-    color: "oklch(0.97 0 0 / 0.06)",
-    dur: 6,
-    dx: 18,
-    dy: -8
-  },
-  {
-    id: 14,
-    size: 18,
-    x: 92,
-    y: 25,
-    color: "oklch(0.95 0.18 84 / 0.09)",
-    dur: 5,
-    dx: -12,
-    dy: 16
-  }
-];
-function MotionBackground() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      "aria-hidden": "true",
-      className: "pointer-events-none fixed inset-0 overflow-hidden",
-      style: { zIndex: 0 },
-      children: ORB_CONFIG.map((orb) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-        motion.div,
-        {
-          className: "absolute rounded-full",
-          style: {
-            width: orb.size,
-            height: orb.size,
-            left: `${orb.x}%`,
-            top: `${orb.y}%`,
-            background: `radial-gradient(circle at 40% 40%, ${orb.color}, transparent 70%)`,
-            filter: orb.size > 60 ? "blur(18px)" : "blur(6px)"
-          },
-          animate: {
-            x: [0, orb.dx, 0, -orb.dx, 0],
-            y: [0, orb.dy, 0, -orb.dy / 2, 0],
-            scale: [1, 1.08, 1, 0.95, 1],
-            opacity: [0.7, 1, 0.8, 1, 0.7]
-          },
-          transition: {
-            duration: orb.dur,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: orb.id * 0.4
-          }
-        },
-        orb.id
-      ))
-    }
-  );
 }
 function ProfilesPage() {
   const router2 = useRouter();
@@ -36515,286 +38396,239 @@ function ProfilesPage() {
     deleteProfile(id2);
     setToDelete(null);
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen flex flex-col bg-background relative", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(MotionBackground, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen flex flex-col bg-background", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "px-6 pt-16 pb-10 text-center bg-white border-b border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.div,
       {
-        className: "px-6 pt-14 pb-10 text-center relative overflow-hidden",
-        style: {
-          background: "linear-gradient(160deg, oklch(0.12 0.03 280 / 0.85) 0%, oklch(0.07 0.01 264 / 0.75) 100%)",
-          zIndex: 1,
-          borderBottom: "1px solid oklch(0.82 0.17 84 / 0.2)"
-        },
+        initial: { scale: 0.8, opacity: 0 },
+        animate: { scale: 1, opacity: 1 },
+        transition: { type: "spring", stiffness: 260, damping: 22 },
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
-              className: "absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full pointer-events-none",
-              style: {
-                background: "radial-gradient(circle, oklch(0.82 0.17 84 / 0.10) 0%, transparent 70%)"
+              className: "w-20 h-20 mx-auto mb-4 rounded-3xl flex items-center justify-center text-5xl shadow-card",
+              style: { background: "linear-gradient(135deg, oklch(0.80 0.18 84) 0%, oklch(0.68 0.22 40) 100%)" },
+              children: "🦁"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-4xl font-display font-black text-foreground leading-tight", children: "Word to Go" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground font-body text-base mt-2", children: getUILabel("Select who's learning today!") })
+        ]
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 px-5 py-6 flex flex-col gap-3", children: [
+      profiles.length === 0 && !creating && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        motion.div,
+        {
+          "data-ocid": "profiles.empty_state",
+          className: "text-center py-14",
+          initial: { opacity: 0 },
+          animate: { opacity: 1 },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-6xl mb-4", children: "👶" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xl font-display font-bold text-foreground", children: getUILabel("No profiles yet!") }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body text-muted-foreground mt-1", children: getUILabel("Create a profile to start learning") })
+          ]
+        }
+      ),
+      profiles.map((profile, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        motion.div,
+        {
+          "data-ocid": `profiles.item.${idx + 1}`,
+          className: "flex items-center gap-4 bg-white rounded-2xl px-4 py-4 border border-border shadow-card",
+          initial: { x: -20, opacity: 0 },
+          animate: { x: 0, opacity: 1 },
+          transition: { delay: idx * 0.07 },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                type: "button",
+                "data-ocid": `profiles.select_button.${idx + 1}`,
+                onClick: () => handleSelect(profile.id),
+                className: "flex-1 flex items-center gap-4 text-left active:scale-95 transition-smooth",
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-14 h-14 text-4xl flex items-center justify-center rounded-2xl bg-muted border border-border flex-shrink-0", children: profile.avatar }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-lg font-display font-bold text-foreground truncate", children: profile.name }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm font-body text-muted-foreground", children: [
+                      getUILabel("Tap to play!"),
+                      " 🎉"
+                    ] })
+                  ] })
+                ]
               }
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
-            {
-              initial: { scale: 0.7, opacity: 0 },
-              animate: { scale: 1, opacity: 1 },
-              transition: { type: "spring", stiffness: 280 },
-              className: "relative z-10",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-7xl mb-3", children: "🦁" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  "h1",
-                  {
-                    className: "text-5xl font-display font-black leading-tight drop-shadow-lg",
-                    style: {
-                      background: "linear-gradient(to right, oklch(0.95 0.18 84), oklch(0.82 0.17 84), oklch(0.95 0.18 84))",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text"
-                    },
-                    children: [
-                      "Word",
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
-                      "to Go"
-                    ]
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-muted-foreground font-body text-lg mt-2", children: "Select who's learning today!" })
-              ]
-            }
-          )
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        className: "flex-1 px-5 py-6 flex flex-col gap-4 relative",
-        style: { zIndex: 1 },
-        children: [
-          profiles.length === 0 && !creating && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
-            {
-              "data-ocid": "profiles.empty_state",
-              className: "text-center py-12",
-              initial: { opacity: 0 },
-              animate: { opacity: 1 },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-6xl mb-4", children: "👶" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xl font-display font-bold text-foreground", children: "No profiles yet!" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body text-muted-foreground mt-1", children: "Create a profile to start learning." })
-              ]
-            }
-          ),
-          profiles.map((profile, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
-            {
-              "data-ocid": `profiles.item.${idx + 1}`,
-              className: "flex items-center gap-4 bg-card rounded-3xl px-4 py-4 border border-[oklch(0.82_0.17_84/0.15)]",
-              style: {
-                boxShadow: "0 4px 16px oklch(0 0 0 / 0.4), 0 0 0 1px oklch(0.82 0.17 84 / 0.08) inset"
-              },
-              initial: { x: -20, opacity: 0 },
-              animate: { x: 0, opacity: 1 },
-              transition: { delay: idx * 0.08 },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  "button",
-                  {
-                    type: "button",
-                    "data-ocid": `profiles.select_button.${idx + 1}`,
-                    onClick: () => handleSelect(profile.id),
-                    className: "flex-1 flex items-center gap-4 text-left active:scale-95 transition-smooth",
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-16 h-16 text-5xl flex items-center justify-center rounded-2xl bg-muted border border-[oklch(0.82_0.17_84/0.2)] flex-shrink-0", children: profile.avatar }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xl font-display font-bold text-foreground truncate", children: profile.name }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body text-muted-foreground", children: "Tap to play! 🎉" })
-                      ] })
-                    ]
-                  }
-                ),
-                toDelete === profile.id ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 flex-shrink-0", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "button",
-                    {
-                      type: "button",
-                      "data-ocid": `profiles.confirm_button.${idx + 1}`,
-                      onClick: () => handleDelete(profile.id),
-                      className: "w-10 h-10 rounded-xl bg-destructive flex items-center justify-center active:scale-95 transition-smooth",
-                      "aria-label": "Confirm delete",
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-4 h-4 text-destructive-foreground" })
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "button",
-                    {
-                      type: "button",
-                      "data-ocid": `profiles.cancel_button.${idx + 1}`,
-                      onClick: () => setToDelete(null),
-                      className: "w-10 h-10 rounded-xl bg-muted flex items-center justify-center active:scale-95 transition-smooth text-sm font-bold text-foreground",
-                      "aria-label": "Cancel",
-                      children: "✕"
-                    }
-                  )
-                ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "button",
-                  {
-                    type: "button",
-                    "data-ocid": `profiles.delete_button.${idx + 1}`,
-                    onClick: () => setToDelete(profile.id),
-                    className: "w-10 h-10 rounded-xl bg-muted flex items-center justify-center active:scale-95 transition-smooth flex-shrink-0",
-                    "aria-label": `Delete ${profile.name}`,
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-4 h-4 text-muted-foreground" })
-                  }
-                )
-              ]
-            },
-            profile.id
-          )),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: profiles.length >= 3 && !creating ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
-            {
-              "data-ocid": "profiles.max_reached",
-              className: "text-center py-4 px-5 rounded-3xl bg-muted border border-border",
-              initial: { opacity: 0 },
-              animate: { opacity: 1 },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-base font-display font-bold text-muted-foreground", children: "Maximum 3 learners reached" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body text-muted-foreground mt-1", children: "Delete a profile to add a new one." })
-              ]
-            }
-          ) : creating ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            motion.div,
-            {
-              "data-ocid": "profiles.create_form",
-              className: "bg-card rounded-3xl p-5 border border-[oklch(0.82_0.17_84/0.2)]",
-              style: {
-                boxShadow: "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.82 0.17 84 / 0.1) inset"
-              },
-              initial: { scale: 0.95, opacity: 0 },
-              animate: { scale: 1, opacity: 1 },
-              exit: { scale: 0.95, opacity: 0 },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-xl font-display font-bold text-foreground mb-4", children: "New Learner" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-4", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "label",
-                    {
-                      htmlFor: "profile-name",
-                      className: "block text-sm font-display font-semibold text-foreground mb-2",
-                      children: "Name"
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "input",
-                    {
-                      id: "profile-name",
-                      ref: inputRef,
-                      "data-ocid": "profiles.name_input",
-                      type: "text",
-                      placeholder: "Enter name...",
-                      value: name,
-                      onChange: (e) => setName(e.target.value),
-                      onKeyDown: (e) => {
-                        if (e.key === "Enter") handleCreate();
-                      },
-                      className: "w-full px-4 py-3 rounded-2xl border border-[oklch(0.82_0.17_84/0.3)] bg-background text-foreground font-body text-lg placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[oklch(0.82_0.17_84/0.6)]",
-                      maxLength: 20
-                    }
-                  )
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-5", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "block text-sm font-display font-semibold text-foreground mb-2", children: "Avatar" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-5 gap-2", children: AVATARS.map((a) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "button",
-                    {
-                      type: "button",
-                      "data-ocid": "profiles.avatar_option",
-                      onClick: () => setAvatar(a),
-                      className: `w-12 h-12 rounded-2xl text-2xl flex items-center justify-center active:scale-95 transition-smooth ${avatar === a ? "gradient-gold shadow-luxury ring-2 ring-[oklch(0.82_0.17_84/0.6)]" : "bg-muted hover:bg-muted/70 border border-border"}`,
-                      children: a
-                    },
-                    a
-                  )) })
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "button",
-                    {
-                      type: "button",
-                      "data-ocid": "profiles.cancel_create_button",
-                      onClick: () => {
-                        setCreating(false);
-                        setName("");
-                      },
-                      className: "flex-1 btn-lg btn-tap bg-muted text-foreground font-display font-bold border border-border",
-                      children: "Cancel"
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "button",
-                    {
-                      type: "button",
-                      "data-ocid": "profiles.submit_button",
-                      onClick: handleCreate,
-                      disabled: !name.trim(),
-                      className: "flex-1 btn-lg btn-tap gradient-gold text-[oklch(0.08_0_0)] font-display font-bold disabled:opacity-50 disabled:cursor-not-allowed shadow-luxury",
-                      children: "Start! 🎉"
-                    }
-                  )
-                ] })
-              ]
-            }
-          ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-            motion.button,
-            {
-              type: "button",
-              "data-ocid": "profiles.add_button",
-              onClick: () => {
-                playTapSound();
-                setCreating(true);
-                setTimeout(() => {
-                  var _a2;
-                  return (_a2 = inputRef.current) == null ? void 0 : _a2.focus();
-                }, 50);
-              },
-              className: "w-full py-5 rounded-3xl border-2 border-dashed border-[oklch(0.82_0.17_84/0.3)] text-[oklch(0.82_0.17_84/0.7)] font-display font-bold text-lg flex items-center justify-center gap-2 hover:border-[oklch(0.82_0.17_84/0.6)] hover:text-[oklch(0.82_0.17_84)] active:scale-95 transition-smooth",
-              whileTap: { scale: 0.97 },
-              children: "➕ Add New Learner"
-            }
-          ) })
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "footer",
-      {
-        className: "py-3 text-center bg-card/60 border-t border-[oklch(0.82_0.17_84/0.15)] relative",
-        style: { zIndex: 1 },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground font-body", children: [
-          "© ",
-          (/* @__PURE__ */ new Date()).getFullYear(),
-          ". Built with love using",
-          " ",
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "a",
-            {
-              href: `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(
-                typeof window !== "undefined" ? window.location.hostname : ""
-              )}`,
-              target: "_blank",
-              rel: "noopener noreferrer",
-              className: "underline hover:text-[oklch(0.82_0.17_84)] transition-colors",
-              children: "caffeine.ai"
-            }
-          )
-        ] })
-      }
-    )
+            ),
+            toDelete === profile.id ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 flex-shrink-0", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  "data-ocid": `profiles.confirm_button.${idx + 1}`,
+                  onClick: () => handleDelete(profile.id),
+                  className: "w-9 h-9 rounded-xl bg-destructive flex items-center justify-center active:scale-95 transition-smooth",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-4 h-4 text-white" })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  "data-ocid": `profiles.cancel_button.${idx + 1}`,
+                  onClick: () => setToDelete(null),
+                  className: "w-9 h-9 rounded-xl bg-muted flex items-center justify-center active:scale-95 transition-smooth text-sm font-bold text-foreground",
+                  children: "✕"
+                }
+              )
+            ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                type: "button",
+                "data-ocid": `profiles.delete_button.${idx + 1}`,
+                onClick: () => setToDelete(profile.id),
+                className: "w-9 h-9 rounded-xl bg-muted flex items-center justify-center active:scale-95 transition-smooth flex-shrink-0",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "w-4 h-4 text-muted-foreground" })
+              }
+            )
+          ]
+        },
+        profile.id
+      )),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: profiles.length >= 3 && !creating ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        motion.div,
+        {
+          "data-ocid": "profiles.max_reached",
+          className: "text-center py-4 px-5 rounded-2xl bg-muted border border-border",
+          initial: { opacity: 0 },
+          animate: { opacity: 1 },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-base font-display font-bold text-muted-foreground", children: getUILabel("Maximum 3 learners reached") }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body text-muted-foreground mt-1", children: getUILabel("Delete a profile to add a new one") })
+          ]
+        }
+      ) : creating ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        motion.div,
+        {
+          "data-ocid": "profiles.create_form",
+          className: "bg-white rounded-2xl p-5 border border-border shadow-card",
+          initial: { scale: 0.96, opacity: 0 },
+          animate: { scale: 1, opacity: 1 },
+          exit: { scale: 0.96, opacity: 0 },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-xl font-display font-bold text-foreground mb-4", children: getUILabel("New Learner") }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-4", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "label",
+                {
+                  htmlFor: "profile-name",
+                  className: "block text-sm font-display font-semibold text-foreground mb-2",
+                  children: getUILabel("Name")
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "input",
+                {
+                  id: "profile-name",
+                  ref: inputRef,
+                  "data-ocid": "profiles.name_input",
+                  type: "text",
+                  placeholder: getUILabel("Enter name..."),
+                  value: name,
+                  onChange: (e) => setName(e.target.value),
+                  onKeyDown: (e) => {
+                    if (e.key === "Enter") handleCreate();
+                  },
+                  className: "w-full px-4 py-3 rounded-xl border border-border bg-muted text-foreground font-body text-base placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[oklch(0.55_0.22_280/0.4)] focus:border-[oklch(0.55_0.22_280)]",
+                  maxLength: 20
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-5", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "block text-sm font-display font-semibold text-foreground mb-2", children: getUILabel("Avatar") }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-5 gap-2", children: AVATARS.map((a) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  "data-ocid": "profiles.avatar_option",
+                  onClick: () => setAvatar(a),
+                  className: `w-12 h-12 rounded-2xl text-2xl flex items-center justify-center active:scale-95 transition-smooth border-2 ${avatar === a ? "border-[oklch(0.55_0.22_280)] bg-[oklch(0.94_0.05_280)]" : "border-transparent bg-muted hover:bg-[oklch(0.91_0.01_260)]"}`,
+                  children: a
+                },
+                a
+              )) })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  "data-ocid": "profiles.cancel_create_button",
+                  onClick: () => {
+                    setCreating(false);
+                    setName("");
+                  },
+                  className: "flex-1 py-3 rounded-xl bg-muted text-foreground font-display font-bold border border-border active:scale-95 transition-smooth",
+                  children: getUILabel("Cancel")
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "button",
+                {
+                  type: "button",
+                  "data-ocid": "profiles.submit_button",
+                  onClick: handleCreate,
+                  disabled: !name.trim(),
+                  className: "flex-1 py-3 rounded-xl gradient-indigo text-white font-display font-bold active:scale-95 transition-smooth shadow-playful disabled:opacity-40 disabled:cursor-not-allowed",
+                  children: [
+                    getUILabel("Start!"),
+                    " 🎉"
+                  ]
+                }
+              )
+            ] })
+          ]
+        }
+      ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        motion.button,
+        {
+          type: "button",
+          "data-ocid": "profiles.add_button",
+          onClick: () => {
+            playTapSound();
+            setCreating(true);
+            setTimeout(() => {
+              var _a2;
+              return (_a2 = inputRef.current) == null ? void 0 : _a2.focus();
+            }, 50);
+          },
+          className: "w-full py-5 rounded-2xl border-2 border-dashed border-[oklch(0.55_0.22_280/0.35)] text-[oklch(0.55_0.22_280)] font-display font-bold text-base flex items-center justify-center gap-2 hover:border-[oklch(0.55_0.22_280/0.6)] hover:bg-[oklch(0.96_0.03_280)] active:scale-95 transition-smooth",
+          whileTap: { scale: 0.97 },
+          children: [
+            "➕ ",
+            getUILabel("Add New Learner")
+          ]
+        }
+      ) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: "py-3 text-center bg-white border-t border-border", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground font-body", children: [
+      "© ",
+      (/* @__PURE__ */ new Date()).getFullYear(),
+      ". Built with love using",
+      " ",
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "a",
+        {
+          href: `https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(
+            typeof window !== "undefined" ? window.location.hostname : ""
+          )}`,
+          target: "_blank",
+          rel: "noopener noreferrer",
+          className: "underline hover:text-[oklch(0.55_0.22_280)] transition-colors",
+          children: "caffeine.ai"
+        }
+      )
+    ] }) })
   ] });
 }
 function ProgressPage() {
@@ -36805,86 +38639,56 @@ function ProgressPage() {
     if (!profile) router2.navigate({ to: "/" });
   }, [profile, router2]);
   if (!profile) return null;
-  const flashcardDone = Object.values((progress2 == null ? void 0 : progress2.flashcards) ?? {}).filter(
-    (f) => f.completed
-  ).length;
-  const blendingDone = Object.values((progress2 == null ? void 0 : progress2.blending) ?? {}).filter(
-    (b) => b.tasksCompleted.length > 0
-  ).length;
-  const tracingDone = Object.values((progress2 == null ? void 0 : progress2.tracing) ?? {}).filter(
-    (t) => t.completed
-  ).length;
+  const flashcardDone = Object.values((progress2 == null ? void 0 : progress2.flashcards) ?? {}).filter((f) => f.completed).length;
+  const blendingDone = Object.values((progress2 == null ? void 0 : progress2.blending) ?? {}).filter((b) => b.tasksCompleted.length > 0).length;
+  const tracingDone = Object.values((progress2 == null ? void 0 : progress2.tracing) ?? {}).filter((t) => t.completed).length;
   const handleReset = () => {
     playTapSound();
-    if (window.confirm("Reset all progress? This cannot be undone.")) {
+    if (window.confirm(getUILabel("Reset all progress? This cannot be undone."))) {
       resetProgress();
     }
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Layout, { title: "Progress", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-5 py-6 flex flex-col gap-6", children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Layout, { title: getUILabel("Progress"), children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-5 py-5 flex flex-col gap-5", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       motion.div,
       {
-        initial: { y: -10, opacity: 0 },
+        initial: { y: -8, opacity: 0 },
         animate: { y: 0, opacity: 1 },
-        className: "gradient-gold text-[oklch(0.08_0_0)] rounded-3xl p-5 flex items-center gap-4",
-        style: {
-          boxShadow: "0 8px 32px oklch(0.82 0.17 84 / 0.3), 0 0 0 1px oklch(1 0 0 / 0.15) inset"
-        },
+        className: "gradient-indigo text-white rounded-2xl p-5 flex items-center gap-4",
+        style: { boxShadow: "0 4px 20px oklch(0.55 0.22 280 / 0.30)" },
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-6xl", children: profile.avatar }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-5xl", children: profile.avatar }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-2xl font-display font-black", children: profile.name }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xl font-display font-black", children: profile.name }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mt-1", children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(StarBadge, { count: (progress2 == null ? void 0 : progress2.totalStars) ?? 0, size: "md" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-body opacity-80", children: "total stars" })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-body opacity-80", children: getUILabel("total stars") })
             ] })
           ] })
         ]
       }
     ),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-3 gap-3", children: [
-      {
-        label: "Letters",
-        value: flashcardDone,
-        max: 26,
-        color: "gradient-red",
-        emoji: "🃏"
-      },
-      {
-        label: "Words",
-        value: blendingDone,
-        max: TOTAL_BLENDING_TASKS,
-        color: "gradient-blue",
-        emoji: "🎵"
-      },
-      {
-        label: "Tracing",
-        value: tracingDone,
-        max: 26,
-        color: "gradient-green",
-        emoji: "✏️"
-      }
+      { label: getUILabel("Letters"), value: flashcardDone, max: 26, colorClass: "gradient-red", emoji: "🃏" },
+      { label: getUILabel("Words"), value: blendingDone, max: TOTAL_BLENDING_TASKS, colorClass: "gradient-blue", emoji: "🎵" },
+      { label: getUILabel("Tracing"), value: tracingDone, max: 26, colorClass: "gradient-green", emoji: "✏️" }
     ].map((stat) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
       motion.div,
       {
-        className: `${stat.color} text-card rounded-2xl p-3 text-center relative overflow-hidden`,
-        style: {
-          boxShadow: "0 4px 20px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1) inset"
-        },
+        className: `${stat.colorClass} text-white rounded-2xl p-3 text-center relative overflow-hidden`,
+        style: { boxShadow: "0 4px 12px oklch(0 0 0 / 0.12)" },
         whileHover: { scale: 1.03 },
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
               className: "absolute inset-0 pointer-events-none",
-              style: {
-                background: "linear-gradient(135deg, oklch(1 0 0 / 0.08) 0%, transparent 60%)"
-              }
+              style: { background: "linear-gradient(135deg, oklch(1 0 0 / 0.12) 0%, transparent 60%)" }
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-3xl relative z-10", children: stat.emoji }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-2xl font-display font-black relative z-10", children: stat.value }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs font-body opacity-80 relative z-10", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs font-body opacity-75 relative z-10", children: [
             "/",
             stat.max
           ] }),
@@ -36893,52 +38697,26 @@ function ProgressPage() {
       },
       stat.label
     )) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-4", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ProgressBar,
-        {
-          value: flashcardDone / 26 * 100,
-          color: "red",
-          label: "🃏 Flashcards",
-          showLabel: true
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ProgressBar,
-        {
-          value: blendingDone / TOTAL_BLENDING_TASKS * 100,
-          color: "blue",
-          label: "🎵 Blending",
-          showLabel: true
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ProgressBar,
-        {
-          value: tracingDone / 26 * 100,
-          color: "green",
-          label: "✏️ Tracing",
-          showLabel: true
-        }
-      )
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-2xl p-4 border border-border flex flex-col gap-4 shadow-card", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(ProgressBar, { value: flashcardDone / 26 * 100, color: "red", label: "🃏 Flashcards", showLabel: true }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(ProgressBar, { value: blendingDone / TOTAL_BLENDING_TASKS * 100, color: "blue", label: "🎵 Blending", showLabel: true }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(ProgressBar, { value: tracingDone / 26 * 100, color: "green", label: "✏️ Tracing", showLabel: true })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-base font-display font-bold text-foreground mb-3", children: "Letter Progress" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-7 gap-2", children: PHONICS_DATA.map((l, i) => {
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-2xl p-4 border border-border shadow-card", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-display font-bold text-foreground mb-3", children: getUILabel("Letter Progress") }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-7 gap-1.5", children: PHONICS_DATA.map((l, i) => {
         var _a2, _b2, _c2;
         const fc = (_a2 = progress2 == null ? void 0 : progress2.flashcards[l.letter]) == null ? void 0 : _a2.completed;
         const bt = (((_b2 = progress2 == null ? void 0 : progress2.blending[l.blendingTasks[0].id]) == null ? void 0 : _b2.tasksCompleted.length) ?? 0) > 0;
         const tr = (_c2 = progress2 == null ? void 0 : progress2.tracing[l.letter]) == null ? void 0 : _c2.completed;
         const doneCount = [fc, bt, tr].filter(Boolean).length;
-        const colorCls = doneCount === 3 ? "gradient-green text-card" : doneCount === 2 ? "gradient-yellow text-card" : doneCount === 1 ? "gradient-blue text-card" : "bg-muted text-muted-foreground border border-border";
+        const style2 = doneCount === 3 ? { background: "oklch(0.62 0.22 145)", color: "white" } : doneCount === 2 ? { background: "oklch(0.80 0.18 84)", color: "white" } : doneCount === 1 ? { background: "oklch(0.58 0.22 260)", color: "white" } : { background: "oklch(0.94 0.01 260)", color: "oklch(0.52 0.03 260)", border: "1px solid oklch(0.90 0.01 260)" };
         return /* @__PURE__ */ jsxRuntimeExports.jsx(
           motion.div,
           {
             "data-ocid": `progress.letter_chip.${i + 1}`,
-            className: `h-10 w-full rounded-xl flex items-center justify-center font-display font-black text-sm ${colorCls}`,
-            style: {
-              boxShadow: doneCount > 0 ? "0 2px 8px oklch(0 0 0 / 0.4)" : void 0
-            },
+            className: "h-9 w-full rounded-xl flex items-center justify-center font-display font-black text-sm",
+            style: { ...style2, boxShadow: doneCount > 0 ? "0 2px 6px oklch(0 0 0 / 0.12)" : void 0 },
             whileHover: { scale: 1.1 },
             title: `${l.letter}: ${doneCount}/3 done`,
             children: l.letter
@@ -36948,35 +38726,35 @@ function ProgressPage() {
       }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3 mt-3 text-xs font-body text-muted-foreground justify-center flex-wrap", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-1", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 rounded gradient-green inline-block" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 rounded inline-block", style: { background: "oklch(0.62 0.22 145)" } }),
           " ",
-          "All done"
+          getUILabel("All done")
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-1", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 rounded gradient-yellow inline-block" }),
-          " ",
-          "2/3 done"
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 rounded inline-block", style: { background: "oklch(0.80 0.18 84)" } }),
+          " 2/3"
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-1", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 rounded gradient-blue inline-block" }),
-          " ",
-          "1/3 done"
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 rounded inline-block", style: { background: "oklch(0.58 0.22 260)" } }),
+          " 1/3"
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-1", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-3 h-3 rounded bg-muted border border-border inline-block" }),
-          " ",
-          "Not started"
+          " Not started"
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "button",
       {
         type: "button",
         "data-ocid": "progress.reset_button",
         onClick: handleReset,
-        className: "w-full py-3 rounded-2xl border-2 border-destructive text-destructive font-display font-bold active:scale-95 transition-smooth hover:bg-destructive/10",
-        children: "🔄 Reset Progress"
+        className: "w-full py-3 rounded-2xl border-2 border-destructive/40 text-destructive font-display font-bold active:scale-95 transition-smooth hover:bg-destructive/5 text-sm",
+        children: [
+          "🔄 ",
+          getUILabel("Reset Progress")
+        ]
       }
     )
   ] }) });
@@ -37015,6 +38793,8 @@ function PronunciationPage() {
   const [current, setCurrent] = reactExports.useState(() => pickRandom());
   const [state, setState] = reactExports.useState("idle");
   const [spokenText, setSpokenText] = reactExports.useState("");
+  const [interimText, setInterimText] = reactExports.useState("");
+  const [micError, setMicError] = reactExports.useState(null);
   const [hasSpeechAPI] = reactExports.useState(() => {
     return typeof window !== "undefined" && ("SpeechRecognition" in window || "webkitSpeechRecognition" in window);
   });
@@ -37039,6 +38819,8 @@ function PronunciationPage() {
     setCurrent((prev) => pickRandom(prev.word));
     setState("idle");
     setSpokenText("");
+    setInterimText("");
+    setMicError(null);
   }, []);
   const startListening = reactExports.useCallback(() => {
     if (state === "listening" || state === "correct") return;
@@ -37048,21 +38830,39 @@ function PronunciationPage() {
     const recognition = new SpeechRecognition();
     recognition.lang = "en-US";
     recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 3;
-    recognition.onstart = () => setState("listening");
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 5;
+    recognition.onstart = () => {
+      setMicError(null);
+      setInterimText("");
+      setSpokenText("");
+      setState("listening");
+    };
     recognition.onresult = (event) => {
-      const results = [];
+      var _a2;
+      const final = [];
+      let interim = "";
       for (let i = 0; i < event.results.length; i++) {
-        for (let j = 0; j < event.results[i].length; j++) {
-          results.push(event.results[i][j].transcript);
+        if (event.results[i].isFinal) {
+          for (let j = 0; j < event.results[i].length; j++) {
+            final.push(event.results[i][j].transcript);
+          }
+        } else {
+          interim = ((_a2 = event.results[i][0]) == null ? void 0 : _a2.transcript) ?? "";
         }
       }
-      const best = results.find(
-        (r) => normalizedSimilarity(current.word, r) >= 0.6
-      );
-      const topTranscript = results[0] ?? "";
+      setInterimText(interim);
+      if (final.length === 0) return;
+      const normalize = (s) => s.toLowerCase().trim().replace(/[.,!?;:]$/, "");
+      const targetNorm = normalize(current.word);
+      const best = final.find((r) => {
+        const rNorm = normalize(r);
+        if (rNorm === targetNorm) return true;
+        return normalizedSimilarity(current.word, r) >= 0.78;
+      });
+      const topTranscript = final[0] ?? "";
       setSpokenText(topTranscript);
+      setInterimText("");
       if (best !== void 0) {
         setState("correct");
         playSuccessSound();
@@ -37074,13 +38874,25 @@ function PronunciationPage() {
         setState("mismatch");
       }
     };
-    recognition.onerror = () => {
+    recognition.onerror = (e) => {
+      const code = e.error;
+      const msg = code === "no-speech" ? "No speech detected. Tap the mic again and speak louder." : code === "audio-capture" ? "Microphone not available. Check your mic permissions." : code === "not-allowed" ? "Microphone access blocked. Allow mic in your browser settings." : code === "network" ? "Network error. Check your connection and try again." : "Something went wrong. Tap the mic to try again.";
+      setMicError(msg);
+      setInterimText("");
       setState("idle");
     };
     recognition.onend = () => {
       if (recognitionRef.current === recognition) {
         recognitionRef.current = null;
-        setState((prev) => prev === "listening" ? "idle" : prev);
+        setState((prev) => {
+          if (prev === "listening") {
+            if (interimText && !spokenText) {
+              return "mismatch";
+            }
+            return "idle";
+          }
+          return prev;
+        });
       }
     };
     recognitionRef.current = recognition;
@@ -37116,13 +38928,13 @@ function PronunciationPage() {
                   },
                   className: "w-10 h-10 rounded-xl flex items-center justify-center transition-smooth active:scale-90",
                   style: { background: "oklch(0.18 0.04 264)" },
-                  "aria-label": "Go back",
+                  "aria-label": getUILabel("Go back"),
                   children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xl text-foreground", children: "←" })
                 }
               ),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "font-display font-black text-lg text-foreground leading-tight", children: "Pronunciation" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-body text-muted-foreground", children: "Say the word out loud" })
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "font-display font-black text-lg text-foreground leading-tight", children: getUILabel("Pronunciation") }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-body text-muted-foreground", children: getUILabel("Say the word out loud") })
               ] })
             ]
           }
@@ -37134,9 +38946,9 @@ function PronunciationPage() {
             "data-ocid": "pronunciation.no_speech_state",
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-6xl", children: "🎤" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-bold text-xl text-foreground", children: "Voice recording not supported" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body text-muted-foreground max-w-xs", children: "Your browser does not support voice recording. Try Chrome or Safari." }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-display font-bold text-xl text-foreground", children: getUILabel("Voice recording not supported") }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body text-muted-foreground max-w-xs", children: getUILabel("Your browser does not support voice recording. Try Chrome or Safari.") }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "button",
                 {
                   type: "button",
@@ -37147,7 +38959,10 @@ function PronunciationPage() {
                     background: "linear-gradient(135deg, oklch(0.82 0.17 84), oklch(0.70 0.17 84))",
                     color: "oklch(0.08 0 0)"
                   },
-                  children: "Next word →"
+                  children: [
+                    getUILabel("Next word"),
+                    " →"
+                  ]
                 }
               )
             ]
@@ -37200,6 +39015,10 @@ function PronunciationPage() {
                     children: current.word
                   }
                 ),
+                (() => {
+                  const ar = getArabicWord(current.word);
+                  return ar ? /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xl font-[var(--font-arabic)] relative z-10 mt-1", dir: "rtl", children: ar }) : null;
+                })(),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs(
                   "button",
                   {
@@ -37214,7 +39033,8 @@ function PronunciationPage() {
                     },
                     children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "🔊" }),
-                      " Hear it"
+                      " ",
+                      getUILabel("Hear it")
                     ]
                   }
                 )
@@ -37253,16 +39073,20 @@ function PronunciationPage() {
                     )),
                     /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-5xl z-10", children: "🎉" })
                   ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
                     "p",
                     {
                       className: "font-display font-black text-2xl",
                       style: { color: "oklch(0.88 0.18 84)" },
-                      children: "Great job! ⭐"
+                      children: [
+                        getUILabel("Great job!"),
+                        " ⭐"
+                      ]
                     }
                   ),
                   spokenText ? /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm font-body text-muted-foreground", children: [
-                    "You said: ",
+                    getUILabel("You said:"),
+                    " ",
                     /* @__PURE__ */ jsxRuntimeExports.jsxs("em", { children: [
                       '"',
                       spokenText,
@@ -37283,16 +39107,20 @@ function PronunciationPage() {
                 className: "flex flex-col items-center gap-3",
                 "data-ocid": "pronunciation.error_state",
                 children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
                     "p",
                     {
                       className: "font-display font-bold text-xl text-center",
                       style: { color: "oklch(0.72 0.28 15)" },
-                      children: "Try again! 🎙️"
+                      children: [
+                        getUILabel("Try again!"),
+                        " 🎙️"
+                      ]
                     }
                   ),
                   spokenText ? /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm font-body text-muted-foreground text-center", children: [
-                    "I heard: ",
+                    getUILabel("I heard:"),
+                    " ",
                     /* @__PURE__ */ jsxRuntimeExports.jsxs("em", { children: [
                       '"',
                       spokenText,
@@ -37300,7 +39128,7 @@ function PronunciationPage() {
                     ] })
                   ] }) : null,
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
                       "button",
                       {
                         type: "button",
@@ -37311,10 +39139,13 @@ function PronunciationPage() {
                           background: "linear-gradient(135deg, oklch(0.82 0.17 84), oklch(0.70 0.17 84))",
                           color: "oklch(0.08 0 0)"
                         },
-                        children: "🔊 Listen"
+                        children: [
+                          "🔊 ",
+                          getUILabel("Listen")
+                        ]
                       }
                     ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(
                       "button",
                       {
                         type: "button",
@@ -37326,7 +39157,10 @@ function PronunciationPage() {
                           border: "1px solid oklch(0.82 0.17 84 / 0.25)",
                           color: "oklch(0.82 0.17 84)"
                         },
-                        children: "Skip →"
+                        children: [
+                          getUILabel("Skip"),
+                          " →"
+                        ]
                       }
                     )
                   ] })
@@ -37340,21 +39174,48 @@ function PronunciationPage() {
                 initial: { opacity: 0 },
                 animate: { opacity: 1 },
                 exit: { opacity: 0 },
-                className: "text-center",
-                children: state === "listening" ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  motion.p,
-                  {
-                    animate: { opacity: [1, 0.4, 1] },
-                    transition: {
-                      duration: 1.2,
-                      repeat: Number.POSITIVE_INFINITY
-                    },
-                    className: "font-display font-bold text-lg",
-                    style: { color: "oklch(0.72 0.28 15)" },
-                    "data-ocid": "pronunciation.listening_state",
-                    children: "🎙️ Listening..."
-                  }
-                ) : /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body text-muted-foreground", children: "Tap the mic and say the word" })
+                className: "text-center flex flex-col items-center gap-2",
+                children: state === "listening" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.p,
+                    {
+                      animate: { opacity: [1, 0.4, 1] },
+                      transition: {
+                        duration: 1.2,
+                        repeat: Number.POSITIVE_INFINITY
+                      },
+                      className: "font-display font-bold text-lg",
+                      style: { color: "oklch(0.72 0.28 15)" },
+                      "data-ocid": "pronunciation.listening_state",
+                      children: [
+                        "🎙️ ",
+                        getUILabel("Listening...")
+                      ]
+                    }
+                  ),
+                  interimText && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "p",
+                    {
+                      className: "text-sm font-body text-muted-foreground italic",
+                      "data-ocid": "pronunciation.interim_text",
+                      children: [
+                        '"',
+                        interimText,
+                        '"'
+                      ]
+                    }
+                  )
+                ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm font-body text-muted-foreground", children: getUILabel("Tap the mic and say the word") }),
+                  micError && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "p",
+                    {
+                      className: "text-xs font-body text-destructive bg-destructive/10 px-3 py-1.5 rounded-xl",
+                      "data-ocid": "pronunciation.mic_error",
+                      children: micError
+                    }
+                  )
+                ] })
               },
               "prompt"
             )
@@ -37375,7 +39236,7 @@ function PronunciationPage() {
                   background: state === "listening" ? "linear-gradient(135deg, oklch(0.72 0.28 15), oklch(0.55 0.28 15))" : "linear-gradient(135deg, oklch(0.82 0.17 84), oklch(0.68 0.17 84))",
                   boxShadow: state === "listening" ? "0 0 0 12px oklch(0.72 0.28 15 / 0.18), 0 0 40px oklch(0.72 0.28 15 / 0.35)" : "0 0 0 8px oklch(0.82 0.17 84 / 0.12), 0 0 24px oklch(0.82 0.17 84 / 0.25)"
                 },
-                "aria-label": state === "listening" ? "Listening..." : "Start recording",
+                "aria-label": state === "listening" ? getUILabel("Listening...") : getUILabel("Start recording"),
                 children: [
                   state === "listening" && /* @__PURE__ */ jsxRuntimeExports.jsx(
                     motion.div,
@@ -37401,7 +39262,7 @@ function PronunciationPage() {
                 onClick: advanceWord,
                 className: "text-xs font-body underline transition-smooth active:opacity-70",
                 style: { color: "oklch(0.55 0.05 264)" },
-                children: "Skip this word"
+                children: getUILabel("Skip this word")
               }
             )
           ] })
@@ -37411,21 +39272,17 @@ function PronunciationPage() {
   );
 }
 const STROKE_COLORS = {
-  red: "oklch(0.72 0.28 15)",
-  blue: "oklch(0.68 0.24 264)",
-  green: "oklch(0.72 0.27 131)",
-  yellow: "oklch(0.90 0.18 84)",
-  purple: "oklch(0.68 0.22 320)"
+  red: "oklch(0.60 0.24 15)",
+  blue: "oklch(0.55 0.22 260)",
+  green: "oklch(0.58 0.22 145)",
+  yellow: "oklch(0.72 0.18 84)",
+  purple: "oklch(0.55 0.22 320)"
 };
 const COVERAGE_THRESHOLD = 0.65;
 const CANVAS_W = 360;
 const CANVAS_H = 240;
 const ALL_WORDS = PHONICS_DATA.flatMap(
-  (ld) => ld.blendingTasks.map((t) => ({
-    word: t.word,
-    emoji: t.emoji,
-    color: ld.color
-  }))
+  (ld) => ld.blendingTasks.map((t) => ({ word: t.word, emoji: t.emoji, color: ld.color }))
 );
 function getRandomWord() {
   return ALL_WORDS[Math.floor(Math.random() * ALL_WORDS.length)];
@@ -37452,8 +39309,7 @@ function computeCoverage(drawnData, refData) {
       if (drawnData[i + 3] > 30) overlap++;
     }
   }
-  if (refTotal === 0) return 0;
-  return overlap / refTotal;
+  return refTotal === 0 ? 0 : overlap / refTotal;
 }
 function TracingPage() {
   const router2 = useRouter();
@@ -37486,41 +39342,36 @@ function TracingPage() {
       clearCanvas();
     }
   }, [currentKey, clearCanvas]);
-  const wordFontSize = reactExports.useMemo(() => {
+  reactExports.useMemo(() => {
     const len = wordEntry.word.length;
-    let size;
-    if (len <= 3) size = 80;
-    else if (len === 4) size = 60;
-    else if (len === 5) size = 50;
-    else size = 45;
+    let size = len <= 3 ? 68 : len === 4 ? 50 : len === 5 ? 42 : 38;
     const maxAllowed = Math.floor((CANVAS_W - 24) / (len * 0.55));
     return Math.min(size, maxAllowed);
   }, [wordEntry.word]);
-  if (!profile) {
-    router2.navigate({ to: "/" });
-    return null;
-  }
+  reactExports.useEffect(() => {
+    if (!profile) router2.navigate({ to: "/" });
+  }, [profile, router2]);
+  if (!profile) return null;
+  const completedCount = PHONICS_DATA.filter((l) => {
+    var _a2;
+    return (_a2 = progress2 == null ? void 0 : progress2.tracing[l.letter]) == null ? void 0 : _a2.completed;
+  }).length;
+  const progressPct = Math.round(completedCount / PHONICS_DATA.length * 100);
   const getRefPixels = () => {
-    const key = currentKey;
-    if (!refPixelsCache.current[key]) {
+    if (!refPixelsCache.current[currentKey]) {
       if (mode === "letter") {
-        refPixelsCache.current[key] = buildReferencePixels(letter.uppercase);
+        refPixelsCache.current[currentKey] = buildReferencePixels(letter.uppercase);
       } else {
         const len = wordEntry.word.length;
-        let size;
-        if (len <= 3) size = 80;
-        else if (len === 4) size = 60;
-        else if (len === 5) size = 50;
-        else size = 45;
+        let size = len <= 3 ? 68 : len === 4 ? 50 : len === 5 ? 42 : 38;
         const maxAllowed = Math.floor((CANVAS_W - 24) / (len * 0.55));
-        const fontSize = Math.min(size, maxAllowed);
-        refPixelsCache.current[key] = buildReferencePixels(
+        refPixelsCache.current[currentKey] = buildReferencePixels(
           wordEntry.word.toUpperCase(),
-          Math.max(fontSize, 40)
+          Math.max(Math.min(size, maxAllowed), 36)
         );
       }
     }
-    return refPixelsCache.current[key];
+    return refPixelsCache.current[currentKey];
   };
   const getPoint = (e) => {
     const canvas = canvasRef.current;
@@ -37529,16 +39380,10 @@ function TracingPage() {
     const scaleY2 = canvas.height / rect.height;
     if ("touches" in e) {
       const t = e.touches[0];
-      return {
-        x: (t.clientX - rect.left) * scaleX2,
-        y: (t.clientY - rect.top) * scaleY2
-      };
+      return { x: (t.clientX - rect.left) * scaleX2, y: (t.clientY - rect.top) * scaleY2 };
     }
     const m = e;
-    return {
-      x: (m.clientX - rect.left) * scaleX2,
-      y: (m.clientY - rect.top) * scaleY2
-    };
+    return { x: (m.clientX - rect.left) * scaleX2, y: (m.clientY - rect.top) * scaleY2 };
   };
   const startDraw = (e) => {
     e.preventDefault();
@@ -37554,7 +39399,7 @@ function TracingPage() {
     ctx.beginPath();
     ctx.moveTo(lastPt.current.x, lastPt.current.y);
     ctx.lineTo(pt.x, pt.y);
-    ctx.strokeStyle = mode === "letter" ? STROKE_COLORS[letter.color] ?? STROKE_COLORS.blue : "oklch(0.82 0.17 84)";
+    ctx.strokeStyle = mode === "letter" ? STROKE_COLORS[letter.color] ?? STROKE_COLORS.blue : "oklch(0.55 0.22 280)";
     ctx.lineWidth = 14;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
@@ -37572,30 +39417,19 @@ function TracingPage() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const drawnData = ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
-    const refData = getRefPixels();
-    const score = computeCoverage(drawnData, refData);
+    const score = computeCoverage(drawnData, getRefPixels());
     setCoverage(score);
     if (score >= COVERAGE_THRESHOLD && !isDone) {
       setIsDone(true);
       playSuccessSound();
       if (mode === "letter") {
         updateProgress((prev) => {
-          const existing = prev.tracing[letter.letter] ?? {
-            letterId: letter.letter,
-            attempts: 0,
-            completed: false,
-            lastVisited: 0
-          };
+          const existing = prev.tracing[letter.letter] ?? { letterId: letter.letter, attempts: 0, completed: false, lastVisited: 0 };
           return {
             ...prev,
             tracing: {
               ...prev.tracing,
-              [letter.letter]: {
-                ...existing,
-                attempts: existing.attempts + 1,
-                completed: true,
-                lastVisited: Date.now()
-              }
+              [letter.letter]: { ...existing, attempts: existing.attempts + 1, completed: true, lastVisited: Date.now() }
             }
           };
         });
@@ -37608,86 +39442,93 @@ function TracingPage() {
     lastPt.current = null;
     checkSimilarity();
   };
-  const goToLetter = (newIdx) => setLetterIdx(newIdx);
   const newWord = () => {
     playTapSound();
     let next = getRandomWord();
-    while (next.word === wordEntry.word && ALL_WORDS.length > 1) {
-      next = getRandomWord();
-    }
+    while (next.word === wordEntry.word && ALL_WORDS.length > 1) next = getRandomWord();
     setWordEntry(next);
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Layout, { title: "Tracing", headerColor: "oklch(0.48 0.27 131)", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-5 py-5 flex flex-col gap-4", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        className: "flex rounded-2xl overflow-hidden border border-[oklch(0.82_0.17_84/0.25)] bg-card/50",
-        "data-ocid": "tracing.mode_toggle",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              "data-ocid": "tracing.letter_mode_tab",
-              onClick: () => {
-                playTapSound();
-                setMode("letter");
-              },
-              className: `flex-1 py-2.5 text-sm font-display font-bold transition-smooth ${mode === "letter" ? "gradient-green text-card" : "text-muted-foreground hover:text-foreground"}`,
-              children: "✏️ Letter Tracing"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              "data-ocid": "tracing.word_mode_tab",
-              onClick: () => {
-                playTapSound();
-                setMode("word");
-              },
-              className: `flex-1 py-2.5 text-sm font-display font-bold transition-smooth ${mode === "word" ? "gradient-gold text-[oklch(0.08_0_0)]" : "text-muted-foreground hover:text-foreground"}`,
-              children: "📝 Word Tracing"
-            }
-          )
-        ]
-      }
-    ),
-    mode === "letter" && /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        className: "flex gap-1.5 overflow-x-auto pb-1",
-        style: { scrollbarWidth: "none" },
-        "data-ocid": "tracing.letter_tabs",
-        children: PHONICS_DATA.map((l, i) => {
-          var _a2;
-          const done = (_a2 = progress2 == null ? void 0 : progress2.tracing[l.letter]) == null ? void 0 : _a2.completed;
-          return /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              "data-ocid": `tracing.letter_tab.${i + 1}`,
-              onClick: () => {
-                playTapSound();
-                goToLetter(i);
-              },
-              className: `flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 ${i === letterIdx ? "gradient-green text-card shadow-playful" : done ? "bg-[oklch(0.82_0.17_84/0.25)] text-[oklch(0.88_0.17_84)]" : "bg-muted text-muted-foreground"}`,
-              children: l.letter
-            },
-            l.letter
-          );
-        })
-      }
-    ),
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Layout, { title: getUILabel("Tracing"), headerColor: "oklch(0.48 0.22 145)", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-5 py-5 flex flex-col gap-4", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-2xl px-4 py-3 border border-border shadow-card", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between mb-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-xs font-display font-bold text-foreground", children: getUILabel("Letters Traced") }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs font-display font-black text-[oklch(0.48_0.22_145)]", children: [
+          completedCount,
+          "/",
+          PHONICS_DATA.length
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-full h-2.5 rounded-full overflow-hidden bg-muted", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        motion.div,
+        {
+          className: "h-full rounded-full",
+          style: { background: "linear-gradient(90deg, oklch(0.62 0.22 145) 0%, oklch(0.48 0.22 145) 100%)" },
+          initial: { width: 0 },
+          animate: { width: `${progressPct}%` },
+          transition: { duration: 0.6, ease: "easeOut" }
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground font-body mt-1.5", children: progressPct === 0 ? getUILabel("Start tracing to make progress!") : progressPct === 100 ? getUILabel("🎉 All letters completed!") : `${progressPct}% ${getUILabel("complete — keep going!")}` })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex rounded-2xl overflow-hidden border border-border bg-white shadow-xs", "data-ocid": "tracing.mode_toggle", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          "data-ocid": "tracing.letter_mode_tab",
+          onClick: () => {
+            playTapSound();
+            setMode("letter");
+          },
+          className: `flex-1 py-2.5 text-sm font-display font-bold transition-smooth ${mode === "letter" ? "gradient-green text-white" : "text-muted-foreground hover:text-foreground"}`,
+          children: [
+            "✏️ ",
+            getUILabel("Letter Tracing")
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          "data-ocid": "tracing.word_mode_tab",
+          onClick: () => {
+            playTapSound();
+            setMode("word");
+          },
+          className: `flex-1 py-2.5 text-sm font-display font-bold transition-smooth ${mode === "word" ? "gradient-indigo text-white" : "text-muted-foreground hover:text-foreground"}`,
+          children: [
+            "📝 ",
+            getUILabel("Word Tracing")
+          ]
+        }
+      )
+    ] }),
+    mode === "letter" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1.5 overflow-x-auto pb-1", style: { scrollbarWidth: "none" }, "data-ocid": "tracing.letter_tabs", children: PHONICS_DATA.map((l, i) => {
+      var _a2;
+      const done = (_a2 = progress2 == null ? void 0 : progress2.tracing[l.letter]) == null ? void 0 : _a2.completed;
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          "data-ocid": `tracing.letter_tab.${i + 1}`,
+          onClick: () => {
+            playTapSound();
+            setLetterIdx(i);
+          },
+          className: `flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 border ${i === letterIdx ? "gradient-green text-white border-transparent shadow-playful" : done ? "bg-[oklch(0.94_0.06_145)] text-[oklch(0.48_0.22_145)] border-[oklch(0.85_0.10_145)]" : "bg-muted text-muted-foreground border-border"}`,
+          children: l.letter
+        },
+        l.letter
+      );
+    }) }),
     mode === "letter" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
-        className: `rounded-3xl p-4 flex items-center gap-4 text-card ${letter.color === "red" ? "gradient-red" : letter.color === "blue" ? "gradient-blue" : letter.color === "green" ? "gradient-green" : letter.color === "yellow" ? "gradient-yellow" : "gradient-purple"}`,
-        style: {
-          boxShadow: "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.1) inset"
-        },
+        className: `rounded-2xl p-4 flex items-center gap-4 text-white ${letter.color === "red" ? "gradient-red" : letter.color === "blue" ? "gradient-blue" : letter.color === "green" ? "gradient-green" : letter.color === "yellow" ? "gradient-yellow" : "gradient-purple"}`,
+        style: { boxShadow: "0 4px 16px oklch(0 0 0 / 0.15)" },
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-7xl font-display font-black leading-none drop-shadow-lg", children: letter.uppercase }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-7xl font-display font-black leading-none drop-shadow", children: letter.uppercase }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-2xl font-display font-bold", children: letter.lowercase }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm font-body opacity-80", children: [
@@ -37702,85 +39543,32 @@ function TracingPage() {
           ] })
         ]
       }
-    ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        className: "rounded-3xl p-4 flex items-center gap-4",
-        style: {
-          background: "linear-gradient(135deg, oklch(0.20 0.06 84) 0%, oklch(0.14 0.04 84) 100%)",
-          border: "1px solid oklch(0.82 0.17 84 / 0.35)",
-          boxShadow: "0 8px 32px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(0.82 0.17 84 / 0.1) inset"
-        },
-        "data-ocid": "tracing.word_card",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-6xl", children: wordEntry.emoji }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-2xl font-display font-black leading-tight",
-                style: { color: "oklch(0.92 0.18 84)" },
-                children: wordEntry.word
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "p",
-              {
-                className: "text-xs font-body mt-0.5",
-                style: { color: "oklch(0.70 0.10 84)" },
-                children: "Trace this word"
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              "data-ocid": "tracing.new_word_button",
-              onClick: newWord,
-              className: "flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-display font-bold transition-smooth active:scale-95",
-              style: {
-                background: "oklch(0.82 0.17 84 / 0.2)",
-                color: "oklch(0.92 0.18 84)",
-                border: "1px solid oklch(0.82 0.17 84 / 0.4)"
-              },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { className: "w-3.5 h-3.5" }),
-                "New Word"
-              ]
-            }
-          )
-        ]
-      }
-    ),
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-white rounded-2xl p-4 flex items-center gap-4 border border-border shadow-card", "data-ocid": "tracing.word_card", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-5xl", children: wordEntry.emoji }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-2xl font-display font-black text-foreground leading-tight", children: wordEntry.word }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs font-body text-muted-foreground mt-0.5", children: getUILabel("Trace this word") })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          "data-ocid": "tracing.new_word_button",
+          onClick: newWord,
+          className: "flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-display font-bold transition-smooth active:scale-95 bg-muted border border-border text-foreground hover:bg-[oklch(0.91_0.01_260)]",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { className: "w-3.5 h-3.5" }),
+            "New Word"
+          ]
+        }
+      )
+    ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
-        className: "relative rounded-3xl overflow-hidden border border-[oklch(0.82_0.17_84/0.2)]",
-        style: {
-          background: "oklch(0.10 0.02 264)",
-          boxShadow: "0 8px 32px oklch(0 0 0 / 0.6), 0 0 0 1px oklch(0.82 0.17 84 / 0.1) inset"
-        },
+        className: "relative rounded-2xl overflow-hidden border border-border shadow-card bg-white",
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 flex items-center justify-center pointer-events-none select-none", children: mode === "letter" ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "span",
-            {
-              className: "font-display font-black leading-none",
-              style: { fontSize: 180, color: "oklch(0.82 0.17 84 / 0.35)" },
-              children: letter.uppercase
-            }
-          ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "span",
-            {
-              className: "font-display font-black leading-none px-3 text-center",
-              style: {
-                fontSize: wordFontSize,
-                color: "oklch(0.82 0.17 84 / 0.35)",
-                letterSpacing: "0.05em"
-              },
-              children: wordEntry.word.toUpperCase()
-            }
-          ) }),
+          mode === "letter" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 flex items-center justify-center pointer-events-none select-none", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-display font-black leading-none", style: { fontSize: 180, color: "oklch(0.88 0.01 260)" }, children: letter.uppercase }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "canvas",
             {
@@ -37788,7 +39576,8 @@ function TracingPage() {
               width: CANVAS_W,
               height: CANVAS_H,
               "data-ocid": "tracing.canvas_target",
-              className: "w-full touch-none cursor-crosshair block",
+              className: "relative w-full touch-none cursor-crosshair block",
+              style: { zIndex: 10, position: "relative" },
               onMouseDown: startDraw,
               onMouseMove: doDrawing,
               onMouseUp: endDraw,
@@ -37801,20 +39590,18 @@ function TracingPage() {
         ]
       }
     ),
-    isDone && /* @__PURE__ */ jsxRuntimeExports.jsx(
+    isDone && /* @__PURE__ */ jsxRuntimeExports.jsxs(
       motion.div,
       {
-        initial: { scale: 0.8, opacity: 0 },
+        initial: { scale: 0.85, opacity: 0 },
         animate: { scale: 1, opacity: 1 },
         transition: { type: "spring", stiffness: 300, damping: 18 },
-        className: "rounded-2xl py-3 px-4 text-center font-display font-bold text-lg",
-        style: {
-          background: "linear-gradient(135deg, oklch(0.82 0.17 84 / 0.25) 0%, oklch(0.70 0.20 60 / 0.20) 100%)",
-          border: "1px solid oklch(0.82 0.17 84 / 0.5)",
-          color: "oklch(0.92 0.18 84)"
-        },
+        className: "rounded-2xl py-3 px-4 text-center font-display font-bold text-base gradient-green text-white shadow-playful",
         "data-ocid": "tracing.success_state",
-        children: "🌟 Amazing! Great job!"
+        children: [
+          "🌟 ",
+          getUILabel("Amazing! Great job!")
+        ]
       }
     ),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
@@ -37827,10 +39614,11 @@ function TracingPage() {
             playTapSound();
             clearCanvas();
           },
-          className: "flex-1 h-14 rounded-2xl bg-muted border border-border flex items-center justify-center gap-2 font-display font-bold text-foreground active:scale-95 transition-smooth hover:border-[oklch(0.82_0.17_84/0.4)]",
+          className: "flex-1 h-13 py-3 rounded-2xl bg-white border border-border flex items-center justify-center gap-2 font-display font-bold text-foreground active:scale-95 transition-smooth hover:bg-muted",
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Eraser, { className: "w-5 h-5" }),
-            " Clear"
+            " ",
+            getUILabel("Clear")
           ]
         }
       ),
@@ -37839,43 +39627,69 @@ function TracingPage() {
         {
           type: "button",
           "data-ocid": "tracing.next_button",
-          initial: { scale: 0.8, opacity: 0 },
+          initial: { scale: 0.85, opacity: 0 },
           animate: { scale: 1, opacity: 1 },
           transition: { type: "spring", stiffness: 300, damping: 20 },
           onClick: () => {
             playTapSound();
-            if (mode === "letter") {
-              goToLetter((letterIdx + 1) % PHONICS_DATA.length);
-            } else {
+            if (mode === "letter") setLetterIdx((letterIdx + 1) % PHONICS_DATA.length);
+            else {
               newWord();
               clearCanvas();
             }
           },
-          className: "flex-1 h-14 rounded-2xl gradient-gold text-[oklch(0.08_0_0)] font-display font-bold text-lg flex items-center justify-center gap-2 active:scale-95 transition-smooth shadow-luxury",
+          className: "flex-1 py-3 rounded-2xl gradient-green text-white font-display font-bold text-base flex items-center justify-center gap-2 active:scale-95 transition-smooth shadow-playful",
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { className: "w-5 h-5" }),
-            " Next!"
+            " ",
+            getUILabel("Next!")
           ]
         }
       ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
         {
           "data-ocid": "tracing.next_locked",
-          className: "flex-1 h-14 rounded-2xl bg-muted/50 flex items-center justify-center text-sm font-body text-muted-foreground border border-border",
-          children: mode === "letter" ? "Draw the letter ✏️" : "Trace the word 📝"
+          className: "flex-1 py-3 rounded-2xl bg-muted flex items-center justify-center text-sm font-body text-muted-foreground border border-border",
+          children: mode === "letter" ? getUILabel("Draw the letter") : getUILabel("Trace the word")
         }
       )
     ] })
   ] }) });
 }
+const VIDEO_SRC = "/video/lesson.mp4";
+const GAIN_AMOUNT = 2.5;
 function VisualLearningPage() {
   const router2 = useRouter();
   const { profiles, activeProfileId } = useAppStore();
   const profile = profiles.find((p) => p.id === activeProfileId) ?? null;
   const [activeLetter, setActiveLetter] = reactExports.useState(null);
+  const videoRef = reactExports.useRef(null);
+  const gainNodeRef = reactExports.useRef(null);
+  const audioCtxRef = reactExports.useRef(null);
+  const sourceRef = reactExports.useRef(null);
   reactExports.useEffect(() => {
     if (!profile) router2.navigate({ to: "/" });
   }, [profile, router2]);
+  const setupAudioBoost = () => {
+    const video = videoRef.current;
+    if (!video || sourceRef.current) return;
+    const ctx = new AudioContext();
+    audioCtxRef.current = ctx;
+    const source = ctx.createMediaElementSource(video);
+    sourceRef.current = source;
+    const gainNode = ctx.createGain();
+    gainNode.gain.value = GAIN_AMOUNT;
+    gainNodeRef.current = gainNode;
+    source.connect(gainNode);
+    gainNode.connect(ctx.destination);
+    if (ctx.state === "suspended") ctx.resume();
+  };
+  reactExports.useEffect(() => {
+    return () => {
+      var _a2;
+      (_a2 = audioCtxRef.current) == null ? void 0 : _a2.close();
+    };
+  }, []);
   if (!profile) return null;
   const handleLetterTap = (letter) => {
     playTapSound();
@@ -37883,7 +39697,7 @@ function VisualLearningPage() {
     playLetterPhonetic(letter.toLowerCase());
     setTimeout(() => setActiveLetter(null), 600);
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Layout, { title: "Visual Learning", headerColor: "oklch(0.38 0.20 320)", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-5 py-6 flex flex-col gap-8", children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Layout, { title: getUILabel("Visual Learning"), headerColor: "oklch(0.46 0.22 310)", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "px-5 py-6 flex flex-col gap-6", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       motion.section,
       {
@@ -37892,15 +39706,8 @@ function VisualLearningPage() {
         transition: { duration: 0.4 },
         "data-ocid": "visual.letters_section",
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "h2",
-            {
-              className: "text-center text-base font-display font-bold mb-4",
-              style: { color: "oklch(0.92 0.18 84)" },
-              children: "Tap a letter to hear its sound"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-4 sm:grid-cols-6 gap-2.5", children: PHONICS_DATA.map((ld, i) => {
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-display font-bold text-muted-foreground mb-3 text-center uppercase tracking-wider", children: getUILabel("Tap a letter to hear its sound") }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-4 sm:grid-cols-6 gap-2", children: PHONICS_DATA.map((ld, i) => {
             const isActive = activeLetter === ld.uppercase;
             return /* @__PURE__ */ jsxRuntimeExports.jsxs(
               motion.button,
@@ -37908,20 +39715,20 @@ function VisualLearningPage() {
                 type: "button",
                 "data-ocid": `visual.letter_card.${i + 1}`,
                 onClick: () => handleLetterTap(ld.uppercase),
-                animate: isActive ? { scale: 1.15 } : { scale: 1 },
+                animate: isActive ? { scale: 1.12 } : { scale: 1 },
                 transition: { type: "spring", stiffness: 400, damping: 18 },
-                className: "relative flex flex-col items-center justify-center rounded-2xl py-3 px-1 cursor-pointer active:scale-95 transition-smooth",
+                className: "flex flex-col items-center justify-center rounded-2xl py-3 px-1 cursor-pointer active:scale-95 transition-smooth border",
                 style: {
-                  background: isActive ? "oklch(0.18 0.06 84)" : "oklch(0.13 0.03 264)",
-                  border: isActive ? "1.5px solid oklch(0.82 0.17 84 / 0.9)" : "1px solid oklch(0.82 0.17 84 / 0.2)",
-                  boxShadow: isActive ? "0 0 16px oklch(0.82 0.17 84 / 0.45), 0 2px 8px oklch(0 0 0 / 0.4)" : "0 2px 8px oklch(0 0 0 / 0.3)"
+                  background: isActive ? "oklch(0.94 0.06 310)" : "white",
+                  border: isActive ? "1.5px solid oklch(0.55 0.22 310)" : "1px solid oklch(0.90 0.01 260)",
+                  boxShadow: isActive ? "0 0 12px oklch(0.55 0.22 310 / 0.20), 0 2px 8px oklch(0 0 0 / 0.06)" : "0 1px 3px oklch(0 0 0 / 0.06)"
                 },
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "span",
                     {
                       className: "text-2xl font-display font-black leading-none",
-                      style: { color: "oklch(0.96 0.02 0)" },
+                      style: { color: isActive ? "oklch(0.46 0.22 310)" : "oklch(0.18 0.02 260)" },
                       children: ld.uppercase
                     }
                   ),
@@ -37929,7 +39736,7 @@ function VisualLearningPage() {
                     "span",
                     {
                       className: "text-xs font-display font-semibold mt-0.5 leading-none",
-                      style: { color: "oklch(0.75 0.12 84)" },
+                      style: { color: isActive ? "oklch(0.55 0.22 310)" : "oklch(0.52 0.03 260)" },
                       children: ld.lowercase
                     }
                   )
@@ -37949,48 +39756,23 @@ function VisualLearningPage() {
         transition: { duration: 0.4, delay: 0.15 },
         "data-ocid": "visual.video_section",
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "h2",
-            {
-              className: "text-center text-base font-display font-bold mb-4",
-              style: { color: "oklch(0.92 0.18 84)" },
-              children: "Watch & Learn"
-            }
-          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-sm font-display font-bold text-muted-foreground mb-3 text-center uppercase tracking-wider", children: "Watch & Learn" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
-              className: "rounded-3xl overflow-hidden",
-              style: {
-                border: "1.5px solid oklch(0.82 0.17 84 / 0.35)",
-                boxShadow: "0 8px 32px oklch(0 0 0 / 0.5)"
-              },
+              className: "rounded-2xl overflow-hidden border border-border shadow-card bg-muted",
               children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
+                "video",
                 {
-                  className: "relative w-full",
-                  style: { paddingBottom: "56.25%" },
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "iframe",
-                    {
-                      className: "absolute inset-0 w-full h-full",
-                      src: "https://www.youtube.com/embed/hq3yfQnllfQ",
-                      title: "ABC Phonics Song – Learn the sounds of each letter",
-                      allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-                      allowFullScreen: true,
-                      "data-ocid": "visual.video_player"
-                    }
-                  )
+                  ref: videoRef,
+                  src: VIDEO_SRC,
+                  controls: true,
+                  playsInline: true,
+                  onPlay: setupAudioBoost,
+                  "data-ocid": "visual.video_player",
+                  className: "w-full block"
                 }
               )
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "p",
-            {
-              className: "text-center text-xs font-body mt-3",
-              style: { color: "oklch(0.65 0.08 84)" },
-              children: "ABC Phonics Song – Learn the sounds of each letter"
             }
           )
         ]

@@ -1,5 +1,5 @@
 import { useRouter } from "@tanstack/react-router";
-import { CheckCircle2, ChevronLeft, ChevronRight, XCircle } from "lucide-react";
+import { CheckCircle2, ChevronLeft, ChevronRight, Shuffle, XCircle } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useMemo, useState } from "react";
 import Layout from "../components/Layout";
@@ -18,6 +18,22 @@ import {
 import { getArabicHint, getUILabel } from "../data/arabicTranslations";
 
 type Status = "idle" | "correct" | "wrong";
+
+/** Flat list of every blending task across all letters */
+const ALL_TASKS: { letterIdx: number; taskIdx: number }[] = PHONICS_DATA.flatMap(
+  (l, li) => l.blendingTasks.map((_, ti) => ({ letterIdx: li, taskIdx: ti })),
+);
+
+function pickRandomTask(
+  excludeLetterIdx?: number,
+  excludeTaskIdx?: number,
+): { letterIdx: number; taskIdx: number } {
+  const pool =
+    excludeLetterIdx !== undefined && excludeTaskIdx !== undefined
+      ? ALL_TASKS.filter((t) => t.letterIdx !== excludeLetterIdx || t.taskIdx !== excludeTaskIdx)
+      : ALL_TASKS;
+  return pool[Math.floor(Math.random() * pool.length)] ?? ALL_TASKS[0];
+}
 
 export default function BlendingPage() {
   const router = useRouter();
@@ -98,9 +114,20 @@ export default function BlendingPage() {
     setChosen((c) => c.filter((_, idx) => idx !== i));
   };
 
-  const nextTask = () => {
+  /** Next within the same letter (sequential) */
+  const nextSameLetter = () => {
     playTapSound();
     setTaskIdx((i) => (i + 1) % letter.blendingTasks.length);
+    setChosen([]);
+    setStatus("idle");
+  };
+
+  /** Random task from anywhere */
+  const nextRandom = () => {
+    playTapSound();
+    const next = pickRandomTask(letterIdx, taskIdx);
+    setLetterIdx(next.letterIdx);
+    setTaskIdx(next.taskIdx);
     setChosen([]);
     setStatus("idle");
   };
@@ -108,7 +135,9 @@ export default function BlendingPage() {
   const changeLetter = (idx: number) => {
     playTapSound();
     setLetterIdx(idx);
-    setTaskIdx(0);
+    // Pick a random task from the newly selected letter
+    const letterTasks = PHONICS_DATA[idx].blendingTasks;
+    setTaskIdx(Math.floor(Math.random() * letterTasks.length));
     setChosen([]);
     setStatus("idle");
   };
@@ -281,19 +310,28 @@ export default function BlendingPage() {
           {status === "correct" ? (
             <button
               type="button"
-              data-ocid="blending.next_task_button"
-              onClick={nextTask}
-              className="flex-1 h-12 rounded-2xl gradient-green text-white font-display font-bold text-base active:scale-95 transition-smooth shadow-playful"
+              data-ocid="blending.next_random_button"
+              onClick={nextRandom}
+              className="flex-1 h-12 rounded-2xl gradient-green text-white font-display font-bold text-base active:scale-95 transition-smooth shadow-playful flex items-center justify-center gap-2"
             >
-              {getUILabel("Next!")} →
+              <Shuffle className="w-5 h-5" />
+              {getUILabel("Next!")}
             </button>
           ) : (
-            <div className="flex-1" />
+            <button
+              type="button"
+              data-ocid="blending.shuffle_button"
+              onClick={nextRandom}
+              className="flex-1 h-12 rounded-2xl gradient-indigo text-white font-display font-bold text-base active:scale-95 transition-smooth shadow-playful flex items-center justify-center gap-2"
+            >
+              <Shuffle className="w-5 h-5" />
+              {getUILabel("Shuffle")}
+            </button>
           )}
           <button
             type="button"
             data-ocid="blending.next_button"
-            onClick={nextTask}
+            onClick={nextSameLetter}
             className="w-12 h-12 rounded-2xl gradient-blue flex items-center justify-center active:scale-95 transition-smooth shadow-playful"
             aria-label={getUILabel("Next")}
           >
