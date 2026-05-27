@@ -15,6 +15,7 @@ import {
   playWrongSound,
   speakWord,
 } from "../utils/audio";
+import { getArabicHint, getUILabel } from "../data/arabicTranslations";
 
 type Status = "idle" | "correct" | "wrong";
 
@@ -117,7 +118,7 @@ export default function BlendingPage() {
   if (!profile) { router.navigate({ to: "/" }); return null; }
 
   return (
-    <Layout title="Blending" headerColor="oklch(0.44 0.22 260)">
+    <Layout title={getUILabel("Blending")} headerColor="oklch(0.44 0.22 260)">
       <div className="px-5 py-5 flex flex-col gap-4">
 
         {/* Progress */}
@@ -190,9 +191,12 @@ export default function BlendingPage() {
           <div className="absolute inset-0 rounded-3xl pointer-events-none" style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.10) 0%, transparent 55%)" }} />
           <span className="text-6xl relative z-10">{task.emoji}</span>
           <div className="relative z-10">
-            <p className="text-xs font-body opacity-80">Build this word:</p>
+            <p className="text-xs font-body opacity-80">{getUILabel("Build this word")}</p>
             <p className="text-3xl font-display font-black">{task.word}</p>
             <p className="text-xs opacity-70 font-body">{task.hint}</p>
+            {task.arabicHint && (
+              <p className="text-sm font-[var(--font-arabic)] opacity-90 mt-0.5" dir="rtl">{task.arabicHint}</p>
+            )}
           </div>
         </motion.div>
 
@@ -270,7 +274,7 @@ export default function BlendingPage() {
             data-ocid="blending.prev_button"
             onClick={() => { playTapSound(); setTaskIdx((i) => (i - 1 + letter.blendingTasks.length) % letter.blendingTasks.length); setChosen([]); setStatus("idle"); }}
             className="w-12 h-12 rounded-2xl bg-white border border-border flex items-center justify-center active:scale-95 transition-smooth hover:bg-muted"
-            aria-label="Previous"
+            aria-label={getUILabel("Previous")}
           >
             <ChevronLeft className="w-6 h-6 text-foreground" />
           </button>
@@ -281,7 +285,7 @@ export default function BlendingPage() {
               onClick={nextTask}
               className="flex-1 h-12 rounded-2xl gradient-green text-white font-display font-bold text-base active:scale-95 transition-smooth shadow-playful"
             >
-              Next! →
+              {getUILabel("Next!")} →
             </button>
           ) : (
             <div className="flex-1" />
@@ -291,7 +295,7 @@ export default function BlendingPage() {
             data-ocid="blending.next_button"
             onClick={nextTask}
             className="w-12 h-12 rounded-2xl gradient-blue flex items-center justify-center active:scale-95 transition-smooth shadow-playful"
-            aria-label="Next"
+            aria-label={getUILabel("Next")}
           >
             <ChevronRight className="w-6 h-6 text-white" />
           </button>

@@ -3,6 +3,7 @@ export type LetterColor = "red" | "blue" | "green" | "yellow" | "purple";
 export interface FlashcardWord {
   word: string;
   emoji: string;
+  arabic?: string;
 }
 
 export interface BlendingTask {
@@ -11,6 +12,7 @@ export interface BlendingTask {
   word: string;
   emoji: string;
   hint: string;
+  arabicHint?: string;
 }
 
 export interface LetterData {

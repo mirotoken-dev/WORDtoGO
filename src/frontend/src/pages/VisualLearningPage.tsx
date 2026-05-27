@@ -2,6 +2,7 @@ import { useRouter } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import Layout from "../components/Layout";
+import { getUILabel } from "../data/arabicTranslations";
 import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
 import { playLetterPhonetic, playTapSound } from "../utils/audio";
@@ -51,7 +52,7 @@ export default function VisualLearningPage() {
   };
 
   return (
-    <Layout title="Visual Learning" headerColor="oklch(0.46 0.22 310)">
+    <Layout title={getUILabel("Visual Learning")} headerColor="oklch(0.46 0.22 310)">
       <div className="px-5 py-6 flex flex-col gap-6">
 
         {/* Letters Grid */}
@@ -62,7 +63,7 @@ export default function VisualLearningPage() {
           data-ocid="visual.letters_section"
         >
           <h2 className="text-sm font-display font-bold text-muted-foreground mb-3 text-center uppercase tracking-wider">
-            Tap a letter to hear its sound
+            {getUILabel("Tap a letter to hear its sound")}
           </h2>
           <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
             {PHONICS_DATA.map((ld, i) => {

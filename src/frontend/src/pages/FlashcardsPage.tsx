@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 import ProgressBar from "../components/ProgressBar";
 import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
+import { getArabicWord, getUILabel } from "../data/arabicTranslations";
 import { playSuccessSound, playTapSound, speakText, speakWord } from "../utils/audio";
 
 function playLetterSound(letter: string): void {
@@ -66,7 +67,7 @@ export default function FlashcardsPage() {
   const isCompleted = progress?.flashcards[letter.letter]?.completed ?? false;
 
   return (
-    <Layout title="Flashcards" headerColor="oklch(0.50 0.26 15)">
+    <Layout title={getUILabel("Flashcards")} headerColor="oklch(0.50 0.26 15)">
       <div className="px-5 py-5 flex flex-col gap-4">
 
         {/* Top bar */}
@@ -124,14 +125,19 @@ export default function FlashcardsPage() {
               <>
                 <span className="text-[100px] font-display font-black leading-none drop-shadow">{letter.uppercase}</span>
                 <span className="text-4xl font-display font-bold opacity-75">{letter.lowercase}</span>
-                <span className="text-sm opacity-70 mt-2 font-body">/{letter.phonicSound}/ tap to flip!</span>
+                <span className="text-sm opacity-70 mt-2 font-body">/{letter.phonicSound}/ {getUILabel("tap to flip!")}</span>
               </>
             ) : (
               <>
                 <span className="text-6xl mb-2">{word.emoji}</span>
                 <span className="text-3xl font-display font-black">{word.word}</span>
+                {word.arabic && (
+                  <span className="text-xl font-[var(--font-arabic)] mt-1" dir="rtl">
+                    {word.arabic}
+                  </span>
+                )}
                 <span className="text-sm opacity-80 mt-1 font-body">
-                  {letter.letter.toLowerCase()} as in {word.word.toLowerCase()}
+                  {letter.letter.toLowerCase()} {getUILabel("as in")} {word.word.toLowerCase()}
                 </span>
               </>
             )}
@@ -165,6 +171,7 @@ export default function FlashcardsPage() {
             >
               <span>{w.emoji}</span>
               <span>{w.word}</span>
+              {w.arabic && <span className="text-xs font-[var(--font-arabic)] ml-1 opacity-80" dir="rtl">{w.arabic}</span>}
             </button>
           ))}
         </div>
@@ -176,7 +183,7 @@ export default function FlashcardsPage() {
             data-ocid="flashcards.prev_button"
             onClick={goPrev}
             className="w-13 h-13 w-12 h-12 rounded-2xl bg-white border border-border flex items-center justify-center active:scale-95 transition-smooth hover:bg-muted"
-            aria-label="Previous"
+            aria-label={getUILabel("Previous")}
           >
             <ChevronLeft className="w-6 h-6 text-foreground" />
           </button>
@@ -188,7 +195,7 @@ export default function FlashcardsPage() {
             data-ocid="flashcards.next_button"
             onClick={goNext}
             className="w-12 h-12 rounded-2xl gradient-red flex items-center justify-center active:scale-95 transition-smooth shadow-playful"
-            aria-label="Next"
+            aria-label={getUILabel("Next")}
           >
             <ChevronRight className="w-6 h-6 text-white" />
           </button>

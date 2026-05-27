@@ -1,6 +1,7 @@
 import { useRouter } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { getUILabel } from "../data/arabicTranslations";
 import type { QuizLevel } from "../types";
 import {
   playCelebrationSound,
@@ -33,16 +34,16 @@ const LEVEL_COLORS: Record<QuizLevel, string> = {
 };
 
 const LEVEL_LABELS: Record<QuizLevel, string> = {
-  1: "Level 1 · Letters",
-  2: "Level 2 · Words",
-  3: "Level 3 · Pictures",
+  1: getUILabel("Level 1 · Letters"),
+  2: getUILabel("Level 2 · Words"),
+  3: getUILabel("Level 3 · Pictures"),
 };
 
 const ENCOURAGING: string[] = [
-  "Keep going, you can do it! 💪",
-  "Practice makes perfect! 🌟",
-  "Try again — you're learning! 🎯",
-  "Almost there! Keep trying! 🌈",
+  getUILabel("Keep going, you can do it!") + " 💪",
+  getUILabel("Practice makes perfect!") + " 🌟",
+  getUILabel("Try again — you're learning!") + " 🎯",
+  getUILabel("Almost there! Keep trying!") + " 🌈",
 ];
 
 export default function MatchingGamePage({
@@ -201,7 +202,7 @@ export default function MatchingGamePage({
           type="button"
           onClick={handleBackToMenu}
           className="w-11 h-11 rounded-full bg-card/80 border border-[oklch(0.82_0.17_84/0.2)] flex items-center justify-center shadow-xs btn-tap transition-smooth hover:bg-card"
-          aria-label="Back to matching menu"
+          aria-label={getUILabel("Back to matching menu")}
           data-ocid="matching_game.back_button"
         >
           <span className="text-xl text-foreground">←</span>
@@ -231,8 +232,8 @@ export default function MatchingGamePage({
       <div className="px-5 pt-4 pb-2 text-center">
         <p className="text-sm font-body text-muted-foreground">
           {selectedLeft
-            ? "Now tap the matching item on the right 👉"
-            : "Tap an item on the left to start 👈"}
+            ? getUILabel("Now tap the matching item on the right") + " 👉"
+            : getUILabel("Tap an item on the left to start") + " 👈"}
         </p>
       </div>
 
@@ -396,7 +397,7 @@ function ResultsScreen({
   onBack,
 }: ResultsScreenProps) {
   const encouragement = celebrate
-    ? "Amazing! You're a star! 🌟"
+    ? getUILabel("Amazing! You're a star!") + " 🌟"
     : ENCOURAGING[Math.floor(Math.random() * ENCOURAGING.length)];
 
   return (

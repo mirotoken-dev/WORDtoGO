@@ -3,6 +3,7 @@ import { Trash2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useRef, useState } from "react";
 import { AVATARS, useAppStore } from "../store/useAppStore";
+import { getUILabel } from "../data/arabicTranslations";
 import { playSuccessSound, playTapSound } from "../utils/audio";
 
 export default function ProfilesPage() {
@@ -59,7 +60,7 @@ export default function ProfilesPage() {
             Word to Go
           </h1>
           <p className="text-muted-foreground font-body text-base mt-2">
-            Select who's learning today!
+            {getUILabel("Select who's learning today!")}
           </p>
         </motion.div>
       </div>
@@ -74,9 +75,9 @@ export default function ProfilesPage() {
             animate={{ opacity: 1 }}
           >
             <div className="text-6xl mb-4">👶</div>
-            <p className="text-xl font-display font-bold text-foreground">No profiles yet!</p>
+            <p className="text-xl font-display font-bold text-foreground">{getUILabel("No profiles yet!")}</p>
             <p className="text-sm font-body text-muted-foreground mt-1">
-              Create a profile to start learning.
+              {getUILabel("Create a profile to start learning")}
             </p>
           </motion.div>
         )}
@@ -103,7 +104,7 @@ export default function ProfilesPage() {
                 <p className="text-lg font-display font-bold text-foreground truncate">
                   {profile.name}
                 </p>
-                <p className="text-sm font-body text-muted-foreground">Tap to play! 🎉</p>
+                <p className="text-sm font-body text-muted-foreground">{getUILabel("Tap to play!")} 🎉</p>
               </div>
             </button>
 
@@ -148,10 +149,10 @@ export default function ProfilesPage() {
               animate={{ opacity: 1 }}
             >
               <p className="text-base font-display font-bold text-muted-foreground">
-                Maximum 3 learners reached
+                {getUILabel("Maximum 3 learners reached")}
               </p>
               <p className="text-sm font-body text-muted-foreground mt-1">
-                Delete a profile to add a new one.
+                {getUILabel("Delete a profile to add a new one")}
               </p>
             </motion.div>
           ) : creating ? (
@@ -163,21 +164,21 @@ export default function ProfilesPage() {
               exit={{ scale: 0.96, opacity: 0 }}
             >
               <h2 className="text-xl font-display font-bold text-foreground mb-4">
-                New Learner
+                {getUILabel("New Learner")}
               </h2>
               <div className="mb-4">
                 <label
                   htmlFor="profile-name"
                   className="block text-sm font-display font-semibold text-foreground mb-2"
                 >
-                  Name
+                  {getUILabel("Name")}
                 </label>
                 <input
                   id="profile-name"
                   ref={inputRef}
                   data-ocid="profiles.name_input"
                   type="text"
-                  placeholder="Enter name..."
+                  placeholder={getUILabel("Enter name...")}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   onKeyDown={(e) => { if (e.key === "Enter") handleCreate(); }}
@@ -187,7 +188,7 @@ export default function ProfilesPage() {
               </div>
               <div className="mb-5">
                 <p className="block text-sm font-display font-semibold text-foreground mb-2">
-                  Avatar
+                  {getUILabel("Avatar")}
                 </p>
                 <div className="grid grid-cols-5 gap-2">
                   {AVATARS.map((a) => (
@@ -214,7 +215,7 @@ export default function ProfilesPage() {
                   onClick={() => { setCreating(false); setName(""); }}
                   className="flex-1 py-3 rounded-xl bg-muted text-foreground font-display font-bold border border-border active:scale-95 transition-smooth"
                 >
-                  Cancel
+                  {getUILabel("Cancel")}
                 </button>
                 <button
                   type="button"
@@ -223,7 +224,7 @@ export default function ProfilesPage() {
                   disabled={!name.trim()}
                   className="flex-1 py-3 rounded-xl gradient-indigo text-white font-display font-bold active:scale-95 transition-smooth shadow-playful disabled:opacity-40 disabled:cursor-not-allowed"
                 >
-                  Start! 🎉
+                  {getUILabel("Start!")} 🎉
                 </button>
               </div>
             </motion.div>
@@ -239,7 +240,7 @@ export default function ProfilesPage() {
               className="w-full py-5 rounded-2xl border-2 border-dashed border-[oklch(0.55_0.22_280/0.35)] text-[oklch(0.55_0.22_280)] font-display font-bold text-base flex items-center justify-center gap-2 hover:border-[oklch(0.55_0.22_280/0.6)] hover:bg-[oklch(0.96_0.03_280)] active:scale-95 transition-smooth"
               whileTap={{ scale: 0.97 }}
             >
-              ➕ Add New Learner
+              ➕ {getUILabel("Add New Learner")}
             </motion.button>
           )}
         </AnimatePresence>

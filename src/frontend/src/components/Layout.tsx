@@ -1,5 +1,6 @@
 import { useRouter } from "@tanstack/react-router";
 import { ArrowLeft, Home } from "lucide-react";
+import { getUILabel } from "../data/arabicTranslations";
 import { playTapSound } from "../utils/audio";
 
 interface LayoutProps {
@@ -44,7 +45,7 @@ export default function Layout({
               type="button"
               onClick={handleBack}
               className="w-10 h-10 rounded-2xl bg-muted border border-border flex items-center justify-center btn-tap transition-smooth hover:bg-[oklch(0.90_0.01_260)]"
-              aria-label="Go back"
+              aria-label={getUILabel("Go back")}
               data-ocid="layout.back_button"
             >
               <ArrowLeft className="w-5 h-5 text-foreground" />
@@ -68,7 +69,7 @@ export default function Layout({
               type="button"
               onClick={handleHome}
               className="w-10 h-10 rounded-2xl bg-muted border border-border flex items-center justify-center btn-tap transition-smooth hover:bg-[oklch(0.90_0.01_260)]"
-              aria-label="Go home"
+              aria-label={getUILabel("Go home")}
               data-ocid="layout.home_button"
             >
               <Home className="w-5 h-5 text-foreground" />

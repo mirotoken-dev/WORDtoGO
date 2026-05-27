@@ -1,4 +1,5 @@
 import type { LetterColor, LetterData } from "../types";
+import { getArabicWord, getArabicHint } from "./arabicTranslations";
 
 const COLORS: LetterColor[] = ["red", "blue", "green", "yellow", "purple"];
 
@@ -9,16 +10,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "a",
     phonicSound: "ah",
     words: [
-      { word: "Apple", emoji: "🍎" },
-      { word: "Ant", emoji: "🐜" },
-      { word: "Air", emoji: "💨" },
-      { word: "Arm", emoji: "💪" },
-      { word: "Arrow", emoji: "➡️" },
-      { word: "Axe", emoji: "🪓" },
-      { word: "Angel", emoji: "😇" },
-      { word: "Album", emoji: "📀" },
-      { word: "Alarm", emoji: "⏰" },
-      { word: "Animal", emoji: "🐾" },
+      { word: "Apple", emoji: "🍎", arabic: "تفاحة" },
+      { word: "Ant", emoji: "🐜", arabic: "نملة" },
+      { word: "Air", emoji: "💨", arabic: "هواء" },
+      { word: "Arm", emoji: "💪", arabic: "ذراع" },
+      { word: "Arrow", emoji: "➡️", arabic: "سهم" },
+      { word: "Axe", emoji: "🪓", arabic: "فأس" },
+      { word: "Angel", emoji: "😇", arabic: "ملاك" },
+      { word: "Album", emoji: "📀", arabic: "ألبوم" },
+      { word: "Alarm", emoji: "⏰", arabic: "منبه" },
+      { word: "Animal", emoji: "🐾", arabic: "حيوان" },
     ],
     blendingTasks: [
       {
@@ -27,6 +28,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "ant",
         emoji: "🐜",
         hint: "a tiny bug",
+        arabicHint: "حشرة صغيرة",
       },
       {
         id: "a-2",
@@ -34,6 +36,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "apple",
         emoji: "🍎",
         hint: "a red fruit",
+        arabicHint: "فاكهة حمراء",
       },
       {
         id: "a-3",
@@ -41,6 +44,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "arm",
         emoji: "💪",
         hint: "part of your body",
+        arabicHint: "جزء من جسمك",
       },
       {
         id: "a-4",
@@ -48,6 +52,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "axe",
         emoji: "🪓",
         hint: "used to chop wood",
+        arabicHint: "لقطع الخشب",
       },
       {
         id: "a-5",
@@ -55,6 +60,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "air",
         emoji: "💨",
         hint: "we breathe it",
+        arabicHint: "نتنفسه",
       },
       {
         id: "a-6",
@@ -62,6 +68,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "album",
         emoji: "📀",
         hint: "collection of songs",
+        arabicHint: "مجموعة أغاني",
       },
       {
         id: "a-7",
@@ -69,6 +76,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "alarm",
         emoji: "⏰",
         hint: "wakes you up",
+        arabicHint: "يوقظك",
       },
       {
         id: "a-8",
@@ -76,6 +84,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "animal",
         emoji: "🐾",
         hint: "a living creature",
+        arabicHint: "كائن حي",
       },
       {
         id: "a-9",
@@ -83,6 +92,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "angel",
         emoji: "😇",
         hint: "flies with wings",
+        arabicHint: "يطير بأجنحة",
       },
       {
         id: "a-10",
@@ -90,6 +100,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "arrow",
         emoji: "➡️",
         hint: "points the way",
+        arabicHint: "يشار الطريق",
       },
     ],
   },
@@ -99,16 +110,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "b",
     phonicSound: "buh",
     words: [
-      { word: "Ball", emoji: "⚽" },
-      { word: "Book", emoji: "📚" },
-      { word: "Bag", emoji: "👜" },
-      { word: "Boat", emoji: "⛵" },
-      { word: "Bus", emoji: "🚌" },
-      { word: "Box", emoji: "📦" },
-      { word: "Bed", emoji: "🛏️" },
-      { word: "Bee", emoji: "🐝" },
-      { word: "Bottle", emoji: "🍼" },
-      { word: "Banana", emoji: "🍌" },
+      { word: "Ball", emoji: "⚽", arabic: "كرة" },
+      { word: "Book", emoji: "📚", arabic: "كتاب" },
+      { word: "Bag", emoji: "👜", arabic: "حقيبة" },
+      { word: "Boat", emoji: "⛵", arabic: "قارب" },
+      { word: "Bus", emoji: "🚌", arabic: "حافلة" },
+      { word: "Box", emoji: "📦", arabic: "صندوق" },
+      { word: "Bed", emoji: "🛏️", arabic: "سرير" },
+      { word: "Bee", emoji: "🐝", arabic: "نحلة" },
+      { word: "Bottle", emoji: "🍼", arabic: "زجاجة" },
+      { word: "Banana", emoji: "🍌", arabic: "موزة" },
     ],
     blendingTasks: [
       {
@@ -117,6 +128,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "ball",
         emoji: "⚽",
         hint: "you kick it",
+        arabicHint: "تركله",
       },
       {
         id: "b-2",
@@ -124,6 +136,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "book",
         emoji: "📚",
         hint: "you read it",
+        arabicHint: "تقرأه",
       },
       {
         id: "b-3",
@@ -131,6 +144,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "bag",
         emoji: "👜",
         hint: "carry things in it",
+        arabicHint: "تحمل الأشياء فيه",
       },
       {
         id: "b-4",
@@ -138,6 +152,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "boat",
         emoji: "⛵",
         hint: "floats on water",
+        arabicHint: "يطفو على الماء",
       },
       {
         id: "b-5",
@@ -145,6 +160,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "bus",
         emoji: "🚌",
         hint: "big yellow vehicle",
+        arabicHint: "سيارة صفراء كبيرة",
       },
       {
         id: "b-6",
@@ -152,6 +168,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "box",
         emoji: "📦",
         hint: "holds things inside",
+        arabicHint: "يحفظ الأشياء داخله",
       },
       {
         id: "b-7",
@@ -159,6 +176,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "bed",
         emoji: "🛏️",
         hint: "you sleep here",
+        arabicHint: "تنام هنا",
       },
       {
         id: "b-8",
@@ -166,6 +184,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "bee",
         emoji: "🐝",
         hint: "makes honey",
+        arabicHint: "يصنع العسل",
       },
       {
         id: "b-9",
@@ -173,6 +192,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "bottle",
         emoji: "🍼",
         hint: "holds liquid",
+        arabicHint: "يحفظ السائل",
       },
       {
         id: "b-10",
@@ -180,6 +200,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "banana",
         emoji: "🍌",
         hint: "yellow fruit",
+        arabicHint: "فاكهة صفراء",
       },
     ],
   },
@@ -189,16 +210,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "c",
     phonicSound: "cuh",
     words: [
-      { word: "Cat", emoji: "🐱" },
-      { word: "Car", emoji: "🚗" },
-      { word: "Cup", emoji: "☕" },
-      { word: "Cake", emoji: "🎂" },
-      { word: "Cap", emoji: "🧢" },
-      { word: "Coin", emoji: "🪙" },
-      { word: "Cow", emoji: "🐄" },
-      { word: "Chair", emoji: "🪑" },
-      { word: "Clock", emoji: "🕐" },
-      { word: "Cloud", emoji: "☁️" },
+      { word: "Cat", emoji: "🐱", arabic: "قطة" },
+      { word: "Car", emoji: "🚗", arabic: "سيارة" },
+      { word: "Cup", emoji: "☕", arabic: "كوب" },
+      { word: "Cake", emoji: "🎂", arabic: "كعكة" },
+      { word: "Cap", emoji: "🧢", arabic: "قبعة" },
+      { word: "Coin", emoji: "🪙", arabic: "عملة" },
+      { word: "Cow", emoji: "🐄", arabic: "بقرة" },
+      { word: "Chair", emoji: "🪑", arabic: "كرسي" },
+      { word: "Clock", emoji: "🕐", arabic: "ساعة" },
+      { word: "Cloud", emoji: "☁️", arabic: "سحابة" },
     ],
     blendingTasks: [
       {
@@ -207,6 +228,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "cat",
         emoji: "🐱",
         hint: "says meow",
+        arabicHint: "يقول مياو",
       },
       {
         id: "c-2",
@@ -214,6 +236,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "car",
         emoji: "🚗",
         hint: "has four wheels",
+        arabicHint: "لديه أربع عجلات",
       },
       {
         id: "c-3",
@@ -221,6 +244,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "cup",
         emoji: "☕",
         hint: "drink from it",
+        arabicHint: "تشرب منه",
       },
       {
         id: "c-4",
@@ -228,6 +252,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "cake",
         emoji: "🎂",
         hint: "birthday treat",
+        arabicHint: "حلوى العيد ميلاد",
       },
       {
         id: "c-5",
@@ -235,6 +260,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "cap",
         emoji: "🧢",
         hint: "wear on head",
+        arabicHint: "ترتديه على رأسك",
       },
       {
         id: "c-6",
@@ -242,6 +268,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "coin",
         emoji: "🪙",
         hint: "shiny money",
+        arabicHint: "نقود لامعة",
       },
       {
         id: "c-7",
@@ -249,6 +276,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "cow",
         emoji: "🐄",
         hint: "gives milk",
+        arabicHint: "يعطي الحليب",
       },
       {
         id: "c-8",
@@ -256,6 +284,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "chair",
         emoji: "🪑",
         hint: "you sit on it",
+        arabicHint: "تجلس عليه",
       },
       {
         id: "c-9",
@@ -263,6 +292,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "clock",
         emoji: "🕐",
         hint: "shows the time",
+        arabicHint: "يري الوقت",
       },
       {
         id: "c-10",
@@ -270,6 +300,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "cloud",
         emoji: "☁️",
         hint: "floats in the sky",
+        arabicHint: "يطفو في السماء",
       },
     ],
   },
@@ -279,16 +310,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "d",
     phonicSound: "duh",
     words: [
-      { word: "Dog", emoji: "🐶" },
-      { word: "Door", emoji: "🚪" },
-      { word: "Duck", emoji: "🦆" },
-      { word: "Desk", emoji: "🗃️" },
-      { word: "Drum", emoji: "🥁" },
-      { word: "Doll", emoji: "🪆" },
-      { word: "Dish", emoji: "🍽️" },
-      { word: "Deer", emoji: "🦌" },
-      { word: "Diamond", emoji: "💎" },
-      { word: "Dragon", emoji: "🐉" },
+      { word: "Dog", emoji: "🐶", arabic: "كلب" },
+      { word: "Door", emoji: "🚪", arabic: "باب" },
+      { word: "Duck", emoji: "🦆", arabic: "بطة" },
+      { word: "Desk", emoji: "🗃️", arabic: "مكتب" },
+      { word: "Drum", emoji: "🥁", arabic: "طبل" },
+      { word: "Doll", emoji: "🪆", arabic: "دمية" },
+      { word: "Dish", emoji: "🍽️", arabic: "طبق" },
+      { word: "Deer", emoji: "🦌", arabic: "غزال" },
+      { word: "Diamond", emoji: "💎", arabic: "ماسة" },
+      { word: "Dragon", emoji: "🐉", arabic: "تنين" },
     ],
     blendingTasks: [
       {
@@ -297,6 +328,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "dog",
         emoji: "🐶",
         hint: "says woof",
+        arabicHint: "يقول ووف",
       },
       {
         id: "d-2",
@@ -304,6 +336,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "door",
         emoji: "🚪",
         hint: "you open it",
+        arabicHint: "تفتحه",
       },
       {
         id: "d-3",
@@ -311,6 +344,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "duck",
         emoji: "🦆",
         hint: "swims and quacks",
+        arabicHint: "يسبح ويقول كواك",
       },
       {
         id: "d-4",
@@ -318,6 +352,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "desk",
         emoji: "🗃️",
         hint: "you study here",
+        arabicHint: "تدرس هنا",
       },
       {
         id: "d-5",
@@ -325,6 +360,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "drum",
         emoji: "🥁",
         hint: "you beat it",
+        arabicHint: "تضربه",
       },
       {
         id: "d-6",
@@ -332,6 +368,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "doll",
         emoji: "🪆",
         hint: "a toy to play with",
+        arabicHint: "لعبة للعب بها",
       },
       {
         id: "d-7",
@@ -339,6 +376,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "dish",
         emoji: "🍽️",
         hint: "holds your food",
+        arabicHint: "يحفظ طعامك",
       },
       {
         id: "d-8",
@@ -346,6 +384,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "deer",
         emoji: "🦌",
         hint: "has antlers",
+        arabicHint: "لديه قرون",
       },
       {
         id: "d-9",
@@ -353,6 +392,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "diamond",
         emoji: "💎",
         hint: "sparkles brightly",
+        arabicHint: "يلمع بريق",
       },
       {
         id: "d-10",
@@ -360,6 +400,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "dragon",
         emoji: "🐉",
         hint: "breathes fire",
+        arabicHint: "يتنفس النار",
       },
     ],
   },
@@ -369,16 +410,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "e",
     phonicSound: "eh",
     words: [
-      { word: "Egg", emoji: "🥚" },
-      { word: "Ear", emoji: "👂" },
-      { word: "Eye", emoji: "👁️" },
-      { word: "Earth", emoji: "🌍" },
-      { word: "Engine", emoji: "🚂" },
-      { word: "Elephant", emoji: "🐘" },
-      { word: "Envelope", emoji: "✉️" },
-      { word: "Elbow", emoji: "🦾" },
-      { word: "Eagle", emoji: "🦅" },
-      { word: "Energy", emoji: "⚡" },
+      { word: "Egg", emoji: "🥚", arabic: "بيضة" },
+      { word: "Ear", emoji: "👂", arabic: "أذن" },
+      { word: "Eye", emoji: "👁️", arabic: "عين" },
+      { word: "Earth", emoji: "🌍", arabic: "أرض" },
+      { word: "Engine", emoji: "🚂", arabic: "محرك" },
+      { word: "Elephant", emoji: "🐘", arabic: "فيل" },
+      { word: "Envelope", emoji: "✉️", arabic: "ظرف" },
+      { word: "Elbow", emoji: "🦾", arabic: "كوع" },
+      { word: "Eagle", emoji: "🦅", arabic: "نسر" },
+      { word: "Energy", emoji: "⚡", arabic: "طاقة" },
     ],
     blendingTasks: [
       {
@@ -387,6 +428,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "egg",
         emoji: "🥚",
         hint: "comes from a hen",
+        arabicHint: "يأتي من الدجاجة",
       },
       {
         id: "e-2",
@@ -394,6 +436,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "ear",
         emoji: "👂",
         hint: "you hear with it",
+        arabicHint: "تسمع به",
       },
       {
         id: "e-3",
@@ -401,6 +444,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "eye",
         emoji: "👁️",
         hint: "you see with it",
+        arabicHint: "ترى به",
       },
       {
         id: "e-4",
@@ -408,6 +452,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "earth",
         emoji: "🌍",
         hint: "our planet",
+        arabicHint: "كوكبنا الأرض",
       },
       {
         id: "e-5",
@@ -415,6 +460,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "engine",
         emoji: "🚂",
         hint: "powers machines",
+        arabicHint: "يشغل الآلات",
       },
       {
         id: "e-6",
@@ -422,6 +468,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "elephant",
         emoji: "🐘",
         hint: "has a long trunk",
+        arabicHint: "لديه خرطوم طويل",
       },
       {
         id: "e-7",
@@ -429,6 +476,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "envelope",
         emoji: "✉️",
         hint: "holds a letter",
+        arabicHint: "يحفظ الرسالة",
       },
       {
         id: "e-8",
@@ -436,6 +484,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "elbow",
         emoji: "🦾",
         hint: "bend your arm here",
+        arabicHint: "تثني ذراعك هنا",
       },
       {
         id: "e-9",
@@ -443,6 +492,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "eagle",
         emoji: "🦅",
         hint: "big bird that soars",
+        arabicHint: "طائر كبير يطير",
       },
       {
         id: "e-10",
@@ -450,6 +500,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "energy",
         emoji: "⚡",
         hint: "gives power",
+        arabicHint: "يعطي الطاقة",
       },
     ],
   },
@@ -459,16 +510,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "f",
     phonicSound: "fuh",
     words: [
-      { word: "Fish", emoji: "🐟" },
-      { word: "Fan", emoji: "🌀" },
-      { word: "Fire", emoji: "🔥" },
-      { word: "Fork", emoji: "🍴" },
-      { word: "Flower", emoji: "🌸" },
-      { word: "Flag", emoji: "🚩" },
-      { word: "Frame", emoji: "🖼️" },
-      { word: "Frog", emoji: "🐸" },
-      { word: "Farm", emoji: "🏡" },
-      { word: "Feather", emoji: "🪶" },
+      { word: "Fish", emoji: "🐟", arabic: "سمكة" },
+      { word: "Fan", emoji: "🌀", arabic: "مروحة" },
+      { word: "Fire", emoji: "🔥", arabic: "نار" },
+      { word: "Fork", emoji: "🍴", arabic: "شوكة" },
+      { word: "Flower", emoji: "🌸", arabic: "زهرة" },
+      { word: "Flag", emoji: "🚩", arabic: "علم" },
+      { word: "Frame", emoji: "🖼️", arabic: "إطار" },
+      { word: "Frog", emoji: "🐸", arabic: "ضفدع" },
+      { word: "Farm", emoji: "🏡", arabic: "مزرعة" },
+      { word: "Feather", emoji: "🪶", arabic: "ريشة" },
     ],
     blendingTasks: [
       {
@@ -477,6 +528,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "fish",
         emoji: "🐟",
         hint: "swims in water",
+        arabicHint: "يسبح في الماء",
       },
       {
         id: "f-2",
@@ -484,6 +536,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "fan",
         emoji: "🌀",
         hint: "cools you down",
+        arabicHint: "يبردك",
       },
       {
         id: "f-3",
@@ -491,6 +544,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "fire",
         emoji: "🔥",
         hint: "hot and bright",
+        arabicHint: "ساخن ولامع",
       },
       {
         id: "f-4",
@@ -498,6 +552,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "fork",
         emoji: "🍴",
         hint: "used for eating",
+        arabicHint: "يُستخد للأكل",
       },
       {
         id: "f-5",
@@ -505,6 +560,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "flower",
         emoji: "🌸",
         hint: "smells pretty",
+        arabicHint: "رائحته جميلة",
       },
       {
         id: "f-6",
@@ -512,6 +568,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "flag",
         emoji: "🚩",
         hint: "waves in the wind",
+        arabicHint: "يهتز في الريح",
       },
       {
         id: "f-7",
@@ -519,6 +576,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "frame",
         emoji: "🖼️",
         hint: "holds a picture",
+        arabicHint: "يحفظ الصورة",
       },
       {
         id: "f-8",
@@ -526,6 +584,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "frog",
         emoji: "🐸",
         hint: "jumps and croaks",
+        arabicHint: "يقفز وينعق",
       },
       {
         id: "f-9",
@@ -533,6 +592,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "farm",
         emoji: "🏡",
         hint: "animals live here",
+        arabicHint: "الحيوانات تعيش هنا",
       },
       {
         id: "f-10",
@@ -540,6 +600,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "feather",
         emoji: "🪶",
         hint: "light as air",
+        arabicHint: "خفيف كالهواء",
       },
     ],
   },
@@ -549,16 +610,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "g",
     phonicSound: "guh",
     words: [
-      { word: "Goat", emoji: "🐐" },
-      { word: "Game", emoji: "🎮" },
-      { word: "Gift", emoji: "🎁" },
-      { word: "Gate", emoji: "🚧" },
-      { word: "Glass", emoji: "🥛" },
-      { word: "Grapes", emoji: "🍇" },
-      { word: "Guitar", emoji: "🎸" },
-      { word: "Garden", emoji: "🌻" },
-      { word: "Gold", emoji: "🥇" },
-      { word: "Globe", emoji: "🌐" },
+      { word: "Goat", emoji: "🐐", arabic: "ماعز" },
+      { word: "Game", emoji: "🎮", arabic: "لعبة" },
+      { word: "Gift", emoji: "🎁", arabic: "هدية" },
+      { word: "Gate", emoji: "🚧", arabic: "بوابة" },
+      { word: "Glass", emoji: "🥛", arabic: "زجاج" },
+      { word: "Grapes", emoji: "🍇", arabic: "عنب" },
+      { word: "Guitar", emoji: "🎸", arabic: "جيتار" },
+      { word: "Garden", emoji: "🌻", arabic: "حديقة" },
+      { word: "Gold", emoji: "🥇", arabic: "ذهب" },
+      { word: "Globe", emoji: "🌐", arabic: "كرة أرضية" },
     ],
     blendingTasks: [
       {
@@ -567,6 +628,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "goat",
         emoji: "🐐",
         hint: "eats grass",
+        arabicHint: "يأكل العشب",
       },
       {
         id: "g-2",
@@ -574,6 +636,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "game",
         emoji: "🎮",
         hint: "fun to play",
+        arabicHint: "ممتع للعب",
       },
       {
         id: "g-3",
@@ -581,6 +644,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "gift",
         emoji: "🎁",
         hint: "wrapped in paper",
+        arabicHint: "ملفوف بالورق",
       },
       {
         id: "g-4",
@@ -588,6 +652,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "gate",
         emoji: "🚧",
         hint: "opens and closes",
+        arabicHint: "يفتح ويغلق",
       },
       {
         id: "g-5",
@@ -595,6 +660,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "glass",
         emoji: "🥛",
         hint: "you drink from it",
+        arabicHint: "تشرب منه",
       },
       {
         id: "g-6",
@@ -602,6 +668,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "grapes",
         emoji: "🍇",
         hint: "tiny round fruit",
+        arabicHint: "فاكهة صغيرة مدورة",
       },
       {
         id: "g-7",
@@ -609,6 +676,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "guitar",
         emoji: "🎸",
         hint: "has 6 strings",
+        arabicHint: "لديه 6 أوتار",
       },
       {
         id: "g-8",
@@ -616,6 +684,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "garden",
         emoji: "🌻",
         hint: "grow flowers here",
+        arabicHint: "نزرع الزهور هنا",
       },
       {
         id: "g-9",
@@ -623,6 +692,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "gold",
         emoji: "🥇",
         hint: "shiny metal",
+        arabicHint: "معدن لامع",
       },
       {
         id: "g-10",
@@ -630,6 +700,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "globe",
         emoji: "🌐",
         hint: "shows the world",
+        arabicHint: "يري العالم",
       },
     ],
   },
@@ -639,16 +710,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "h",
     phonicSound: "huh",
     words: [
-      { word: "Hat", emoji: "🎩" },
-      { word: "House", emoji: "🏠" },
-      { word: "Hand", emoji: "✋" },
-      { word: "Horse", emoji: "🐴" },
-      { word: "Hill", emoji: "⛰️" },
-      { word: "Hammer", emoji: "🔨" },
-      { word: "Heart", emoji: "❤️" },
-      { word: "Hair", emoji: "💇" },
-      { word: "Honey", emoji: "🍯" },
-      { word: "Hole", emoji: "🕳️" },
+      { word: "Hat", emoji: "🎩", arabic: "قبعة" },
+      { word: "House", emoji: "🏠", arabic: "بيت" },
+      { word: "Hand", emoji: "✋", arabic: "يد" },
+      { word: "Horse", emoji: "🐴", arabic: "حصان" },
+      { word: "Hill", emoji: "⛰️", arabic: "تل" },
+      { word: "Hammer", emoji: "🔨", arabic: "مطرقة" },
+      { word: "Heart", emoji: "❤️", arabic: "قلب" },
+      { word: "Hair", emoji: "💇", arabic: "شعر" },
+      { word: "Honey", emoji: "🍯", arabic: "عسل" },
+      { word: "Hole", emoji: "🕳️", arabic: "حفرة" },
     ],
     blendingTasks: [
       {
@@ -657,6 +728,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "hat",
         emoji: "🎩",
         hint: "wear on your head",
+        arabicHint: "ترتديه على رأسك",
       },
       {
         id: "h-2",
@@ -664,6 +736,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "house",
         emoji: "🏠",
         hint: "you live here",
+        arabicHint: "تعيش هنا",
       },
       {
         id: "h-3",
@@ -671,6 +744,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "hand",
         emoji: "✋",
         hint: "has five fingers",
+        arabicHint: "لديه خمس أصابع",
       },
       {
         id: "h-4",
@@ -678,6 +752,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "horse",
         emoji: "🐴",
         hint: "you can ride it",
+        arabicHint: "يمكنك ركوبه",
       },
       {
         id: "h-5",
@@ -685,6 +760,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "hill",
         emoji: "⛰️",
         hint: "climb to the top",
+        arabicHint: "تصعد إلى القمة",
       },
       {
         id: "h-6",
@@ -692,6 +768,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "hammer",
         emoji: "🔨",
         hint: "hits nails",
+        arabicHint: "يطرق المسامير",
       },
       {
         id: "h-7",
@@ -699,6 +776,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "heart",
         emoji: "❤️",
         hint: "symbol of love",
+        arabicHint: "رمز الحب",
       },
       {
         id: "h-8",
@@ -706,6 +784,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "hair",
         emoji: "💇",
         hint: "on top of head",
+        arabicHint: "فوق الرأس",
       },
       {
         id: "h-9",
@@ -713,6 +792,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "honey",
         emoji: "🍯",
         hint: "bees make it",
+        arabicHint: "النحل يصنعه",
       },
       {
         id: "h-10",
@@ -720,6 +800,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "hole",
         emoji: "🕳️",
         hint: "an empty space",
+        arabicHint: "فضاء فارغ",
       },
     ],
   },
@@ -729,16 +810,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "i",
     phonicSound: "ih",
     words: [
-      { word: "Ice", emoji: "🧊" },
-      { word: "Ink", emoji: "🖊️" },
-      { word: "Island", emoji: "🏝️" },
-      { word: "Iron", emoji: "🧲" },
-      { word: "Insect", emoji: "🦗" },
-      { word: "Idea", emoji: "💡" },
-      { word: "Igloo", emoji: "🏔️" },
-      { word: "Invent", emoji: "🔬" },
-      { word: "Image", emoji: "🖼️" },
-      { word: "Inside", emoji: "📬" },
+      { word: "Ice", emoji: "🧊", arabic: "جليد" },
+      { word: "Ink", emoji: "🖊️", arabic: "حبر" },
+      { word: "Island", emoji: "🏝️", arabic: "جزيرة" },
+      { word: "Iron", emoji: "🧲", arabic: "حديد" },
+      { word: "Insect", emoji: "🦗", arabic: "حشرة" },
+      { word: "Idea", emoji: "💡", arabic: "فكرة" },
+      { word: "Igloo", emoji: "🏔️", arabic: "إجلو" },
+      { word: "Invent", emoji: "🔬", arabic: "يخترع" },
+      { word: "Image", emoji: "🖼️", arabic: "صورة" },
+      { word: "Inside", emoji: "📬", arabic: "داخل" },
     ],
     blendingTasks: [
       {
@@ -747,6 +828,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "ice",
         emoji: "🧊",
         hint: "cold and frozen",
+        arabicHint: "بارد ومجمد",
       },
       {
         id: "i-2",
@@ -754,6 +836,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "ink",
         emoji: "🖊️",
         hint: "used to write",
+        arabicHint: "يُستخد للكتابة",
       },
       {
         id: "i-3",
@@ -761,6 +844,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "island",
         emoji: "🏝️",
         hint: "land in the sea",
+        arabicHint: "أرض في البحر",
       },
       {
         id: "i-4",
@@ -768,6 +852,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "iron",
         emoji: "🧲",
         hint: "smooths your clothes",
+        arabicHint: "ينعم ملابسك",
       },
       {
         id: "i-5",
@@ -775,6 +860,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "insect",
         emoji: "🦗",
         hint: "has 6 legs",
+        arabicHint: "لديه 6 أرجل",
       },
       {
         id: "i-6",
@@ -782,6 +868,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "idea",
         emoji: "💡",
         hint: "a thought",
+        arabicHint: "فكرة",
       },
       {
         id: "i-7",
@@ -789,6 +876,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "igloo",
         emoji: "🏔️",
         hint: "ice house",
+        arabicHint: "بيت من الجليد",
       },
       {
         id: "i-8",
@@ -796,6 +884,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "invent",
         emoji: "🔬",
         hint: "make something new",
+        arabicHint: "اصنع شيئاً جديداً",
       },
       {
         id: "i-9",
@@ -803,6 +892,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "image",
         emoji: "🖼️",
         hint: "a picture",
+        arabicHint: "صورة",
       },
       {
         id: "i-10",
@@ -810,6 +900,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "inside",
         emoji: "📬",
         hint: "the inner part",
+        arabicHint: "الجزء الداخلي",
       },
     ],
   },
@@ -819,16 +910,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "j",
     phonicSound: "juh",
     words: [
-      { word: "Jam", emoji: "🫙" },
-      { word: "Jar", emoji: "🏺" },
-      { word: "Jug", emoji: "🪣" },
-      { word: "Jeep", emoji: "🚙" },
-      { word: "Jacket", emoji: "🧥" },
-      { word: "Jewel", emoji: "💎" },
-      { word: "Juice", emoji: "🍹" },
-      { word: "Jungle", emoji: "🌴" },
-      { word: "Jump", emoji: "🦘" },
-      { word: "Jelly", emoji: "🍮" },
+      { word: "Jam", emoji: "🫙", arabic: "مربى" },
+      { word: "Jar", emoji: "🏺", arabic: "برطمان" },
+      { word: "Jug", emoji: "🪣", arabic: "إبريق" },
+      { word: "Jeep", emoji: "🚙", arabic: "جيب" },
+      { word: "Jacket", emoji: "🧥", arabic: "سترة" },
+      { word: "Jewel", emoji: "💎", arabic: "جوهره" },
+      { word: "Juice", emoji: "🍹", arabic: "عصير" },
+      { word: "Jungle", emoji: "🌴", arabic: "غابة" },
+      { word: "Jump", emoji: "🦘", arabic: "قفز" },
+      { word: "Jelly", emoji: "🍮", arabic: "هلام" },
     ],
     blendingTasks: [
       {
@@ -837,6 +928,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "jam",
         emoji: "🫙",
         hint: "sweet spread",
+        arabicHint: "موس حلو",
       },
       {
         id: "j-2",
@@ -844,6 +936,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "jar",
         emoji: "🏺",
         hint: "glass container",
+        arabicHint: "حاوية زجاج",
       },
       {
         id: "j-3",
@@ -851,6 +944,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "jug",
         emoji: "🪣",
         hint: "holds liquid",
+        arabicHint: "يحفظ السائل",
       },
       {
         id: "j-4",
@@ -858,6 +952,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "jeep",
         emoji: "🚙",
         hint: "off-road car",
+        arabicHint: "سيارة عبر الطريقات",
       },
       {
         id: "j-5",
@@ -865,6 +960,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "jacket",
         emoji: "🧥",
         hint: "keep you warm",
+        arabicHint: "تبقيك دافئاً",
       },
       {
         id: "j-6",
@@ -872,6 +968,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "jewel",
         emoji: "💎",
         hint: "shiny gem",
+        arabicHint: "جمة لامعة",
       },
       {
         id: "j-7",
@@ -879,6 +976,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "juice",
         emoji: "🍹",
         hint: "from fruit",
+        arabicHint: "من الفواكه",
       },
       {
         id: "j-8",
@@ -886,6 +984,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "jungle",
         emoji: "🌴",
         hint: "wild forest",
+        arabicHint: "غابة برية",
       },
       {
         id: "j-9",
@@ -893,6 +992,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "jump",
         emoji: "🦘",
         hint: "leap in the air",
+        arabicHint: "قفز في الهواء",
       },
       {
         id: "j-10",
@@ -900,6 +1000,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "jelly",
         emoji: "🍮",
         hint: "wobbly dessert",
+        arabicHint: "حلوى مهتز",
       },
     ],
   },
@@ -909,16 +1010,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "k",
     phonicSound: "cuh",
     words: [
-      { word: "Key", emoji: "🔑" },
-      { word: "Kite", emoji: "🪁" },
-      { word: "King", emoji: "👑" },
-      { word: "Kitchen", emoji: "🍳" },
-      { word: "Knee", emoji: "🦵" },
-      { word: "Knife", emoji: "🔪" },
-      { word: "Koala", emoji: "🐨" },
-      { word: "Kitten", emoji: "🐱" },
-      { word: "Kiwi", emoji: "🥝" },
-      { word: "Kayak", emoji: "🚣" },
+      { word: "Key", emoji: "🔑", arabic: "مفتاح" },
+      { word: "Kite", emoji: "🪁", arabic: "طائرة ورقية" },
+      { word: "King", emoji: "👑", arabic: "ملك" },
+      { word: "Kitchen", emoji: "🍳", arabic: "مطبخ" },
+      { word: "Knee", emoji: "🦵", arabic: "ركبة" },
+      { word: "Knife", emoji: "🔪", arabic: "سكين" },
+      { word: "Koala", emoji: "🐨", arabic: "كوالا" },
+      { word: "Kitten", emoji: "🐱", arabic: "هريرة" },
+      { word: "Kiwi", emoji: "🥝", arabic: "كيوي" },
+      { word: "Kayak", emoji: "🚣", arabic: "كاياك" },
     ],
     blendingTasks: [
       {
@@ -927,6 +1028,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "key",
         emoji: "🔑",
         hint: "opens a lock",
+        arabicHint: "يفتح القفل",
       },
       {
         id: "k-2",
@@ -934,6 +1036,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "kite",
         emoji: "🪁",
         hint: "flies in the sky",
+        arabicHint: "يطير في السماء",
       },
       {
         id: "k-3",
@@ -941,6 +1044,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "king",
         emoji: "👑",
         hint: "wears a crown",
+        arabicHint: "يرتدي التاج",
       },
       {
         id: "k-4",
@@ -948,6 +1052,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "kitchen",
         emoji: "🍳",
         hint: "where food is made",
+        arabicHint: "حيث يُصنع الطعام",
       },
       {
         id: "k-5",
@@ -955,6 +1060,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "knee",
         emoji: "🦵",
         hint: "leg joint",
+        arabicHint: "مفصل الساق",
       },
       {
         id: "k-6",
@@ -962,6 +1068,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "knife",
         emoji: "🔪",
         hint: "cuts food",
+        arabicHint: "يقطع الطعام",
       },
       {
         id: "k-7",
@@ -969,6 +1076,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "koala",
         emoji: "🐨",
         hint: "climbs eucalyptus",
+        arabicHint: "تتسلق الإيكاليبتوس",
       },
       {
         id: "k-8",
@@ -976,6 +1084,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "kitten",
         emoji: "🐱",
         hint: "baby cat",
+        arabicHint: "قط صغير",
       },
       {
         id: "k-9",
@@ -983,6 +1092,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "kiwi",
         emoji: "🥝",
         hint: "fuzzy green fruit",
+        arabicHint: "فاكهة خضراء منمشقة",
       },
       {
         id: "k-10",
@@ -990,6 +1100,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "kayak",
         emoji: "🚣",
         hint: "paddle on water",
+        arabicHint: "تجذف بالمجذاف على الماء",
       },
     ],
   },
@@ -999,16 +1110,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "l",
     phonicSound: "luh",
     words: [
-      { word: "Lamp", emoji: "💡" },
-      { word: "Leaf", emoji: "🍃" },
-      { word: "Lion", emoji: "🦁" },
-      { word: "Lake", emoji: "🏞️" },
-      { word: "Lock", emoji: "🔒" },
-      { word: "Ladder", emoji: "🪜" },
-      { word: "Lemon", emoji: "🍋" },
-      { word: "Letter", emoji: "✉️" },
-      { word: "Lobster", emoji: "🦞" },
-      { word: "Lunchbox", emoji: "🍱" },
+      { word: "Lamp", emoji: "💡", arabic: "مصباح" },
+      { word: "Leaf", emoji: "🍃", arabic: "ورقة شجر" },
+      { word: "Lion", emoji: "🦁", arabic: "أسد" },
+      { word: "Lake", emoji: "🏞️", arabic: "بحيرة" },
+      { word: "Lock", emoji: "🔒", arabic: "قفل" },
+      { word: "Ladder", emoji: "🪜", arabic: "سلم" },
+      { word: "Lemon", emoji: "🍋", arabic: "ليمون" },
+      { word: "Letter", emoji: "✉️", arabic: "حرف/رسالة" },
+      { word: "Lobster", emoji: "🦞", arabic: "كركند" },
+      { word: "Lunchbox", emoji: "🍱", arabic: "صندوق غداء" },
     ],
     blendingTasks: [
       {
@@ -1017,6 +1128,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "lamp",
         emoji: "💡",
         hint: "gives off light",
+        arabicHint: "يشع الضوء",
       },
       {
         id: "l-2",
@@ -1024,6 +1136,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "leaf",
         emoji: "🍃",
         hint: "grows on trees",
+        arabicHint: "ينمو على الأشجار",
       },
       {
         id: "l-3",
@@ -1031,6 +1144,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "lion",
         emoji: "🦁",
         hint: "king of jungle",
+        arabicHint: "ملك الغابة",
       },
       {
         id: "l-4",
@@ -1038,6 +1152,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "lake",
         emoji: "🏞️",
         hint: "big body of water",
+        arabicHint: "جسم مائي كبير",
       },
       {
         id: "l-5",
@@ -1045,6 +1160,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "lock",
         emoji: "🔒",
         hint: "needs a key",
+        arabicHint: "يحتاج مفتاحاً",
       },
       {
         id: "l-6",
@@ -1052,6 +1168,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "ladder",
         emoji: "🪜",
         hint: "climb steps",
+        arabicHint: "تصعد الدرجات",
       },
       {
         id: "l-7",
@@ -1059,6 +1176,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "lemon",
         emoji: "🍋",
         hint: "yellow and sour",
+        arabicHint: "أصفر وحامض",
       },
       {
         id: "l-8",
@@ -1066,6 +1184,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "letter",
         emoji: "✉️",
         hint: "written message",
+        arabicHint: "رسالة مكتوبة",
       },
       {
         id: "l-9",
@@ -1073,6 +1192,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "lobster",
         emoji: "🦞",
         hint: "red sea creature",
+        arabicHint: "كائن بحري أحمر",
       },
       {
         id: "l-10",
@@ -1080,6 +1200,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "lunchbox",
         emoji: "🍱",
         hint: "carries your food",
+        arabicHint: "تحمل طعامك",
       },
     ],
   },
@@ -1089,16 +1210,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "m",
     phonicSound: "muh",
     words: [
-      { word: "Moon", emoji: "🌙" },
-      { word: "Man", emoji: "👨" },
-      { word: "Map", emoji: "🗺️" },
-      { word: "Milk", emoji: "🥛" },
-      { word: "Monkey", emoji: "🐒" },
-      { word: "Mouse", emoji: "🐭" },
-      { word: "Mountain", emoji: "🏔️" },
-      { word: "Mirror", emoji: "🪞" },
-      { word: "Magnet", emoji: "🧲" },
-      { word: "Mushroom", emoji: "🍄" },
+      { word: "Moon", emoji: "🌙", arabic: "قمر" },
+      { word: "Man", emoji: "👨", arabic: "رجل" },
+      { word: "Map", emoji: "🗺️", arabic: "خريطة" },
+      { word: "Milk", emoji: "🥛", arabic: "حليب" },
+      { word: "Monkey", emoji: "🐒", arabic: "قرد" },
+      { word: "Mouse", emoji: "🐭", arabic: "فأر" },
+      { word: "Mountain", emoji: "🏔️", arabic: "جبل" },
+      { word: "Mirror", emoji: "🪞", arabic: "مرآة" },
+      { word: "Magnet", emoji: "🧲", arabic: "مغناطيس" },
+      { word: "Mushroom", emoji: "🍄", arabic: "فطر" },
     ],
     blendingTasks: [
       {
@@ -1107,6 +1228,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "moon",
         emoji: "🌙",
         hint: "glows at night",
+        arabicHint: "يلمع في الليل",
       },
       {
         id: "m-2",
@@ -1114,6 +1236,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "man",
         emoji: "👨",
         hint: "a grown-up male",
+        arabicHint: "رجل نضج",
       },
       {
         id: "m-3",
@@ -1121,6 +1244,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "map",
         emoji: "🗺️",
         hint: "shows where to go",
+        arabicHint: "يشار أين ذهب",
       },
       {
         id: "m-4",
@@ -1128,6 +1252,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "milk",
         emoji: "🥛",
         hint: "white drink",
+        arabicHint: "مشروب أبيض",
       },
       {
         id: "m-5",
@@ -1135,6 +1260,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "monkey",
         emoji: "🐒",
         hint: "swings on trees",
+        arabicHint: "تتأرجح على الأشجار",
       },
       {
         id: "m-6",
@@ -1142,6 +1268,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "mouse",
         emoji: "🐭",
         hint: "tiny furry animal",
+        arabicHint: "حيوان صغير مزرقش",
       },
       {
         id: "m-7",
@@ -1149,6 +1276,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "mountain",
         emoji: "🏔️",
         hint: "very tall land",
+        arabicHint: "أرض عالية جداً",
       },
       {
         id: "m-8",
@@ -1156,6 +1284,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "mirror",
         emoji: "🪞",
         hint: "shows reflection",
+        arabicHint: "يري انعكاسك",
       },
       {
         id: "m-9",
@@ -1163,6 +1292,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "magnet",
         emoji: "🧲",
         hint: "attracts metal",
+        arabicHint: "يجذب المعادن",
       },
       {
         id: "m-10",
@@ -1170,6 +1300,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "mushroom",
         emoji: "🍄",
         hint: "grows in forest",
+        arabicHint: "ينمو في الغابة",
       },
     ],
   },
@@ -1179,16 +1310,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "n",
     phonicSound: "nuh",
     words: [
-      { word: "Net", emoji: "🥅" },
-      { word: "Nose", emoji: "👃" },
-      { word: "Nail", emoji: "🔩" },
-      { word: "Night", emoji: "🌃" },
-      { word: "Notebook", emoji: "📔" },
-      { word: "Nest", emoji: "🪺" },
-      { word: "Nurse", emoji: "👩‍⚕️" },
-      { word: "Needle", emoji: "🪡" },
-      { word: "Number", emoji: "🔢" },
-      { word: "Noodle", emoji: "🍜" },
+      { word: "Net", emoji: "🥅", arabic: "شبكة" },
+      { word: "Nose", emoji: "👃", arabic: "أنف" },
+      { word: "Nail", emoji: "🔩", arabic: "مسمار" },
+      { word: "Night", emoji: "🌃", arabic: "ليل" },
+      { word: "Notebook", emoji: "📔", arabic: "دفتر" },
+      { word: "Nest", emoji: "🪺", arabic: "عش" },
+      { word: "Nurse", emoji: "👩‍⚕️", arabic: "ممرضة" },
+      { word: "Needle", emoji: "🪡", arabic: "إبرة" },
+      { word: "Number", emoji: "🔢", arabic: "رقم" },
+      { word: "Noodle", emoji: "🍜", arabic: "نودلز" },
     ],
     blendingTasks: [
       {
@@ -1197,6 +1328,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "net",
         emoji: "🥅",
         hint: "catches things",
+        arabicHint: "يمسك الأشياء",
       },
       {
         id: "n-2",
@@ -1204,6 +1336,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "nose",
         emoji: "👃",
         hint: "you smell with it",
+        arabicHint: "تشم به",
       },
       {
         id: "n-3",
@@ -1211,6 +1344,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "nail",
         emoji: "🔩",
         hint: "hammered in wood",
+        arabicHint: "يطرق في الخشب",
       },
       {
         id: "n-4",
@@ -1218,6 +1352,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "night",
         emoji: "🌃",
         hint: "when stars appear",
+        arabicHint: "عندما تظهر النجوم",
       },
       {
         id: "n-5",
@@ -1225,6 +1360,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "notebook",
         emoji: "📔",
         hint: "write notes in it",
+        arabicHint: "اكتب ملاحظات فيه",
       },
       {
         id: "n-6",
@@ -1232,6 +1368,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "nest",
         emoji: "🪺",
         hint: "birds live here",
+        arabicHint: "الطيور تعيش هنا",
       },
       {
         id: "n-7",
@@ -1239,6 +1376,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "nurse",
         emoji: "👩‍⚕️",
         hint: "helps at hospital",
+        arabicHint: "تساعد في المستشفى",
       },
       {
         id: "n-8",
@@ -1246,6 +1384,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "needle",
         emoji: "🪡",
         hint: "sews cloth",
+        arabicHint: "تخيط القماش",
       },
       {
         id: "n-9",
@@ -1253,6 +1392,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "number",
         emoji: "🔢",
         hint: "1, 2, 3...",
+        arabicHint: "١، ٢، ٣...",
       },
       {
         id: "n-10",
@@ -1260,6 +1400,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "noodle",
         emoji: "🍜",
         hint: "long pasta",
+        arabicHint: "مكرونة طويلة",
       },
     ],
   },
@@ -1269,16 +1410,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "o",
     phonicSound: "oh",
     words: [
-      { word: "Orange", emoji: "🍊" },
-      { word: "Owl", emoji: "🦉" },
-      { word: "Oven", emoji: "🍕" },
-      { word: "Ocean", emoji: "🌊" },
-      { word: "Oil", emoji: "🛢️" },
-      { word: "Office", emoji: "🏢" },
-      { word: "Onion", emoji: "🧅" },
-      { word: "Orbit", emoji: "🪐" },
-      { word: "Ox", emoji: "🐂" },
-      { word: "Octopus", emoji: "🐙" },
+      { word: "Orange", emoji: "🍊", arabic: "برتقال" },
+      { word: "Owl", emoji: "🦉", arabic: "بومة" },
+      { word: "Oven", emoji: "🍕", arabic: "فرن" },
+      { word: "Ocean", emoji: "🌊", arabic: "محيط" },
+      { word: "Oil", emoji: "🛢️", arabic: "زيت" },
+      { word: "Office", emoji: "🏢", arabic: "مكتب" },
+      { word: "Onion", emoji: "🧅", arabic: "بصل" },
+      { word: "Orbit", emoji: "🪐", arabic: "مدار" },
+      { word: "Ox", emoji: "🐂", arabic: "ثور" },
+      { word: "Octopus", emoji: "🐙", arabic: "أخطبوط" },
     ],
     blendingTasks: [
       {
@@ -1287,6 +1428,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "orange",
         emoji: "🍊",
         hint: "citrus fruit",
+        arabicHint: "فاكهة حمضية",
       },
       {
         id: "o-2",
@@ -1294,6 +1436,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "owl",
         emoji: "🦉",
         hint: "hoots at night",
+        arabicHint: "يصيح في الليل",
       },
       {
         id: "o-3",
@@ -1301,6 +1444,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "oven",
         emoji: "🍕",
         hint: "bakes food",
+        arabicHint: "تخبز الطعام",
       },
       {
         id: "o-4",
@@ -1308,6 +1452,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "ocean",
         emoji: "🌊",
         hint: "vast salty water",
+        arabicHint: "ماء ملح شاسع",
       },
       {
         id: "o-5",
@@ -1315,6 +1460,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "oil",
         emoji: "🛢️",
         hint: "slippery liquid",
+        arabicHint: "سائل زلق",
       },
       {
         id: "o-6",
@@ -1322,6 +1468,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "office",
         emoji: "🏢",
         hint: "where people work",
+        arabicHint: "حيث يعمل الناس",
       },
       {
         id: "o-7",
@@ -1329,6 +1476,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "onion",
         emoji: "🧅",
         hint: "makes eyes water",
+        arabicHint: "يجعل العين تبكي",
       },
       {
         id: "o-8",
@@ -1336,6 +1484,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "orbit",
         emoji: "🪐",
         hint: "circles a planet",
+        arabicHint: "يدور حول كوكب",
       },
       {
         id: "o-9",
@@ -1343,6 +1492,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "ox",
         emoji: "🐂",
         hint: "strong farm animal",
+        arabicHint: "حيوان مزرعة قوي",
       },
       {
         id: "o-10",
@@ -1350,6 +1500,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "octopus",
         emoji: "🐙",
         hint: "has 8 arms",
+        arabicHint: "لديه 8 أذراع",
       },
     ],
   },
@@ -1359,16 +1510,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "p",
     phonicSound: "puh",
     words: [
-      { word: "Pen", emoji: "🖊️" },
-      { word: "Pig", emoji: "🐷" },
-      { word: "Plate", emoji: "🍽️" },
-      { word: "Pencil", emoji: "✏️" },
-      { word: "Paper", emoji: "📄" },
-      { word: "Pan", emoji: "🍳" },
-      { word: "Pillow", emoji: "🛏️" },
-      { word: "Park", emoji: "🌳" },
-      { word: "Plane", emoji: "✈️" },
-      { word: "Pear", emoji: "🍐" },
+      { word: "Pen", emoji: "🖊️", arabic: "قلم" },
+      { word: "Pig", emoji: "🐷", arabic: "خنزير" },
+      { word: "Plate", emoji: "🍽️", arabic: "طبق" },
+      { word: "Pencil", emoji: "✏️", arabic: "قلم رصاص" },
+      { word: "Paper", emoji: "📄", arabic: "ورق" },
+      { word: "Pan", emoji: "🍳", arabic: "مقلاة" },
+      { word: "Pillow", emoji: "🛏️", arabic: "وسادة" },
+      { word: "Park", emoji: "🌳", arabic: "حديقة" },
+      { word: "Plane", emoji: "✈️", arabic: "طائرة" },
+      { word: "Pear", emoji: "🍐", arabic: "إجاص" },
     ],
     blendingTasks: [
       {
@@ -1377,6 +1528,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "pen",
         emoji: "🖊️",
         hint: "used to write",
+        arabicHint: "يُستخد للكتابة",
       },
       {
         id: "p-2",
@@ -1384,6 +1536,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "pig",
         emoji: "🐷",
         hint: "says oink",
+        arabicHint: "يقول أوينك",
       },
       {
         id: "p-3",
@@ -1391,6 +1544,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "plate",
         emoji: "🍽️",
         hint: "holds your food",
+        arabicHint: "يحفظ طعامك",
       },
       {
         id: "p-4",
@@ -1398,6 +1552,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "pencil",
         emoji: "✏️",
         hint: "write and erase",
+        arabicHint: "تكتب وتمسح",
       },
       {
         id: "p-5",
@@ -1405,6 +1560,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "paper",
         emoji: "📄",
         hint: "write on it",
+        arabicHint: "اكتب عليه",
       },
       {
         id: "p-6",
@@ -1412,6 +1568,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "pan",
         emoji: "🍳",
         hint: "cook in it",
+        arabicHint: "طبخ فيه",
       },
       {
         id: "p-7",
@@ -1419,6 +1576,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "pillow",
         emoji: "🛏️",
         hint: "rest your head",
+        arabicHint: "استرح رأسك",
       },
       {
         id: "p-8",
@@ -1426,6 +1584,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "park",
         emoji: "🌳",
         hint: "play outdoors",
+        arabicHint: "العب في الهواء الطلق",
       },
       {
         id: "p-9",
@@ -1433,6 +1592,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "plane",
         emoji: "✈️",
         hint: "flies in sky",
+        arabicHint: "يطير في السماء",
       },
       {
         id: "p-10",
@@ -1440,6 +1600,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "pear",
         emoji: "🍐",
         hint: "green teardrop fruit",
+        arabicHint: "فاكهة خضراء شاكلها دمعة",
       },
     ],
   },
@@ -1449,16 +1610,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "q",
     phonicSound: "kwuh",
     words: [
-      { word: "Queen", emoji: "👸" },
-      { word: "Quilt", emoji: "🛏️" },
-      { word: "Question", emoji: "❓" },
-      { word: "Quail", emoji: "🐦" },
-      { word: "Quill", emoji: "🪶" },
-      { word: "Quartz", emoji: "💎" },
-      { word: "Queue", emoji: "👥" },
-      { word: "Quarter", emoji: "🪙" },
-      { word: "Quote", emoji: "💬" },
-      { word: "Quiz", emoji: "📝" },
+      { word: "Queen", emoji: "👸", arabic: "ملكة" },
+      { word: "Quilt", emoji: "🛏️", arabic: "لحاف" },
+      { word: "Question", emoji: "❓", arabic: "سؤال" },
+      { word: "Quail", emoji: "🐦", arabic: "سمان" },
+      { word: "Quill", emoji: "🪶", arabic: "ريشة كتابة" },
+      { word: "Quartz", emoji: "💎", arabic: "كوارتز" },
+      { word: "Queue", emoji: "👥", arabic: "طابور" },
+      { word: "Quarter", emoji: "🪙", arabic: "ربع" },
+      { word: "Quote", emoji: "💬", arabic: "اقتباس" },
+      { word: "Quiz", emoji: "📝", arabic: "اختبار" },
     ],
     blendingTasks: [
       {
@@ -1467,6 +1628,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "queen",
         emoji: "👸",
         hint: "rules a kingdom",
+        arabicHint: "حاكم مملكة",
       },
       {
         id: "q-2",
@@ -1474,6 +1636,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "quilt",
         emoji: "🛏️",
         hint: "cozy blanket",
+        arabicHint: "بطانية دافئة",
       },
       {
         id: "q-3",
@@ -1481,6 +1644,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "question",
         emoji: "❓",
         hint: "asks for answer",
+        arabicHint: "يطلب جواباً",
       },
       {
         id: "q-4",
@@ -1488,6 +1652,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "quail",
         emoji: "🐦",
         hint: "small bird",
+        arabicHint: "طائر صغير",
       },
       {
         id: "q-5",
@@ -1495,6 +1660,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "quill",
         emoji: "🪶",
         hint: "feather pen",
+        arabicHint: "قلم ريشة",
       },
       {
         id: "q-6",
@@ -1502,6 +1668,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "quartz",
         emoji: "💎",
         hint: "mineral crystal",
+        arabicHint: "بلورة معدنية",
       },
       {
         id: "q-7",
@@ -1509,6 +1676,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "queue",
         emoji: "👥",
         hint: "wait in line",
+        arabicHint: "انتظر في الطابور",
       },
       {
         id: "q-8",
@@ -1516,6 +1684,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "quarter",
         emoji: "🪙",
         hint: "one fourth",
+        arabicHint: "ربع",
       },
       {
         id: "q-9",
@@ -1523,6 +1692,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "quote",
         emoji: "💬",
         hint: "someone's words",
+        arabicHint: "كلام شخص ما",
       },
       {
         id: "q-10",
@@ -1530,6 +1700,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "quiz",
         emoji: "📝",
         hint: "test your knowledge",
+        arabicHint: "اختبر معرفتك",
       },
     ],
   },
@@ -1539,16 +1710,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "r",
     phonicSound: "ruh",
     words: [
-      { word: "Rat", emoji: "🐀" },
-      { word: "Ring", emoji: "💍" },
-      { word: "Road", emoji: "🛣️" },
-      { word: "Rock", emoji: "🪨" },
-      { word: "Rope", emoji: "🪢" },
-      { word: "Rose", emoji: "🌹" },
-      { word: "Robot", emoji: "🤖" },
-      { word: "Rain", emoji: "🌧️" },
-      { word: "River", emoji: "🏞️" },
-      { word: "Rocket", emoji: "🚀" },
+      { word: "Rat", emoji: "🐀", arabic: "جرذ" },
+      { word: "Ring", emoji: "💍", arabic: "خاتم" },
+      { word: "Road", emoji: "🛣️", arabic: "طريق" },
+      { word: "Rock", emoji: "🪨", arabic: "صخرة" },
+      { word: "Rope", emoji: "🪢", arabic: "حبل" },
+      { word: "Rose", emoji: "🌹", arabic: "وردة" },
+      { word: "Robot", emoji: "🤖", arabic: "روبوت" },
+      { word: "Rain", emoji: "🌧️", arabic: "مطر" },
+      { word: "River", emoji: "🏞️", arabic: "نهر" },
+      { word: "Rocket", emoji: "🚀", arabic: "صاروخ" },
     ],
     blendingTasks: [
       {
@@ -1557,6 +1728,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "rat",
         emoji: "🐀",
         hint: "small rodent",
+        arabicHint: "قارض صغير",
       },
       {
         id: "r-2",
@@ -1564,6 +1736,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "ring",
         emoji: "💍",
         hint: "worn on finger",
+        arabicHint: "ترتديه في الإصبع",
       },
       {
         id: "r-3",
@@ -1571,6 +1744,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "road",
         emoji: "🛣️",
         hint: "cars drive here",
+        arabicHint: "السيارات تسير هنا",
       },
       {
         id: "r-4",
@@ -1578,6 +1752,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "rock",
         emoji: "🪨",
         hint: "hard stone",
+        arabicHint: "حجرة صلبة",
       },
       {
         id: "r-5",
@@ -1585,6 +1760,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "rope",
         emoji: "🪢",
         hint: "thick cord",
+        arabicHint: "حبل سميك",
       },
       {
         id: "r-6",
@@ -1592,6 +1768,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "rose",
         emoji: "🌹",
         hint: "beautiful flower",
+        arabicHint: "زهرة جميلة",
       },
       {
         id: "r-7",
@@ -1599,6 +1776,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "robot",
         emoji: "🤖",
         hint: "metal machine",
+        arabicHint: "آلة معدنية",
       },
       {
         id: "r-8",
@@ -1606,6 +1784,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "rain",
         emoji: "🌧️",
         hint: "falls from clouds",
+        arabicHint: "يسقط من السحب",
       },
       {
         id: "r-9",
@@ -1613,6 +1792,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "river",
         emoji: "🏞️",
         hint: "flowing water",
+        arabicHint: "ماء جاري",
       },
       {
         id: "r-10",
@@ -1620,6 +1800,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "rocket",
         emoji: "🚀",
         hint: "goes to space",
+        arabicHint: "يذهب إلى الفضاء",
       },
     ],
   },
@@ -1629,16 +1810,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "s",
     phonicSound: "suh",
     words: [
-      { word: "Sun", emoji: "☀️" },
-      { word: "Star", emoji: "⭐" },
-      { word: "Shoe", emoji: "👟" },
-      { word: "School", emoji: "🏫" },
-      { word: "Snake", emoji: "🐍" },
-      { word: "Spoon", emoji: "🥄" },
-      { word: "Ship", emoji: "🚢" },
-      { word: "Sock", emoji: "🧦" },
-      { word: "Sand", emoji: "🏖️" },
-      { word: "Spider", emoji: "🕷️" },
+      { word: "Sun", emoji: "☀️", arabic: "شمس" },
+      { word: "Star", emoji: "⭐", arabic: "نجمة" },
+      { word: "Shoe", emoji: "👟", arabic: "حذاء" },
+      { word: "School", emoji: "🏫", arabic: "مدرسة" },
+      { word: "Snake", emoji: "🐍", arabic: "ثعبان" },
+      { word: "Spoon", emoji: "🥄", arabic: "ملعقة" },
+      { word: "Ship", emoji: "🚢", arabic: "سفينة" },
+      { word: "Sock", emoji: "🧦", arabic: "جورب" },
+      { word: "Sand", emoji: "🏖️", arabic: "رمل" },
+      { word: "Spider", emoji: "🕷️", arabic: "عنكبوت" },
     ],
     blendingTasks: [
       {
@@ -1647,6 +1828,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "sun",
         emoji: "☀️",
         hint: "lights the day",
+        arabicHint: "يضيء النهار",
       },
       {
         id: "s-2",
@@ -1654,6 +1836,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "star",
         emoji: "⭐",
         hint: "shines at night",
+        arabicHint: "يلمع في الليل",
       },
       {
         id: "s-3",
@@ -1661,6 +1844,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "shoe",
         emoji: "👟",
         hint: "wear on foot",
+        arabicHint: "ترتديه في القدم",
       },
       {
         id: "s-4",
@@ -1668,6 +1852,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "school",
         emoji: "🏫",
         hint: "where you learn",
+        arabicHint: "حيث تتعلم",
       },
       {
         id: "s-5",
@@ -1675,6 +1860,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "snake",
         emoji: "🐍",
         hint: "long reptile",
+        arabicHint: "زاحف طويل",
       },
       {
         id: "s-6",
@@ -1682,6 +1868,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "spoon",
         emoji: "🥄",
         hint: "scoops food",
+        arabicHint: "يستحب الطعام",
       },
       {
         id: "s-7",
@@ -1689,6 +1876,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "ship",
         emoji: "🚢",
         hint: "sails the ocean",
+        arabicHint: "يرسو البحر",
       },
       {
         id: "s-8",
@@ -1696,6 +1884,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "sock",
         emoji: "🧦",
         hint: "wear on foot",
+        arabicHint: "ترتديه في القدم",
       },
       {
         id: "s-9",
@@ -1703,6 +1892,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "sand",
         emoji: "🏖️",
         hint: "tiny grains on beach",
+        arabicHint: "حبوب صغيرة على الشاطئ",
       },
       {
         id: "s-10",
@@ -1710,6 +1900,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "spider",
         emoji: "🕷️",
         hint: "has 8 legs",
+        arabicHint: "لديه 8 أرجل",
       },
     ],
   },
@@ -1719,16 +1910,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "t",
     phonicSound: "tuh",
     words: [
-      { word: "Tree", emoji: "🌳" },
-      { word: "Table", emoji: "🪑" },
-      { word: "Tiger", emoji: "🐯" },
-      { word: "Train", emoji: "🚂" },
-      { word: "Toy", emoji: "🧸" },
-      { word: "Tap", emoji: "🚿" },
-      { word: "Tent", emoji: "⛺" },
-      { word: "Tomato", emoji: "🍅" },
-      { word: "Truck", emoji: "🚚" },
-      { word: "Turtle", emoji: "🐢" },
+      { word: "Tree", emoji: "🌳", arabic: "شجرة" },
+      { word: "Table", emoji: "🪑", arabic: "طاولة" },
+      { word: "Tiger", emoji: "🐯", arabic: "نمر" },
+      { word: "Train", emoji: "🚂", arabic: "قطار" },
+      { word: "Toy", emoji: "🧸", arabic: "لعبة" },
+      { word: "Tap", emoji: "🚿", arabic: "صنبور" },
+      { word: "Tent", emoji: "⛺", arabic: "خيمة" },
+      { word: "Tomato", emoji: "🍅", arabic: "طماطم" },
+      { word: "Truck", emoji: "🚚", arabic: "شاحنة" },
+      { word: "Turtle", emoji: "🐢", arabic: "سلحفاة" },
     ],
     blendingTasks: [
       {
@@ -1737,6 +1928,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "tree",
         emoji: "🌳",
         hint: "grows in forest",
+        arabicHint: "ينمو في الغابة",
       },
       {
         id: "t-2",
@@ -1744,6 +1936,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "table",
         emoji: "🪑",
         hint: "eat at it",
+        arabicHint: "تأكل عليه",
       },
       {
         id: "t-3",
@@ -1751,6 +1944,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "tiger",
         emoji: "🐯",
         hint: "striped big cat",
+        arabicHint: "قط كبير مخطط",
       },
       {
         id: "t-4",
@@ -1758,6 +1952,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "train",
         emoji: "🚂",
         hint: "runs on tracks",
+        arabicHint: "يسير على القضبان",
       },
       {
         id: "t-5",
@@ -1765,6 +1960,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "toy",
         emoji: "🧸",
         hint: "children play with it",
+        arabicHint: "الأطفال يلعبون به",
       },
       {
         id: "t-6",
@@ -1772,6 +1968,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "tap",
         emoji: "🚿",
         hint: "water flows from it",
+        arabicHint: "ماء يتدفق منه",
       },
       {
         id: "t-7",
@@ -1779,6 +1976,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "tent",
         emoji: "⛺",
         hint: "camping shelter",
+        arabicHint: "مئوى للتخييم",
       },
       {
         id: "t-8",
@@ -1786,6 +1984,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "tomato",
         emoji: "🍅",
         hint: "red round fruit",
+        arabicHint: "فاكهة حمراء مدورة",
       },
       {
         id: "t-9",
@@ -1793,6 +1992,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "truck",
         emoji: "🚚",
         hint: "carries heavy loads",
+        arabicHint: "يحمل أحمال ثقيلة",
       },
       {
         id: "t-10",
@@ -1800,6 +2000,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "turtle",
         emoji: "🐢",
         hint: "slow with a shell",
+        arabicHint: "بطيء بقشرة",
       },
     ],
   },
@@ -1809,16 +2010,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "u",
     phonicSound: "uh",
     words: [
-      { word: "Umbrella", emoji: "☂️" },
-      { word: "Uniform", emoji: "👔" },
-      { word: "Universe", emoji: "🌌" },
-      { word: "Urn", emoji: "🏺" },
-      { word: "Unicorn", emoji: "🦄" },
-      { word: "Unit", emoji: "📐" },
-      { word: "Uphill", emoji: "⛰️" },
-      { word: "Uncle", emoji: "👨" },
-      { word: "Useful", emoji: "🧰" },
-      { word: "Under", emoji: "⬇️" },
+      { word: "Umbrella", emoji: "☂️", arabic: "مظلة" },
+      { word: "Uniform", emoji: "👔", arabic: "زي" },
+      { word: "Universe", emoji: "🌌", arabic: "كون" },
+      { word: "Urn", emoji: "🏺", arabic: "إناء" },
+      { word: "Unicorn", emoji: "🦄", arabic: "حيد القرن" },
+      { word: "Unit", emoji: "📐", arabic: "وحدة" },
+      { word: "Uphill", emoji: "⛰️", arabic: "صعود" },
+      { word: "Uncle", emoji: "👨", arabic: "عم/خال" },
+      { word: "Useful", emoji: "🧰", arabic: "مفيد" },
+      { word: "Under", emoji: "⬇️", arabic: "تحت" },
     ],
     blendingTasks: [
       {
@@ -1827,6 +2028,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "umbrella",
         emoji: "☂️",
         hint: "keeps rain off",
+        arabicHint: "يحمي من المطر",
       },
       {
         id: "u-2",
@@ -1834,6 +2036,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "uniform",
         emoji: "👔",
         hint: "same outfit",
+        arabicHint: "زي واحد",
       },
       {
         id: "u-3",
@@ -1841,6 +2044,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "universe",
         emoji: "🌌",
         hint: "all of space",
+        arabicHint: "كل الفضاء",
       },
       {
         id: "u-4",
@@ -1848,6 +2052,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "urn",
         emoji: "🏺",
         hint: "decorative vase",
+        arabicHint: "مزهرية ديكوراتيفية",
       },
       {
         id: "u-5",
@@ -1855,6 +2060,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "unicorn",
         emoji: "🦄",
         hint: "magic horse",
+        arabicHint: "حصان سحري",
       },
       {
         id: "u-6",
@@ -1862,6 +2068,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "unit",
         emoji: "📐",
         hint: "a single part",
+        arabicHint: "جزء واحد",
       },
       {
         id: "u-7",
@@ -1869,6 +2076,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "uphill",
         emoji: "⛰️",
         hint: "going up the slope",
+        arabicHint: "الصعود إلى المنحدر",
       },
       {
         id: "u-8",
@@ -1876,6 +2084,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "uncle",
         emoji: "👨",
         hint: "parent's brother",
+        arabicHint: "أخ الأب",
       },
       {
         id: "u-9",
@@ -1883,6 +2092,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "useful",
         emoji: "🧰",
         hint: "very helpful",
+        arabicHint: "مفيد جداً",
       },
       {
         id: "u-10",
@@ -1890,6 +2100,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "under",
         emoji: "⬇️",
         hint: "below something",
+        arabicHint: "تحت شيء ما",
       },
     ],
   },
@@ -1899,16 +2110,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "v",
     phonicSound: "vuh",
     words: [
-      { word: "Van", emoji: "🚐" },
-      { word: "Vase", emoji: "🪴" },
-      { word: "Violin", emoji: "🎻" },
-      { word: "Voice", emoji: "🎙️" },
-      { word: "Village", emoji: "🏘️" },
-      { word: "Veggie", emoji: "🥦" },
-      { word: "Vehicle", emoji: "🚗" },
-      { word: "Valve", emoji: "🔧" },
-      { word: "Volcano", emoji: "🌋" },
-      { word: "Vest", emoji: "🦺" },
+      { word: "Van", emoji: "🚐", arabic: "عربة" },
+      { word: "Vase", emoji: "🪴", arabic: "مزهرية" },
+      { word: "Violin", emoji: "🎻", arabic: "كمان" },
+      { word: "Voice", emoji: "🎙️", arabic: "صوت" },
+      { word: "Village", emoji: "🏘️", arabic: "قرية" },
+      { word: "Veggie", emoji: "🥦", arabic: "خضروات" },
+      { word: "Vehicle", emoji: "🚗", arabic: "مركبة" },
+      { word: "Valve", emoji: "🔧", arabic: "صمام" },
+      { word: "Volcano", emoji: "🌋", arabic: "بركان" },
+      { word: "Vest", emoji: "🦺", arabic: "سترة" },
     ],
     blendingTasks: [
       {
@@ -1917,6 +2128,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "van",
         emoji: "🚐",
         hint: "a big vehicle",
+        arabicHint: "سيارة كبيرة",
       },
       {
         id: "v-2",
@@ -1924,6 +2136,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "vase",
         emoji: "🪴",
         hint: "holds flowers",
+        arabicHint: "يحفظ الزهور",
       },
       {
         id: "v-3",
@@ -1931,6 +2144,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "violin",
         emoji: "🎻",
         hint: "string instrument",
+        arabicHint: "آلة وترية",
       },
       {
         id: "v-4",
@@ -1938,6 +2152,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "voice",
         emoji: "🎙️",
         hint: "you sing with it",
+        arabicHint: "تغني به",
       },
       {
         id: "v-5",
@@ -1945,6 +2160,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "village",
         emoji: "🏘️",
         hint: "small community",
+        arabicHint: "مجتمع صغير",
       },
       {
         id: "v-6",
@@ -1952,6 +2168,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "veggie",
         emoji: "🥦",
         hint: "healthy food",
+        arabicHint: "طعام صحي",
       },
       {
         id: "v-7",
@@ -1959,6 +2176,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "vehicle",
         emoji: "🚗",
         hint: "means of transport",
+        arabicHint: "وسيلة نقل",
       },
       {
         id: "v-8",
@@ -1966,6 +2184,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "valve",
         emoji: "🔧",
         hint: "controls flow",
+        arabicHint: "يتحكم في التدفق",
       },
       {
         id: "v-9",
@@ -1973,6 +2192,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "volcano",
         emoji: "🌋",
         hint: "erupts with lava",
+        arabicHint: "يثور بالماغما",
       },
       {
         id: "v-10",
@@ -1980,6 +2200,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "vest",
         emoji: "🦺",
         hint: "sleeveless jacket",
+        arabicHint: "سترة بدون أكمام",
       },
     ],
   },
@@ -1989,16 +2210,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "w",
     phonicSound: "wuh",
     words: [
-      { word: "Water", emoji: "💧" },
-      { word: "Window", emoji: "🪟" },
-      { word: "Watch", emoji: "⌚" },
-      { word: "Wall", emoji: "🧱" },
-      { word: "Wheel", emoji: "🎡" },
-      { word: "Worm", emoji: "🐛" },
-      { word: "Wolf", emoji: "🐺" },
-      { word: "Wind", emoji: "🌬️" },
-      { word: "Wood", emoji: "🪵" },
-      { word: "Whale", emoji: "🐳" },
+      { word: "Water", emoji: "💧", arabic: "ماء" },
+      { word: "Window", emoji: "🪟", arabic: "نافذة" },
+      { word: "Watch", emoji: "⌚", arabic: "ساعة يد" },
+      { word: "Wall", emoji: "🧱", arabic: "جدار" },
+      { word: "Wheel", emoji: "🎡", arabic: "عجلة" },
+      { word: "Worm", emoji: "🐛", arabic: "دودة" },
+      { word: "Wolf", emoji: "🐺", arabic: "ذئب" },
+      { word: "Wind", emoji: "🌬️", arabic: "ريح" },
+      { word: "Wood", emoji: "🪵", arabic: "خشب" },
+      { word: "Whale", emoji: "🐳", arabic: "حوت" },
     ],
     blendingTasks: [
       {
@@ -2007,6 +2228,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "water",
         emoji: "💧",
         hint: "you drink it",
+        arabicHint: "تشربه",
       },
       {
         id: "w-2",
@@ -2014,6 +2236,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "window",
         emoji: "🪟",
         hint: "lets light in",
+        arabicHint: "يدخل الضوء",
       },
       {
         id: "w-3",
@@ -2021,6 +2244,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "watch",
         emoji: "⌚",
         hint: "tells the time",
+        arabicHint: "يري الوقت",
       },
       {
         id: "w-4",
@@ -2028,6 +2252,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "wall",
         emoji: "🧱",
         hint: "made of bricks",
+        arabicHint: "مصنوع من الطوب",
       },
       {
         id: "w-5",
@@ -2035,6 +2260,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "wheel",
         emoji: "🎡",
         hint: "round and rolls",
+        arabicHint: "مدور ويدور",
       },
       {
         id: "w-6",
@@ -2042,6 +2268,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "worm",
         emoji: "🐛",
         hint: "wiggly creature",
+        arabicHint: "كائن يتحرك",
       },
       {
         id: "w-7",
@@ -2049,6 +2276,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "wolf",
         emoji: "🐺",
         hint: "howls at moon",
+        arabicHint: "يعول في القمر",
       },
       {
         id: "w-8",
@@ -2056,6 +2284,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "wind",
         emoji: "🌬️",
         hint: "moving air",
+        arabicHint: "هواء متحرك",
       },
       {
         id: "w-9",
@@ -2063,6 +2292,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "wood",
         emoji: "🪵",
         hint: "from trees",
+        arabicHint: "من الأشجار",
       },
       {
         id: "w-10",
@@ -2070,6 +2300,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "whale",
         emoji: "🐳",
         hint: "largest sea animal",
+        arabicHint: "أكبر حيوان بحري",
       },
     ],
   },
@@ -2079,16 +2310,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "x",
     phonicSound: "ksuh",
     words: [
-      { word: "X-ray", emoji: "🩻" },
-      { word: "Xylophone", emoji: "🎵" },
-      { word: "Xerox", emoji: "📠" },
-      { word: "Xenon", emoji: "💡" },
-      { word: "Xbox", emoji: "🎮" },
-      { word: "Xmas", emoji: "🎄" },
-      { word: "Xylem", emoji: "🌱" },
-      { word: "X-axis", emoji: "📊" },
-      { word: "Xiphoid", emoji: "🦴" },
-      { word: "Xenolith", emoji: "🪨" },
+      { word: "X-ray", emoji: "🩻", arabic: "أشعة سينية" },
+      { word: "Xylophone", emoji: "🎵", arabic: "إكسيليفون" },
+      { word: "Xerox", emoji: "📠", arabic: "النسخ" },
+      { word: "Xenon", emoji: "💡", arabic: "زينون" },
+      { word: "Xbox", emoji: "🎮", arabic: "إكس بوكس" },
+      { word: "Xmas", emoji: "🎄", arabic: "عيد الميلاد" },
+      { word: "Xylem", emoji: "🌱", arabic: "خشبية" },
+      { word: "X-axis", emoji: "📊", arabic: "المحور س" },
+      { word: "Xiphoid", emoji: "🦴", arabic: "عمود سيفويد" },
+      { word: "Xenolith", emoji: "🪨", arabic: "صخرة غريبة" },
     ],
     blendingTasks: [
       {
@@ -2097,6 +2328,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "x-ray",
         emoji: "🩻",
         hint: "sees your bones",
+        arabicHint: "يرى عظامك",
       },
       {
         id: "x-2",
@@ -2104,6 +2336,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "xylophone",
         emoji: "🎵",
         hint: "colorful instrument",
+        arabicHint: "آلة ملونة",
       },
       {
         id: "x-3",
@@ -2111,6 +2344,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "xerox",
         emoji: "📠",
         hint: "makes copies",
+        arabicHint: "يصنع نسخاً",
       },
       {
         id: "x-4",
@@ -2118,6 +2352,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "xenon",
         emoji: "💡",
         hint: "glowing gas",
+        arabicHint: "غاز مشع",
       },
       {
         id: "x-5",
@@ -2125,6 +2360,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "xbox",
         emoji: "🎮",
         hint: "gaming console",
+        arabicHint: "جهاز مسبات إلكترونية",
       },
       {
         id: "x-6",
@@ -2132,6 +2368,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "xmas",
         emoji: "🎄",
         hint: "short for Christmas",
+        arabicHint: "العيد الميلاد",
       },
       {
         id: "x-7",
@@ -2139,6 +2376,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "xylem",
         emoji: "🌱",
         hint: "plant water tubes",
+        arabicHint: "أنابيب ماء للنبات",
       },
       {
         id: "x-8",
@@ -2146,6 +2384,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "x-axis",
         emoji: "📊",
         hint: "horizontal line",
+        arabicHint: "خط أفقي",
       },
       {
         id: "x-9",
@@ -2153,6 +2392,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "xiphoid",
         emoji: "🦴",
         hint: "part of sternum",
+        arabicHint: "جزء من القص المستطيل",
       },
       {
         id: "x-10",
@@ -2160,6 +2400,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "xenolith",
         emoji: "🪨",
         hint: "rock within rock",
+        arabicHint: "صخرة داخل صخرة",
       },
     ],
   },
@@ -2169,16 +2410,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "y",
     phonicSound: "yuh",
     words: [
-      { word: "Yarn", emoji: "🧶" },
-      { word: "Yolk", emoji: "🍳" },
-      { word: "Yacht", emoji: "⛵" },
-      { word: "Yard", emoji: "🏡" },
-      { word: "Yellow", emoji: "💛" },
-      { word: "Yeti", emoji: "⛷️" },
-      { word: "Yogurt", emoji: "🥛" },
-      { word: "Year", emoji: "📅" },
-      { word: "Youth", emoji: "👦" },
-      { word: "Yam", emoji: "🍠" },
+      { word: "Yarn", emoji: "🧶", arabic: "خيط" },
+      { word: "Yolk", emoji: "🍳", arabic: "صفار البيض" },
+      { word: "Yacht", emoji: "⛵", arabic: "يخت" },
+      { word: "Yard", emoji: "🏡", arabic: "حديقة" },
+      { word: "Yellow", emoji: "💛", arabic: "أصفر" },
+      { word: "Yeti", emoji: "⛷️", arabic: "يتي" },
+      { word: "Yogurt", emoji: "🥛", arabic: "زبادي" },
+      { word: "Year", emoji: "📅", arabic: "سنة" },
+      { word: "Youth", emoji: "👦", arabic: "شباب" },
+      { word: "Yam", emoji: "🍠", arabic: "يام" },
     ],
     blendingTasks: [
       {
@@ -2187,6 +2428,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "yarn",
         emoji: "🧶",
         hint: "used to knit",
+        arabicHint: "يستخدم للتربيط",
       },
       {
         id: "y-2",
@@ -2194,6 +2436,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "yolk",
         emoji: "🍳",
         hint: "yellow part of egg",
+        arabicHint: "الجزء الأصفر من البيضة",
       },
       {
         id: "y-3",
@@ -2201,6 +2444,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "yacht",
         emoji: "⛵",
         hint: "fancy sailboat",
+        arabicHint: "قارب شراعي فاخر",
       },
       {
         id: "y-4",
@@ -2208,6 +2452,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "yard",
         emoji: "🏡",
         hint: "garden area",
+        arabicHint: "منطقة الحديقة",
       },
       {
         id: "y-5",
@@ -2215,6 +2460,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "yellow",
         emoji: "💛",
         hint: "sunny color",
+        arabicHint: "لون مشمس",
       },
       {
         id: "y-6",
@@ -2222,6 +2468,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "yeti",
         emoji: "⛷️",
         hint: "snow creature",
+        arabicHint: "كائن ثلجي",
       },
       {
         id: "y-7",
@@ -2229,6 +2476,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "yogurt",
         emoji: "🥛",
         hint: "creamy dairy",
+        arabicHint: "منتجات ألبان كريمية",
       },
       {
         id: "y-8",
@@ -2236,6 +2484,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "year",
         emoji: "📅",
         hint: "12 months",
+        arabicHint: "12 شهراً",
       },
       {
         id: "y-9",
@@ -2243,6 +2492,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "youth",
         emoji: "👦",
         hint: "being young",
+        arabicHint: "الشباب",
       },
       {
         id: "y-10",
@@ -2250,6 +2500,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "yam",
         emoji: "🍠",
         hint: "sweet root veggie",
+        arabicHint: "خضر جذر حلو",
       },
     ],
   },
@@ -2259,16 +2510,16 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "z",
     phonicSound: "zuh",
     words: [
-      { word: "Zoo", emoji: "🦒" },
-      { word: "Zebra", emoji: "🦓" },
-      { word: "Zero", emoji: "0️⃣" },
-      { word: "Zip", emoji: "🤐" },
-      { word: "Zinc", emoji: "⚙️" },
-      { word: "Zone", emoji: "🗺️" },
-      { word: "Zipper", emoji: "🧥" },
-      { word: "Zodiac", emoji: "♈" },
-      { word: "Zenith", emoji: "☀️" },
-      { word: "Zigzag", emoji: "〰️" },
+      { word: "Zoo", emoji: "🦒", arabic: "حديقة حيوان" },
+      { word: "Zebra", emoji: "🦓", arabic: "حمار وحشي" },
+      { word: "Zero", emoji: "0️⃣", arabic: "صفر" },
+      { word: "Zip", emoji: "🤐", arabic: "سحاب" },
+      { word: "Zinc", emoji: "⚙️", arabic: "زنك" },
+      { word: "Zone", emoji: "🗺️", arabic: "منطقة" },
+      { word: "Zipper", emoji: "🧥", arabic: "سحاب السترة" },
+      { word: "Zodiac", emoji: "♈", arabic: "أبراج" },
+      { word: "Zenith", emoji: "☀️", arabic: "ذروة" },
+      { word: "Zigzag", emoji: "〰️", arabic: "متعرج" },
     ],
     blendingTasks: [
       {
@@ -2277,6 +2528,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "zoo",
         emoji: "🦒",
         hint: "animals live here",
+        arabicHint: "الحيوانات تعيش هنا",
       },
       {
         id: "z-2",
@@ -2284,6 +2536,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "zebra",
         emoji: "🦓",
         hint: "striped animal",
+        arabicHint: "حيوان مخطط",
       },
       {
         id: "z-3",
@@ -2291,6 +2544,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "zero",
         emoji: "0️⃣",
         hint: "the number 0",
+        arabicHint: "الرقم ٠",
       },
       {
         id: "z-4",
@@ -2298,6 +2552,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "zip",
         emoji: "🤐",
         hint: "fastens jacket",
+        arabicHint: "يستحب السترة",
       },
       {
         id: "z-5",
@@ -2305,6 +2560,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "zinc",
         emoji: "⚙️",
         hint: "a metal element",
+        arabicHint: "عنصر فلزي",
       },
       {
         id: "z-6",
@@ -2312,6 +2568,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "zone",
         emoji: "🗺️",
         hint: "an area or region",
+        arabicHint: "منطقة أو محافظة",
       },
       {
         id: "z-7",
@@ -2319,6 +2576,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "zipper",
         emoji: "🧥",
         hint: "slides up to close",
+        arabicHint: "يستحب للأعلى للإغلاق",
       },
       {
         id: "z-8",
@@ -2326,6 +2584,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "zodiac",
         emoji: "♈",
         hint: "star signs",
+        arabicHint: "أبراج الفلك",
       },
       {
         id: "z-9",
@@ -2333,6 +2592,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "zenith",
         emoji: "☀️",
         hint: "highest point",
+        arabicHint: "أعلى نقطة",
       },
       {
         id: "z-10",
@@ -2340,6 +2600,7 @@ const rawData: Omit<LetterData, "color">[] = [
         word: "zigzag",
         emoji: "〰️",
         hint: "back and forth line",
+        arabicHint: "خط ذهاب وإياب",
       },
     ],
   },

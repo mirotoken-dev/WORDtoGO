@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Layout from "../components/Layout";
 import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
+import { getArabicWord, getUILabel } from "../data/arabicTranslations";
 import { playSuccessSound, playTapSound } from "../utils/audio";
 
 interface Point { x: number; y: number; }
@@ -198,13 +199,13 @@ export default function TracingPage() {
   };
 
   return (
-    <Layout title="Tracing" headerColor="oklch(0.48 0.22 145)">
+    <Layout title={getUILabel("Tracing")} headerColor="oklch(0.48 0.22 145)">
       <div className="px-5 py-5 flex flex-col gap-4">
 
         {/* Progress Bar */}
         <div className="bg-white rounded-2xl px-4 py-3 border border-border shadow-card">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-display font-bold text-foreground">Letters Traced</span>
+            <span className="text-xs font-display font-bold text-foreground">{getUILabel("Letters Traced")}</span>
             <span className="text-xs font-display font-black text-[oklch(0.48_0.22_145)]">
               {completedCount}/{PHONICS_DATA.length}
             </span>
@@ -219,7 +220,7 @@ export default function TracingPage() {
             />
           </div>
           <p className="text-xs text-muted-foreground font-body mt-1.5">
-            {progressPct === 0 ? "Start tracing to make progress!" : progressPct === 100 ? "🎉 All letters completed!" : `${progressPct}% complete — keep going!`}
+            {progressPct === 0 ? getUILabel("Start tracing to make progress!") : progressPct === 100 ? getUILabel("\ud83c\udf89 All letters completed!") : `${progressPct}% ${getUILabel("complete — keep going!")}`}
           </p>
         </div>
 
@@ -233,7 +234,7 @@ export default function TracingPage() {
               mode === "letter" ? "gradient-green text-white" : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            ✏️ Letter Tracing
+            ✏️ {getUILabel("Letter Tracing")}
           </button>
           <button
             type="button"
@@ -243,7 +244,7 @@ export default function TracingPage() {
               mode === "word" ? "gradient-indigo text-white" : "text-muted-foreground hover:text-foreground"
             }`}
           >
-            📝 Word Tracing
+            📝 {getUILabel("Word Tracing")}
           </button>
         </div>
 
@@ -297,7 +298,7 @@ export default function TracingPage() {
             <span className="text-5xl">{wordEntry.emoji}</span>
             <div className="flex-1">
               <p className="text-2xl font-display font-black text-foreground leading-tight">{wordEntry.word}</p>
-              <p className="text-xs font-body text-muted-foreground mt-0.5">Trace this word</p>
+              <p className="text-xs font-body text-muted-foreground mt-0.5">{getUILabel("Trace this word")}</p>
             </div>
             <button
               type="button"
@@ -348,7 +349,7 @@ export default function TracingPage() {
             className="rounded-2xl py-3 px-4 text-center font-display font-bold text-base gradient-green text-white shadow-playful"
             data-ocid="tracing.success_state"
           >
-            🌟 Amazing! Great job!
+            🌟 {getUILabel("Amazing! Great job!")}
           </motion.div>
         )}
 
@@ -360,7 +361,7 @@ export default function TracingPage() {
             onClick={() => { playTapSound(); clearCanvas(); }}
             className="flex-1 h-13 py-3 rounded-2xl bg-white border border-border flex items-center justify-center gap-2 font-display font-bold text-foreground active:scale-95 transition-smooth hover:bg-muted"
           >
-            <Eraser className="w-5 h-5" /> Clear
+            <Eraser className="w-5 h-5" /> {getUILabel("Clear")}
           </button>
 
           {isDone ? (
@@ -377,14 +378,14 @@ export default function TracingPage() {
               }}
               className="flex-1 py-3 rounded-2xl gradient-green text-white font-display font-bold text-base flex items-center justify-center gap-2 active:scale-95 transition-smooth shadow-playful"
             >
-              <Check className="w-5 h-5" /> Next!
+              <Check className="w-5 h-5" /> {getUILabel("Next!")}
             </motion.button>
           ) : (
             <div
               data-ocid="tracing.next_locked"
               className="flex-1 py-3 rounded-2xl bg-muted flex items-center justify-center text-sm font-body text-muted-foreground border border-border"
             >
-              {mode === "letter" ? "Draw the letter ✏️" : "Trace the word 📝"}
+              {mode === "letter" ? getUILabel("Draw the letter") : getUILabel("Trace the word")}
             </div>
           )}
         </div>

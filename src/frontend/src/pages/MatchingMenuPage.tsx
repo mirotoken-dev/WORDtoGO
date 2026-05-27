@@ -2,6 +2,7 @@ import { useRouter } from "@tanstack/react-router";
 import { Grid3x3 } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect } from "react";
+import { getUILabel } from "../data/arabicTranslations";
 import { useAppStore } from "../store/useAppStore";
 import { playTapSound } from "../utils/audio";
 
@@ -62,7 +63,7 @@ export default function MatchingMenuPage() {
           data-ocid="matching_menu.back_button"
           onClick={handleBack}
           className="w-10 h-10 rounded-2xl bg-muted border border-border flex items-center justify-center text-foreground text-lg active:opacity-70 transition-smooth"
-          aria-label="Back to home"
+          aria-label={getUILabel("Back to home")}
         >
           ←
         </button>

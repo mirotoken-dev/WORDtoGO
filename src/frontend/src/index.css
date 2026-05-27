@@ -6,6 +6,7 @@
   :root {
     --font-display: "Space Grotesk";
     --font-body: "Nunito";
+    --font-arabic: "Noto Sans Arabic", sans-serif;
     --font-mono: "JetBrains Mono";
     --radius: 1.25rem;
 

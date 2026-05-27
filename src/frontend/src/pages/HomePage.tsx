@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import StarBadge from "../components/StarBadge";
 import { useAppStore } from "../store/useAppStore";
 import { playTapSound } from "../utils/audio";
+import { getUILabel } from "../data/arabicTranslations";
 
 const MENU = [
   {
@@ -92,9 +93,9 @@ export default function HomePage() {
           </div>
           <div>
             <p className="font-display font-bold text-base text-foreground leading-tight">
-              Hi, {profile.name}! 👋
+              {getUILabel("Hi")}, {profile.name}! 👋
             </p>
-            <p className="text-xs font-body text-muted-foreground">Ready to learn?</p>
+            <p className="text-xs font-body text-muted-foreground">{getUILabel("Ready to learn?")}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -154,8 +155,14 @@ export default function HomePage() {
                 <span className="text-lg font-display font-black leading-tight block">
                   {item.label}
                 </span>
+                <span className="text-sm font-[var(--font-arabic)] opacity-90 mt-0.5 block" dir="rtl">
+                  {getUILabel(item.label)}
+                </span>
                 <span className="text-xs font-body opacity-80 mt-0.5 block">
                   {item.desc}
+                </span>
+                <span className="text-xs font-[var(--font-arabic)] opacity-70 block" dir="rtl">
+                  {getUILabel(item.desc)}
                 </span>
               </div>
             </motion.button>

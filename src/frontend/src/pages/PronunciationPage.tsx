@@ -2,6 +2,7 @@ import { useRouter } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { PHONICS_DATA } from "../data/phonicsData";
+import { getArabicWord, getUILabel } from "../data/arabicTranslations";
 import {
   playCelebrationSound,
   playSuccessSound,
@@ -211,16 +212,16 @@ export default function PronunciationPage() {
           }}
           className="w-10 h-10 rounded-xl flex items-center justify-center transition-smooth active:scale-90"
           style={{ background: "oklch(0.18 0.04 264)" }}
-          aria-label="Go back"
+          aria-label={getUILabel("Go back")}
         >
           <span className="text-xl text-foreground">←</span>
         </button>
         <div>
           <h1 className="font-display font-black text-lg text-foreground leading-tight">
-            Pronunciation
+            {getUILabel("Pronunciation")}
           </h1>
           <p className="text-xs font-body text-muted-foreground">
-            Say the word out loud
+            {getUILabel("Say the word out loud")}
           </p>
         </div>
       </header>
@@ -233,10 +234,10 @@ export default function PronunciationPage() {
         >
           <span className="text-6xl">🎤</span>
           <p className="font-display font-bold text-xl text-foreground">
-            Voice recording not supported
+            {getUILabel("Voice recording not supported")}
           </p>
           <p className="text-sm font-body text-muted-foreground max-w-xs">
-            Your browser does not support voice recording. Try Chrome or Safari.
+            {getUILabel("Your browser does not support voice recording. Try Chrome or Safari.")}
           </p>
           <button
             type="button"
@@ -249,7 +250,7 @@ export default function PronunciationPage() {
               color: "oklch(0.08 0 0)",
             }}
           >
-            Next word →
+            {getUILabel("Next word")} →
           </button>
         </div>
       )}
@@ -301,6 +302,14 @@ export default function PronunciationPage() {
               >
                 {current.word}
               </h2>
+              {(() => {
+                const ar = getArabicWord(current.word);
+                return ar ? (
+                  <p className="text-xl font-[var(--font-arabic)] relative z-10 mt-1" dir="rtl">
+                    {ar}
+                  </p>
+                ) : null;
+              })()}
 
               {/* Listen button — always visible so child can hear it first */}
               <button
@@ -314,7 +323,7 @@ export default function PronunciationPage() {
                   color: "oklch(0.82 0.17 84)",
                 }}
               >
-                <span>🔊</span> Hear it
+                <span>🔊</span> {getUILabel("Hear it")}
               </button>
             </motion.div>
           </AnimatePresence>
@@ -356,11 +365,11 @@ export default function PronunciationPage() {
                   className="font-display font-black text-2xl"
                   style={{ color: "oklch(0.88 0.18 84)" }}
                 >
-                  Great job! ⭐
+                  {getUILabel("Great job!")} ⭐
                 </p>
                 {spokenText ? (
                   <p className="text-sm font-body text-muted-foreground">
-                    You said: <em>"{spokenText}"</em>
+                    {getUILabel("You said:")} <em>"{spokenText}"</em>
                   </p>
                 ) : null}
               </motion.div>
@@ -380,11 +389,11 @@ export default function PronunciationPage() {
                   className="font-display font-bold text-xl text-center"
                   style={{ color: "oklch(0.72 0.28 15)" }}
                 >
-                  Try again! 🎙️
+                  {getUILabel("Try again!")} 🎙️
                 </p>
                 {spokenText ? (
                   <p className="text-sm font-body text-muted-foreground text-center">
-                    I heard: <em>"{spokenText}"</em>
+                    {getUILabel("I heard:")} <em>"{spokenText}"</em>
                   </p>
                 ) : null}
                 <div className="flex items-center gap-3">
@@ -399,7 +408,7 @@ export default function PronunciationPage() {
                       color: "oklch(0.08 0 0)",
                     }}
                   >
-                    🔊 Listen
+                    🔊 {getUILabel("Listen")}
                   </button>
                   <button
                     type="button"
@@ -412,7 +421,7 @@ export default function PronunciationPage() {
                       color: "oklch(0.82 0.17 84)",
                     }}
                   >
-                    Skip →
+                    {getUILabel("Skip")} →
                   </button>
                 </div>
               </motion.div>
@@ -437,11 +446,11 @@ export default function PronunciationPage() {
                     style={{ color: "oklch(0.72 0.28 15)" }}
                     data-ocid="pronunciation.listening_state"
                   >
-                    🎙️ Listening...
+                    🎙️ {getUILabel("Listening...")}
                   </motion.p>
                 ) : (
                   <p className="text-sm font-body text-muted-foreground">
-                    Tap the mic and say the word
+                    {getUILabel("Tap the mic and say the word")}
                   </p>
                 )}
               </motion.div>
@@ -470,7 +479,7 @@ export default function PronunciationPage() {
                     : "0 0 0 8px oklch(0.82 0.17 84 / 0.12), 0 0 24px oklch(0.82 0.17 84 / 0.25)",
               }}
               aria-label={
-                state === "listening" ? "Listening..." : "Start recording"
+                state === "listening" ? getUILabel("Listening...") : getUILabel("Start recording")
               }
             >
               {/* Pulsing ring when listening */}
@@ -499,7 +508,7 @@ export default function PronunciationPage() {
                 className="text-xs font-body underline transition-smooth active:opacity-70"
                 style={{ color: "oklch(0.55 0.05 264)" }}
               >
-                Skip this word
+                {getUILabel("Skip this word")}
               </button>
             )}
           </div>
