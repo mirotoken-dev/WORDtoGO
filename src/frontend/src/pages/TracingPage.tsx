@@ -315,17 +315,13 @@ export default function TracingPage() {
         <div
           className="relative rounded-2xl overflow-hidden border border-border shadow-card bg-white"
         >
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-            {mode === "letter" ? (
+          {mode === "letter" && (
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
               <span className="font-display font-black leading-none" style={{ fontSize: 180, color: "oklch(0.88 0.01 260)" }}>
                 {letter.uppercase}
               </span>
-            ) : (
-              <span className="font-display font-black leading-none px-3 text-center" style={{ fontSize: wordFontSize, color: "oklch(0.88 0.01 260)", letterSpacing: "0.05em" }}>
-                {wordEntry.word.toUpperCase()}
-              </span>
-            )}
-          </div>
+            </div>
+          )}
           <canvas
             ref={canvasRef}
             width={CANVAS_W}
