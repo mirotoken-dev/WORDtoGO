@@ -11,6 +11,7 @@ export default function ProfilesPage() {
   const { profiles, addProfile, deleteProfile, setActiveProfile } = useAppStore();
   const [creating, setCreating] = useState(false);
   const [name, setName] = useState("");
+  const [age, setAge] = useState("");
   const [avatar, setAvatar] = useState(AVATARS[0]);
   const [toDelete, setToDelete] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -24,7 +25,8 @@ export default function ProfilesPage() {
   const handleCreate = () => {
     if (!name.trim()) return;
     playSuccessSound();
-    addProfile(name.trim(), avatar);
+    const ageNum = age.trim() ? parseInt(age.trim(), 10) : undefined;
+    addProfile(name.trim(), avatar, ageNum && !isNaN(ageNum) ? ageNum : undefined);
     const allProfiles = useAppStore.getState().profiles;
     const newProfile = allProfiles[allProfiles.length - 1];
     if (newProfile) {
@@ -33,6 +35,7 @@ export default function ProfilesPage() {
     }
     setCreating(false);
     setName("");
+    setAge("");
   };
 
   const handleDelete = (id: string) => {
@@ -103,6 +106,7 @@ export default function ProfilesPage() {
               <div className="min-w-0">
                 <p className="text-lg font-display font-bold text-foreground truncate">
                   {profile.name}
+                  {profile.age && <span className="text-muted-foreground font-body font-normal text-sm"> · {profile.age} yrs</span>}
                 </p>
                 <p className="text-sm font-body text-muted-foreground">{getUILabel("Tap to play!")} 🎉</p>
               </div>
@@ -184,6 +188,25 @@ export default function ProfilesPage() {
                   onKeyDown={(e) => { if (e.key === "Enter") handleCreate(); }}
                   className="w-full px-4 py-3 rounded-xl border border-border bg-muted text-foreground font-body text-base placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[oklch(0.55_0.22_280/0.4)] focus:border-[oklch(0.55_0.22_280)]"
                   maxLength={20}
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="profile-age"
+                  className="block text-sm font-display font-semibold text-foreground mb-2"
+                >
+                  {getUILabel("Age")}
+                </label>
+                <input
+                  id="profile-age"
+                  data-ocid="profiles.age_input"
+                  type="number"
+                  placeholder={getUILabel("Enter age...")}
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-border bg-muted text-foreground font-body text-base placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[oklch(0.55_0.22_280/0.4)] focus:border-[oklch(0.55_0.22_280)]"
+                  min={2}
+                  max={16}
                 />
               </div>
               <div className="mb-5">

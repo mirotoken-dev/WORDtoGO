@@ -87,7 +87,9 @@ export default function HomePage() {
             <p className="font-display font-bold text-base text-foreground leading-tight">
               {getUILabel("Hi")}, {profile.name}! 👋
             </p>
-            <p className="text-xs font-body text-muted-foreground">{getUILabel("Ready to learn?")}</p>
+            <p className="text-xs font-body text-muted-foreground">
+              {profile.age ? `${getUILabel("Age")}: ${profile.age}` : getUILabel("Ready to learn?")}
+            </p>
           </div>
         </div>
         <div className="flex items-center gap-2">

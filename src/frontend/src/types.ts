@@ -29,6 +29,7 @@ export interface Profile {
   id: string;
   name: string;
   avatar: string;
+  age?: number;
   createdAt: number;
 }
 

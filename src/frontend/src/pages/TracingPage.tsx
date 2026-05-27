@@ -1,5 +1,5 @@
 import { useRouter } from "@tanstack/react-router";
-import { Check, Eraser, RefreshCw } from "lucide-react";
+import { Check, Eraser, RefreshCw, SkipForward } from "lucide-react";
 import { motion } from "motion/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Layout from "../components/Layout";
@@ -364,6 +364,21 @@ export default function TracingPage() {
             <Eraser className="w-5 h-5" /> {getUILabel("Clear")}
           </button>
 
+          {!isDone && (
+            <button
+              type="button"
+              data-ocid="tracing.skip_button"
+              onClick={() => {
+                playTapSound();
+                if (mode === "letter") setLetterIdx((letterIdx + 1) % PHONICS_DATA.length);
+                else { newWord(); clearCanvas(); }
+              }}
+              className="flex-1 py-3 rounded-2xl bg-white border border-border flex items-center justify-center gap-2 font-display font-bold text-foreground active:scale-95 transition-smooth hover:bg-muted"
+            >
+              <SkipForward className="w-5 h-5" /> {getUILabel("Skip")}
+            </button>
+          )}
+
           {isDone ? (
             <motion.button
               type="button"
@@ -380,14 +395,7 @@ export default function TracingPage() {
             >
               <Check className="w-5 h-5" /> {getUILabel("Next!")}
             </motion.button>
-          ) : (
-            <div
-              data-ocid="tracing.next_locked"
-              className="flex-1 py-3 rounded-2xl bg-muted flex items-center justify-center text-sm font-body text-muted-foreground border border-border"
-            >
-              {mode === "letter" ? getUILabel("Draw the letter") : getUILabel("Trace the word")}
-            </div>
-          )}
+          ) : null}
         </div>
       </div>
     </Layout>

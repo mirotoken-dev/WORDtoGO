@@ -18,7 +18,7 @@ interface AppState {
 
   // Profile actions
   loadFromStorage: () => void;
-  addProfile: (name: string, avatar: string) => void;
+  addProfile: (name: string, avatar: string, age?: number) => void;
   deleteProfile: (id: string) => void;
   setActiveProfile: (id: string) => void;
   clearActiveProfile: () => void;
@@ -49,12 +49,13 @@ export const useAppStore = create<AppState>((set, get) => ({
     });
   },
 
-  addProfile: (name, avatar) => {
+  addProfile: (name, avatar, age) => {
     const id = `profile_${Date.now()}_${Math.random().toString(36).slice(2)}`;
     const newProfile: Profile = {
       id,
       name,
       avatar,
+      age,
       createdAt: Date.now(),
     };
     const profiles = [...get().profiles, newProfile];
