@@ -142,9 +142,16 @@ export default function PronunciationPage() {
         }
       }
 
-      const best = results.find(
-        (r) => normalizedSimilarity(current.word, r) >= 0.6,
-      );
+      // Strict matching: exact word after normalization, or very high similarity
+      const normalize = (s: string) => s.toLowerCase().trim().replace(/[.,!?;:]$/, "");
+      const targetNorm = normalize(current.word);
+      const best = results.find((r) => {
+        const rNorm = normalize(r);
+        // Exact match preferred (ignoring trailing punctuation)
+        if (rNorm === targetNorm) return true;
+        // Fallback: very high similarity only
+        return normalizedSimilarity(current.word, r) >= 0.88;
+      });
 
       const topTranscript = results[0] ?? "";
       setSpokenText(topTranscript);

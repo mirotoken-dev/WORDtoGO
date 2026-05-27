@@ -13,6 +13,7 @@ import {
   playLetterPhonetic,
   playTapSound,
   playWrongSound,
+  speakWord,
 } from "../utils/audio";
 
 type Status = "idle" | "correct" | "wrong";
@@ -55,6 +56,7 @@ export default function BlendingPage() {
         if (isOk) {
           playCorrectSound();
           playCelebrationSound();
+          speakWord(task.word);
           setStatus("correct");
           updateProgress((prev) => {
             const existing = prev.blending[task.id] ?? {

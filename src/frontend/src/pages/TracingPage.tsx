@@ -94,7 +94,7 @@ export default function TracingPage() {
 
   const wordFontSize = useMemo(() => {
     const len = wordEntry.word.length;
-    let size = len <= 3 ? 80 : len === 4 ? 60 : len === 5 ? 50 : 45;
+    let size = len <= 3 ? 68 : len === 4 ? 50 : len === 5 ? 42 : 38;
     const maxAllowed = Math.floor((CANVAS_W - 24) / (len * 0.55));
     return Math.min(size, maxAllowed);
   }, [wordEntry.word]);
@@ -114,10 +114,10 @@ export default function TracingPage() {
         refPixelsCache.current[currentKey] = buildReferencePixels(letter.uppercase);
       } else {
         const len = wordEntry.word.length;
-        let size = len <= 3 ? 80 : len === 4 ? 60 : len === 5 ? 50 : 45;
+        let size = len <= 3 ? 68 : len === 4 ? 50 : len === 5 ? 42 : 38;
         const maxAllowed = Math.floor((CANVAS_W - 24) / (len * 0.55));
         refPixelsCache.current[currentKey] = buildReferencePixels(
-          wordEntry.word.toUpperCase(), Math.max(Math.min(size, maxAllowed), 40)
+          wordEntry.word.toUpperCase(), Math.max(Math.min(size, maxAllowed), 36)
         );
       }
     }
