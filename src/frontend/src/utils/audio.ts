@@ -351,18 +351,22 @@ async function playWordAudio(word: string): Promise<boolean> {
     }
   }
 
-  try {
-    const audio = new Audio(`/assets/words/${lower}.wav`);
-    wordAudioCache.set(lower, audio);
-    await new Promise<void>((resolve, reject) => {
-      audio.onended = () => resolve();
-      audio.onerror = () => reject(new Error("Audio failed"));
-      audio.play().catch(reject);
-    });
-    return true;
-  } catch {
-    return false;
+  // Try .mp3 first (smaller, preferred), then .wav (legacy)
+  for (const ext of [".mp3", ".wav"]) {
+    try {
+      const audio = new Audio(`/assets/words/${lower}${ext}`);
+      wordAudioCache.set(lower, audio);
+      await new Promise<void>((resolve, reject) => {
+        audio.onended = () => resolve();
+        audio.onerror = () => reject(new Error("Audio failed"));
+        audio.play().catch(reject);
+      });
+      return true;
+    } catch {
+      // try next extension
+    }
   }
+  return false;
 }
 
 export async function speakWordAsync(word: string): Promise<void> {
