@@ -10,6 +10,7 @@ import MatchingLevel1Page from "./pages/MatchingLevel1Page";
 import MatchingLevel2Page from "./pages/MatchingLevel2Page";
 import MatchingLevel3Page from "./pages/MatchingLevel3Page";
 import MatchingMenuPage from "./pages/MatchingMenuPage";
+import ProfileWizard from "./pages/ProfileWizard";
 // Lazy page imports
 import ProfilesPage from "./pages/ProfilesPage";
 import ProgressPage from "./pages/ProgressPage";
@@ -102,8 +103,15 @@ const pronunciationRoute = createRoute({
   component: PronunciationPage,
 });
 
+const profileWizardRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/wizard",
+  component: ProfileWizard,
+});
+
 const routeTree = rootRoute.addChildren([
   profilesRoute,
+  profileWizardRoute,
   homeRoute,
   flashcardsRoute,
   blendingRoute,
