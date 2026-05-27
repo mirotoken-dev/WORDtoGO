@@ -79,6 +79,8 @@ export default function PronunciationPage() {
   const [current, setCurrent] = useState(() => pickRandom());
   const [state, setState] = useState<RecognitionState>("idle");
   const [spokenText, setSpokenText] = useState("");
+  const [interimText, setInterimText] = useState("");
+  const [micError, setMicError] = useState<string | null>(null);
   const [hasSpeechAPI] = useState(() => {
     return (
       typeof window !== "undefined" &&
@@ -111,6 +113,8 @@ export default function PronunciationPage() {
     setCurrent((prev) => pickRandom(prev.word));
     setState("idle");
     setSpokenText("");
+    setInterimText("");
+    setMicError(null);
   }, []);
 
   const startListening = useCallback(() => {
@@ -125,37 +129,48 @@ export default function PronunciationPage() {
     const recognition = new (SpeechRecognition as any)();
     recognition.lang = "en-US";
     recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 3;
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 5;
 
-    recognition.onstart = () => setState("listening");
+    recognition.onstart = () => {
+      setMicError(null);
+      setInterimText("");
+      setSpokenText("");
+      setState("listening");
+    };
 
-    recognition.onresult = (event: {
-      results: {
-        length: number;
-        [i: number]: { length: number; [j: number]: { transcript: string } };
-      };
-    }) => {
-      const results: string[] = [];
+    // biome-ignore lint/suspicious/noExplicitAny: SpeechRecognition event shape
+    recognition.onresult = (event: any) => {
+      const final: string[] = [];
+      let interim = "";
       for (let i = 0; i < event.results.length; i++) {
-        for (let j = 0; j < event.results[i].length; j++) {
-          results.push(event.results[i][j].transcript);
+        if (event.results[i].isFinal) {
+          for (let j = 0; j < event.results[i].length; j++) {
+            final.push(event.results[i][j].transcript);
+          }
+        } else {
+          interim = event.results[i][0]?.transcript ?? "";
         }
       }
+      setInterimText(interim);
+
+      // Only evaluate on final results
+      if (final.length === 0) return;
 
       // Strict matching: exact word after normalization, or very high similarity
       const normalize = (s: string) => s.toLowerCase().trim().replace(/[.,!?;:]$/, "");
       const targetNorm = normalize(current.word);
-      const best = results.find((r) => {
+      const best = final.find((r) => {
         const rNorm = normalize(r);
         // Exact match preferred (ignoring trailing punctuation)
         if (rNorm === targetNorm) return true;
         // Fallback: very high similarity only
-        return normalizedSimilarity(current.word, r) >= 0.88;
+        return normalizedSimilarity(current.word, r) >= 0.78;
       });
 
-      const topTranscript = results[0] ?? "";
+      const topTranscript = final[0] ?? "";
       setSpokenText(topTranscript);
+      setInterimText("");
 
       if (best !== undefined) {
         setState("correct");
@@ -169,14 +184,38 @@ export default function PronunciationPage() {
       }
     };
 
-    recognition.onerror = () => {
+    // biome-ignore lint/suspicious/noExplicitAny: SpeechRecognition error event
+    recognition.onerror = (e: any) => {
+      const code = e.error as string;
+      const msg =
+        code === "no-speech"
+          ? "No speech detected. Tap the mic again and speak louder."
+          : code === "audio-capture"
+            ? "Microphone not available. Check your mic permissions."
+            : code === "not-allowed"
+              ? "Microphone access blocked. Allow mic in your browser settings."
+              : code === "network"
+                ? "Network error. Check your connection and try again."
+                : "Something went wrong. Tap the mic to try again.";
+      setMicError(msg);
+      setInterimText("");
       setState("idle");
     };
 
     recognition.onend = () => {
       if (recognitionRef.current === recognition) {
         recognitionRef.current = null;
-        setState((prev) => (prev === "listening" ? "idle" : prev));
+        // If we ended while listening and there was no final result, show mismatch
+        setState((prev) => {
+          if (prev === "listening") {
+            // Only mark mismatch if we actually heard something interim
+            if (interimText && !spokenText) {
+              return "mismatch";
+            }
+            return "idle";
+          }
+          return prev;
+        });
       }
     };
 
@@ -433,25 +472,45 @@ export default function PronunciationPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="text-center"
+                className="text-center flex flex-col items-center gap-2"
               >
                 {state === "listening" ? (
-                  <motion.p
-                    animate={{ opacity: [1, 0.4, 1] }}
-                    transition={{
-                      duration: 1.2,
-                      repeat: Number.POSITIVE_INFINITY,
-                    }}
-                    className="font-display font-bold text-lg"
-                    style={{ color: "oklch(0.72 0.28 15)" }}
-                    data-ocid="pronunciation.listening_state"
-                  >
-                    🎙️ {getUILabel("Listening...")}
-                  </motion.p>
+                  <>
+                    <motion.p
+                      animate={{ opacity: [1, 0.4, 1] }}
+                      transition={{
+                        duration: 1.2,
+                        repeat: Number.POSITIVE_INFINITY,
+                      }}
+                      className="font-display font-bold text-lg"
+                      style={{ color: "oklch(0.72 0.28 15)" }}
+                      data-ocid="pronunciation.listening_state"
+                    >
+                      🎙️ {getUILabel("Listening...")}
+                    </motion.p>
+                    {interimText && (
+                      <p
+                        className="text-sm font-body text-muted-foreground italic"
+                        data-ocid="pronunciation.interim_text"
+                      >
+                        "{interimText}"
+                      </p>
+                    )}
+                  </>
                 ) : (
-                  <p className="text-sm font-body text-muted-foreground">
-                    {getUILabel("Tap the mic and say the word")}
-                  </p>
+                  <>
+                    <p className="text-sm font-body text-muted-foreground">
+                      {getUILabel("Tap the mic and say the word")}
+                    </p>
+                    {micError && (
+                      <p
+                        className="text-xs font-body text-destructive bg-destructive/10 px-3 py-1.5 rounded-xl"
+                        data-ocid="pronunciation.mic_error"
+                      >
+                        {micError}
+                      </p>
+                    )}
+                  </>
                 )}
               </motion.div>
             )}
