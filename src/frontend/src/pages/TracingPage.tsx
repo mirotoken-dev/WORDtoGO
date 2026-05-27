@@ -99,7 +99,11 @@ export default function TracingPage() {
     return Math.min(size, maxAllowed);
   }, [wordEntry.word]);
 
-  if (!profile) { router.navigate({ to: "/" }); return null; }
+  useEffect(() => {
+    if (!profile) router.navigate({ to: "/" });
+  }, [profile, router]);
+
+  if (!profile) return null;
 
   const completedCount = PHONICS_DATA.filter((l) => progress?.tracing[l.letter]?.completed).length;
   const progressPct = Math.round((completedCount / PHONICS_DATA.length) * 100);
@@ -327,7 +331,8 @@ export default function TracingPage() {
             width={CANVAS_W}
             height={CANVAS_H}
             data-ocid="tracing.canvas_target"
-            className="w-full touch-none cursor-crosshair block"
+            className="relative w-full touch-none cursor-crosshair block"
+            style={{ zIndex: 10, position: "relative" }}
             onMouseDown={startDraw}
             onMouseMove={doDrawing}
             onMouseUp={endDraw}
