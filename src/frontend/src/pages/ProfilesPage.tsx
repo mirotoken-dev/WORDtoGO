@@ -26,39 +26,51 @@ export default function ProfilesPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       {/* Hero */}
-      <div className="px-6 pt-16 pb-10 text-center bg-white border-b border-border">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 260, damping: 22 }}
-        >
-          <div
-            className="w-20 h-20 mx-auto mb-4 rounded-3xl flex items-center justify-center text-5xl shadow-card"
-            style={{ background: "linear-gradient(135deg, oklch(0.80 0.18 84) 0%, oklch(0.68 0.22 40) 100%)" }}
+      <div className="relative pb-0 bg-[oklch(0.72_0.27_130)] overflow-hidden">
+        {/* Decorative circles */}
+        <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-white/10 -translate-y-8 translate-x-8" />
+        <div className="absolute bottom-8 left-0 w-24 h-24 rounded-full bg-white/10 -translate-x-6" />
+
+        <div className="relative px-6 pt-14 pb-10 text-center">
+          <motion.div
+            initial={{ scale: 0.7, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
           >
-            🦁
-          </div>
-          <h1 className="text-4xl font-display font-black text-foreground leading-tight">
-            Word to Go
-          </h1>
-          <p className="text-muted-foreground font-body text-base mt-2">
-            {getUILabel("Select who's learning today!")}
-          </p>
-        </motion.div>
+            <div className="bobble w-24 h-24 mx-auto mb-4 rounded-3xl flex items-center justify-center text-6xl bg-white shadow-playful border-4 border-white/50">
+              🦁
+            </div>
+            <h1 className="text-4xl font-display font-black text-white leading-tight drop-shadow">
+              Word to Go
+            </h1>
+            <p className="text-white/80 font-body text-base mt-2">
+              {getUILabel("Select who's learning today!")}
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Wave bottom */}
+        <div className="wave-divider -mb-px">
+          <svg viewBox="0 0 390 40" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0 40V20C65 0 130 40 195 20C260 0 325 40 390 20V40H0Z" fill="oklch(0.99 0.008 95)" />
+          </svg>
+        </div>
       </div>
 
       {/* Profiles */}
-      <div className="flex-1 px-5 py-6 flex flex-col gap-3">
+      <div className="flex-1 px-5 py-5 flex flex-col gap-3">
         {profiles.length === 0 && (
           <motion.div
             data-ocid="profiles.empty_state"
             className="text-center py-14"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
           >
-            <div className="text-6xl mb-4">👶</div>
-            <p className="text-xl font-display font-bold text-foreground">{getUILabel("No profiles yet!")}</p>
-            <p className="text-sm font-body text-muted-foreground mt-1">
+            <div className="text-7xl mb-4 float inline-block">👶</div>
+            <p className="text-2xl font-display font-black text-foreground mt-4">
+              {getUILabel("No profiles yet!")}
+            </p>
+            <p className="text-sm font-body text-muted-foreground mt-2">
               {getUILabel("Create a profile to start learning")}
             </p>
           </motion.div>
@@ -68,10 +80,10 @@ export default function ProfilesPage() {
           <motion.div
             key={profile.id}
             data-ocid={`profiles.item.${idx + 1}`}
-            className="flex items-center gap-4 bg-white rounded-2xl px-4 py-4 border border-border shadow-card"
-            initial={{ x: -20, opacity: 0 }}
+            className="duo-card flex items-center gap-4 px-4 py-4"
+            initial={{ x: -24, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: idx * 0.07 }}
+            transition={{ delay: idx * 0.08 }}
           >
             <button
               type="button"
@@ -79,15 +91,22 @@ export default function ProfilesPage() {
               onClick={() => handleSelect(profile.id)}
               className="flex-1 flex items-center gap-4 text-left active:scale-95 transition-smooth"
             >
-              <div className="w-14 h-14 text-4xl flex items-center justify-center rounded-2xl bg-muted border border-border flex-shrink-0">
+              <div className="w-16 h-16 text-4xl flex items-center justify-center rounded-2xl bg-gradient-to-br from-[oklch(0.72_0.27_130/0.12)] to-[oklch(0.67_0.21_222/0.12)] border-2 border-[oklch(0.88_0.012_260)] flex-shrink-0">
                 {profile.avatar}
               </div>
               <div className="min-w-0">
-                <p className="text-lg font-display font-bold text-foreground truncate">
+                <p className="text-xl font-display font-black text-foreground truncate">
                   {profile.name}
-                  {profile.age && <span className="text-muted-foreground font-body font-normal text-sm"> · {profile.age} yrs</span>}
+                  {profile.age && (
+                    <span className="text-muted-foreground font-body font-normal text-sm">
+                      {" · "}
+                      {profile.age} yrs
+                    </span>
+                  )}
                 </p>
-                <p className="text-sm font-body text-muted-foreground">{getUILabel("Tap to play!")} 🎉</p>
+                <p className="text-sm font-body text-[oklch(0.72_0.27_130)] font-bold">
+                  {getUILabel("Tap to play!")} 🎉
+                </p>
               </div>
             </button>
 
@@ -97,7 +116,7 @@ export default function ProfilesPage() {
                   type="button"
                   data-ocid={`profiles.confirm_button.${idx + 1}`}
                   onClick={() => handleDelete(profile.id)}
-                  className="w-9 h-9 rounded-xl bg-destructive flex items-center justify-center active:scale-95 transition-smooth"
+                  className="w-10 h-10 rounded-xl bg-destructive flex items-center justify-center active:scale-95 transition-smooth"
                 >
                   <Trash2 className="w-4 h-4 text-white" />
                 </button>
@@ -105,7 +124,7 @@ export default function ProfilesPage() {
                   type="button"
                   data-ocid={`profiles.cancel_button.${idx + 1}`}
                   onClick={() => setToDelete(null)}
-                  className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center active:scale-95 transition-smooth text-sm font-bold text-foreground"
+                  className="w-10 h-10 rounded-xl bg-muted border-2 border-border flex items-center justify-center active:scale-95 transition-smooth text-sm font-black text-foreground"
                 >
                   ✕
                 </button>
@@ -115,7 +134,7 @@ export default function ProfilesPage() {
                 type="button"
                 data-ocid={`profiles.delete_button.${idx + 1}`}
                 onClick={() => setToDelete(profile.id)}
-                className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center active:scale-95 transition-smooth flex-shrink-0"
+                className="w-10 h-10 rounded-xl bg-muted border-2 border-border flex items-center justify-center active:scale-95 transition-smooth flex-shrink-0"
               >
                 <Trash2 className="w-4 h-4 text-muted-foreground" />
               </button>
@@ -126,11 +145,11 @@ export default function ProfilesPage() {
         {profiles.length >= 3 ? (
           <motion.div
             data-ocid="profiles.max_reached"
-            className="text-center py-4 px-5 rounded-2xl bg-muted border border-border"
+            className="text-center py-5 px-5 rounded-3xl bg-muted border-2 border-border"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <p className="text-base font-display font-bold text-muted-foreground">
+            <p className="text-base font-display font-black text-muted-foreground">
               {getUILabel("Maximum 3 learners reached")}
             </p>
             <p className="text-sm font-body text-muted-foreground mt-1">
@@ -141,30 +160,20 @@ export default function ProfilesPage() {
           <motion.button
             type="button"
             data-ocid="profiles.add_button"
-            onClick={() => { playTapSound(); router.navigate({ to: "/wizard" }); }}
-            className="w-full py-5 rounded-2xl border-2 border-dashed border-[oklch(0.55_0.22_280/0.35)] text-[oklch(0.55_0.22_280)] font-display font-bold text-base flex items-center justify-center gap-2 hover:border-[oklch(0.55_0.22_280/0.6)] hover:bg-[oklch(0.96_0.03_280)] active:scale-95 transition-smooth"
+            onClick={() => {
+              playTapSound();
+              router.navigate({ to: "/wizard" });
+            }}
+            className="press-btn press-primary w-full h-16 text-lg font-display font-black"
+            initial={{ y: 16, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: profiles.length * 0.08 + 0.1 }}
             whileTap={{ scale: 0.97 }}
           >
-            ➕ {getUILabel("Add New Learner")}
+            ✦ {getUILabel("Add New Learner")}
           </motion.button>
         )}
       </div>
-
-      <footer className="py-3 text-center bg-white border-t border-border">
-        <p className="text-xs text-muted-foreground font-body">
-          © {new Date().getFullYear()}. Built with love using{" "}
-          <a
-            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(
-              typeof window !== "undefined" ? window.location.hostname : "",
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-[oklch(0.55_0.22_280)] transition-colors"
-          >
-            caffeine.ai
-          </a>
-        </p>
-      </footer>
     </div>
   );
 }

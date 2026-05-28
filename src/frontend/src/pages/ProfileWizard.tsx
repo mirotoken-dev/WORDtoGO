@@ -1,5 +1,5 @@
 import { useRouter } from "@tanstack/react-router";
-import { ChevronLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
 import { AVATARS, useAppStore } from "../store/useAppStore";
@@ -52,40 +52,42 @@ export default function ProfileWizard() {
     return true;
   };
 
+  const stepLabels = ["Pick Character", "Your Name", "Your Age"];
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       {/* Top bar */}
-      <header className="px-5 py-4 flex items-center justify-between shrink-0">
+      <header className="px-5 py-4 flex items-center gap-3 shrink-0 bg-white border-b-2 border-border">
         <button
           type="button"
           onClick={goBack}
-          className="flex items-center gap-1 text-sm font-display font-bold text-muted-foreground active:opacity-60 transition-smooth"
+          className="nav-btn"
+          aria-label="Go back"
         >
-          <ChevronLeft className="w-5 h-5" />
-          {step === 1 ? "Cancel" : "Back"}
+          <ArrowLeft className="w-5 h-5" />
         </button>
 
-        {/* Step dots */}
-        <div className="flex gap-2">
+        {/* Progress bars */}
+        <div className="flex-1 flex gap-1.5">
           {Array.from({ length: totalSteps }).map((_, i) => (
-            <div
-              key={i}
-              className={`w-2.5 h-2.5 rounded-full transition-smooth ${
-                i + 1 === step
-                  ? "bg-[oklch(0.55_0.22_280)]"
-                  : i + 1 < step
-                    ? "bg-[oklch(0.55_0.22_280/0.4)]"
-                    : "bg-muted"
-              }`}
-            />
+            <div key={i} className="flex-1 h-3 rounded-full overflow-hidden bg-muted border border-border">
+              <motion.div
+                className="h-full rounded-full bg-[oklch(0.72_0.27_130)]"
+                initial={{ width: 0 }}
+                animate={{ width: i + 1 <= step ? "100%" : "0%" }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+              />
+            </div>
           ))}
         </div>
 
-        <div className="w-16" />
+        <span className="text-sm font-display font-bold text-muted-foreground w-12 text-right">
+          {step}/{totalSteps}
+        </span>
       </header>
 
-      {/* Full-screen step content */}
-      <div className="flex-1 flex flex-col px-6 pt-4 pb-6 overflow-y-auto">
+      {/* Step content */}
+      <div className="flex-1 flex flex-col px-6 pt-6 pb-6 overflow-y-auto">
         <AnimatePresence mode="wait">
           {step === 1 && (
             <motion.div
@@ -93,14 +95,15 @@ export default function ProfileWizard() {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 }}
-              transition={{ duration: 0.25 }}
+              transition={{ duration: 0.22 }}
               className="flex-1 flex flex-col"
             >
-              <div className="text-center mb-8">
+              <div className="text-center mb-6">
+                <div className="text-5xl mb-3">🎭</div>
                 <h1 className="text-3xl font-display font-black text-foreground leading-tight">
-                  Choose Your Character
+                  {stepLabels[0]}
                 </h1>
-                <p className="text-base font-body text-muted-foreground mt-2">
+                <p className="text-base font-body text-muted-foreground mt-1">
                   Pick your favorite friend!
                 </p>
               </div>
@@ -108,21 +111,32 @@ export default function ProfileWizard() {
               <div className="flex-1 flex items-center justify-center">
                 <div className="grid grid-cols-3 gap-4 w-full max-w-xs mx-auto">
                   {AVATARS.map((a) => (
-                    <button
+                    <motion.button
                       key={a}
                       type="button"
                       onClick={() => {
                         playTapSound();
                         setAvatar(a);
                       }}
-                      className={`aspect-square rounded-3xl flex items-center justify-center text-5xl transition-smooth active:scale-90 border-4 ${
+                      whileTap={{ scale: 0.88 }}
+                      className={`aspect-square rounded-3xl flex items-center justify-center text-5xl transition-smooth border-4 shadow-duo ${
                         avatar === a
-                          ? "border-[oklch(0.55_0.22_280)] bg-[oklch(0.94_0.05_280)] shadow-playful"
-                          : "border-transparent bg-muted hover:bg-[oklch(0.91_0.01_260)]"
+                          ? "border-[oklch(0.72_0.27_130)] bg-[oklch(0.95_0.06_130)] scale-105"
+                          : "border-transparent bg-white hover:bg-muted"
                       }`}
+                      style={
+                        avatar === a
+                          ? { boxShadow: "0 5px 0 0 oklch(0.56 0.25 130)" }
+                          : { boxShadow: "0 4px 0 0 oklch(0.88 0.012 260)" }
+                      }
                     >
                       {a}
-                    </button>
+                      {avatar === a && (
+                        <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-[oklch(0.72_0.27_130)] text-white text-xs flex items-center justify-center font-black">
+                          ✓
+                        </span>
+                      )}
+                    </motion.button>
                   ))}
                 </div>
               </div>
@@ -135,21 +149,26 @@ export default function ProfileWizard() {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 }}
-              transition={{ duration: 0.25 }}
+              transition={{ duration: 0.22 }}
               className="flex-1 flex flex-col"
             >
-              <div className="text-center mb-8">
+              <div className="text-center mb-6">
+                <div className="text-5xl mb-3">✍️</div>
                 <h1 className="text-3xl font-display font-black text-foreground leading-tight">
-                  What's Your Name?
+                  {stepLabels[1]}
                 </h1>
-                <p className="text-base font-body text-muted-foreground mt-2">
+                <p className="text-base font-body text-muted-foreground mt-1">
                   Type it in below
                 </p>
               </div>
 
               <div className="flex-1 flex items-center justify-center">
                 <div className="w-full max-w-sm mx-auto">
-                  <div className="text-center mb-6 text-7xl">{avatar}</div>
+                  <div className="text-center mb-6">
+                    <div className="w-24 h-24 mx-auto rounded-3xl flex items-center justify-center text-6xl bg-white border-2 border-border shadow-duo">
+                      {avatar}
+                    </div>
+                  </div>
                   <input
                     type="text"
                     value={name}
@@ -160,7 +179,7 @@ export default function ProfileWizard() {
                     placeholder="Your name"
                     maxLength={20}
                     autoFocus
-                    className="w-full px-5 py-4 rounded-2xl border-2 border-border bg-white text-center text-2xl font-display font-bold text-foreground placeholder:text-muted-foreground placeholder:font-body placeholder:font-normal placeholder:text-lg focus:outline-none focus:border-[oklch(0.55_0.22_280)] focus:ring-2 focus:ring-[oklch(0.55_0.22_280/0.2)] transition-smooth"
+                    className="w-full px-5 py-4 rounded-2xl border-2 border-border bg-white text-center text-2xl font-display font-black text-foreground placeholder:text-muted-foreground placeholder:font-body placeholder:font-normal placeholder:text-lg focus:outline-none focus:border-[oklch(0.72_0.27_130)] focus:ring-2 focus:ring-[oklch(0.72_0.27_130/0.15)] transition-smooth shadow-duo"
                   />
                 </div>
               </div>
@@ -173,21 +192,24 @@ export default function ProfileWizard() {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 }}
-              transition={{ duration: 0.25 }}
+              transition={{ duration: 0.22 }}
               className="flex-1 flex flex-col"
             >
-              <div className="text-center mb-8">
+              <div className="text-center mb-6">
+                <div className="text-5xl mb-3">🎂</div>
                 <h1 className="text-3xl font-display font-black text-foreground leading-tight">
-                  How Old Are You?
+                  {stepLabels[2]}
                 </h1>
-                <p className="text-base font-body text-muted-foreground mt-2">
+                <p className="text-base font-body text-muted-foreground mt-1">
                   Tap the number
                 </p>
               </div>
 
               <div className="flex-1 flex items-center justify-center">
                 <div className="w-full max-w-sm mx-auto text-center">
-                  <div className="text-7xl mb-6">{avatar}</div>
+                  <div className="w-24 h-24 mx-auto rounded-3xl flex items-center justify-center text-6xl bg-white border-2 border-border shadow-duo mb-6">
+                    {avatar}
+                  </div>
                   <div className="flex items-center justify-center gap-4 mb-4">
                     <button
                       type="button"
@@ -198,7 +220,7 @@ export default function ProfileWizard() {
                           return Math.max(2, n - 1).toString();
                         });
                       }}
-                      className="w-14 h-14 rounded-2xl bg-muted border border-border text-2xl font-display font-black text-foreground active:scale-90 transition-smooth flex items-center justify-center"
+                      className="press-btn press-outline w-14 h-14 text-2xl font-black p-0"
                     >
                       −
                     </button>
@@ -207,14 +229,11 @@ export default function ProfileWizard() {
                       value={age}
                       onChange={(e) => {
                         const val = e.target.value;
-                        if (val === "") {
-                          setAge("");
-                          return;
-                        }
+                        if (val === "") { setAge(""); return; }
                         const n = parseInt(val, 10);
                         if (!isNaN(n) && n >= 2 && n <= 16) setAge(n.toString());
                       }}
-                      className="w-28 py-3 rounded-2xl border-2 border-border bg-white text-center text-3xl font-display font-black text-foreground focus:outline-none focus:border-[oklch(0.55_0.22_280)] transition-smooth"
+                      className="w-28 py-3 rounded-2xl border-2 border-border bg-white text-center text-3xl font-display font-black text-foreground focus:outline-none focus:border-[oklch(0.72_0.27_130)] transition-smooth shadow-duo"
                     />
                     <button
                       type="button"
@@ -225,7 +244,7 @@ export default function ProfileWizard() {
                           return Math.min(16, n + 1).toString();
                         });
                       }}
-                      className="w-14 h-14 rounded-2xl bg-muted border border-border text-2xl font-display font-black text-foreground active:scale-90 transition-smooth flex items-center justify-center"
+                      className="press-btn press-primary w-14 h-14 text-2xl font-black p-0"
                     >
                       +
                     </button>
@@ -240,24 +259,21 @@ export default function ProfileWizard() {
         </AnimatePresence>
       </div>
 
-      {/* Bottom action */}
-      <div className="px-5 py-6 shrink-0">
-        <button
+      {/* Bottom CTA */}
+      <div className="px-5 py-6 shrink-0 bg-white border-t-2 border-border">
+        <motion.button
           type="button"
           onClick={goNext}
           disabled={!canProceed()}
-          className="w-full h-14 rounded-2xl font-display font-bold text-lg text-white active:scale-95 transition-smooth shadow-playful flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 bg-[oklch(0.55_0.22_280)]"
+          className="press-btn press-primary w-full h-16 text-xl"
+          whileTap={{ scale: 0.97 }}
         >
           {step === 3 ? (
-            <>
-              Start! <span className="text-2xl leading-none">🎉</span>
-            </>
+            <>Let's Go! 🎉</>
           ) : (
-            <>
-              Next <span className="text-xl leading-none">→</span>
-            </>
+            <>Continue →</>
           )}
-        </button>
+        </motion.button>
       </div>
     </div>
   );

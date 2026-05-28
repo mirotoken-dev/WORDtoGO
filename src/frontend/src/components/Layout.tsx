@@ -35,8 +35,7 @@ export default function Layout({
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <header
-        className="sticky top-0 z-40 flex items-center justify-between px-4 py-3 border-b border-border bg-white/80 backdrop-blur-md shadow-xs"
-        style={headerColor ? { background: headerColor } : undefined}
+        className="sticky top-0 z-40 flex items-center justify-between px-4 py-3 bg-white border-b-2 border-border shadow-xs"
         data-ocid="layout.header"
       >
         <div className="flex items-center gap-2 min-w-[44px]">
@@ -44,20 +43,17 @@ export default function Layout({
             <button
               type="button"
               onClick={handleBack}
-              className="w-10 h-10 rounded-2xl bg-muted border border-border flex items-center justify-center btn-tap transition-smooth hover:bg-[oklch(0.90_0.01_260)]"
+              className="nav-btn"
               aria-label={getUILabel("Go back")}
               data-ocid="layout.back_button"
             >
-              <ArrowLeft className="w-5 h-5 text-foreground" />
+              <ArrowLeft className="w-5 h-5" />
             </button>
           )}
         </div>
 
         {title && (
-          <h1
-            className="font-display font-bold text-xl text-center flex-1 truncate px-2"
-            style={headerColor ? { color: "white" } : { color: "oklch(0.18 0.02 260)" }}
-          >
+          <h1 className="font-display font-black text-xl text-center flex-1 truncate px-2 text-foreground">
             {title}
           </h1>
         )}
@@ -68,33 +64,17 @@ export default function Layout({
             <button
               type="button"
               onClick={handleHome}
-              className="w-10 h-10 rounded-2xl bg-muted border border-border flex items-center justify-center btn-tap transition-smooth hover:bg-[oklch(0.90_0.01_260)]"
+              className="nav-btn"
               aria-label={getUILabel("Go home")}
               data-ocid="layout.home_button"
             >
-              <Home className="w-5 h-5 text-foreground" />
+              <Home className="w-5 h-5" />
             </button>
           )}
         </div>
       </header>
 
       <main className="flex-1 overflow-auto">{children}</main>
-
-      <footer className="py-3 text-center bg-white border-t border-border">
-        <p className="text-xs text-muted-foreground font-body">
-          © {new Date().getFullYear()}. Built with love using{" "}
-          <a
-            href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(
-              typeof window !== "undefined" ? window.location.hostname : "",
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-[oklch(0.55_0.22_280)] transition-colors"
-          >
-            caffeine.ai
-          </a>
-        </p>
-      </footer>
     </div>
   );
 }

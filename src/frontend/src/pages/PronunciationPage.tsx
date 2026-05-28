@@ -1,3 +1,4 @@
+import { ArrowLeft } from "lucide-react";
 import { useRouter } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -9,7 +10,6 @@ import {
   speakWord,
 } from "../utils/audio";
 
-// ── Levenshtein distance ─────────────────────────────────────────────────────
 function levenshtein(a: string, b: string): number {
   const m = a.length;
   const n = b.length;
@@ -34,7 +34,6 @@ function normalizedSimilarity(target: string, spoken: string): number {
   return 1 - dist / Math.max(t.length, s.length, 1);
 }
 
-// ── Collect all 260 words ────────────────────────────────────────────────────
 const ALL_WORDS = PHONICS_DATA.flatMap((ld) =>
   ld.words.map((w) => ({ word: w.word, emoji: w.emoji })),
 );
@@ -71,7 +70,6 @@ declare global {
 
 type RecognitionState = "idle" | "listening" | "correct" | "mismatch";
 
-// ── Star burst particle ───────────────────────────────────────────────────────
 const STAR_ANGLES = [0, 45, 90, 135, 180, 225, 270, 315];
 
 export default function PronunciationPage() {
@@ -93,11 +91,7 @@ export default function PronunciationPage() {
 
   const stopRecognition = useCallback(() => {
     if (recognitionRef.current) {
-      try {
-        recognitionRef.current.abort();
-      } catch {
-        // ignore
-      }
+      try { recognitionRef.current.abort(); } catch { }
       recognitionRef.current = null;
     }
   }, []);
@@ -120,25 +114,20 @@ export default function PronunciationPage() {
   const startListening = useCallback(() => {
     if (state === "listening" || state === "correct") return;
     stopRecognition();
-
-    const SpeechRecognition =
-      window.SpeechRecognition ?? window.webkitSpeechRecognition;
+    const SpeechRecognition = window.SpeechRecognition ?? window.webkitSpeechRecognition;
     if (!SpeechRecognition) return;
-
     // biome-ignore lint/suspicious/noExplicitAny: SpeechRecognition constructor
     const recognition = new (SpeechRecognition as any)();
     recognition.lang = "en-US";
     recognition.continuous = false;
     recognition.interimResults = true;
     recognition.maxAlternatives = 5;
-
     recognition.onstart = () => {
       setMicError(null);
       setInterimText("");
       setSpokenText("");
       setState("listening");
     };
-
     // biome-ignore lint/suspicious/noExplicitAny: SpeechRecognition event shape
     recognition.onresult = (event: any) => {
       const final: string[] = [];
@@ -153,72 +142,51 @@ export default function PronunciationPage() {
         }
       }
       setInterimText(interim);
-
-      // Only evaluate on final results
       if (final.length === 0) return;
-
-      // Strict matching: exact word after normalization, or very high similarity
       const normalize = (s: string) => s.toLowerCase().trim().replace(/[.,!?;:]$/, "");
       const targetNorm = normalize(current.word);
       const best = final.find((r) => {
         const rNorm = normalize(r);
-        // Exact match preferred (ignoring trailing punctuation)
         if (rNorm === targetNorm) return true;
-        // Fallback: very high similarity only
         return normalizedSimilarity(current.word, r) >= 0.78;
       });
-
       const topTranscript = final[0] ?? "";
       setSpokenText(topTranscript);
       setInterimText("");
-
       if (best !== undefined) {
         setState("correct");
         playSuccessSound();
         setTimeout(() => playCelebrationSound(), 300);
-        advanceTimerRef.current = setTimeout(() => {
-          advanceWord();
-        }, 1800);
+        advanceTimerRef.current = setTimeout(() => { advanceWord(); }, 1800);
       } else {
         setState("mismatch");
       }
     };
-
     // biome-ignore lint/suspicious/noExplicitAny: SpeechRecognition error event
     recognition.onerror = (e: any) => {
       const code = e.error as string;
       const msg =
-        code === "no-speech"
-          ? "No speech detected. Tap the mic again and speak louder."
-          : code === "audio-capture"
-            ? "Microphone not available. Check your mic permissions."
-            : code === "not-allowed"
-              ? "Microphone access blocked. Allow mic in your browser settings."
-              : code === "network"
-                ? "Network error. Check your connection and try again."
-                : "Something went wrong. Tap the mic to try again.";
+        code === "no-speech" ? "No speech detected. Tap the mic again and speak louder."
+          : code === "audio-capture" ? "Microphone not available. Check your mic permissions."
+          : code === "not-allowed" ? "Microphone access blocked. Allow mic in your browser settings."
+          : code === "network" ? "Network error. Check your connection and try again."
+          : "Something went wrong. Tap the mic to try again.";
       setMicError(msg);
       setInterimText("");
       setState("idle");
     };
-
     recognition.onend = () => {
       if (recognitionRef.current === recognition) {
         recognitionRef.current = null;
-        // If we ended while listening and there was no final result, show mismatch
         setState((prev) => {
           if (prev === "listening") {
-            // Only mark mismatch if we actually heard something interim
-            if (interimText && !spokenText) {
-              return "mismatch";
-            }
+            if (interimText && !spokenText) return "mismatch";
             return "idle";
           }
           return prev;
         });
       }
     };
-
     recognitionRef.current = recognition;
     recognition.start();
   }, [state, current.word, stopRecognition, advanceWord]);
@@ -226,22 +194,9 @@ export default function PronunciationPage() {
   const handleListen = () => speakWord(current.word);
 
   return (
-    <div
-      className="min-h-screen flex flex-col"
-      style={{
-        background:
-          "linear-gradient(160deg, oklch(0.09 0.02 264) 0%, oklch(0.07 0.01 264) 100%)",
-      }}
-    >
+    <div className="min-h-screen flex flex-col bg-[oklch(0.14_0.025_264)]">
       {/* Header */}
-      <header
-        className="flex items-center gap-3 px-5 py-4 border-b"
-        style={{
-          background: "oklch(0.12 0.02 264 / 0.95)",
-          borderColor: "oklch(0.82 0.17 84 / 0.2)",
-          backdropFilter: "blur(12px)",
-        }}
-      >
+      <header className="flex items-center gap-3 px-5 py-4 border-b-2 border-[oklch(0.25_0.04_264)] bg-[oklch(0.14_0.025_264)]">
         <button
           type="button"
           data-ocid="pronunciation.back_button"
@@ -249,17 +204,16 @@ export default function PronunciationPage() {
             stopRecognition();
             router.navigate({ to: "/home" });
           }}
-          className="w-10 h-10 rounded-xl flex items-center justify-center transition-smooth active:scale-90"
-          style={{ background: "oklch(0.18 0.04 264)" }}
+          className="w-11 h-11 rounded-2xl bg-white/15 border-2 border-white/20 flex items-center justify-center active:scale-95 transition-smooth hover:bg-white/25"
           aria-label={getUILabel("Go back")}
         >
-          <span className="text-xl text-foreground">←</span>
+          <ArrowLeft className="w-5 h-5 text-white" />
         </button>
         <div>
-          <h1 className="font-display font-black text-lg text-foreground leading-tight">
+          <h1 className="font-display font-black text-lg text-white leading-tight">
             {getUILabel("Pronunciation")}
           </h1>
-          <p className="text-xs font-body text-muted-foreground">
+          <p className="text-xs font-body text-white/55">
             {getUILabel("Say the word out loud")}
           </p>
         </div>
@@ -267,27 +221,19 @@ export default function PronunciationPage() {
 
       {/* No Speech API fallback */}
       {!hasSpeechAPI && (
-        <div
-          className="flex-1 flex flex-col items-center justify-center gap-6 px-8 text-center"
-          data-ocid="pronunciation.no_speech_state"
-        >
-          <span className="text-6xl">🎤</span>
-          <p className="font-display font-bold text-xl text-foreground">
+        <div className="flex-1 flex flex-col items-center justify-center gap-6 px-8 text-center" data-ocid="pronunciation.no_speech_state">
+          <span className="text-7xl float inline-block">🎤</span>
+          <p className="font-display font-bold text-xl text-white">
             {getUILabel("Voice recording not supported")}
           </p>
-          <p className="text-sm font-body text-muted-foreground max-w-xs">
+          <p className="text-sm font-body text-white/55 max-w-xs">
             {getUILabel("Your browser does not support voice recording. Try Chrome or Safari.")}
           </p>
           <button
             type="button"
             data-ocid="pronunciation.skip_button"
             onClick={advanceWord}
-            className="px-8 py-3 rounded-2xl font-display font-bold text-base transition-smooth active:scale-95"
-            style={{
-              background:
-                "linear-gradient(135deg, oklch(0.82 0.17 84), oklch(0.70 0.17 84))",
-              color: "oklch(0.08 0 0)",
-            }}
+            className="press-btn press-gold px-8 h-14 text-base"
           >
             {getUILabel("Next word")} →
           </button>
@@ -307,33 +253,21 @@ export default function PronunciationPage() {
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className="w-full max-w-sm rounded-3xl p-8 flex flex-col items-center gap-4 relative overflow-hidden"
               style={{
-                background: "oklch(0.13 0.03 264)",
-                border: "1.5px solid oklch(0.82 0.17 84 / 0.25)",
-                boxShadow:
-                  "0 0 40px oklch(0.82 0.17 84 / 0.08), 0 8px 32px oklch(0 0 0 / 0.5)",
+                background: "oklch(0.20 0.04 264)",
+                border: "2.5px solid oklch(0.30 0.06 264)",
+                boxShadow: "0 6px 0 0 oklch(0.10 0.02 264), 0 8px 32px oklch(0 0 0 / 0.4)",
               }}
               data-ocid="pronunciation.word_card"
             >
-              {/* shimmer overlay */}
-              <div
-                className="absolute inset-0 pointer-events-none rounded-3xl"
-                style={{
-                  background:
-                    "linear-gradient(135deg, oklch(1 0 0 / 0.05) 0%, transparent 60%)",
-                }}
-              />
-              <span
-                className="text-8xl relative z-10"
-                role="img"
-                aria-label={current.word}
-              >
+              <div className="absolute inset-0 pointer-events-none rounded-3xl"
+                style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.06) 0%, transparent 60%)" }} />
+              <span className="text-8xl relative z-10 float inline-block" role="img" aria-label={current.word}>
                 {current.emoji}
               </span>
               <h2
-                className="text-4xl font-display font-black relative z-10"
+                className="text-5xl font-display font-black relative z-10"
                 style={{
-                  background:
-                    "linear-gradient(to right, oklch(0.95 0.18 84), oklch(0.82 0.17 84))",
+                  background: "linear-gradient(to right, oklch(0.92 0.20 88), oklch(0.78 0.18 84))",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -344,22 +278,19 @@ export default function PronunciationPage() {
               {(() => {
                 const ar = getArabicWord(current.word);
                 return ar ? (
-                  <p className="text-xl font-[var(--font-arabic)] relative z-10 mt-1" dir="rtl">
-                    {ar}
-                  </p>
+                  <p className="text-xl font-[var(--font-arabic)] relative z-10 text-white/70" dir="rtl">{ar}</p>
                 ) : null;
               })()}
-
-              {/* Listen button — always visible so child can hear it first */}
               <button
                 type="button"
                 data-ocid="pronunciation.listen_button"
                 onClick={handleListen}
-                className="flex items-center gap-2 px-5 py-2 rounded-xl font-body text-sm font-bold transition-smooth active:scale-95 relative z-10"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-2xl font-body text-sm font-bold active:scale-95 transition-smooth relative z-10 border-2"
                 style={{
-                  background: "oklch(0.18 0.04 264)",
-                  border: "1px solid oklch(0.82 0.17 84 / 0.3)",
-                  color: "oklch(0.82 0.17 84)",
+                  background: "oklch(0.26 0.06 264)",
+                  borderColor: "oklch(0.40 0.08 264)",
+                  color: "oklch(0.86 0.21 88)",
+                  boxShadow: "0 3px 0 0 oklch(0.10 0.02 264)",
                 }}
               >
                 <span>🔊</span> {getUILabel("Hear it")}
@@ -379,35 +310,30 @@ export default function PronunciationPage() {
                 className="relative flex flex-col items-center gap-2"
                 data-ocid="pronunciation.success_state"
               >
-                {/* Star burst */}
                 <div className="relative w-20 h-20 flex items-center justify-center">
                   {STAR_ANGLES.map((angle) => (
                     <motion.div
                       key={angle}
                       initial={{ x: 0, y: 0, opacity: 1, scale: 0 }}
                       animate={{
-                        x: Math.cos((angle * Math.PI) / 180) * 40,
-                        y: Math.sin((angle * Math.PI) / 180) * 40,
+                        x: Math.cos((angle * Math.PI) / 180) * 44,
+                        y: Math.sin((angle * Math.PI) / 180) * 44,
                         opacity: 0,
                         scale: 1.5,
                       }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
                       className="absolute text-xl"
-                      style={{ color: "oklch(0.88 0.18 84)" }}
                     >
                       ⭐
                     </motion.div>
                   ))}
                   <span className="text-5xl z-10">🎉</span>
                 </div>
-                <p
-                  className="font-display font-black text-2xl"
-                  style={{ color: "oklch(0.88 0.18 84)" }}
-                >
+                <p className="font-display font-black text-2xl text-[oklch(0.86_0.21_88)]">
                   {getUILabel("Great job!")} ⭐
                 </p>
                 {spokenText ? (
-                  <p className="text-sm font-body text-muted-foreground">
+                  <p className="text-sm font-body text-white/55">
                     {getUILabel("You said:")} <em>"{spokenText}"</em>
                   </p>
                 ) : null}
@@ -424,14 +350,11 @@ export default function PronunciationPage() {
                 className="flex flex-col items-center gap-3"
                 data-ocid="pronunciation.error_state"
               >
-                <p
-                  className="font-display font-bold text-xl text-center"
-                  style={{ color: "oklch(0.72 0.28 15)" }}
-                >
+                <p className="font-display font-bold text-xl text-center text-[oklch(0.72_0.26_25)]">
                   {getUILabel("Try again!")} 🎙️
                 </p>
                 {spokenText ? (
-                  <p className="text-sm font-body text-muted-foreground text-center">
+                  <p className="text-sm font-body text-white/55 text-center">
                     {getUILabel("I heard:")} <em>"{spokenText}"</em>
                   </p>
                 ) : null}
@@ -440,12 +363,7 @@ export default function PronunciationPage() {
                     type="button"
                     data-ocid="pronunciation.retry_listen_button"
                     onClick={handleListen}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-body text-sm font-bold transition-smooth active:scale-95"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, oklch(0.82 0.17 84), oklch(0.70 0.17 84))",
-                      color: "oklch(0.08 0 0)",
-                    }}
+                    className="press-btn press-gold px-5 h-11 text-sm"
                   >
                     🔊 {getUILabel("Listen")}
                   </button>
@@ -453,11 +371,12 @@ export default function PronunciationPage() {
                     type="button"
                     data-ocid="pronunciation.skip_word_button"
                     onClick={advanceWord}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-body text-sm font-bold transition-smooth active:scale-95"
+                    className="press-btn press-outline px-5 h-11 text-sm"
                     style={{
-                      background: "oklch(0.18 0.04 264)",
-                      border: "1px solid oklch(0.82 0.17 84 / 0.25)",
-                      color: "oklch(0.82 0.17 84)",
+                      background: "oklch(0.20 0.04 264)",
+                      borderColor: "oklch(0.35 0.06 264)",
+                      color: "oklch(0.75 0.06 264)",
+                      boxShadow: "0 3px 0 0 oklch(0.10 0.02 264)",
                     }}
                   >
                     {getUILabel("Skip")} →
@@ -478,35 +397,25 @@ export default function PronunciationPage() {
                   <>
                     <motion.p
                       animate={{ opacity: [1, 0.4, 1] }}
-                      transition={{
-                        duration: 1.2,
-                        repeat: Number.POSITIVE_INFINITY,
-                      }}
-                      className="font-display font-bold text-lg"
-                      style={{ color: "oklch(0.72 0.28 15)" }}
+                      transition={{ duration: 1.2, repeat: Number.POSITIVE_INFINITY }}
+                      className="font-display font-bold text-lg text-[oklch(0.72_0.26_25)]"
                       data-ocid="pronunciation.listening_state"
                     >
                       🎙️ {getUILabel("Listening...")}
                     </motion.p>
                     {interimText && (
-                      <p
-                        className="text-sm font-body text-muted-foreground italic"
-                        data-ocid="pronunciation.interim_text"
-                      >
+                      <p className="text-sm font-body text-white/55 italic" data-ocid="pronunciation.interim_text">
                         "{interimText}"
                       </p>
                     )}
                   </>
                 ) : (
                   <>
-                    <p className="text-sm font-body text-muted-foreground">
+                    <p className="text-sm font-body text-white/55">
                       {getUILabel("Tap the mic and say the word")}
                     </p>
                     {micError && (
-                      <p
-                        className="text-xs font-body text-destructive bg-destructive/10 px-3 py-1.5 rounded-xl"
-                        data-ocid="pronunciation.mic_error"
-                      >
+                      <p className="text-xs font-body text-destructive bg-destructive/10 px-3 py-1.5 rounded-2xl border border-destructive/25" data-ocid="pronunciation.mic_error">
                         {micError}
                       </p>
                     )}
@@ -526,46 +435,34 @@ export default function PronunciationPage() {
               whileTap={{ scale: 0.92 }}
               className="relative flex items-center justify-center rounded-full transition-smooth focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
-                width: 96,
-                height: 96,
-                background:
-                  state === "listening"
-                    ? "linear-gradient(135deg, oklch(0.72 0.28 15), oklch(0.55 0.28 15))"
-                    : "linear-gradient(135deg, oklch(0.82 0.17 84), oklch(0.68 0.17 84))",
-                boxShadow:
-                  state === "listening"
-                    ? "0 0 0 12px oklch(0.72 0.28 15 / 0.18), 0 0 40px oklch(0.72 0.28 15 / 0.35)"
-                    : "0 0 0 8px oklch(0.82 0.17 84 / 0.12), 0 0 24px oklch(0.82 0.17 84 / 0.25)",
+                width: 100,
+                height: 100,
+                background: state === "listening"
+                  ? "linear-gradient(135deg, oklch(0.64 0.26 25), oklch(0.50 0.24 25))"
+                  : "linear-gradient(135deg, oklch(0.86 0.21 88), oklch(0.70 0.18 84))",
+                boxShadow: state === "listening"
+                  ? "0 6px 0 0 oklch(0.40 0.22 25), 0 0 40px oklch(0.64 0.26 25 / 0.4)"
+                  : "0 6px 0 0 oklch(0.60 0.17 78), 0 0 28px oklch(0.86 0.21 88 / 0.3)",
               }}
-              aria-label={
-                state === "listening" ? getUILabel("Listening...") : getUILabel("Start recording")
-              }
+              aria-label={state === "listening" ? getUILabel("Listening...") : getUILabel("Start recording")}
             >
-              {/* Pulsing ring when listening */}
               {state === "listening" && (
                 <motion.div
-                  animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                  transition={{
-                    duration: 1.4,
-                    repeat: Number.POSITIVE_INFINITY,
-                  }}
+                  animate={{ scale: [1, 1.6, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ duration: 1.4, repeat: Number.POSITIVE_INFINITY }}
                   className="absolute inset-0 rounded-full"
-                  style={{ background: "oklch(0.72 0.28 15 / 0.35)" }}
+                  style={{ background: "oklch(0.64 0.26 25 / 0.3)" }}
                 />
               )}
-              <span className="text-4xl z-10" role="img" aria-hidden="true">
-                🎤
-              </span>
+              <span className="text-4xl z-10" role="img" aria-hidden="true">🎤</span>
             </motion.button>
 
-            {/* Skip word at bottom */}
             {state === "idle" && (
               <button
                 type="button"
                 data-ocid="pronunciation.next_word_button"
                 onClick={advanceWord}
-                className="text-xs font-body underline transition-smooth active:opacity-70"
-                style={{ color: "oklch(0.55 0.05 264)" }}
+                className="text-xs font-body underline active:opacity-70 transition-smooth text-white/40 hover:text-white/60"
               >
                 {getUILabel("Skip this word")}
               </button>
