@@ -391,43 +391,14 @@ async function playWordAudio(word: string): Promise<boolean> {
 }
 
 export async function speakWordAsync(word: string): Promise<void> {
-  const lower = word.toLowerCase();
-
-  // Only try the cached audio element — never make a new network request
-  // (word audio files may not exist; a failing network request causes noticeable delay)
-  const cached = wordAudioCache.get(lower);
-  if (cached) {
-    try {
-      cached.currentTime = 0;
-      await cached.play();
-      return;
-    } catch {
-      // cached play failed — fall through to speech synthesis
-    }
+  const played = await playWordAudio(word);
+  if (!played) {
+    speakText(word, 0.75, 0.9);
   }
-
-  // Go straight to speech synthesis — no file lookup, no delay
-  speakText(word, 0.8, 0.9);
 }
 
 export function speakWord(word: string): void {
   void speakWordAsync(word);
-}
-
-/**
- * Background-cache a word audio file without blocking playback.
- * Call once per word so that future speakWord() calls can use the cached file.
- */
-export function prefetchWordAudio(word: string): void {
-  const lower = word.toLowerCase();
-  if (wordAudioCache.has(lower)) return;
-  for (const ext of [".mp3", ".wav"]) {
-    const audio = new Audio(`/assets/words/${lower}${ext}`);
-    audio.preload = "auto";
-    audio.addEventListener("canplaythrough", () => {
-      if (!wordAudioCache.has(lower)) wordAudioCache.set(lower, audio);
-    }, { once: true });
-  }
 }
 
 export function speakPhonics(sounds: string[]): void {
