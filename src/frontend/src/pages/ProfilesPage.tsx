@@ -33,32 +33,18 @@ export default function ProfilesPage() {
 
         <div className="relative px-6 pt-10 pb-6 text-center">
           {/* Logo — bounces in then floats continuously */}
-          <motion.div
-            className="relative w-72 mx-auto"
+          <motion.img
+            src="/logo-wordtogo.png"
+            alt="Word to Go"
+            className="w-72 mx-auto select-none"
+            style={{ filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.2))" }}
             initial={{ scale: 0.5, opacity: 0, y: 30 }}
             animate={[
               { scale: 1, opacity: 1, y: 0, transition: { type: "spring", stiffness: 220, damping: 16, delay: 0.05 } },
               { y: [0, -10, 0], transition: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.6 } },
             ]}
-          >
-            <img
-              src="/logo-wordtogo.png"
-              alt="Word to Go"
-              className="w-full select-none"
-              style={{ filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.2))" }}
-              draggable={false}
-            />
-            {/* White pill behind the "LEARN · PLAY · GROW" tagline at the bottom of the logo */}
-            <div className="absolute bottom-[3%] left-1/2 -translate-x-1/2 bg-white/85 rounded-full px-4 py-0.5 backdrop-blur-sm pointer-events-none">
-              <span className="text-[10px] font-black tracking-widest">
-                <span style={{ color: "#1cb0f6" }}>LEARN</span>
-                <span className="text-gray-400 mx-1">·</span>
-                <span style={{ color: "#ff4b7d" }}>PLAY</span>
-                <span className="text-gray-400 mx-1">·</span>
-                <span style={{ color: "#58cc02" }}>GROW</span>
-              </span>
-            </div>
-          </motion.div>
+            draggable={false}
+          />
           <motion.p
             className="text-white/90 font-body text-base mt-1"
             initial={{ opacity: 0, y: 8 }}
