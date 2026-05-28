@@ -2,6 +2,7 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { Outlet, createRootRoute, createRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useAppStore } from "./store/useAppStore";
+import { preloadLetterAudio, prewarmSpeech } from "./utils/audio";
 
 import BlendingPage from "./pages/BlendingPage";
 import FlashcardsPage from "./pages/FlashcardsPage";
@@ -27,6 +28,9 @@ function RootLayout() {
 
   useEffect(() => {
     loadFromStorage();
+    // Pre-warm speech synthesis and preload letter MP3s globally once at startup
+    prewarmSpeech();
+    void preloadLetterAudio();
   }, [loadFromStorage]);
 
   return <Outlet />;

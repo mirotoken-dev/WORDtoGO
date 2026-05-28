@@ -29,7 +29,7 @@ export default function MatchingMenuPage() {
 
   const MODES = [
     {
-      emoji: "🔡",
+      emoji: "🔤",
       label: "Letters",
       desc: "Match uppercase to lowercase letters",
       colorFrom: "oklch(0.67 0.21 222)",
@@ -39,7 +39,7 @@ export default function MatchingMenuPage() {
       ocid: "matching_menu.level1_button",
     },
     {
-      emoji: "📝",
+      emoji: "💬",
       label: "Words",
       desc: "Match uppercase to lowercase words",
       colorFrom: "oklch(0.72 0.27 130)",
@@ -49,7 +49,7 @@ export default function MatchingMenuPage() {
       ocid: "matching_menu.level2_button",
     },
     {
-      emoji: "🖼️",
+      emoji: "🌈",
       label: "Pictures",
       desc: "Match pictures to their words",
       colorFrom: "oklch(0.66 0.24 310)",
