@@ -61,11 +61,17 @@ export default function BlendingPage() {
     (sound: string) => {
       if (status !== "idle") return;
       playTapSound();
-      void playLetterPhonetic(sound);
       const next = [...chosen, sound];
+      const isLastTile = next.length === taskSounds.length;
+
+      if (!isLastTile) {
+        // Only play the individual letter phonetic for non-final tiles
+        void playLetterPhonetic(sound);
+      }
+
       setChosen(next);
 
-      if (next.length === taskSounds.length) {
+      if (isLastTile) {
         const assembled = next.join("").toLowerCase().replace(/\s/g, "");
         const target = task.word.toLowerCase();
         const isOk = assembled === target;
@@ -73,6 +79,7 @@ export default function BlendingPage() {
         if (isOk) {
           playCorrectSound();
           playCelebrationSound();
+          // Speak the full word immediately — no letter phonetic delay
           speakWord(task.word);
           setStatus("correct");
           updateProgress((prev) => {
