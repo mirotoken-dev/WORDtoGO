@@ -95,8 +95,9 @@ export default function TracingPage() {
 
   const wordFontSize = useMemo(() => {
     const len = wordEntry.word.length;
-    let size = len <= 3 ? 68 : len === 4 ? 50 : len === 5 ? 42 : 38;
-    const maxAllowed = Math.floor((CANVAS_W - 24) / (len * 0.55));
+    // Reduced sizes so the word fits neatly and is easier to trace
+    let size = len <= 3 ? 44 : len === 4 ? 34 : len === 5 ? 28 : 24;
+    const maxAllowed = Math.floor((CANVAS_W - 32) / (len * 0.58));
     return Math.min(size, maxAllowed);
   }, [wordEntry.word]);
 
@@ -154,7 +155,9 @@ export default function TracingPage() {
     ctx.moveTo(lastPt.current.x, lastPt.current.y);
     ctx.lineTo(pt.x, pt.y);
     ctx.strokeStyle = mode === "letter" ? (STROKE_COLORS[letter.color] ?? STROKE_COLORS.blue) : "oklch(0.55 0.22 280)";
-    ctx.lineWidth = 14;
+    // Letter mode: thick stroke so drawing fills the large blueprint guide
+    // Word mode: thinner stroke for more precise word tracing
+    ctx.lineWidth = mode === "letter" ? 22 : 14;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     ctx.stroke();

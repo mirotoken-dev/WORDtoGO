@@ -298,6 +298,27 @@ function selectMaleVoice(): SpeechSynthesisVoice | null {
 }
 
 /**
+ * Pre-warm speech synthesis so voices are loaded before first use.
+ * Call on component mount so the first real speak() call has no delay.
+ */
+export function prewarmSpeech(): void {
+  if (!("speechSynthesis" in window)) return;
+  // Calling getVoices() triggers the browser to load the voice list.
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices.length) {
+    // Some browsers (Chrome) load voices asynchronously — warm up the event.
+    window.speechSynthesis.addEventListener("voiceschanged", () => {}, { once: true });
+  }
+  // Speak a silent utterance at volume 0 to unlock audio on some browsers.
+  try {
+    const u = new SpeechSynthesisUtterance(" ");
+    u.volume = 0;
+    u.rate = 2;
+    window.speechSynthesis.speak(u);
+  } catch { /* ignore */ }
+}
+
+/**
  * Speak text using a clear, comfortable male voice.
  * IMPORTANT: Always pass the full phonetic string (e.g. "buh", "cuh") —
  * never pass a single letter character, as the browser will read it as a

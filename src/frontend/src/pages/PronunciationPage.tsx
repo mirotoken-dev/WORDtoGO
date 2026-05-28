@@ -7,6 +7,8 @@ import { getArabicWord, getUILabel } from "../data/arabicTranslations";
 import {
   playCelebrationSound,
   playSuccessSound,
+  prewarmSpeech,
+  speakText,
   speakWord,
 } from "../utils/audio";
 
@@ -88,6 +90,11 @@ export default function PronunciationPage() {
 
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
   const advanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Pre-warm speech synthesis so first tap has no delay
+  useEffect(() => {
+    prewarmSpeech();
+  }, []);
 
   const stopRecognition = useCallback(() => {
     if (recognitionRef.current) {
@@ -191,7 +198,8 @@ export default function PronunciationPage() {
     recognition.start();
   }, [state, current.word, stopRecognition, advanceWord]);
 
-  const handleListen = () => speakWord(current.word);
+  // Use speakText directly to skip slow word-file lookup and speak immediately
+  const handleListen = () => speakText(current.word, 0.82, 0.9);
 
   return (
     <div className="min-h-screen flex flex-col bg-[oklch(0.14_0.025_264)]">

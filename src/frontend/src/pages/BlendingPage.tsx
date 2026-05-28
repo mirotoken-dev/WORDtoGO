@@ -230,7 +230,7 @@ export default function BlendingPage() {
         </motion.div>
 
         {/* Answer slots */}
-        <div className="flex items-center justify-center gap-3 min-h-[60px] flex-wrap">
+        <div className="flex items-center justify-center gap-3 min-h-[72px] flex-wrap">
           {task.sounds.map((sound, slotI) => {
             const c = chosen[slotI];
             return (
@@ -239,29 +239,53 @@ export default function BlendingPage() {
                 type="button"
                 data-ocid={`blending.slot.${slotI + 1}`}
                 onClick={() => c && removeChosen(slotI)}
-                animate={status === "wrong" ? { x: [0, -8, 8, -5, 5, 0] } : {}}
-                transition={{ duration: 0.4 }}
-                className={`min-w-[56px] h-12 px-3 rounded-2xl border-2 flex items-center justify-center font-display font-bold text-base transition-smooth ${
+                animate={status === "wrong" ? { x: [0, -10, 10, -7, 7, 0] } : {}}
+                transition={{ duration: 0.35 }}
+                className={`relative min-w-[60px] h-14 px-3 rounded-2xl border-2 flex items-center justify-center font-display font-bold text-lg transition-smooth ${
                   status === "correct"
                     ? "border-[oklch(0.62_0.22_145)] bg-[oklch(0.94_0.06_145)] text-[oklch(0.48_0.22_145)]"
                     : status === "wrong"
-                      ? "border-destructive bg-destructive/10 text-destructive"
+                      ? "border-destructive bg-[oklch(0.98_0.03_25)] text-destructive"
                       : c
-                        ? "gradient-blue text-white border-transparent shadow-playful"
-                        : "border-dashed border-border bg-muted text-muted-foreground"
+                        ? "gradient-blue text-white border-transparent"
+                        : "border-dashed border-[oklch(0.80_0.01_260)] bg-[oklch(0.97_0.005_260)]"
                 }`}
+                style={{
+                  boxShadow: status === "correct"
+                    ? "0 4px 0 0 oklch(0.62 0.22 145 / 0.35)"
+                    : status === "wrong"
+                      ? "0 4px 0 0 oklch(0.60 0.24 25 / 0.35)"
+                      : c
+                        ? "0 4px 0 0 oklch(0.46 0.19 222)"
+                        : "none",
+                }}
               >
-                {c ?? "?"}
+                {c ?? ""}
+                {/* Red X overlay when wrong */}
+                {status === "wrong" && c && (
+                  <motion.span
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-destructive flex items-center justify-center text-white text-xs font-black leading-none shadow-sm"
+                  >
+                    ✕
+                  </motion.span>
+                )}
               </motion.button>
             );
           })}
 
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             {status !== "idle" && (
-              <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+              <motion.span
+                initial={{ scale: 0, rotate: -20 }}
+                animate={{ scale: 1, rotate: 0 }}
+                exit={{ scale: 0 }}
+                transition={{ type: "spring", stiffness: 400, damping: 18 }}
+              >
                 {status === "correct"
-                  ? <CheckCircle2 className="w-8 h-8 text-[oklch(0.62_0.22_145)]" />
-                  : <XCircle className="w-8 h-8 text-destructive" />}
+                  ? <CheckCircle2 className="w-10 h-10 text-[oklch(0.62_0.22_145)]" />
+                  : <XCircle className="w-10 h-10 text-destructive" />}
               </motion.span>
             )}
           </AnimatePresence>

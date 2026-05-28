@@ -1,5 +1,5 @@
 import { useRouter } from "@tanstack/react-router";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getUILabel } from "../data/arabicTranslations";
@@ -222,33 +222,50 @@ export default function MatchingGamePage({
                 onClick={() => handleLeftTap(val)}
                 disabled={matched}
                 className={[
-                  "rounded-2xl p-3 min-h-[64px] flex items-center justify-center font-display font-black transition-smooth btn-tap border-2",
-                  isLevel3 ? "text-4xl" : "text-3xl",
+                  "relative rounded-2xl p-3 min-h-[68px] flex items-center justify-center font-display font-black transition-smooth border-2",
+                  isLevel3 ? "text-4xl" : "text-2xl",
                   matched
-                    ? "bg-[oklch(0.72_0.27_130/0.15)] text-[oklch(0.56_0.25_130)] border-[oklch(0.72_0.27_130/0.4)] opacity-70 cursor-default"
+                    ? "bg-[oklch(0.95_0.06_130)] text-[oklch(0.50_0.24_130)] border-[oklch(0.72_0.27_130/0.5)] cursor-default"
                     : wrongFlash
-                      ? "bg-destructive/10 text-destructive border-destructive/60 scale-95"
+                      ? "bg-[oklch(0.98_0.04_25)] text-destructive border-destructive"
                       : selected
-                        ? "bg-white text-foreground border-[oklch(0.67_0.21_222)] scale-105 ring-2 ring-[oklch(0.67_0.21_222/0.3)]"
-                        : "bg-white text-foreground border-border hover:border-[oklch(0.67_0.21_222/0.5)]",
+                        ? "bg-white text-foreground border-[oklch(0.67_0.21_222)]"
+                        : "bg-white text-foreground border-border",
                 ].join(" ")}
                 style={{
-                  boxShadow: selected
-                    ? "0 4px 0 0 oklch(0.67 0.21 222), 0 6px 16px oklch(0.67 0.21 222 / 0.25)"
-                    : matched
-                      ? "0 3px 0 0 oklch(0.72 0.27 130 / 0.3)"
-                      : "0 4px 0 0 oklch(0.88 0.012 260)",
+                  boxShadow: wrongFlash
+                    ? "0 4px 0 0 oklch(0.50 0.24 25)"
+                    : selected
+                      ? "0 4px 0 0 oklch(0.50 0.19 222)"
+                      : matched
+                        ? "0 3px 0 0 oklch(0.56 0.23 130)"
+                        : "0 4px 0 0 oklch(0.88 0.012 260)",
+                  transform: wrongFlash ? "translateY(4px)" : selected ? "translateY(-1px)" : undefined,
                 }}
-                animate={wrongFlash ? { x: [-5, 5, -5, 5, 0] } : { x: 0 }}
-                transition={{ duration: 0.3 }}
-                whileTap={matched ? {} : { scale: 0.95 }}
+                animate={wrongFlash ? { x: [-6, 6, -5, 5, -3, 3, 0] } : { x: 0 }}
+                transition={{ duration: 0.35 }}
+                whileTap={matched ? {} : { scale: 0.95, y: 4 }}
               >
                 {matched ? (
                   <span className="flex items-center gap-1.5">
                     <span>{val}</span>
-                    <span className="text-base text-[oklch(0.56_0.25_130)]">✓</span>
+                    <span className="text-base">✓</span>
                   </span>
                 ) : val}
+
+                {/* Red ✕ badge on wrong flash */}
+                <AnimatePresence>
+                  {wrongFlash && (
+                    <motion.span
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      className="absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full bg-destructive flex items-center justify-center shadow-sm"
+                    >
+                      <X className="w-3.5 h-3.5 text-white" strokeWidth={3} />
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </motion.button>
             );
           })}
@@ -275,30 +292,49 @@ export default function MatchingGamePage({
                 onClick={() => handleRightTap(val)}
                 disabled={matched}
                 className={[
-                  "rounded-2xl p-3 min-h-[64px] flex items-center justify-center font-display font-black transition-smooth btn-tap text-base border-2",
+                  "relative rounded-2xl p-3 min-h-[68px] flex items-center justify-center font-display font-black transition-smooth text-lg border-2",
                   matched
-                    ? "bg-[oklch(0.72_0.27_130/0.15)] text-[oklch(0.56_0.25_130)] border-[oklch(0.72_0.27_130/0.4)] opacity-70 cursor-default"
+                    ? "bg-[oklch(0.95_0.06_130)] text-[oklch(0.50_0.24_130)] border-[oklch(0.72_0.27_130/0.5)] cursor-default"
                     : wrongFlash
-                      ? "bg-destructive/10 text-destructive border-destructive/60 scale-95"
+                      ? "bg-[oklch(0.98_0.04_25)] text-destructive border-destructive"
                       : selectedLeft
-                        ? "bg-white text-foreground border-[oklch(0.72_0.27_130/0.5)] hover:bg-[oklch(0.72_0.27_130/0.08)]"
-                        : "bg-white text-foreground border-border hover:border-[oklch(0.72_0.27_130/0.5)]",
+                        ? "bg-white text-foreground border-[oklch(0.72_0.27_130/0.6)]"
+                        : "bg-white text-foreground border-border",
                 ].join(" ")}
                 style={{
-                  boxShadow: matched
-                    ? "0 3px 0 0 oklch(0.72 0.27 130 / 0.3)"
-                    : "0 4px 0 0 oklch(0.88 0.012 260)",
+                  boxShadow: wrongFlash
+                    ? "0 4px 0 0 oklch(0.50 0.24 25)"
+                    : matched
+                      ? "0 3px 0 0 oklch(0.56 0.23 130)"
+                      : selectedLeft
+                        ? "0 4px 0 0 oklch(0.54 0.23 130)"
+                        : "0 4px 0 0 oklch(0.88 0.012 260)",
+                  transform: wrongFlash ? "translateY(4px)" : undefined,
                 }}
-                animate={wrongFlash ? { x: [-5, 5, -5, 5, 0] } : { x: 0 }}
-                transition={{ duration: 0.3 }}
-                whileTap={matched ? {} : { scale: 0.95 }}
+                animate={wrongFlash ? { x: [-6, 6, -5, 5, -3, 3, 0] } : { x: 0 }}
+                transition={{ duration: 0.35 }}
+                whileTap={matched ? {} : { scale: 0.95, y: 4 }}
               >
                 {matched ? (
                   <span className="flex items-center gap-1.5">
                     <span>{val}</span>
-                    <span className="text-base text-[oklch(0.56_0.25_130)]">✓</span>
+                    <span className="text-base">✓</span>
                   </span>
                 ) : val}
+
+                {/* Red ✕ badge on wrong flash */}
+                <AnimatePresence>
+                  {wrongFlash && (
+                    <motion.span
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      className="absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full bg-destructive flex items-center justify-center shadow-sm"
+                    >
+                      <X className="w-3.5 h-3.5 text-white" strokeWidth={3} />
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </motion.button>
             );
           })}
