@@ -31,22 +31,27 @@ export default function ProfilesPage() {
         <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-white/10 -translate-y-8 translate-x-8" />
         <div className="absolute bottom-8 left-0 w-24 h-24 rounded-full bg-white/10 -translate-x-6" />
 
-        <div className="relative px-6 pt-14 pb-10 text-center">
-          <motion.div
-            initial={{ scale: 0.7, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        <div className="relative px-6 pt-10 pb-6 text-center">
+          {/* Logo — bounces in then floats continuously */}
+          <motion.img
+            src="/logo-wordtogo.png"
+            alt="Word to Go"
+            className="w-72 mx-auto drop-shadow-2xl select-none"
+            initial={{ scale: 0.5, opacity: 0, y: 30 }}
+            animate={[
+              { scale: 1, opacity: 1, y: 0, transition: { type: "spring", stiffness: 220, damping: 16, delay: 0.05 } },
+              { y: [0, -10, 0], transition: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.6 } },
+            ]}
+            draggable={false}
+          />
+          <motion.p
+            className="text-white/90 font-body text-base mt-1"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
           >
-            <div className="bobble w-24 h-24 mx-auto mb-4 rounded-3xl flex items-center justify-center text-6xl bg-white shadow-playful border-4 border-white/50">
-              🦁
-            </div>
-            <h1 className="text-4xl font-display font-black text-white leading-tight drop-shadow">
-              Word to Go
-            </h1>
-            <p className="text-white/80 font-body text-base mt-2">
-              {getUILabel("Select who's learning today!")}
-            </p>
-          </motion.div>
+            {getUILabel("Select who's learning today!")}
+          </motion.p>
         </div>
 
         {/* Wave bottom */}
