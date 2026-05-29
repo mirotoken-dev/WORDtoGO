@@ -17,6 +17,7 @@ import { getUILabel } from "../data/arabicTranslations";
 type MenuItem = {
   label: string;
   icon: LucideIcon;
+  iconImg?: string;
   path: string;
   colorFrom: string;
   colorTo: string;
@@ -28,6 +29,7 @@ const MENU: MenuItem[] = [
   {
     label: "Flashcards",
     icon: BookOpen,
+    iconImg: "/assets/icons/flashcards.png",
     path: "/flashcards",
     colorFrom: "oklch(0.64 0.26 25)",
     colorTo: "oklch(0.50 0.26 15)",
@@ -55,6 +57,7 @@ const MENU: MenuItem[] = [
   {
     label: "Matching",
     icon: Grid3x3,
+    iconImg: "/assets/icons/matching.png",
     path: "/matching",
     colorFrom: "oklch(0.62 0.22 280)",
     colorTo: "oklch(0.48 0.21 280)",
@@ -189,7 +192,16 @@ export default function HomePage() {
               className="absolute inset-0 pointer-events-none"
               style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.14) 0%, transparent 50%)" }}
             />
-            <item.icon className="w-10 h-10 text-white/90 relative z-10" strokeWidth={1.5} />
+            {item.iconImg ? (
+              <img
+                src={item.iconImg}
+                alt={item.label}
+                className="w-10 h-10 object-contain relative z-10"
+                style={{ filter: "brightness(0) invert(1) opacity(0.9)" }}
+              />
+            ) : (
+              <item.icon className="w-10 h-10 text-white/90 relative z-10" strokeWidth={1.5} />
+            )}
             <div className="relative z-10">
               <span className="text-xl font-display font-black leading-tight block">
                 {item.label}
