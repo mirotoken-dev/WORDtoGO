@@ -196,8 +196,8 @@ export default function HomePage() {
               <img
                 src={item.iconImg}
                 alt={item.label}
-                className="w-10 h-10 object-contain relative z-10"
-                style={{ filter: "brightness(0) invert(1) opacity(0.9)" }}
+                className="w-16 h-16 object-contain relative z-10"
+                style={{ filter: "brightness(0) invert(1)" }}
               />
             ) : (
               <item.icon className="w-10 h-10 text-white/90 relative z-10" strokeWidth={1.5} />
