@@ -6,6 +6,23 @@ function getAudioContext(): AudioContext {
 
 const sounds = [
   {
+    id: "soft-chime",
+    name: "Soft Chime",
+    emoji: "🎶",
+    description: "Gentle 3-note rise — the success sound from the app",
+    play: () => {
+      const ctx = getAudioContext();
+      ([[ 523, 0, 0.15], [659, 0.15, 0.15], [784, 0.30, 0.25]] as [number, number, number][]).forEach(([freq, delay, dur]) => {
+        const osc = ctx.createOscillator(); const gain = ctx.createGain();
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.type = "sine"; osc.frequency.setValueAtTime(freq, ctx.currentTime + delay);
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + delay);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + dur);
+        osc.start(ctx.currentTime + delay); osc.stop(ctx.currentTime + delay + dur + 0.05);
+      });
+    },
+  },
+  {
     id: "bell",
     name: "Bell",
     emoji: "🔔",
