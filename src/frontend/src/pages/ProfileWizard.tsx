@@ -1,9 +1,9 @@
 import { useRouter } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AVATARS, useAppStore } from "../store/useAppStore";
-import { playSuccessSound, playTapSound } from "../utils/audio";
+import { playSuccessSound, playTapSound, playChimeSound } from "../utils/audio";
 
 export default function ProfileWizard() {
   const router = useRouter();
@@ -15,6 +15,12 @@ export default function ProfileWizard() {
   const [age, setAge] = useState("");
 
   const totalSteps = 3;
+
+  useEffect(() => {
+    if (step === 3) {
+      playChimeSound();
+    }
+  }, [step]);
 
   const goNext = () => {
     playTapSound();
