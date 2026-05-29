@@ -57,6 +57,38 @@ export function playTapSound(): void {
   playTone(440, 0.08, "sine", 0.15);
 }
 
+export function playChimeSound(): void {
+  try {
+    const ctx = getAudioContext();
+
+    const notes = [
+      { freq: 1047, delay: 0,    duration: 0.7, vol: 0.22 },
+      { freq: 1319, delay: 0.08, duration: 0.55, vol: 0.16 },
+      { freq: 1568, delay: 0.18, duration: 0.45, vol: 0.12 },
+    ];
+
+    for (const note of notes) {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(note.freq, ctx.currentTime + note.delay);
+
+      gain.gain.setValueAtTime(0, ctx.currentTime + note.delay);
+      gain.gain.linearRampToValueAtTime(note.vol, ctx.currentTime + note.delay + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + note.delay + note.duration);
+
+      osc.start(ctx.currentTime + note.delay);
+      osc.stop(ctx.currentTime + note.delay + note.duration);
+    }
+  } catch {
+    // Audio not supported
+  }
+}
+
 export function playCelebrationSound(): void {
   const notes = [523, 587, 659, 698, 784, 880, 988, 1047];
   notes.forEach((freq, i) => {

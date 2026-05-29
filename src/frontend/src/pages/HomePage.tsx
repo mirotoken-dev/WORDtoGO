@@ -10,7 +10,7 @@ import {
 import { motion } from "motion/react";
 import { useEffect } from "react";
 import { useAppStore } from "../store/useAppStore";
-import { playTapSound } from "../utils/audio";
+import { playChimeSound } from "../utils/audio";
 import { getUILabel } from "../data/arabicTranslations";
 
 const MENU = [
@@ -88,7 +88,7 @@ export default function HomePage() {
   if (!profile) return null;
 
   const navigate = (path: string) => {
-    playTapSound();
+    playChimeSound();
     router.navigate({ to: path as "/" });
   };
 
@@ -101,7 +101,7 @@ export default function HomePage() {
       <header className="bg-white border-b-2 border-border px-5 py-3 flex items-center justify-between">
         <button
           type="button"
-          onClick={() => { playTapSound(); router.navigate({ to: "/" }); }}
+          onClick={() => { playChimeSound(); router.navigate({ to: "/" }); }}
           className="flex items-center gap-3 active:scale-95 transition-smooth"
           data-ocid="home.switch_profile_button"
         >

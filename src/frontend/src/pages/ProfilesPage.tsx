@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { useAppStore } from "../store/useAppStore";
 import { getUILabel } from "../data/arabicTranslations";
-import { playTapSound } from "../utils/audio";
+import { playChimeSound } from "../utils/audio";
 
 export default function ProfilesPage() {
   const router = useRouter();
@@ -12,13 +12,13 @@ export default function ProfilesPage() {
   const [toDelete, setToDelete] = useState<string | null>(null);
 
   const handleSelect = (id: string) => {
-    playTapSound();
+    playChimeSound();
     setActiveProfile(id);
     router.navigate({ to: "/home" });
   };
 
   const handleDelete = (id: string) => {
-    playTapSound();
+    playChimeSound();
     deleteProfile(id);
     setToDelete(null);
   };
@@ -167,7 +167,7 @@ export default function ProfilesPage() {
             type="button"
             data-ocid="profiles.add_button"
             onClick={() => {
-              playTapSound();
+              playChimeSound();
               router.navigate({ to: "/wizard" });
             }}
             className="press-btn press-primary w-full h-16 text-lg font-display font-black"
