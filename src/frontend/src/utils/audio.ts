@@ -62,9 +62,9 @@ export function playChimeSound(): void {
     const ctx = getAudioContext();
 
     const notes = [
-      { freq: 1047, delay: 0,    duration: 0.7, vol: 0.22 },
-      { freq: 1319, delay: 0.08, duration: 0.55, vol: 0.16 },
-      { freq: 1568, delay: 0.18, duration: 0.45, vol: 0.12 },
+      { freq: 523, delay: 0,    duration: 0.15, vol: 0.3 },
+      { freq: 659, delay: 0.15, duration: 0.15, vol: 0.3 },
+      { freq: 784, delay: 0.30, duration: 0.25, vol: 0.3 },
     ];
 
     for (const note of notes) {
@@ -77,12 +77,11 @@ export function playChimeSound(): void {
       osc.type = "sine";
       osc.frequency.setValueAtTime(note.freq, ctx.currentTime + note.delay);
 
-      gain.gain.setValueAtTime(0, ctx.currentTime + note.delay);
-      gain.gain.linearRampToValueAtTime(note.vol, ctx.currentTime + note.delay + 0.01);
+      gain.gain.setValueAtTime(note.vol, ctx.currentTime + note.delay);
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + note.delay + note.duration);
 
       osc.start(ctx.currentTime + note.delay);
-      osc.stop(ctx.currentTime + note.delay + note.duration);
+      osc.stop(ctx.currentTime + note.delay + note.duration + 0.05);
     }
   } catch {
     // Audio not supported
