@@ -3,22 +3,32 @@ import {
   AudioLines,
   BookOpen,
   Grid3x3,
-  Mic,
   Pencil,
-  Video,
+  Speech,
+  Waves,
 } from "lucide-react";
+import { type LucideIcon } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect } from "react";
 import { useAppStore } from "../store/useAppStore";
 import { playChimeSound } from "../utils/audio";
 import { getUILabel } from "../data/arabicTranslations";
 
-const MENU = [
+type MenuItem = {
+  label: string;
+  icon: LucideIcon;
+  path: string;
+  colorFrom: string;
+  colorTo: string;
+  shadow: string;
+  desc: string;
+};
+
+const MENU: MenuItem[] = [
   {
     label: "Flashcards",
     icon: BookOpen,
     path: "/flashcards",
-    emoji: "🃏",
     colorFrom: "oklch(0.64 0.26 25)",
     colorTo: "oklch(0.50 0.26 15)",
     shadow: "oklch(0.46 0.24 15)",
@@ -26,9 +36,8 @@ const MENU = [
   },
   {
     label: "Blending",
-    icon: AudioLines,
+    icon: Waves,
     path: "/blending",
-    emoji: "🎵",
     colorFrom: "oklch(0.67 0.21 222)",
     colorTo: "oklch(0.52 0.20 222)",
     shadow: "oklch(0.46 0.19 222)",
@@ -38,7 +47,6 @@ const MENU = [
     label: "Tracing",
     icon: Pencil,
     path: "/tracing",
-    emoji: "✏️",
     colorFrom: "oklch(0.72 0.27 130)",
     colorTo: "oklch(0.56 0.25 130)",
     shadow: "oklch(0.50 0.23 130)",
@@ -48,7 +56,6 @@ const MENU = [
     label: "Matching",
     icon: Grid3x3,
     path: "/matching",
-    emoji: "🔀",
     colorFrom: "oklch(0.62 0.22 280)",
     colorTo: "oklch(0.48 0.21 280)",
     shadow: "oklch(0.42 0.20 280)",
@@ -56,25 +63,23 @@ const MENU = [
   },
   {
     label: "Pronunciation",
-    icon: Mic,
+    icon: AudioLines,
     path: "/pronunciation",
-    emoji: "🎤",
     colorFrom: "oklch(0.86 0.21 88)",
     colorTo: "oklch(0.70 0.18 84)",
     shadow: "oklch(0.62 0.17 78)",
     desc: "Say the word aloud",
   },
   {
-    label: "Visual",
-    icon: Video,
+    label: "Phonics",
+    icon: Speech,
     path: "/visual-learning",
-    emoji: "🎬",
     colorFrom: "oklch(0.66 0.24 310)",
     colorTo: "oklch(0.52 0.22 310)",
     shadow: "oklch(0.46 0.20 310)",
-    desc: "Videos & audio lessons",
+    desc: "Phonics",
   },
-] as const;
+];
 
 export default function HomePage() {
   const router = useRouter();
@@ -184,7 +189,7 @@ export default function HomePage() {
               className="absolute inset-0 pointer-events-none"
               style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.14) 0%, transparent 50%)" }}
             />
-            <span className="text-4xl relative z-10 leading-none">{item.emoji}</span>
+            <item.icon className="w-10 h-10 text-white/90 relative z-10" strokeWidth={1.5} />
             <div className="relative z-10">
               <span className="text-xl font-display font-black leading-tight block">
                 {item.label}

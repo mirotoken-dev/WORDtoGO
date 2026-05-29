@@ -551,7 +551,7 @@
   "Flashcards": "بطاقات تعليمية",
   "Blending": "دمج الأصوات",
   "Tracing": "تتبع الكتابة",
-  "Visual": "بصري",
+  "Phonics": "الفونيكس",
   "Progress": "التقدم",
   "Matching": "مطابقة",
   "Pronunciation": "النطق",
