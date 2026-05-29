@@ -10,17 +10,18 @@ import { getUILabel } from "../data/arabicTranslations";
 function FlashcardsIconSVG() {
   return (
     <svg viewBox="0 0 64 64" className="w-14 h-14 drop-shadow-md" fill="none">
-      {/* Back card */}
-      <rect x="16" y="12" width="34" height="26" rx="5" fill="white" opacity="0.45" />
+      {/* Back card (shadow) */}
+      <rect x="18" y="10" width="34" height="26" rx="5" fill="white" opacity="0.35" />
       {/* Front card */}
-      <rect x="10" y="18" width="34" height="26" rx="5" fill="white" opacity="0.92" />
-      {/* Face on card */}
-      <circle cx="27" cy="28" r="7" fill="#E84040" opacity="0.8" />
-      <circle cx="24.5" cy="27" r="1.2" fill="white" />
-      <circle cx="29.5" cy="27" r="1.2" fill="white" />
-      <path d="M24 31 Q27 33.5 30 31" stroke="white" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-      {/* Lines on card */}
-      <rect x="16" y="38" width="20" height="2.5" rx="1.25" fill="#E84040" opacity="0.4" />
+      <rect x="10" y="16" width="36" height="28" rx="5" fill="white" opacity="0.92" />
+      {/* A */}
+      <text x="15" y="37" fontSize="16" fontWeight="900" fontFamily="Arial,sans-serif" fill="#E84040">A</text>
+      {/* B */}
+      <text x="27" y="37" fontSize="16" fontWeight="900" fontFamily="Arial,sans-serif" fill="#3A96F0">B</text>
+      {/* C */}
+      <text x="38" y="37" fontSize="16" fontWeight="900" fontFamily="Arial,sans-serif" fill="#F8B020">C</text>
+      {/* Underline */}
+      <rect x="14" y="40" width="28" height="2" rx="1" fill="white" opacity="0.5" />
     </svg>
   );
 }
