@@ -12,6 +12,7 @@ import MatchingLevel2Page from "./pages/MatchingLevel2Page";
 import MatchingLevel3Page from "./pages/MatchingLevel3Page";
 import MatchingMenuPage from "./pages/MatchingMenuPage";
 import ProfileWizard from "./pages/ProfileWizard";
+import SoundPreviewPage from "./pages/SoundPreviewPage";
 // Lazy page imports
 import ProfilesPage from "./pages/ProfilesPage";
 import ProgressPage from "./pages/ProgressPage";
@@ -113,9 +114,16 @@ const profileWizardRoute = createRoute({
   component: ProfileWizard,
 });
 
+const soundPreviewRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/sound-preview",
+  component: SoundPreviewPage,
+});
+
 const routeTree = rootRoute.addChildren([
   profilesRoute,
   profileWizardRoute,
+  soundPreviewRoute,
   homeRoute,
   flashcardsRoute,
   blendingRoute,
