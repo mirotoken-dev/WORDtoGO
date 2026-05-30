@@ -319,8 +319,14 @@ export default function HomePage() {
               initial={{ y: 24, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.15 + idx * 0.07 }}
-              whileTap={{ scale: 0.94, y: 5 }}
-              className="rounded-3xl flex flex-col items-center justify-center pt-5 pb-4 px-2 relative overflow-hidden text-white"
+              whileHover={{ scale: 1.04, transition: { type: "spring", stiffness: 350, damping: 18 } }}
+              whileTap={{
+                scale: 0.91,
+                y: 6,
+                boxShadow: `0 1px 0 0 ${item.shadow}, 0 3px 10px rgba(0,0,0,0.18)`,
+                transition: { type: "spring", stiffness: 500, damping: 20 },
+              }}
+              className="rounded-3xl flex flex-col items-center justify-center pt-5 pb-4 px-2 relative overflow-hidden text-white cursor-pointer"
               style={{
                 background: item.bg,
                 boxShadow: `0 6px 0 0 ${item.shadow}, 0 10px 24px rgba(0,0,0,0.2)`,
