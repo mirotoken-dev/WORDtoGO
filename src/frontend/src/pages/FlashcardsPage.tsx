@@ -7,11 +7,7 @@ import ProgressBar from "../components/ProgressBar";
 import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
 import { getArabicWord, getUILabel } from "../data/arabicTranslations";
-import { playSuccessSound, playTapSound, speakText, speakWord } from "../utils/audio";
-
-function playLetterSound(letter: string): void {
-  speakText(letter.toUpperCase(), 0.8, 0.9);
-}
+import { playLetterNameAsync, playSuccessSound, playTapSound, speakWord } from "../utils/audio";
 
 const COLOR_MAP: Record<string, string> = {
   red: "gradient-red",
@@ -56,9 +52,10 @@ export default function FlashcardsPage() {
   };
 
   const handleSound = () => {
-    playLetterSound(letter.letter);
-    setTimeout(() => speakWord(word.word), 700);
     markSeen();
+    void playLetterNameAsync(letter.letter).then(() => {
+      setTimeout(() => speakWord(word.word), 300);
+    });
   };
 
   const goNext = () => { playTapSound(); setDir(1); setLetterIdx((i) => (i + 1) % PHONICS_DATA.length); setWordIdx(0); setFlipped(false); };

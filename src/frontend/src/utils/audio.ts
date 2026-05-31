@@ -387,6 +387,49 @@ export function speakLetter(letter: string): void {
   void playLetterPhonetic(letter);
 }
 
+// ─── Letter Name Audio (e.g. "ay", "bee", "see") ──────────────────────────────
+
+const letterNameAudioCache = new Map<string, HTMLAudioElement>();
+
+// TTS fallback pronunciation for each letter name
+const LETTER_NAME_TTS: Record<string, string> = {
+  a: "ay",   b: "bee",  c: "see",  d: "dee",  e: "ee",
+  f: "ef",   g: "jee",  h: "aitch", i: "eye",  j: "jay",
+  k: "kay",  l: "el",   m: "em",   n: "en",   o: "oh",
+  p: "pee",  q: "cue",  r: "ar",   s: "es",   t: "tee",
+  u: "you",  v: "vee",  w: "double you", x: "ex", y: "why", z: "zee",
+};
+
+/**
+ * Play the letter NAME (e.g. "ay" for A, "bee" for B).
+ * Uses MP3 from /assets/letter-names/ if available, then falls back to TTS.
+ * Returns a Promise that resolves when playback ends.
+ */
+export async function playLetterNameAsync(letter: string): Promise<void> {
+  const lower = letter.toLowerCase();
+
+  // Try cached audio element
+  const cached = letterNameAudioCache.get(lower);
+  if (cached) {
+    try { return await playAudioToEnd(cached); } catch { /* fall through */ }
+  }
+
+  // Try loading the MP3
+  try {
+    const audio = new Audio(`/assets/letter-names/${lower}.mp3`);
+    letterNameAudioCache.set(lower, audio);
+    return await playAudioToEnd(audio);
+  } catch { /* fall through */ }
+
+  // TTS fallback for letters without an MP3 yet
+  const name = LETTER_NAME_TTS[lower] ?? letter.toUpperCase();
+  return speakTextAsync(name, 0.82, 1.0);
+}
+
+export function playLetterName(letter: string): void {
+  void playLetterNameAsync(letter);
+}
+
 // Cache for word-level audio elements
 const wordAudioCache = new Map<string, HTMLAudioElement>();
 
