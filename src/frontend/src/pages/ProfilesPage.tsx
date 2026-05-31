@@ -72,7 +72,7 @@ export default function ProfilesPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="text-7xl mb-4 float inline-block">👶</div>
+            <div className="text-7xl mb-4 float inline-block">🌟</div>
             <p className="text-2xl font-display font-black text-foreground mt-4">
               {getUILabel("No profiles yet!")}
             </p>
