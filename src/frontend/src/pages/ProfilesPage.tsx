@@ -32,18 +32,13 @@ export default function ProfilesPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       {/* Hero */}
-      <div className="relative pb-0 bg-[oklch(0.72_0.27_130)] overflow-hidden">
-        {/* Decorative circles */}
-        <div className="absolute top-0 right-0 w-40 h-40 rounded-full bg-white/10 -translate-y-8 translate-x-8" />
-        <div className="absolute bottom-8 left-0 w-24 h-24 rounded-full bg-white/10 -translate-x-6" />
-
+      <div className="relative pb-0 bg-white overflow-hidden">
         <div className="relative px-6 pt-10 pb-6 text-center">
           {/* Logo — bounces in then floats continuously */}
           <motion.img
             src="/logo-wordtogo.png"
             alt="Word to Go"
             className="w-72 mx-auto select-none"
-            style={{ filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.2))" }}
             initial={{ scale: 0.5, opacity: 0, y: 30 }}
             animate={[
               { scale: 1, opacity: 1, y: 0, transition: { type: "spring", stiffness: 220, damping: 16, delay: 0.05 } },
@@ -52,7 +47,7 @@ export default function ProfilesPage() {
             draggable={false}
           />
           <motion.p
-            className="text-white/90 font-body text-base mt-1"
+            className="text-gray-500 font-body text-base mt-1"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
