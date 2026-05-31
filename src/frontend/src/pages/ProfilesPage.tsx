@@ -1,15 +1,21 @@
 import { useRouter } from "@tanstack/react-router";
 import { Trash2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAppStore } from "../store/useAppStore";
 import { getUILabel } from "../data/arabicTranslations";
 import { playChimeSound } from "../utils/audio";
 
 export default function ProfilesPage() {
   const router = useRouter();
-  const { profiles, deleteProfile, setActiveProfile } = useAppStore();
+  const { profiles, activeProfileId, deleteProfile, setActiveProfile } = useAppStore();
   const [toDelete, setToDelete] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (activeProfileId && profiles.find((p) => p.id === activeProfileId)) {
+      router.navigate({ to: "/home" });
+    }
+  }, [activeProfileId, profiles, router]);
 
   const handleSelect = (id: string) => {
     playChimeSound();
