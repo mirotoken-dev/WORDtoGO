@@ -1,13 +1,13 @@
 import { useRouter } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, Volume2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import ProgressBar from "../components/ProgressBar";
 import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
 import { getArabicWord, getUILabel } from "../data/arabicTranslations";
-import { playLetterNameAsync, playSuccessSound, playTapSound, speakWord } from "../utils/audio";
+import { playLetterNameAsync, playSuccessSound, playTapSound, preloadWordAudio, speakWord } from "../utils/audio";
 
 const COLOR_MAP: Record<string, string> = {
   red: "gradient-red",
@@ -27,10 +27,17 @@ export default function FlashcardsPage() {
   const [flipped, setFlipped] = useState(false);
   const [dir, setDir] = useState<1 | -1>(1);
 
-  if (!profile) { router.navigate({ to: "/" }); return null; }
-
   const letter = PHONICS_DATA[letterIdx];
   const word = letter.words[wordIdx];
+
+  // Preload word audio as soon as the word is shown — eliminates tap delay
+  useEffect(() => {
+    preloadWordAudio(word.word);
+    // Also preload all words for this letter so tab switching is instant
+    letter.words.forEach((w) => preloadWordAudio(w.word));
+  }, [letterIdx, wordIdx]);
+
+  if (!profile) { router.navigate({ to: "/" }); return null; }
   const seenCount = Object.keys(progress?.flashcards ?? {}).length;
 
   const markSeen = () => {
@@ -54,7 +61,7 @@ export default function FlashcardsPage() {
   const handleSound = () => {
     markSeen();
     void playLetterNameAsync(letter.letter).then(() => {
-      setTimeout(() => speakWord(word.word), 300);
+      setTimeout(() => speakWord(word.word), 120);
     });
   };
 

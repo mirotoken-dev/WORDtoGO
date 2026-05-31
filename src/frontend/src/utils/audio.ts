@@ -475,6 +475,26 @@ export function speakWord(word: string): void {
   void speakWordAsync(word);
 }
 
+/**
+ * Silently preload a word's audio file into cache without playing it.
+ * Call this when a new word is shown so playback is instant on tap.
+ */
+export function preloadWordAudio(word: string): void {
+  const lower = word.toLowerCase();
+  if (wordAudioCache.has(lower)) return;
+  // Try mp3 first, then wav — whichever loads successfully gets cached
+  const audio = new Audio(`/assets/words/${lower}.mp3`);
+  audio.preload = "auto";
+  audio.oncanplaythrough = () => wordAudioCache.set(lower, audio);
+  audio.onerror = () => {
+    const wav = new Audio(`/assets/words/${lower}.wav`);
+    wav.preload = "auto";
+    wav.oncanplaythrough = () => wordAudioCache.set(lower, wav);
+    wav.load();
+  };
+  audio.load();
+}
+
 export function speakPhonics(sounds: string[]): void {
   // Join phonetic strings with a space so the engine blends them naturally
   const text = sounds.join(" ");
