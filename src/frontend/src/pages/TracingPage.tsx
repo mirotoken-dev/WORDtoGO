@@ -18,7 +18,8 @@ const STROKE_COLORS: Record<string, string> = {
   purple: "oklch(0.55 0.22 320)",
 };
 
-const COVERAGE_THRESHOLD = 0.65;
+const COVERAGE_THRESHOLD = 0.60;   // ≥60% of the letter blueprint must be covered
+const PRECISION_THRESHOLD = 0.38;  // ≥38% of drawn strokes must land ON the letter
 const CANVAS_W = 360;
 const CANVAS_H = 240;
 
@@ -44,16 +45,21 @@ function buildReferencePixels(text: string, fontSize = 160): Uint8ClampedArray {
   return ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
 }
 
-function computeCoverage(drawnData: Uint8ClampedArray, refData: Uint8ClampedArray): number {
+function computeScores(drawnData: Uint8ClampedArray, refData: Uint8ClampedArray): { coverage: number; precision: number } {
   let refTotal = 0;
+  let drawnTotal = 0;
   let overlap = 0;
   for (let i = 0; i < refData.length; i += 4) {
-    if (refData[i + 3] > 30) {
-      refTotal++;
-      if (drawnData[i + 3] > 30) overlap++;
-    }
+    const onRef = refData[i + 3] > 30;
+    const onDrawn = drawnData[i + 3] > 30;
+    if (onRef) refTotal++;
+    if (onDrawn) drawnTotal++;
+    if (onRef && onDrawn) overlap++;
   }
-  return refTotal === 0 ? 0 : overlap / refTotal;
+  return {
+    coverage: refTotal === 0 ? 0 : overlap / refTotal,
+    precision: drawnTotal === 0 ? 0 : overlap / drawnTotal,
+  };
 }
 
 type TraceMode = "letter" | "word";
@@ -172,9 +178,9 @@ export default function TracingPage() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const drawnData = ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
-    const score = computeCoverage(drawnData, getRefPixels());
-    setCoverage(score);
-    if (score >= COVERAGE_THRESHOLD && !isDone) {
+    const { coverage, precision } = computeScores(drawnData, getRefPixels());
+    setCoverage(coverage);
+    if (coverage >= COVERAGE_THRESHOLD && precision >= PRECISION_THRESHOLD && !isDone) {
       setIsDone(true);
       playSuccessSound();
       if (mode === "letter") {
