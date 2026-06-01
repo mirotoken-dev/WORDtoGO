@@ -474,18 +474,18 @@ export default function TracingPage() {
           </div>
         </div>}
 
-        {/* Success banner */}
-        {isDone && (
-          <motion.div
-            initial={{ scale: 0.85, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 300, damping: 18 }}
-            className="rounded-2xl py-3 px-4 text-center font-display font-bold text-base gradient-green text-white shadow-playful"
-            data-ocid="tracing.success_state"
-          >
-            🌟 {getUILabel("Amazing! Great job!")}
-          </motion.div>
-        )}
+        {/* Success banner — always in DOM to avoid layout shift / scroll on completion */}
+        <motion.div
+          initial={{ scale: 0.85, opacity: 0 }}
+          animate={{ scale: isDone ? 1 : 0.85, opacity: isDone ? 1 : 0 }}
+          transition={{ type: "spring", stiffness: 300, damping: 18 }}
+          className="rounded-2xl py-3 px-4 text-center font-display font-bold text-base gradient-green text-white shadow-playful"
+          style={{ pointerEvents: isDone ? "auto" : "none", visibility: isDone ? "visible" : "hidden" }}
+          data-ocid="tracing.success_state"
+          aria-hidden={!isDone}
+        >
+          🌟 {getUILabel("Amazing! Great job!")}
+        </motion.div>
 
         {/* Controls */}
         <div className="flex gap-3">
