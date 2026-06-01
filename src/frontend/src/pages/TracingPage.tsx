@@ -18,12 +18,12 @@ const STROKE_COLORS: Record<string, string> = {
   purple: "oklch(0.55 0.22 320)",
 };
 
-const COVERAGE_THRESHOLD = 0.58;   // ≥58% of the letter blueprint must be covered
-const PRECISION_THRESHOLD = 0.42;  // ≥42% of drawn strokes must land ON the letter
-const ZONE_GRID = 3;               // 3×3 spatial grid
-const ZONE_MIN_REF_PX = 20;        // ignore zones with fewer than 20 ref pixels
-const ZONE_COVERAGE_MIN = 0.42;    // each active zone needs ≥42% of its pixels covered
-const ZONE_PASS_FRACTION = 0.70;   // 70% of active zones must individually pass
+const COVERAGE_THRESHOLD = 0.72;   // 72% of blueprint pixels must be covered by strokes
+const ZONE_GRID = 3;               // 3×3 spatial grid — forces full-letter coverage
+const ZONE_MIN_REF_PX = 20;        // ignore zones with fewer than 20 blueprint pixels
+const ZONE_COVERAGE_MIN = 0.50;    // each active zone needs 50% of its pixels covered
+const ZONE_PASS_FRACTION = 0.72;   // 72% of active zones must individually pass
+const CHECK_MS = 30;               // score recalculated every 30 ms while drawing
 const CANVAS_W = 360;
 const CANVAS_H = 240;
 
@@ -50,22 +50,24 @@ function buildReferencePixels(text: string, fontSize = 160): Uint8ClampedArray {
 }
 
 interface TraceScores {
-  coverage: number;
-  precision: number;
-  zoneFraction: number;   // fraction of active zones that pass ZONE_COVERAGE_MIN
+  coverage: number;      // overlap / refTotal  — only inside-blueprint pixels count
+  zoneFraction: number;  // fraction of active zones that individually pass
   coveredZones: number;
   totalZones: number;
 }
 
 function computeScores(drawnData: Uint8ClampedArray, refData: Uint8ClampedArray): TraceScores {
-  let refTotal = 0, drawnTotal = 0, overlap = 0;
+  let refTotal = 0, overlap = 0;
 
-  // zone grid: ZONE_GRID × ZONE_GRID cells
   const cells = ZONE_GRID * ZONE_GRID;
   const zoneRef     = new Int32Array(cells);
   const zoneOverlap = new Int32Array(cells);
 
   for (let i = 0; i < refData.length; i += 4) {
+    const onRef   = refData[i + 3]   > 30;
+    const onDrawn = drawnData[i + 3] > 30;
+    if (!onRef) continue;           // ← outside-blueprint pixels are completely ignored
+
     const pixelIdx = i >> 2;
     const px = pixelIdx % CANVAS_W;
     const py = (pixelIdx / CANVAS_W) | 0;
@@ -73,15 +75,12 @@ function computeScores(drawnData: Uint8ClampedArray, refData: Uint8ClampedArray)
     const zy = Math.min((py / CANVAS_H * ZONE_GRID) | 0, ZONE_GRID - 1);
     const zi = zy * ZONE_GRID + zx;
 
-    const onRef   = refData[i + 3]   > 30;
-    const onDrawn = drawnData[i + 3] > 30;
-    if (onRef)           { refTotal++;   zoneRef[zi]++; }
-    if (onDrawn)           drawnTotal++;
-    if (onRef && onDrawn) { overlap++;   zoneOverlap[zi]++; }
+    refTotal++;
+    zoneRef[zi]++;
+    if (onDrawn) { overlap++; zoneOverlap[zi]++; }
   }
 
-  const coverage  = refTotal   === 0 ? 0 : overlap / refTotal;
-  const precision = drawnTotal === 0 ? 0 : overlap / drawnTotal;
+  const coverage = refTotal === 0 ? 0 : overlap / refTotal;
 
   let totalZones = 0, coveredZones = 0;
   for (let zi = 0; zi < cells; zi++) {
@@ -91,7 +90,7 @@ function computeScores(drawnData: Uint8ClampedArray, refData: Uint8ClampedArray)
   }
   const zoneFraction = totalZones === 0 ? 1 : coveredZones / totalZones;
 
-  return { coverage, precision, zoneFraction, coveredZones, totalZones };
+  return { coverage, zoneFraction, coveredZones, totalZones };
 }
 
 type TraceMode = "letter" | "word";
@@ -106,7 +105,6 @@ export default function TracingPage() {
   const [wordEntry, setWordEntry] = useState(() => getRandomWord());
   const [isDone, setIsDone] = useState(false);
   const [traceProgress, setTraceProgress] = useState(0);   // 0–100 live fill
-  const [isOnTarget, setIsOnTarget] = useState(true);      // true = on letter, false = off
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const drawing = useRef(false);
   const lastPt = useRef<Point | null>(null);
@@ -122,7 +120,6 @@ export default function TracingPage() {
     if (!canvas) return;
     canvas.getContext("2d")?.clearRect(0, 0, canvas.width, canvas.height);
     setTraceProgress(0);
-    setIsOnTarget(true);
     setIsDone(false);
   }, []);
 
@@ -203,7 +200,7 @@ export default function TracingPage() {
     ctx.stroke();
     lastPt.current = pt;
     const now = Date.now();
-    if (now - lastCheckTime.current >= 50) { lastCheckTime.current = now; checkSimilarity(); }
+    if (now - lastCheckTime.current >= CHECK_MS) { lastCheckTime.current = now; checkSimilarity(); }
   };
 
   const checkSimilarity = () => {
@@ -212,15 +209,12 @@ export default function TracingPage() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const drawnData = ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
-    const { coverage, precision, zoneFraction, coveredZones, totalZones } = computeScores(drawnData, getRefPixels());
+    const { coverage, zoneFraction } = computeScores(drawnData, getRefPixels());
 
-    // Progress = how many zones are covered, capped at 99 until all criteria pass
-    const zoneProgress = totalZones === 0 ? 0 : Math.round((coveredZones / totalZones) * 100);
-    const onTarget = precision >= 0.25; // enough strokes on letter to count as "on track"
-    setIsOnTarget(onTarget);
-
-    const allPass = coverage >= COVERAGE_THRESHOLD && precision >= PRECISION_THRESHOLD && zoneFraction >= ZONE_PASS_FRACTION;
-    setTraceProgress(allPass ? 100 : Math.min(zoneProgress, 99));
+    // Progress = raw blueprint-coverage percentage (1 % by 1 %, only inside pixels count)
+    const rawPct = Math.round(coverage * 100);
+    const allPass = coverage >= COVERAGE_THRESHOLD && zoneFraction >= ZONE_PASS_FRACTION;
+    setTraceProgress(allPass ? 100 : Math.min(rawPct, 99));
 
     if (allPass && !isDone) {
       setIsDone(true);
@@ -393,9 +387,17 @@ export default function TracingPage() {
         <div className="bg-white rounded-2xl px-4 py-3 border border-border shadow-card">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-display font-bold text-foreground">
-              {isDone ? "✅ " + getUILabel("Complete!") : traceProgress === 0 ? getUILabel("Start tracing…") : isOnTarget ? "✏️ " + getUILabel("On track! Keep going!") : "⚠️ " + getUILabel("Stay on the letter!")}
+              {isDone
+                ? "✅ " + getUILabel("Complete!")
+                : traceProgress === 0
+                  ? "✏️ " + getUILabel("Start tracing…")
+                  : traceProgress < 40
+                    ? "✏️ " + getUILabel("Keep going!")
+                    : traceProgress < 75
+                      ? "🌟 " + getUILabel("Great job! Almost there!")
+                      : "🔥 " + getUILabel("So close! Fill it all in!")}
             </span>
-            <span className="text-xs font-display font-black" style={{ color: isDone ? "oklch(0.48 0.22 145)" : isOnTarget ? "oklch(0.48 0.22 145)" : "oklch(0.60 0.18 55)" }}>
+            <span className="text-xs font-display font-black" style={{ color: "oklch(0.48 0.22 145)" }}>
               {traceProgress}%
             </span>
           </div>
@@ -404,13 +406,11 @@ export default function TracingPage() {
               className="h-full rounded-full"
               style={{
                 background: isDone
-                  ? "linear-gradient(90deg, oklch(0.62 0.22 145), oklch(0.48 0.22 145))"
-                  : isOnTarget
-                    ? "linear-gradient(90deg, oklch(0.72 0.22 145), oklch(0.55 0.22 145))"
-                    : "linear-gradient(90deg, oklch(0.80 0.18 55), oklch(0.65 0.18 55))",
+                  ? "linear-gradient(90deg, oklch(0.52 0.22 145), oklch(0.40 0.22 145))"
+                  : "linear-gradient(90deg, oklch(0.72 0.22 145), oklch(0.55 0.22 145))",
               }}
               animate={{ width: `${traceProgress}%` }}
-              transition={{ duration: 0.15, ease: "easeOut" }}
+              transition={{ duration: 0.1, ease: "easeOut" }}
             />
           </div>
         </div>
