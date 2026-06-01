@@ -123,27 +123,26 @@ export default function TracingPage() {
   }, [wordEntry.word]);
 
   // ── Draw guide on bgCanvas ────────────────────────────────────────────────
-  // Both the visual guide the child sees AND the reference pixels come from
-  // this exact draw call — zero coordinate mismatch possible.
+  // Letter mode: draw gray guide + capture ref pixels for scoring.
+  // Word mode: blank canvas (no blueprint) — free-form tracing only.
   useEffect(() => {
     const bg = bgCanvasRef.current;
     if (!bg) return;
     const ctx = bg.getContext("2d")!;
     ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
-    ctx.textAlign    = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillStyle    = "rgb(200, 205, 215)";  // light gray guide
 
     if (mode === "letter") {
+      ctx.textAlign    = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle    = "rgb(200, 205, 215)";
       ctx.font = `900 162px Nunito, sans-serif`;
       ctx.fillText(letter.uppercase, CANVAS_W / 2, CANVAS_H / 2);
+      // Capture ref pixels immediately — same draw, guaranteed alignment
+      bgRefPixels.current = ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
     } else {
-      ctx.font = `900 ${wordGuideFontSize}px Nunito, sans-serif`;
-      ctx.fillText(wordEntry.word.toUpperCase(), CANVAS_W / 2, CANVAS_H / 2);
+      // Word mode has no guide; clear ref so scoring never fires
+      bgRefPixels.current = null;
     }
-
-    // Capture ref pixels immediately — same draw, guaranteed alignment
-    bgRefPixels.current = ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
   }, [mode, letter.uppercase, wordEntry.word, wordGuideFontSize]);
 
   const clearCanvas = useCallback(() => {
@@ -474,15 +473,15 @@ export default function TracingPage() {
           </div>
         </div>}
 
-        {/* Success banner — always in DOM to avoid layout shift / scroll on completion */}
+        {/* Success banner — letter mode only; always in DOM to avoid layout shift */}
         <motion.div
           initial={{ scale: 0.85, opacity: 0 }}
-          animate={{ scale: isDone ? 1 : 0.85, opacity: isDone ? 1 : 0 }}
+          animate={{ scale: (mode === "letter" && isDone) ? 1 : 0.85, opacity: (mode === "letter" && isDone) ? 1 : 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 18 }}
           className="rounded-2xl py-3 px-4 text-center font-display font-bold text-base gradient-green text-white shadow-playful"
-          style={{ pointerEvents: isDone ? "auto" : "none", visibility: isDone ? "visible" : "hidden" }}
+          style={{ pointerEvents: (mode === "letter" && isDone) ? "auto" : "none", visibility: (mode === "letter" && isDone) ? "visible" : "hidden" }}
           data-ocid="tracing.success_state"
-          aria-hidden={!isDone}
+          aria-hidden={!(mode === "letter" && isDone)}
         >
           🌟 {getUILabel("Amazing! Great job!")}
         </motion.div>
@@ -498,14 +497,13 @@ export default function TracingPage() {
             <Eraser className="w-5 h-5" /> {getUILabel("Clear")}
           </button>
 
-          {!isDone && (
+          {mode === "letter" && !isDone && (
             <button
               type="button"
               data-ocid="tracing.skip_button"
               onClick={() => {
                 playTapSound();
-                if (mode === "letter") setLetterIdx((letterIdx + 1) % PHONICS_DATA.length);
-                else { newWord(); clearCanvas(); }
+                setLetterIdx((letterIdx + 1) % PHONICS_DATA.length);
               }}
               className="flex-1 py-3 rounded-2xl bg-white border border-border flex items-center justify-center gap-2 font-display font-bold text-foreground active:scale-95 transition-smooth hover:bg-muted"
             >
@@ -513,7 +511,7 @@ export default function TracingPage() {
             </button>
           )}
 
-          {isDone && (
+          {(mode === "word" || isDone) && (
             <motion.button
               type="button"
               data-ocid="tracing.next_button"
