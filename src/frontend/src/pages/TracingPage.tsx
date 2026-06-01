@@ -18,14 +18,29 @@ const STROKE_COLORS: Record<string, string> = {
   purple: "oklch(0.55 0.22 320)",
 };
 
-const COVERAGE_THRESHOLD = 0.72;   // 72% of blueprint pixels must be covered by strokes
-const ZONE_GRID = 3;               // 3×3 spatial grid — forces full-letter coverage
-const ZONE_MIN_REF_PX = 20;        // ignore zones with fewer than 20 blueprint pixels
-const ZONE_COVERAGE_MIN = 0.50;    // each active zone needs 50% of its pixels covered
-const ZONE_PASS_FRACTION = 0.72;   // 72% of active zones must individually pass
-const CHECK_MS = 30;               // score recalculated every 30 ms while drawing
+const COVERAGE_THRESHOLD = 0.72;
+const ZONE_GRID = 3;
+const ZONE_MIN_REF_PX = 20;
+const ZONE_COVERAGE_MIN = 0.50;
+const ZONE_PASS_FRACTION = 0.72;
+const CHECK_MS = 30;
 const CANVAS_W = 360;
 const CANVAS_H = 240;
+
+// Only used for word mode (no visual guide to align with)
+function buildReferencePixels(text: string, fontSize: number): Uint8ClampedArray {
+  const off = document.createElement("canvas");
+  off.width = CANVAS_W;
+  off.height = CANVAS_H;
+  const ctx = off.getContext("2d")!;
+  ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+  ctx.font = `900 ${fontSize}px Nunito, sans-serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = "#000000";
+  ctx.fillText(text, CANVAS_W / 2, CANVAS_H / 2);
+  return ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
+}
 
 const ALL_WORDS = PHONICS_DATA.flatMap((ld) =>
   ld.blendingTasks.map((t) => ({ word: t.word, emoji: t.emoji, color: ld.color }))
@@ -35,23 +50,9 @@ function getRandomWord() {
   return ALL_WORDS[Math.floor(Math.random() * ALL_WORDS.length)];
 }
 
-function buildReferencePixels(text: string, fontSize = 160): Uint8ClampedArray {
-  const off = document.createElement("canvas");
-  off.width = CANVAS_W;
-  off.height = CANVAS_H;
-  const ctx = off.getContext("2d")!;
-  ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
-  ctx.font = `900 ${fontSize}px var(--font-display, sans-serif)`;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillStyle = "#000000";
-  ctx.fillText(text, CANVAS_W / 2, CANVAS_H / 2);
-  return ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
-}
-
 interface TraceScores {
-  coverage: number;      // overlap / refTotal  — only inside-blueprint pixels count
-  zoneFraction: number;  // fraction of active zones that individually pass
+  coverage: number;
+  zoneFraction: number;
   coveredZones: number;
   totalZones: number;
 }
@@ -64,9 +65,8 @@ function computeScores(drawnData: Uint8ClampedArray, refData: Uint8ClampedArray)
   const zoneOverlap = new Int32Array(cells);
 
   for (let i = 0; i < refData.length; i += 4) {
-    const onRef   = refData[i + 3]   > 30;
-    const onDrawn = drawnData[i + 3] > 30;
-    if (!onRef) continue;           // ← outside-blueprint pixels are completely ignored
+    const onRef = refData[i + 3] > 30;
+    if (!onRef) continue;
 
     const pixelIdx = i >> 2;
     const px = pixelIdx % CANVAS_W;
@@ -77,7 +77,7 @@ function computeScores(drawnData: Uint8ClampedArray, refData: Uint8ClampedArray)
 
     refTotal++;
     zoneRef[zi]++;
-    if (onDrawn) { overlap++; zoneOverlap[zi]++; }
+    if (drawnData[i + 3] > 30) { overlap++; zoneOverlap[zi]++; }
   }
 
   const coverage = refTotal === 0 ? 0 : overlap / refTotal;
@@ -104,21 +104,47 @@ export default function TracingPage() {
   const [letterIdx, setLetterIdx] = useState(0);
   const [wordEntry, setWordEntry] = useState(() => getRandomWord());
   const [isDone, setIsDone] = useState(false);
-  const [traceProgress, setTraceProgress] = useState(0);   // 0–100 live fill
+  const [traceProgress, setTraceProgress] = useState(0);
+
+  // bgCanvasRef: renders the letter guide — its pixels ARE the reference (letter mode)
+  // canvasRef (fg): transparent, user draws here
+  const bgCanvasRef = useRef<HTMLCanvasElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const drawing = useRef(false);
   const lastPt = useRef<Point | null>(null);
   const lastCheckTime = useRef(0);
-  const refPixelsCache = useRef<Record<string, Uint8ClampedArray>>({});
+  // Cache of bg-canvas reference pixels (invalidated on letter change)
+  const bgRefPixels = useRef<Uint8ClampedArray | null>(null);
+  // Cache for word mode offscreen reference
+  const wordRefPixels = useRef<Record<string, Uint8ClampedArray>>({});
   const prevKeyRef = useRef("");
 
   const letter = PHONICS_DATA[letterIdx];
   const currentKey = mode === "letter" ? `L:${letterIdx}` : `W:${wordEntry.word}`;
 
+  // ── Draw the guide letter on the background canvas ──────────────────────────
+  // This is the SINGLE source of truth for both the visual guide AND reference pixels.
+  // The same canvas draw call produces both, so alignment is guaranteed perfect.
+  useEffect(() => {
+    if (mode !== "letter") return;
+    const bg = bgCanvasRef.current;
+    if (!bg) return;
+    const ctx = bg.getContext("2d")!;
+    ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+    // Draw at full opacity so alpha=255 wherever the letter is → reliable ref pixels
+    ctx.font = `900 162px Nunito, sans-serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = "rgb(200, 205, 215)";      // light gray guide
+    ctx.fillText(letter.uppercase, CANVAS_W / 2, CANVAS_H / 2);
+    // Capture reference pixels immediately from the same draw — zero mismatch possible
+    bgRefPixels.current = ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
+  }, [mode, letter.uppercase]);
+
   const clearCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    canvas.getContext("2d")?.clearRect(0, 0, canvas.width, canvas.height);
+    const fg = canvasRef.current;
+    if (!fg) return;
+    fg.getContext("2d")?.clearRect(0, 0, fg.width, fg.height);
     setTraceProgress(0);
     setIsDone(false);
   }, []);
@@ -132,10 +158,9 @@ export default function TracingPage() {
 
   const wordFontSize = useMemo(() => {
     const len = wordEntry.word.length;
-    // Reduced sizes so the word fits neatly and is easier to trace
-    let size = len <= 3 ? 44 : len === 4 ? 34 : len === 5 ? 28 : 24;
-    const maxAllowed = Math.floor((CANVAS_W - 32) / (len * 0.58));
-    return Math.min(size, maxAllowed);
+    let size = len <= 3 ? 68 : len === 4 ? 50 : len === 5 ? 42 : 38;
+    const maxAllowed = Math.floor((CANVAS_W - 24) / (len * 0.55));
+    return Math.max(Math.min(size, maxAllowed), 36);
   }, [wordEntry.word]);
 
   useEffect(() => {
@@ -147,23 +172,22 @@ export default function TracingPage() {
   const completedCount = PHONICS_DATA.filter((l) => progress?.tracing[l.letter]?.completed).length;
   const progressPct = Math.round((completedCount / PHONICS_DATA.length) * 100);
 
-  const getRefPixels = (): Uint8ClampedArray => {
-    if (!refPixelsCache.current[currentKey]) {
-      if (mode === "letter") {
-        refPixelsCache.current[currentKey] = buildReferencePixels(letter.uppercase);
-      } else {
-        const len = wordEntry.word.length;
-        let size = len <= 3 ? 68 : len === 4 ? 50 : len === 5 ? 42 : 38;
-        const maxAllowed = Math.floor((CANVAS_W - 24) / (len * 0.55));
-        refPixelsCache.current[currentKey] = buildReferencePixels(
-          wordEntry.word.toUpperCase(), Math.max(Math.min(size, maxAllowed), 36)
-        );
-      }
+  const getRefPixels = (): Uint8ClampedArray | null => {
+    if (mode === "letter") {
+      // Read from bg canvas — same draw call as the visual guide, perfect alignment
+      return bgRefPixels.current;
     }
-    return refPixelsCache.current[currentKey];
+    // Word mode: offscreen reference (no visual guide to misalign with)
+    if (!wordRefPixels.current[currentKey]) {
+      wordRefPixels.current[currentKey] = buildReferencePixels(
+        wordEntry.word.toUpperCase(), wordFontSize
+      );
+    }
+    return wordRefPixels.current[currentKey];
   };
 
   const getPoint = (e: React.MouseEvent | React.TouchEvent): Point => {
+    // Always read from the FG drawing canvas for coordinate mapping
     const canvas = canvasRef.current!;
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
@@ -192,8 +216,6 @@ export default function TracingPage() {
     ctx.moveTo(lastPt.current.x, lastPt.current.y);
     ctx.lineTo(pt.x, pt.y);
     ctx.strokeStyle = mode === "letter" ? (STROKE_COLORS[letter.color] ?? STROKE_COLORS.blue) : "oklch(0.55 0.22 280)";
-    // Letter mode: thick stroke so drawing fills the large blueprint guide
-    // Word mode: thinner stroke for more precise word tracing
     ctx.lineWidth = mode === "letter" ? 22 : 14;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
@@ -204,14 +226,16 @@ export default function TracingPage() {
   };
 
   const checkSimilarity = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const drawnData = ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
-    const { coverage, zoneFraction } = computeScores(drawnData, getRefPixels());
+    const fg = canvasRef.current;
+    if (!fg) return;
+    const fgCtx = fg.getContext("2d");
+    if (!fgCtx) return;
+    const refData = getRefPixels();
+    if (!refData) return;
 
-    // Progress = raw blueprint-coverage percentage (1 % by 1 %, only inside pixels count)
+    const drawnData = fgCtx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
+    const { coverage, zoneFraction } = computeScores(drawnData, refData);
+
     const rawPct = Math.round(coverage * 100);
     const allPass = coverage >= COVERAGE_THRESHOLD && zoneFraction >= ZONE_PASS_FRACTION;
     setTraceProgress(allPass ? 100 : Math.min(rawPct, 99));
@@ -265,7 +289,7 @@ export default function TracingPage() {
             />
           </div>
           <p className="text-xs text-muted-foreground font-body mt-1.5">
-            {progressPct === 0 ? getUILabel("Start tracing to make progress!") : progressPct === 100 ? getUILabel("\ud83c\udf89 All letters completed!") : `${progressPct}% ${getUILabel("complete — keep going!")}`}
+            {progressPct === 0 ? getUILabel("Start tracing to make progress!") : progressPct === 100 ? getUILabel("🎉 All letters completed!") : `${progressPct}% ${getUILabel("complete — keep going!")}`}
           </p>
         </div>
 
@@ -357,22 +381,27 @@ export default function TracingPage() {
           </div>
         )}
 
-        {/* Canvas */}
+        {/* Canvas area: bg guide canvas stacked under fg drawing canvas */}
         <div className="relative rounded-2xl overflow-hidden border border-border shadow-card bg-white">
+          {/* BG canvas — letter guide drawn here; also the source of reference pixels */}
           {mode === "letter" && (
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-              <span className="font-display font-black leading-none" style={{ fontSize: 180, color: "oklch(0.88 0.01 260)" }}>
-                {letter.uppercase}
-              </span>
-            </div>
+            <canvas
+              ref={bgCanvasRef}
+              width={CANVAS_W}
+              height={CANVAS_H}
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-full pointer-events-none select-none"
+              style={{ zIndex: 1 }}
+            />
           )}
+          {/* FG canvas — transparent; child draws here */}
           <canvas
             ref={canvasRef}
             width={CANVAS_W}
             height={CANVAS_H}
             data-ocid="tracing.canvas_target"
             className="relative w-full touch-none cursor-crosshair block"
-            style={{ zIndex: 10, position: "relative" }}
+            style={{ zIndex: 10 }}
             onMouseDown={startDraw}
             onMouseMove={doDrawing}
             onMouseUp={endDraw}

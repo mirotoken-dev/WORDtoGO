@@ -1,0 +1,1 @@
+- [Tracing canvas alignment](tracing-canvas-alignment.md) — guide and reference pixels must come from the same canvas draw call; DOM span + offscreen canvas never align.
