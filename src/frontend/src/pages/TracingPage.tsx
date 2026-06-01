@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Layout from "../components/Layout";
 import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
-import { getArabicWord, getUILabel } from "../data/arabicTranslations";
+import { getUILabel } from "../data/arabicTranslations";
 import { playSuccessSound, playTapSound } from "../utils/audio";
 
 interface Point { x: number; y: number; }
@@ -18,79 +18,73 @@ const STROKE_COLORS: Record<string, string> = {
   purple: "oklch(0.55 0.22 320)",
 };
 
-const COVERAGE_THRESHOLD = 0.72;
-const ZONE_GRID = 3;
-const ZONE_MIN_REF_PX = 20;
-const ZONE_COVERAGE_MIN = 0.50;
-const ZONE_PASS_FRACTION = 0.72;
-const CHECK_MS = 30;
-const CANVAS_W = 360;
-const CANVAS_H = 240;
-
-// Only used for word mode (no visual guide to align with)
-function buildReferencePixels(text: string, fontSize: number): Uint8ClampedArray {
-  const off = document.createElement("canvas");
-  off.width = CANVAS_W;
-  off.height = CANVAS_H;
-  const ctx = off.getContext("2d")!;
-  ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
-  ctx.font = `900 ${fontSize}px Nunito, sans-serif`;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillStyle = "#000000";
-  ctx.fillText(text, CANVAS_W / 2, CANVAS_H / 2);
-  return ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
-}
+// ── Scoring thresholds ────────────────────────────────────────────────────────
+const COVERAGE_THRESHOLD  = 0.72;  // 72% of guide pixels must be covered
+const PRECISION_THRESHOLD = 0.38;  // 38% of drawn pixels must land on the guide
+                                   // (prevents random scribbling from completing)
+const ZONE_GRID           = 3;
+const ZONE_MIN_REF_PX     = 20;
+const ZONE_COVERAGE_MIN   = 0.50;
+const ZONE_PASS_FRACTION  = 0.72;
+const CHECK_MS            = 30;
+const CANVAS_W            = 360;
+const CANVAS_H            = 240;
 
 const ALL_WORDS = PHONICS_DATA.flatMap((ld) =>
   ld.blendingTasks.map((t) => ({ word: t.word, emoji: t.emoji, color: ld.color }))
 );
-
 function getRandomWord() {
   return ALL_WORDS[Math.floor(Math.random() * ALL_WORDS.length)];
 }
 
 interface TraceScores {
   coverage: number;
+  precision: number;
   zoneFraction: number;
-  coveredZones: number;
-  totalZones: number;
 }
 
-function computeScores(drawnData: Uint8ClampedArray, refData: Uint8ClampedArray): TraceScores {
-  let refTotal = 0, overlap = 0;
+function computeScores(
+  drawnData: Uint8ClampedArray,
+  refData: Uint8ClampedArray,
+): TraceScores {
+  let refTotal = 0, drawnTotal = 0, overlap = 0;
 
-  const cells = ZONE_GRID * ZONE_GRID;
-  const zoneRef     = new Int32Array(cells);
-  const zoneOverlap = new Int32Array(cells);
+  const cells     = ZONE_GRID * ZONE_GRID;
+  const zoneRef   = new Int32Array(cells);
+  const zoneOver  = new Int32Array(cells);
 
   for (let i = 0; i < refData.length; i += 4) {
-    const onRef = refData[i + 3] > 30;
-    if (!onRef) continue;
+    const onRef   = refData[i + 3]   > 30;
+    const onDrawn = drawnData[i + 3] > 30;
 
-    const pixelIdx = i >> 2;
-    const px = pixelIdx % CANVAS_W;
-    const py = (pixelIdx / CANVAS_W) | 0;
-    const zx = Math.min((px / CANVAS_W * ZONE_GRID) | 0, ZONE_GRID - 1);
-    const zy = Math.min((py / CANVAS_H * ZONE_GRID) | 0, ZONE_GRID - 1);
-    const zi = zy * ZONE_GRID + zx;
+    if (onDrawn) drawnTotal++;
+
+    if (!onRef) continue;   // outside-guide pixels ignored for coverage/zones
+
+    const idx = i >> 2;
+    const px  = idx % CANVAS_W;
+    const py  = (idx / CANVAS_W) | 0;
+    const zx  = Math.min((px / CANVAS_W * ZONE_GRID) | 0, ZONE_GRID - 1);
+    const zy  = Math.min((py / CANVAS_H * ZONE_GRID) | 0, ZONE_GRID - 1);
+    const zi  = zy * ZONE_GRID + zx;
 
     refTotal++;
     zoneRef[zi]++;
-    if (drawnData[i + 3] > 30) { overlap++; zoneOverlap[zi]++; }
+    if (onDrawn) { overlap++; zoneOver[zi]++; }
   }
 
-  const coverage = refTotal === 0 ? 0 : overlap / refTotal;
+  const coverage  = refTotal   === 0 ? 0 : overlap / refTotal;
+  const precision = drawnTotal === 0 ? 0 : overlap / drawnTotal;
 
   let totalZones = 0, coveredZones = 0;
   for (let zi = 0; zi < cells; zi++) {
     if (zoneRef[zi] < ZONE_MIN_REF_PX) continue;
     totalZones++;
-    if (zoneOverlap[zi] / zoneRef[zi] >= ZONE_COVERAGE_MIN) coveredZones++;
+    if (zoneOver[zi] / zoneRef[zi] >= ZONE_COVERAGE_MIN) coveredZones++;
   }
   const zoneFraction = totalZones === 0 ? 1 : coveredZones / totalZones;
 
-  return { coverage, zoneFraction, coveredZones, totalZones };
+  return { coverage, precision, zoneFraction };
 }
 
 type TraceMode = "letter" | "word";
@@ -100,46 +94,56 @@ export default function TracingPage() {
   const { profiles, activeProfileId, progress, updateProgress } = useAppStore();
   const profile = profiles.find((p) => p.id === activeProfileId) ?? null;
 
-  const [mode, setMode] = useState<TraceMode>("letter");
+  const [mode, setMode]           = useState<TraceMode>("letter");
   const [letterIdx, setLetterIdx] = useState(0);
   const [wordEntry, setWordEntry] = useState(() => getRandomWord());
-  const [isDone, setIsDone] = useState(false);
+  const [isDone, setIsDone]       = useState(false);
   const [traceProgress, setTraceProgress] = useState(0);
 
-  // bgCanvasRef: renders the letter guide — its pixels ARE the reference (letter mode)
-  // canvasRef (fg): transparent, user draws here
-  const bgCanvasRef = useRef<HTMLCanvasElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const drawing = useRef(false);
-  const lastPt = useRef<Point | null>(null);
+  // bgCanvasRef — renders the guide; its pixels ARE the reference (both modes)
+  // canvasRef   — transparent foreground; child draws here
+  const bgCanvasRef  = useRef<HTMLCanvasElement>(null);
+  const canvasRef    = useRef<HTMLCanvasElement>(null);
+  const drawing      = useRef(false);
+  const lastPt       = useRef<Point | null>(null);
   const lastCheckTime = useRef(0);
-  // Cache of bg-canvas reference pixels (invalidated on letter change)
-  const bgRefPixels = useRef<Uint8ClampedArray | null>(null);
-  // Cache for word mode offscreen reference
-  const wordRefPixels = useRef<Record<string, Uint8ClampedArray>>({});
-  const prevKeyRef = useRef("");
+  const bgRefPixels  = useRef<Uint8ClampedArray | null>(null);
+  const prevKeyRef   = useRef("");
 
-  const letter = PHONICS_DATA[letterIdx];
+  const letter     = PHONICS_DATA[letterIdx];
   const currentKey = mode === "letter" ? `L:${letterIdx}` : `W:${wordEntry.word}`;
 
-  // ── Draw the guide letter on the background canvas ──────────────────────────
-  // This is the SINGLE source of truth for both the visual guide AND reference pixels.
-  // The same canvas draw call produces both, so alignment is guaranteed perfect.
+  // Font size for word guide — large enough to trace comfortably
+  const wordGuideFontSize = useMemo(() => {
+    const len = wordEntry.word.length;
+    let size = len <= 3 ? 88 : len === 4 ? 70 : len === 5 ? 56 : 46;
+    const maxAllowed = Math.floor((CANVAS_W - 24) / (len * 0.58));
+    return Math.max(Math.min(size, maxAllowed), 38);
+  }, [wordEntry.word]);
+
+  // ── Draw guide on bgCanvas ────────────────────────────────────────────────
+  // Both the visual guide the child sees AND the reference pixels come from
+  // this exact draw call — zero coordinate mismatch possible.
   useEffect(() => {
-    if (mode !== "letter") return;
     const bg = bgCanvasRef.current;
     if (!bg) return;
     const ctx = bg.getContext("2d")!;
     ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
-    // Draw at full opacity so alpha=255 wherever the letter is → reliable ref pixels
-    ctx.font = `900 162px Nunito, sans-serif`;
-    ctx.textAlign = "center";
+    ctx.textAlign    = "center";
     ctx.textBaseline = "middle";
-    ctx.fillStyle = "rgb(200, 205, 215)";      // light gray guide
-    ctx.fillText(letter.uppercase, CANVAS_W / 2, CANVAS_H / 2);
-    // Capture reference pixels immediately from the same draw — zero mismatch possible
+    ctx.fillStyle    = "rgb(200, 205, 215)";  // light gray guide
+
+    if (mode === "letter") {
+      ctx.font = `900 162px Nunito, sans-serif`;
+      ctx.fillText(letter.uppercase, CANVAS_W / 2, CANVAS_H / 2);
+    } else {
+      ctx.font = `900 ${wordGuideFontSize}px Nunito, sans-serif`;
+      ctx.fillText(wordEntry.word.toUpperCase(), CANVAS_W / 2, CANVAS_H / 2);
+    }
+
+    // Capture ref pixels immediately — same draw, guaranteed alignment
     bgRefPixels.current = ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
-  }, [mode, letter.uppercase]);
+  }, [mode, letter.uppercase, wordEntry.word, wordGuideFontSize]);
 
   const clearCanvas = useCallback(() => {
     const fg = canvasRef.current;
@@ -156,13 +160,6 @@ export default function TracingPage() {
     }
   }, [currentKey, clearCanvas]);
 
-  const wordFontSize = useMemo(() => {
-    const len = wordEntry.word.length;
-    let size = len <= 3 ? 68 : len === 4 ? 50 : len === 5 ? 42 : 38;
-    const maxAllowed = Math.floor((CANVAS_W - 24) / (len * 0.55));
-    return Math.max(Math.min(size, maxAllowed), 36);
-  }, [wordEntry.word]);
-
   useEffect(() => {
     if (!profile) router.navigate({ to: "/" });
   }, [profile, router]);
@@ -170,27 +167,12 @@ export default function TracingPage() {
   if (!profile) return null;
 
   const completedCount = PHONICS_DATA.filter((l) => progress?.tracing[l.letter]?.completed).length;
-  const progressPct = Math.round((completedCount / PHONICS_DATA.length) * 100);
-
-  const getRefPixels = (): Uint8ClampedArray | null => {
-    if (mode === "letter") {
-      // Read from bg canvas — same draw call as the visual guide, perfect alignment
-      return bgRefPixels.current;
-    }
-    // Word mode: offscreen reference (no visual guide to misalign with)
-    if (!wordRefPixels.current[currentKey]) {
-      wordRefPixels.current[currentKey] = buildReferencePixels(
-        wordEntry.word.toUpperCase(), wordFontSize
-      );
-    }
-    return wordRefPixels.current[currentKey];
-  };
+  const progressPct    = Math.round((completedCount / PHONICS_DATA.length) * 100);
 
   const getPoint = (e: React.MouseEvent | React.TouchEvent): Point => {
-    // Always read from the FG drawing canvas for coordinate mapping
     const canvas = canvasRef.current!;
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
+    const rect   = canvas.getBoundingClientRect();
+    const scaleX = canvas.width  / rect.width;
     const scaleY = canvas.height / rect.height;
     if ("touches" in e) {
       const t = e.touches[0];
@@ -203,7 +185,7 @@ export default function TracingPage() {
   const startDraw = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     drawing.current = true;
-    lastPt.current = getPoint(e);
+    lastPt.current  = getPoint(e);
   };
 
   const doDrawing = (e: React.MouseEvent | React.TouchEvent) => {
@@ -215,29 +197,35 @@ export default function TracingPage() {
     ctx.beginPath();
     ctx.moveTo(lastPt.current.x, lastPt.current.y);
     ctx.lineTo(pt.x, pt.y);
-    ctx.strokeStyle = mode === "letter" ? (STROKE_COLORS[letter.color] ?? STROKE_COLORS.blue) : "oklch(0.55 0.22 280)";
-    ctx.lineWidth = mode === "letter" ? 22 : 14;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
+    ctx.strokeStyle = mode === "letter"
+      ? (STROKE_COLORS[letter.color] ?? STROKE_COLORS.blue)
+      : "oklch(0.55 0.22 280)";
+    ctx.lineWidth  = mode === "letter" ? 22 : 16;
+    ctx.lineCap    = "round";
+    ctx.lineJoin   = "round";
     ctx.stroke();
     lastPt.current = pt;
     const now = Date.now();
-    if (now - lastCheckTime.current >= CHECK_MS) { lastCheckTime.current = now; checkSimilarity(); }
+    if (now - lastCheckTime.current >= CHECK_MS) {
+      lastCheckTime.current = now;
+      checkSimilarity();
+    }
   };
 
   const checkSimilarity = () => {
     const fg = canvasRef.current;
-    if (!fg) return;
+    if (!fg || !bgRefPixels.current) return;
     const fgCtx = fg.getContext("2d");
     if (!fgCtx) return;
-    const refData = getRefPixels();
-    if (!refData) return;
 
     const drawnData = fgCtx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
-    const { coverage, zoneFraction } = computeScores(drawnData, refData);
+    const { coverage, precision, zoneFraction } = computeScores(drawnData, bgRefPixels.current);
 
+    // Progress bar: coverage only (outside strokes don't count toward %)
     const rawPct = Math.round(coverage * 100);
-    const allPass = coverage >= COVERAGE_THRESHOLD && zoneFraction >= ZONE_PASS_FRACTION;
+    const allPass = coverage  >= COVERAGE_THRESHOLD
+                 && precision >= PRECISION_THRESHOLD   // prevents random scribbling
+                 && zoneFraction >= ZONE_PASS_FRACTION;
     setTraceProgress(allPass ? 100 : Math.min(rawPct, 99));
 
     if (allPass && !isDone) {
@@ -245,12 +233,19 @@ export default function TracingPage() {
       playSuccessSound();
       if (mode === "letter") {
         updateProgress((prev) => {
-          const existing = prev.tracing[letter.letter] ?? { letterId: letter.letter, attempts: 0, completed: false, lastVisited: 0 };
+          const existing = prev.tracing[letter.letter] ?? {
+            letterId: letter.letter, attempts: 0, completed: false, lastVisited: 0,
+          };
           return {
             ...prev,
             tracing: {
               ...prev.tracing,
-              [letter.letter]: { ...existing, attempts: existing.attempts + 1, completed: true, lastVisited: Date.now() },
+              [letter.letter]: {
+                ...existing,
+                attempts: existing.attempts + 1,
+                completed: true,
+                lastVisited: Date.now(),
+              },
             },
           };
         });
@@ -258,7 +253,12 @@ export default function TracingPage() {
     }
   };
 
-  const endDraw = () => { if (!drawing.current) return; drawing.current = false; lastPt.current = null; checkSimilarity(); };
+  const endDraw = () => {
+    if (!drawing.current) return;
+    drawing.current = false;
+    lastPt.current  = null;
+    checkSimilarity();
+  };
 
   const newWord = () => {
     playTapSound();
@@ -271,10 +271,12 @@ export default function TracingPage() {
     <Layout title={getUILabel("Tracing")} headerColor="oklch(0.48 0.22 145)">
       <div className="px-5 py-5 flex flex-col gap-4">
 
-        {/* Progress Bar */}
+        {/* Overall progress bar */}
         <div className="bg-white rounded-2xl px-4 py-3 border border-border shadow-card">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-display font-bold text-foreground">{getUILabel("Letters Traced")}</span>
+            <span className="text-xs font-display font-bold text-foreground">
+              {getUILabel("Letters Traced")}
+            </span>
             <span className="text-xs font-display font-black text-[oklch(0.48_0.22_145)]">
               {completedCount}/{PHONICS_DATA.length}
             </span>
@@ -289,12 +291,19 @@ export default function TracingPage() {
             />
           </div>
           <p className="text-xs text-muted-foreground font-body mt-1.5">
-            {progressPct === 0 ? getUILabel("Start tracing to make progress!") : progressPct === 100 ? getUILabel("🎉 All letters completed!") : `${progressPct}% ${getUILabel("complete — keep going!")}`}
+            {progressPct === 0
+              ? getUILabel("Start tracing to make progress!")
+              : progressPct === 100
+                ? getUILabel("🎉 All letters completed!")
+                : `${progressPct}% ${getUILabel("complete — keep going!")}`}
           </p>
         </div>
 
         {/* Mode toggle */}
-        <div className="flex rounded-2xl overflow-hidden border border-border bg-white shadow-xs" data-ocid="tracing.mode_toggle">
+        <div
+          className="flex rounded-2xl overflow-hidden border border-border bg-white shadow-xs"
+          data-ocid="tracing.mode_toggle"
+        >
           <button
             type="button"
             data-ocid="tracing.letter_mode_tab"
@@ -317,9 +326,13 @@ export default function TracingPage() {
           </button>
         </div>
 
-        {/* Letter tabs */}
+        {/* Letter selector tabs */}
         {mode === "letter" && (
-          <div className="flex gap-1.5 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }} data-ocid="tracing.letter_tabs">
+          <div
+            className="flex gap-1.5 overflow-x-auto pb-1"
+            style={{ scrollbarWidth: "none" }}
+            data-ocid="tracing.letter_tabs"
+          >
             {PHONICS_DATA.map((l, i) => {
               const done = progress?.tracing[l.letter]?.completed;
               return (
@@ -347,12 +360,17 @@ export default function TracingPage() {
         {mode === "letter" ? (
           <div
             className={`rounded-2xl p-4 flex items-center gap-4 text-white ${
-              letter.color === "red" ? "gradient-red" : letter.color === "blue" ? "gradient-blue"
-              : letter.color === "green" ? "gradient-green" : letter.color === "yellow" ? "gradient-yellow" : "gradient-purple"
+              letter.color === "red"    ? "gradient-red"
+              : letter.color === "blue"   ? "gradient-blue"
+              : letter.color === "green"  ? "gradient-green"
+              : letter.color === "yellow" ? "gradient-yellow"
+              : "gradient-purple"
             }`}
             style={{ boxShadow: "0 4px 16px oklch(0 0 0 / 0.15)" }}
           >
-            <span className="text-7xl font-display font-black leading-none drop-shadow">{letter.uppercase}</span>
+            <span className="text-7xl font-display font-black leading-none drop-shadow">
+              {letter.uppercase}
+            </span>
             <div>
               <p className="text-2xl font-display font-bold">{letter.lowercase}</p>
               <p className="text-sm font-body opacity-80">/{letter.phonicSound}/</p>
@@ -363,11 +381,18 @@ export default function TracingPage() {
             </div>
           </div>
         ) : (
-          <div className="bg-white rounded-2xl p-4 flex items-center gap-4 border border-border shadow-card" data-ocid="tracing.word_card">
+          <div
+            className="bg-white rounded-2xl p-4 flex items-center gap-4 border border-border shadow-card"
+            data-ocid="tracing.word_card"
+          >
             <span className="text-5xl">{wordEntry.emoji}</span>
             <div className="flex-1">
-              <p className="text-2xl font-display font-black text-foreground leading-tight">{wordEntry.word}</p>
-              <p className="text-xs font-body text-muted-foreground mt-0.5">{getUILabel("Trace this word")}</p>
+              <p className="text-2xl font-display font-black text-foreground leading-tight">
+                {wordEntry.word}
+              </p>
+              <p className="text-xs font-body text-muted-foreground mt-0.5">
+                {getUILabel("Trace this word")}
+              </p>
             </div>
             <button
               type="button"
@@ -381,20 +406,18 @@ export default function TracingPage() {
           </div>
         )}
 
-        {/* Canvas area: bg guide canvas stacked under fg drawing canvas */}
+        {/* Canvas: bgCanvas (guide) stacked under fgCanvas (drawing) */}
         <div className="relative rounded-2xl overflow-hidden border border-border shadow-card bg-white">
-          {/* BG canvas — letter guide drawn here; also the source of reference pixels */}
-          {mode === "letter" && (
-            <canvas
-              ref={bgCanvasRef}
-              width={CANVAS_W}
-              height={CANVAS_H}
-              aria-hidden="true"
-              className="absolute inset-0 w-full h-full pointer-events-none select-none"
-              style={{ zIndex: 1 }}
-            />
-          )}
-          {/* FG canvas — transparent; child draws here */}
+          {/* Background canvas — gray guide letter/word; also the pixel reference */}
+          <canvas
+            ref={bgCanvasRef}
+            width={CANVAS_W}
+            height={CANVAS_H}
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full pointer-events-none select-none"
+            style={{ zIndex: 1 }}
+          />
+          {/* Foreground canvas — transparent; child draws colored strokes here */}
           <canvas
             ref={canvasRef}
             width={CANVAS_W}
@@ -412,7 +435,7 @@ export default function TracingPage() {
           />
         </div>
 
-        {/* Live tracing progress bar */}
+        {/* Live tracing progress bar (coverage only — outside strokes don't count) */}
         <div className="bg-white rounded-2xl px-4 py-3 border border-border shadow-card">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-display font-bold text-foreground">
@@ -426,7 +449,10 @@ export default function TracingPage() {
                       ? "🌟 " + getUILabel("Great job! Almost there!")
                       : "🔥 " + getUILabel("So close! Fill it all in!")}
             </span>
-            <span className="text-xs font-display font-black" style={{ color: "oklch(0.48 0.22 145)" }}>
+            <span
+              className="text-xs font-display font-black"
+              style={{ color: "oklch(0.48 0.22 145)" }}
+            >
               {traceProgress}%
             </span>
           </div>
@@ -483,7 +509,7 @@ export default function TracingPage() {
             </button>
           )}
 
-          {isDone ? (
+          {isDone && (
             <motion.button
               type="button"
               data-ocid="tracing.next_button"
@@ -499,7 +525,7 @@ export default function TracingPage() {
             >
               <Check className="w-5 h-5" /> {getUILabel("Next!")}
             </motion.button>
-          ) : null}
+          )}
         </div>
       </div>
     </Layout>
