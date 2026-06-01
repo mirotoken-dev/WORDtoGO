@@ -21,7 +21,8 @@ const STROKE_COLORS: Record<string, string> = {
 // ── Scoring thresholds ────────────────────────────────────────────────────────
 const COVERAGE_THRESHOLD  = 0.72;  // 72% of guide pixels must be covered
 const PRECISION_THRESHOLD = 0.38;  // 38% of drawn pixels must land on the guide
-                                   // (prevents random scribbling from completing)
+const PRECISION_DISPLAY_TARGET = 0.45; // full progress credit at this precision;
+                                       // below it, progress bar is scaled down
 const ZONE_GRID           = 3;
 const ZONE_MIN_REF_PX     = 20;
 const ZONE_COVERAGE_MIN   = 0.50;
@@ -113,12 +114,12 @@ export default function TracingPage() {
   const letter     = PHONICS_DATA[letterIdx];
   const currentKey = mode === "letter" ? `L:${letterIdx}` : `W:${wordEntry.word}`;
 
-  // Font size for word guide — large enough to trace comfortably
+  // Font size for word guide — fills the canvas as large as possible
   const wordGuideFontSize = useMemo(() => {
     const len = wordEntry.word.length;
-    let size = len <= 3 ? 88 : len === 4 ? 70 : len === 5 ? 56 : 46;
-    const maxAllowed = Math.floor((CANVAS_W - 24) / (len * 0.58));
-    return Math.max(Math.min(size, maxAllowed), 38);
+    const maxByWidth  = Math.floor((CANVAS_W - 8) / (len * 0.60)); // fill width
+    const maxByHeight = CANVAS_H - 16;                              // fill height
+    return Math.max(Math.min(maxByWidth, maxByHeight), 50);
   }, [wordEntry.word]);
 
   // ── Draw guide on bgCanvas ────────────────────────────────────────────────
@@ -221,12 +222,15 @@ export default function TracingPage() {
     const drawnData = fgCtx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
     const { coverage, precision, zoneFraction } = computeScores(drawnData, bgRefPixels.current);
 
-    // Progress bar: coverage only (outside strokes don't count toward %)
-    const rawPct = Math.round(coverage * 100);
+    // Progress = coverage × precision factor
+    // Outside strokes reduce the bar: low precision shrinks the displayed %
+    const precisionFactor = Math.min(precision / PRECISION_DISPLAY_TARGET, 1.0);
+    const displayPct = Math.round(coverage * precisionFactor * 100);
+
     const allPass = coverage  >= COVERAGE_THRESHOLD
-                 && precision >= PRECISION_THRESHOLD   // prevents random scribbling
+                 && precision >= PRECISION_THRESHOLD
                  && zoneFraction >= ZONE_PASS_FRACTION;
-    setTraceProgress(allPass ? 100 : Math.min(rawPct, 99));
+    setTraceProgress(allPass ? 100 : Math.min(displayPct, 99));
 
     if (allPass && !isDone) {
       setIsDone(true);
