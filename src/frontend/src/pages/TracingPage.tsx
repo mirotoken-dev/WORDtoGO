@@ -20,9 +20,9 @@ const STROKE_COLORS: Record<string, string> = {
 
 // ── Scoring thresholds ────────────────────────────────────────────────────────
 const COVERAGE_THRESHOLD  = 0.72;  // 72% of guide pixels must be covered
-const PRECISION_THRESHOLD = 0.38;  // 38% of drawn pixels must land on the guide
-const PRECISION_DISPLAY_TARGET = 0.45; // full progress credit at this precision;
-                                       // below it, progress bar is scaled down
+const PRECISION_THRESHOLD = 0.55;  // 55% of drawn pixels must land on the guide
+const PRECISION_DISPLAY_TARGET = 0.55; // full progress credit at this precision;
+                                       // below it bar scales down aggressively
 const ZONE_GRID           = 3;
 const ZONE_MIN_REF_PX     = 20;
 const ZONE_COVERAGE_MIN   = 0.50;
@@ -222,9 +222,9 @@ export default function TracingPage() {
     const drawnData = fgCtx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
     const { coverage, precision, zoneFraction } = computeScores(drawnData, bgRefPixels.current);
 
-    // Progress = coverage × precision factor
-    // Outside strokes reduce the bar: low precision shrinks the displayed %
-    const precisionFactor = Math.min(precision / PRECISION_DISPLAY_TARGET, 1.0);
+    // Progress = coverage × precision factor (aggressive power curve)
+    // Outside strokes reduce the bar hard: exponent 2 means half-precision → quarter credit
+    const precisionFactor = Math.pow(Math.min(precision / PRECISION_DISPLAY_TARGET, 1.0), 2);
     const displayPct = Math.round(coverage * precisionFactor * 100);
 
     const allPass = coverage  >= COVERAGE_THRESHOLD
@@ -439,8 +439,8 @@ export default function TracingPage() {
           />
         </div>
 
-        {/* Live tracing progress bar (coverage only — outside strokes don't count) */}
-        <div className="bg-white rounded-2xl px-4 py-3 border border-border shadow-card">
+        {/* Live tracing progress bar — letter mode only */}
+        {mode === "letter" && <div className="bg-white rounded-2xl px-4 py-3 border border-border shadow-card">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-display font-bold text-foreground">
               {isDone
@@ -472,7 +472,7 @@ export default function TracingPage() {
               transition={{ duration: 0.1, ease: "easeOut" }}
             />
           </div>
-        </div>
+        </div>}
 
         {/* Success banner */}
         {isDone && (
