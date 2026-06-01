@@ -18,8 +18,12 @@ const STROKE_COLORS: Record<string, string> = {
   purple: "oklch(0.55 0.22 320)",
 };
 
-const COVERAGE_THRESHOLD = 0.60;   // ≥60% of the letter blueprint must be covered
-const PRECISION_THRESHOLD = 0.38;  // ≥38% of drawn strokes must land ON the letter
+const COVERAGE_THRESHOLD = 0.58;   // ≥58% of the letter blueprint must be covered
+const PRECISION_THRESHOLD = 0.42;  // ≥42% of drawn strokes must land ON the letter
+const ZONE_GRID = 3;               // 3×3 spatial grid
+const ZONE_MIN_REF_PX = 20;        // ignore zones with fewer than 20 ref pixels
+const ZONE_COVERAGE_MIN = 0.42;    // each active zone needs ≥42% of its pixels covered
+const ZONE_PASS_FRACTION = 0.70;   // 70% of active zones must individually pass
 const CANVAS_W = 360;
 const CANVAS_H = 240;
 
@@ -45,21 +49,49 @@ function buildReferencePixels(text: string, fontSize = 160): Uint8ClampedArray {
   return ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
 }
 
-function computeScores(drawnData: Uint8ClampedArray, refData: Uint8ClampedArray): { coverage: number; precision: number } {
-  let refTotal = 0;
-  let drawnTotal = 0;
-  let overlap = 0;
+interface TraceScores {
+  coverage: number;
+  precision: number;
+  zoneFraction: number;   // fraction of active zones that pass ZONE_COVERAGE_MIN
+  coveredZones: number;
+  totalZones: number;
+}
+
+function computeScores(drawnData: Uint8ClampedArray, refData: Uint8ClampedArray): TraceScores {
+  let refTotal = 0, drawnTotal = 0, overlap = 0;
+
+  // zone grid: ZONE_GRID × ZONE_GRID cells
+  const cells = ZONE_GRID * ZONE_GRID;
+  const zoneRef     = new Int32Array(cells);
+  const zoneOverlap = new Int32Array(cells);
+
   for (let i = 0; i < refData.length; i += 4) {
-    const onRef = refData[i + 3] > 30;
+    const pixelIdx = i >> 2;
+    const px = pixelIdx % CANVAS_W;
+    const py = (pixelIdx / CANVAS_W) | 0;
+    const zx = Math.min((px / CANVAS_W * ZONE_GRID) | 0, ZONE_GRID - 1);
+    const zy = Math.min((py / CANVAS_H * ZONE_GRID) | 0, ZONE_GRID - 1);
+    const zi = zy * ZONE_GRID + zx;
+
+    const onRef   = refData[i + 3]   > 30;
     const onDrawn = drawnData[i + 3] > 30;
-    if (onRef) refTotal++;
-    if (onDrawn) drawnTotal++;
-    if (onRef && onDrawn) overlap++;
+    if (onRef)           { refTotal++;   zoneRef[zi]++; }
+    if (onDrawn)           drawnTotal++;
+    if (onRef && onDrawn) { overlap++;   zoneOverlap[zi]++; }
   }
-  return {
-    coverage: refTotal === 0 ? 0 : overlap / refTotal,
-    precision: drawnTotal === 0 ? 0 : overlap / drawnTotal,
-  };
+
+  const coverage  = refTotal   === 0 ? 0 : overlap / refTotal;
+  const precision = drawnTotal === 0 ? 0 : overlap / drawnTotal;
+
+  let totalZones = 0, coveredZones = 0;
+  for (let zi = 0; zi < cells; zi++) {
+    if (zoneRef[zi] < ZONE_MIN_REF_PX) continue;
+    totalZones++;
+    if (zoneOverlap[zi] / zoneRef[zi] >= ZONE_COVERAGE_MIN) coveredZones++;
+  }
+  const zoneFraction = totalZones === 0 ? 1 : coveredZones / totalZones;
+
+  return { coverage, precision, zoneFraction, coveredZones, totalZones };
 }
 
 type TraceMode = "letter" | "word";
@@ -73,7 +105,8 @@ export default function TracingPage() {
   const [letterIdx, setLetterIdx] = useState(0);
   const [wordEntry, setWordEntry] = useState(() => getRandomWord());
   const [isDone, setIsDone] = useState(false);
-  const [_coverage, setCoverage] = useState(0);
+  const [traceProgress, setTraceProgress] = useState(0);   // 0–100 live fill
+  const [isOnTarget, setIsOnTarget] = useState(true);      // true = on letter, false = off
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const drawing = useRef(false);
   const lastPt = useRef<Point | null>(null);
@@ -88,7 +121,8 @@ export default function TracingPage() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     canvas.getContext("2d")?.clearRect(0, 0, canvas.width, canvas.height);
-    setCoverage(0);
+    setTraceProgress(0);
+    setIsOnTarget(true);
     setIsDone(false);
   }, []);
 
@@ -178,9 +212,17 @@ export default function TracingPage() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const drawnData = ctx.getImageData(0, 0, CANVAS_W, CANVAS_H).data;
-    const { coverage, precision } = computeScores(drawnData, getRefPixels());
-    setCoverage(coverage);
-    if (coverage >= COVERAGE_THRESHOLD && precision >= PRECISION_THRESHOLD && !isDone) {
+    const { coverage, precision, zoneFraction, coveredZones, totalZones } = computeScores(drawnData, getRefPixels());
+
+    // Progress = how many zones are covered, capped at 99 until all criteria pass
+    const zoneProgress = totalZones === 0 ? 0 : Math.round((coveredZones / totalZones) * 100);
+    const onTarget = precision >= 0.25; // enough strokes on letter to count as "on track"
+    setIsOnTarget(onTarget);
+
+    const allPass = coverage >= COVERAGE_THRESHOLD && precision >= PRECISION_THRESHOLD && zoneFraction >= ZONE_PASS_FRACTION;
+    setTraceProgress(allPass ? 100 : Math.min(zoneProgress, 99));
+
+    if (allPass && !isDone) {
       setIsDone(true);
       playSuccessSound();
       if (mode === "letter") {
@@ -322,9 +364,7 @@ export default function TracingPage() {
         )}
 
         {/* Canvas */}
-        <div
-          className="relative rounded-2xl overflow-hidden border border-border shadow-card bg-white"
-        >
+        <div className="relative rounded-2xl overflow-hidden border border-border shadow-card bg-white">
           {mode === "letter" && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
               <span className="font-display font-black leading-none" style={{ fontSize: 180, color: "oklch(0.88 0.01 260)" }}>
@@ -347,6 +387,32 @@ export default function TracingPage() {
             onTouchMove={doDrawing}
             onTouchEnd={endDraw}
           />
+        </div>
+
+        {/* Live tracing progress bar */}
+        <div className="bg-white rounded-2xl px-4 py-3 border border-border shadow-card">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs font-display font-bold text-foreground">
+              {isDone ? "✅ " + getUILabel("Complete!") : traceProgress === 0 ? getUILabel("Start tracing…") : isOnTarget ? "✏️ " + getUILabel("On track! Keep going!") : "⚠️ " + getUILabel("Stay on the letter!")}
+            </span>
+            <span className="text-xs font-display font-black" style={{ color: isDone ? "oklch(0.48 0.22 145)" : isOnTarget ? "oklch(0.48 0.22 145)" : "oklch(0.60 0.18 55)" }}>
+              {traceProgress}%
+            </span>
+          </div>
+          <div className="w-full h-3 rounded-full overflow-hidden bg-muted">
+            <motion.div
+              className="h-full rounded-full"
+              style={{
+                background: isDone
+                  ? "linear-gradient(90deg, oklch(0.62 0.22 145), oklch(0.48 0.22 145))"
+                  : isOnTarget
+                    ? "linear-gradient(90deg, oklch(0.72 0.22 145), oklch(0.55 0.22 145))"
+                    : "linear-gradient(90deg, oklch(0.80 0.18 55), oklch(0.65 0.18 55))",
+              }}
+              animate={{ width: `${traceProgress}%` }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+            />
+          </div>
         </div>
 
         {/* Success banner */}
