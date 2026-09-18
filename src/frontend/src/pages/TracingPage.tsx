@@ -3,6 +3,7 @@ import { Check, Eraser, RefreshCw, SkipForward } from "lucide-react";
 import { motion } from "motion/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Layout from "../components/Layout";
+import WordIcon from "../components/WordIcon";
 import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
 import { getUILabel } from "../data/arabicTranslations";
@@ -379,7 +380,7 @@ export default function TracingPage() {
               <p className="text-sm font-body opacity-80">/{letter.phonicSound}/</p>
             </div>
             <div className="ml-auto text-center">
-              <p className="text-4xl">{letter.words[0].emoji}</p>
+              <WordIcon icon={letter.words[0].emoji} word={letter.words[0].word} className="text-4xl" imageClassName="w-16 h-16" />
               <p className="text-xs font-body opacity-80">{letter.words[0].word}</p>
             </div>
           </div>
@@ -388,7 +389,7 @@ export default function TracingPage() {
             className="bg-white rounded-2xl p-4 flex items-center gap-4 border border-border shadow-card"
             data-ocid="tracing.word_card"
           >
-            <span className="text-5xl">{wordEntry.emoji}</span>
+            <WordIcon icon={wordEntry.emoji} word={wordEntry.word} className="text-5xl" imageClassName="w-16 h-16" />
             <div className="flex-1">
               <p className="text-2xl font-display font-black text-foreground leading-tight">
                 {wordEntry.word}

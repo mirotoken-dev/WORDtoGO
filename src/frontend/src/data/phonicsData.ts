@@ -910,7 +910,7 @@ const rawData: Omit<LetterData, "color">[] = [
     lowercase: "j",
     phonicSound: "juh",
     words: [
-      { word: "Jam", emoji: "🍓", arabic: "مربى" },
+      { word: "Jam", emoji: "/assets/jam-icon.jpg", arabic: "مربى" },
       { word: "Jar", emoji: "🫙", arabic: "برطمان" },
       { word: "Jug", emoji: "🪣", arabic: "إبريق" },
       { word: "Jeep", emoji: "🚙", arabic: "جيب" },
@@ -926,7 +926,7 @@ const rawData: Omit<LetterData, "color">[] = [
         id: "j-1",
         sounds: ["j", "a", "m"],
         word: "jam",
-        emoji: "🍓",
+        emoji: "/assets/jam-icon.jpg",
         hint: "sweet spread",
         arabicHint: "موس حلو",
       },

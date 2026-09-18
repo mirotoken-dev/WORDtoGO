@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { PHONICS_DATA } from "../data/phonicsData";
 import { getArabicWord, getUILabel } from "../data/arabicTranslations";
+import WordIcon from "../components/WordIcon";
 import {
   playCelebrationSound,
   playSuccessSound,
@@ -272,9 +273,12 @@ export default function PronunciationPage() {
             >
               <div className="absolute inset-0 pointer-events-none rounded-3xl"
                 style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.06) 0%, transparent 60%)" }} />
-              <span className="text-8xl relative z-10 float inline-block" role="img" aria-label={current.word}>
-                {current.emoji}
-              </span>
+              <WordIcon
+                icon={current.emoji}
+                word={current.word}
+                className="text-8xl relative z-10 float inline-block"
+                imageClassName="w-32 h-32"
+              />
               <h2
                 className="text-5xl font-display font-black relative z-10"
                 style={{

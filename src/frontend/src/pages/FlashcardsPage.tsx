@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import ProgressBar from "../components/ProgressBar";
+import WordIcon from "../components/WordIcon";
 import { PHONICS_DATA } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
 import { getArabicWord, getUILabel } from "../data/arabicTranslations";
@@ -133,7 +134,7 @@ export default function FlashcardsPage() {
               </>
             ) : (
               <>
-                <span className="text-6xl mb-2">{word.emoji}</span>
+                <WordIcon icon={word.emoji} word={word.word} className="text-6xl mb-2" imageClassName="w-20 h-20" />
                 <span className="text-3xl font-display font-black">{word.word}</span>
                 {word.arabic && (
                   <span className="text-xl font-[var(--font-arabic)] mt-1" dir="rtl">
@@ -173,7 +174,7 @@ export default function FlashcardsPage() {
                   : "bg-white text-foreground border border-border hover:bg-muted"
               }`}
             >
-              <span>{w.emoji}</span>
+              <WordIcon icon={w.emoji} word={w.word} imageClassName="w-6 h-6" />
               <span>{w.word}</span>
               {w.arabic && <span className="text-xs font-[var(--font-arabic)] ml-1 opacity-80" dir="rtl">{w.arabic}</span>}
             </button>

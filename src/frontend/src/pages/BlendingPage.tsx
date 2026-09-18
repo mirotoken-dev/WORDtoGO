@@ -5,6 +5,7 @@ import { useCallback, useMemo, useState } from "react";
 import Layout from "../components/Layout";
 import ProgressBar from "../components/ProgressBar";
 import StarBadge from "../components/StarBadge";
+import WordIcon from "../components/WordIcon";
 import { PHONICS_DATA, TOTAL_BLENDING_TASKS } from "../data/phonicsData";
 import { useAppStore } from "../store/useAppStore";
 import {
@@ -225,7 +226,7 @@ export default function BlendingPage() {
           style={{ boxShadow: "0 4px 20px oklch(0 0 0 / 0.15)" }}
         >
           <div className="absolute inset-0 rounded-3xl pointer-events-none" style={{ background: "linear-gradient(135deg, oklch(1 0 0 / 0.10) 0%, transparent 55%)" }} />
-          <span className="text-6xl relative z-10">{task.emoji}</span>
+          <WordIcon icon={task.emoji} word={task.word} className="text-6xl relative z-10" imageClassName="w-20 h-20" />
           <div className="relative z-10">
             <p className="text-xs font-body opacity-80">{getUILabel("Build this word")}</p>
             <p className="text-3xl font-display font-black">{task.word}</p>
