@@ -58,9 +58,10 @@ export function generateLevel2Pairs(): MatchPair[] {
 }
 
 /**
- * Level 3 – Emoji picture ↔ lowercase word
- * Uses the first word's emoji from each letter's word list.
- * left: "🍎", right: "apple"
+ * Level 3 – Picture ↔ lowercase word
+ * Uses the first word's picture value from each letter's word list.
+ * The picture value may be an emoji or a public asset path.
+ * left: "🍎" or "/assets/apple.png", right: "apple"
  */
 export function generateLevel3Pairs(): MatchPair[] {
   const letters = sampleRandom(PHONICS_DATA, ROUND_SIZE);

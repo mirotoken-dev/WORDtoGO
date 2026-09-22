@@ -2,6 +2,7 @@ import { useRouter } from "@tanstack/react-router";
 import { ArrowLeft, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import WordIcon from "../components/WordIcon";
 import { getUILabel } from "../data/arabicTranslations";
 import type { QuizLevel } from "../types";
 import {
@@ -214,6 +215,10 @@ export default function MatchingGamePage({
             const selected = selectedLeft === val;
             const wrongFlash = wrongFlashLeft === val;
             const leftPos = leftItems.indexOf(val) + 1;
+            const pairedWord = pairs.find((p) => p.left === val)?.right ?? "picture";
+            const leftVisual = isLevel3
+              ? <WordIcon icon={val} word={pairedWord} className="text-4xl leading-none" imageClassName="h-12 w-12 object-contain" />
+              : val;
             return (
               <motion.button
                 key={`left-${val}`}
@@ -248,10 +253,10 @@ export default function MatchingGamePage({
               >
                 {matched ? (
                   <span className="flex items-center gap-1.5">
-                    <span>{val}</span>
+                    <span>{leftVisual}</span>
                     <span className="text-base">✓</span>
                   </span>
-                ) : val}
+                ) : leftVisual}
 
                 {/* Red ✕ badge on wrong flash */}
                 <AnimatePresence>
