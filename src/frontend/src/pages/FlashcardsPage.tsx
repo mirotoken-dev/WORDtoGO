@@ -63,6 +63,8 @@ export default function FlashcardsPage() {
   const goPrev = () => { playTapSound(); setDir(-1); setLetterIdx((i) => (i - 1 + PHONICS_DATA.length) % PHONICS_DATA.length); setWordIdx(0); };
 
   const isCompleted = progress?.flashcards[letter.letter]?.completed ?? false;
+  const dotStart = Math.max(0, Math.min(letterIdx - 6, PHONICS_DATA.length - 13));
+  const visibleDots = PHONICS_DATA.slice(dotStart, dotStart + 13);
 
   return (
     <Layout title={getUILabel("Flashcards")} headerColor="oklch(0.50 0.26 15)">
@@ -184,29 +186,31 @@ export default function FlashcardsPage() {
               type="button"
               data-ocid="flashcards.prev_button"
               onClick={goPrev}
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#e5f2ff] text-[#15365e] transition-smooth active:scale-90 sm:h-16 sm:w-16"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#e5f2ff] text-[#15365e] transition-smooth active:scale-90 sm:h-16 sm:w-16"
               aria-label={getUILabel("Previous")}
             >
-              <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8" />
+              <ChevronLeft className="h-5 w-5 sm:h-8 sm:w-8" />
             </button>
-            <div className="flex items-center justify-center gap-2" aria-label={`Letter ${letterIdx + 1} of ${PHONICS_DATA.length}`}>
-              {PHONICS_DATA.map((l, i) => (
+            <div className="min-w-0 flex-1 overflow-hidden" aria-label={`Letter ${letterIdx + 1} of ${PHONICS_DATA.length}`}>
+              <div className="flex items-center justify-center gap-1.5">
+              {visibleDots.map((l, i) => (
                 <span
                   key={l.letter}
                   className={`h-2.5 w-2.5 rounded-full transition-all ${
-                    i === letterIdx ? "w-4 bg-[#2583ee]" : "bg-[#d6e3ef]"
+                    i + dotStart === letterIdx ? "w-4 bg-[#2583ee]" : "bg-[#d6e3ef]"
                   }`}
                 />
               ))}
+              </div>
             </div>
             <button
               type="button"
               data-ocid="flashcards.next_button"
               onClick={goNext}
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#2583ee] text-white shadow-[0_4px_0_#1261bb] transition-smooth active:translate-y-1 active:shadow-none sm:h-16 sm:w-16 sm:shadow-[0_5px_0_#1261bb]"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#2583ee] text-white shadow-[0_3px_0_#1261bb] transition-smooth active:translate-y-1 active:shadow-none sm:h-16 sm:w-16 sm:shadow-[0_5px_0_#1261bb]"
               aria-label={getUILabel("Next")}
             >
-              <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8" />
+              <ChevronRight className="h-5 w-5 sm:h-8 sm:w-8" />
             </button>
           </div>
         </div>
