@@ -66,11 +66,11 @@ export default function FlashcardsPage() {
 
   return (
     <Layout title={getUILabel("Flashcards")} headerColor="oklch(0.50 0.26 15)">
-      <div className="min-h-full bg-[#fbfdff] px-4 pb-7 pt-4 sm:px-6">
-        <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
+      <div className="min-h-full overflow-x-hidden bg-[#fbfdff] px-2 pb-4 pt-2 sm:px-6 sm:pt-4">
+        <div className="mx-auto flex w-full max-w-[430px] flex-col gap-2.5 sm:max-w-3xl sm:gap-4">
           {/* Letter tabs: uppercase only, like the reference design */}
           <div
-            className="flex gap-2 overflow-x-auto px-1 pb-2"
+            className="flex gap-1.5 overflow-x-auto px-1 pb-1.5 sm:gap-2 sm:pb-2"
             style={{ scrollbarWidth: "none" }}
             data-ocid="flashcards.letter_selector"
           >
@@ -82,7 +82,7 @@ export default function FlashcardsPage() {
                 type="button"
                 data-ocid={`flashcards.letter_tab.${i + 1}`}
                 onClick={() => { playTapSound(); setLetterIdx(i); setWordIdx(0); }}
-                className={`relative flex h-14 min-w-14 flex-shrink-0 items-center justify-center rounded-2xl border-2 text-xl font-display font-black transition-smooth active:scale-95 sm:h-16 sm:min-w-16 ${
+                className={`relative flex h-11 min-w-11 flex-shrink-0 items-center justify-center rounded-xl border-2 text-lg font-display font-black transition-smooth active:scale-95 sm:h-16 sm:min-w-16 sm:rounded-2xl sm:text-xl ${
                   i === letterIdx
                     ? "border-[#2d78e6] bg-[#2d78e6] text-white shadow-[0_5px_0_#b9d5f4]"
                     : done
@@ -104,33 +104,33 @@ export default function FlashcardsPage() {
             <motion.div
               key={`${letterIdx}-${wordIdx}`}
               data-ocid="flashcards.card"
-              className="rounded-[2rem] border-[5px] border-[#d9efff] bg-white px-4 py-5 shadow-[0_4px_0_#e4f3fc] sm:px-8 sm:py-7"
+              className="rounded-[1.5rem] border-4 border-[#d9efff] bg-white px-2.5 py-3 shadow-[0_4px_0_#e4f3fc] sm:rounded-[2rem] sm:border-[5px] sm:px-8 sm:py-7"
               initial={{ x: dir * 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -dir * 50, opacity: 0 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <div className="grid items-center gap-4 sm:grid-cols-[1.1fr_0.9fr] sm:gap-7">
+              <div className="grid grid-cols-[1.1fr_0.9fr] items-center gap-1.5 sm:gap-7">
                 <div className="flex flex-col items-center text-center">
                   <div className="flex items-end justify-center gap-2 leading-none">
-                    <span className="font-display text-[7rem] font-black tracking-[-0.08em] text-[#ee2945] sm:text-[9rem]">
+                    <span className="font-display text-[5.25rem] font-black tracking-[-0.08em] text-[#ee2945] sm:text-[9rem]">
                       {letter.uppercase}
                     </span>
-                    <span className="mb-3 font-display text-[5rem] font-black tracking-[-0.08em] text-[#ee2945] sm:mb-4 sm:text-[7rem]">
+                    <span className="mb-2 font-display text-[3.75rem] font-black tracking-[-0.08em] text-[#ee2945] sm:mb-4 sm:text-[7rem]">
                       {letter.lowercase}
                     </span>
                   </div>
-                  <span className="mt-1 text-3xl font-black tracking-wide text-[#37577d] sm:text-4xl">
+                  <span className="mt-0.5 text-xl font-black tracking-wide text-[#37577d] sm:mt-1 sm:text-4xl">
                     /{letter.phonicSound}/
                   </span>
                   {isCompleted && <span className="mt-1 text-sm font-bold text-[#52ab45]">Letter learned ✓</span>}
                 </div>
 
-                <div className="flex min-h-40 flex-col items-center justify-center">
-                  <WordIcon icon={word.emoji} word={word.word} className="text-[7rem] leading-none" imageClassName="h-36 w-36 object-contain sm:h-40 sm:w-40" />
-                  <p className="mt-1 text-center text-2xl font-black text-[#15365e]">{word.word}</p>
+                <div className="flex min-h-28 flex-col items-center justify-center sm:min-h-40">
+                  <WordIcon icon={word.emoji} word={word.word} className="text-[5rem] leading-none" imageClassName="h-24 w-24 object-contain sm:h-40 sm:w-40" />
+                  <p className="mt-0.5 text-center text-lg font-black text-[#15365e] sm:mt-1 sm:text-2xl">{word.word}</p>
                   {word.arabic && (
-                    <p className="text-lg font-[var(--font-arabic)] text-[#53708f]" dir="rtl">
+                    <p className="text-sm font-[var(--font-arabic)] text-[#53708f] sm:text-lg" dir="rtl">
                       {word.arabic}
                     </p>
                   )}
@@ -141,23 +141,23 @@ export default function FlashcardsPage() {
                 type="button"
                 data-ocid="flashcards.sound_button"
                 onClick={handleSound}
-                className="mx-auto mt-5 flex w-full max-w-xs items-center justify-center gap-3 rounded-full bg-[#2583ee] px-5 py-3.5 text-lg font-black text-white shadow-[0_5px_0_#1261bb] transition-smooth active:translate-y-1 active:shadow-none"
+                className="mx-auto mt-3 flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-[#2583ee] px-4 py-2.5 text-base font-black text-white shadow-[0_4px_0_#1261bb] transition-smooth active:translate-y-1 active:shadow-none sm:mt-5 sm:gap-3 sm:px-5 sm:py-3.5 sm:text-lg sm:shadow-[0_5px_0_#1261bb]"
               >
-                <Volume2 className="h-7 w-7" />
+                <Volume2 className="h-6 w-6 sm:h-7 sm:w-7" />
                 Hear the Sound
               </button>
             </motion.div>
           </AnimatePresence>
 
           {/* Word cards */}
-          <div className="grid grid-cols-2 gap-3 sm:gap-4" data-ocid="flashcards.word_selector">
+          <div className="grid grid-cols-2 gap-2 sm:gap-4" data-ocid="flashcards.word_selector">
             {letter.words.map((w, i) => (
               <button
                 key={w.word}
                 type="button"
                 data-ocid={`flashcards.word_button.${i + 1}`}
                 onClick={() => { playTapSound(); setWordIdx(i); speakWord(w.word); }}
-                className={`flex min-h-[92px] items-center gap-2 rounded-2xl px-3 py-3 text-left transition-smooth active:scale-[0.97] sm:min-h-[106px] sm:px-5 ${
+                className={`flex min-h-[72px] items-center gap-1.5 rounded-xl px-2 py-2 text-left transition-smooth active:scale-[0.97] sm:min-h-[106px] sm:gap-2 sm:rounded-2xl sm:px-5 sm:py-3 ${
                   WORD_CARD_COLORS[i % WORD_CARD_COLORS.length]
                 } ${
                   wordIdx === i
@@ -165,11 +165,11 @@ export default function FlashcardsPage() {
                     : "hover:-translate-y-0.5"
                 }`}
               >
-                <WordIcon icon={w.emoji} word={w.word} className="shrink-0 text-5xl leading-none" imageClassName="h-14 w-14 object-contain sm:h-16 sm:w-16" />
+                <WordIcon icon={w.emoji} word={w.word} className="shrink-0 text-4xl leading-none" imageClassName="h-10 w-10 object-contain sm:h-16 sm:w-16" />
                 <span className="min-w-0">
-                  <span className="block truncate text-base font-black text-[#15365e] sm:text-xl">{w.word}</span>
+                  <span className="block truncate text-sm font-black text-[#15365e] sm:text-xl">{w.word}</span>
                   {w.arabic && (
-                    <span className="block truncate text-sm font-[var(--font-arabic)] text-[#4c6682] sm:text-base" dir="rtl">
+                    <span className="block truncate text-xs font-[var(--font-arabic)] text-[#4c6682] sm:text-base" dir="rtl">
                       {w.arabic}
                     </span>
                   )}
@@ -179,15 +179,15 @@ export default function FlashcardsPage() {
           </div>
 
           {/* Letter navigation */}
-          <div className="flex items-center justify-between gap-3 pt-1">
+          <div className="flex items-center justify-between gap-2 pt-1">
             <button
               type="button"
               data-ocid="flashcards.prev_button"
               onClick={goPrev}
-              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#e5f2ff] text-[#15365e] transition-smooth active:scale-90 sm:h-16 sm:w-16"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#e5f2ff] text-[#15365e] transition-smooth active:scale-90 sm:h-16 sm:w-16"
               aria-label={getUILabel("Previous")}
             >
-              <ChevronLeft className="h-8 w-8" />
+              <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8" />
             </button>
             <div className="flex items-center justify-center gap-2" aria-label={`Letter ${letterIdx + 1} of ${PHONICS_DATA.length}`}>
               {PHONICS_DATA.map((l, i) => (
@@ -203,10 +203,10 @@ export default function FlashcardsPage() {
               type="button"
               data-ocid="flashcards.next_button"
               onClick={goNext}
-              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#2583ee] text-white shadow-[0_5px_0_#1261bb] transition-smooth active:translate-y-1 active:shadow-none sm:h-16 sm:w-16"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#2583ee] text-white shadow-[0_4px_0_#1261bb] transition-smooth active:translate-y-1 active:shadow-none sm:h-16 sm:w-16 sm:shadow-[0_5px_0_#1261bb]"
               aria-label={getUILabel("Next")}
             >
-              <ChevronRight className="h-8 w-8" />
+              <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8" />
             </button>
           </div>
         </div>
