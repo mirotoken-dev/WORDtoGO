@@ -96,7 +96,7 @@ export default function FlashcardsPage() {
                 type="button"
                 data-ocid={`flashcards.letter_tab.${i + 1}`}
                 onClick={() => { playTapSound(); setLetterIdx(i); setWordIdx(0); setFlipped(false); }}
-                className={`flex-shrink-0 w-9 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 border ${
+                className={`flex-shrink-0 w-11 h-9 rounded-xl text-sm font-display font-black transition-smooth active:scale-95 border flex items-center justify-center gap-0.5 ${
                   i === letterIdx
                     ? "gradient-red text-white border-transparent shadow-playful"
                     : done
@@ -104,7 +104,8 @@ export default function FlashcardsPage() {
                       : "bg-muted text-muted-foreground border-border"
                 }`}
               >
-                {l.letter}
+                <span>{l.uppercase}</span>
+                <span className="text-[11px] font-bold opacity-75">{l.lowercase}</span>
               </button>
             );
           })}
