@@ -128,10 +128,8 @@ export default function FlashcardsPage() {
             {isCompleted && <span className="absolute top-3 right-3 text-xl">✅</span>}
             {!flipped ? (
               <>
-                <div className="flex items-end justify-center gap-4">
-                  <span className="text-[100px] font-display font-black leading-none drop-shadow">{letter.uppercase}</span>
-                  <span className="text-4xl font-display font-bold opacity-75 leading-none pb-2">{letter.lowercase}</span>
-                </div>
+                <span className="text-[100px] font-display font-black leading-none drop-shadow">{letter.uppercase}</span>
+                <span className="text-4xl font-display font-bold opacity-75">{letter.lowercase}</span>
                 <span className="text-sm opacity-70 mt-2 font-body">/{letter.phonicSound}/ {getUILabel("tap to flip!")}</span>
               </>
             ) : (
