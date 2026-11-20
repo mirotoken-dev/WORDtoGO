@@ -104,6 +104,23 @@ function PhonicsIconSVG() {
   );
 }
 
+function GameHubIconSVG() {
+  return (
+    <svg viewBox="0 0 64 64" className="w-14 h-14 drop-shadow-md" fill="none">
+      {/* Game controller body */}
+      <rect x="8" y="22" width="48" height="28" rx="14" fill="white" opacity="0.9" />
+      {/* D-pad */}
+      <rect x="18" y="32" width="4" height="10" rx="1" fill="white" opacity="0.5" />
+      <rect x="14" y="36" width="10" height="4" rx="1" fill="white" opacity="0.5" />
+      {/* Action buttons */}
+      <circle cx="46" cy="34" r="3" fill="white" opacity="0.5" />
+      <circle cx="52" cy="40" r="3" fill="white" opacity="0.5" />
+      {/* Joystick nub */}
+      <circle cx="20" cy="36" r="2.5" fill="white" opacity="0.3" />
+    </svg>
+  );
+}
+
 /* ─── Menu config ─── */
 
 type MenuItem = {
@@ -139,6 +156,14 @@ const MENU: MenuItem[] = [
     shadow: "#237010",
     desc: "Practice writing",
     icon: <TracingIconSVG />,
+  },
+  {
+    label: "Game Hub",
+    path: "/games",
+    bg: "linear-gradient(160deg, #F060A0 0%, #C83070 100%)",
+    shadow: "#A02050",
+    desc: "Games & challenges!",
+    icon: <GameHubIconSVG />,
   },
   {
     label: "Matching",
