@@ -55,11 +55,38 @@ export interface TracingProgress {
   lastVisited: number;
 }
 
+export interface MissingLetterProgress {
+  tasksCompleted: string[];
+  score: number;
+  completed: boolean;
+  lastVisited: number;
+}
+
+export interface MemoryMatchProgress {
+  bestTime: number;
+  gamesPlayed: number;
+  highScore: number;
+  completed: boolean;
+  lastVisited: number;
+}
+
+export interface SpeedChallengeProgress {
+  bestTime: number;
+  bestStreak: number;
+  gamesPlayed: number;
+  highScore: number;
+  completed: boolean;
+  lastVisited: number;
+}
+
 export interface LessonProgress {
   profileId: string;
   flashcards: Record<string, FlashcardProgress>;
   blending: Record<string, BlendingProgress>;
   tracing: Record<string, TracingProgress>;
+  missingLetter: Record<string, MissingLetterProgress>;
+  memoryMatch: Record<string, MemoryMatchProgress>;
+  speedChallenge: Record<string, SpeedChallengeProgress>;
   totalStars: number;
   lastUpdated: number;
 }
