@@ -6,12 +6,16 @@ import { preloadLetterAudio, prewarmSpeech } from "./utils/audio";
 
 import BlendingPage from "./pages/BlendingPage";
 import FlashcardsPage from "./pages/FlashcardsPage";
+import GameHubPage from "./pages/GameHubPage";
 import HomePage from "./pages/HomePage";
 import MatchingLevel1Page from "./pages/MatchingLevel1Page";
 import MatchingLevel2Page from "./pages/MatchingLevel2Page";
 import MatchingLevel3Page from "./pages/MatchingLevel3Page";
 import MatchingMenuPage from "./pages/MatchingMenuPage";
+import MemoryMatchPage from "./pages/MemoryMatchPage";
+import MissingLetterPage from "./pages/MissingLetterPage";
 import ProfileWizard from "./pages/ProfileWizard";
+import SpeedChallengePage from "./pages/SpeedChallengePage";
 // Lazy page imports
 import ProfilesPage from "./pages/ProfilesPage";
 import ProgressPage from "./pages/ProgressPage";
@@ -113,6 +117,30 @@ const profileWizardRoute = createRoute({
   component: ProfileWizard,
 });
 
+const gamesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/games",
+  component: GameHubPage,
+});
+
+const missingLetterRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/games/missing-letter",
+  component: MissingLetterPage,
+});
+
+const memoryMatchRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/games/memory-match",
+  component: MemoryMatchPage,
+});
+
+const speedChallengeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/games/speed-challenge",
+  component: SpeedChallengePage,
+});
+
 const routeTree = rootRoute.addChildren([
   profilesRoute,
   profileWizardRoute,
@@ -127,6 +155,10 @@ const routeTree = rootRoute.addChildren([
   matchingLevel2Route,
   matchingLevel3Route,
   pronunciationRoute,
+  gamesRoute,
+  missingLetterRoute,
+  memoryMatchRoute,
+  speedChallengeRoute,
 ]);
 
 const router = createRouter({ routeTree });
