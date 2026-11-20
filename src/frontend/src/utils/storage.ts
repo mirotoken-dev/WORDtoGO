@@ -75,6 +75,9 @@ export function createDefaultProgress(profileId: string): LessonProgress {
     flashcards: {},
     blending: {},
     tracing: {},
+    missingLetter: {},
+    memoryMatch: {},
+    speedChallenge: {},
     totalStars: 0,
     lastUpdated: Date.now(),
   };
